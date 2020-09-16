@@ -1,16 +1,10 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
 
-import {AuthRoutes} from "../../routes/routes-const";
+import styles from './style.module.scss';
 
 const NewsFeed: React.FC = () => {
   return (
-    <div>
-      News Feed!
-
-      <NavLink to={AuthRoutes.SIGN_IN}>
-        auth
-      </NavLink>
+    <div className={styles.container}>
     </div>
   )
 }

@@ -1,0 +1,14 @@
+@import "../../../static/fonts/index";
+
+.navBar {
+  height: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 32px;
+  font-family: $lightItalic;
+}
