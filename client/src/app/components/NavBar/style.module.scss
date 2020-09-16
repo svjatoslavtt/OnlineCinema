@@ -1,0 +1,26 @@
+@import "../client/src/static/fonts/index";
+
+.navBar {
+  height: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 32px;
+  font-family: $lightItalic;
+}
+
+.authBlock {
+  padding: 8px 15px;
+  background: #8967c7;
+  border-radius: 5px;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 5px;
+  }
+}
