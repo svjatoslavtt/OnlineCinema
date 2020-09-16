@@ -1,0 +1,18 @@
+.authBlock {
+  padding: 8px 15px;
+  background: #8967c7;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    background: #7552b3;
+    transform: translateY(-2px);
+  }
+
+  .span {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 5px;
+  }
+}
