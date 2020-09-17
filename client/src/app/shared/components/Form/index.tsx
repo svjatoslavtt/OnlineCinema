@@ -1,10 +1,11 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-import Button from "../Button";
-
 import styles from "./style.module.scss"
+
+import Button from "../Button";
 import {Input} from "../../interfaces/input.interface";
+
 import {AuthRoutes} from "../../../routes/routes-const";
 
 interface FormProps {
@@ -17,11 +18,12 @@ const Form: React.FC<FormProps> = ({ inputs, title }) => {
 
   const renderInputs =
     Object.values(inputs)
-      .map((item: any) => (
+      .map((item: Input) => (
         <input
           key={item.id}
           type={item.type}
           placeholder={item.placeholder}
+          name={item.name}
           required={item.required}
         />
       ));

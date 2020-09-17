@@ -9,12 +9,14 @@ const SignIn: React.FC = () => {
       id: 1,
       type: 'text',
       placeholder: 'Email',
+      name: 'email',
       required: true,
     },
     {
       id: 2,
       type: 'password',
       placeholder: 'Password',
+      name: 'password',
       required: true,
     }
   ];
