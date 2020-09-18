@@ -18,7 +18,8 @@ router.post(
       .isLength({ min: 6 }),
     check('confirmPassword', 'Пароли не совподают')
       .exists()
-      .custom((value, {req}) => value !== req.body.password),
+      .isLength({ min: 6 })
+      .custom((value, {req}) => value === req.body.password),
     check('name', 'Поле name не может быть пустым!').exists(),
   ],
   async (req, res) => {
