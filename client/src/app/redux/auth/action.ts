@@ -13,7 +13,7 @@ export enum ActionTypes {
 }
 
 export const Actions = {
-  loginRequest: (payload: Login) => action(ActionTypes.LOGIN_REQUEST, payload),
+  loginRequest: (payload: any) => action(ActionTypes.LOGIN_REQUEST, payload),
   loginSuccess: (payload: any) => action(ActionTypes.LOGIN_SUCCESS, payload),
   loginFailed: (payload: any) => action(ActionTypes.LOGIN_FAILED, payload),
 
