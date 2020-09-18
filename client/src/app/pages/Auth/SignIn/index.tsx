@@ -1,11 +1,14 @@
 import React, {useCallback, useState} from "react";
 import {useDispatch} from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import {Login} from "../../../shared/interfaces/auth.interface";
 import {Actions} from "../../../redux/auth/action";
 import Form from "../../../shared/components/Form";
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const initialFormData: Login = {
     email: '',
@@ -15,7 +18,7 @@ const SignIn: React.FC = () => {
   const [form, setForm] = useState(initialFormData);
 
   const handleSubmit = useCallback(() => {
-    dispatch(Actions.loginRequest({...form}));
+    dispatch(Actions.loginRequest({form, history}));
   }, [form, dispatch]);
 
   return (
