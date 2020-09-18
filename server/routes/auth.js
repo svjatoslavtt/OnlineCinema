@@ -49,9 +49,9 @@ router.post(
     });
 
     await user.save();
-    return res.status(201).json({ message: 'Пользователь зарегистрирован!' });
+    return res.status(201).json({ ok: true, message: 'Регистрация прошла успешно!' });
   } catch (err) {
-    return res.status(500).json({ message: 'Something went wrong, please try again...' });
+    return res.status(500).json({ ok: false, message: 'Something went wrong, please try again...' });
   }
 });
 
