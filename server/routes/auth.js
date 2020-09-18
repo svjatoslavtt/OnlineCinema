@@ -95,7 +95,7 @@ router.post(
         { expiresIn: '1h' }
       );
 
-      return res.json({ token, user });
+      return res.json({ token, ...user });
     } catch (err) {
       return res.status(500).json({ message: 'Something went wrong, please try again...' });
     }
