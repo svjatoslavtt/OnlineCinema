@@ -5,7 +5,7 @@ import {Actions, ActionTypes} from "../action";
 import {ApiEndPoints} from "../../../routes/api-routes-const";
 import {request} from "../../../shared/hooks/request";
 
-import {AuthRoutes} from "../../../routes/routes-const";
+import {AppRoutes, AuthRoutes} from "../../../routes/routes-const";
 
 function* register(action: any) {
   try {
@@ -21,8 +21,25 @@ function* register(action: any) {
   }
 }
 
+function* login(action: any) {
+  try {
+    const history = { ...action.payload.history };
+    const data = yield call(request, ApiEndPoints.login, 'POST', { ...action.payload.form });
+    if (data.errors) {
+      yield put(Actions.loginFailed(data.errors));
+    } else {
+      console.log(data);
+      // yield put(Actions.loginSuccess(data.body));
+      yield history.push(AppRoutes.NEWS_FEED);
+    }
+  } catch (err) {
+    yield put(Actions.loginFailed(err));
+  }
+}
+
 export function* watchAuthorization() {
   yield all([
     takeEvery(ActionTypes.REGISTER_REQUEST, register),
+    takeEvery(ActionTypes.LOGIN_REQUEST, login),
   ]);
 }
