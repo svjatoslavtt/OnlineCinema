@@ -1,48 +1,31 @@
-import React from "react";
+import React, {useCallback, useState} from "react";
+import {useDispatch} from "react-redux";
+import { useHistory } from "react-router-dom";
 
+import {Actions} from "../../../redux/auth/action";
 import Form from "../../../shared/components/Form";
-import {Input} from "../../../shared/interfaces/input.interface";
+import {RegisterUser} from "../../../shared/interfaces/auth.interface";
 
 const SignUp: React.FC = () => {
-  const inputs: Input[] = [
-    {
-      id: 1,
-      type: 'text',
-      placeholder: 'Email',
-      name: 'email',
-      required: true,
-    },
-    {
-      id: 2,
-      type: 'text',
-      placeholder: 'Name',
-      name: 'name',
-      required: true,
-    },
-    {
-      id: 3,
-      type: 'text',
-      placeholder: 'Surname',
-      name: 'surname',
-    },
-    {
-      id: 4,
-      type: 'password',
-      placeholder: 'Password',
-      name: 'password',
-      required: true,
-    },
-    {
-      id: 5,
-      type: 'password',
-      placeholder: 'Confirm password',
-      name: 'confirmPassword',
-      required: true,
-    },
-  ];
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const initialFormData: RegisterUser = {
+    email: '',
+    name: '',
+    surname: '',
+    password: '',
+    confirmPassword: '',
+  };
+
+  const [form, setForm] = useState<RegisterUser>(initialFormData);
+
+  const handleSubmit = useCallback(() => {
+    dispatch(Actions.registerRequest({ form, history }));
+  },[form, dispatch]);
 
   return (
-    <Form inputs={inputs} title="Регистрация" />
+    <Form form={form} setForm={setForm} handleSubmit={handleSubmit} title='Регистрация' />
   )
 }
 
