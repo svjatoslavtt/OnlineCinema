@@ -18,10 +18,6 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  confirmPassword: {
-    type: String,
-    required: true,
-  },
   films: [
     {
       type: Types.ObjectId,
