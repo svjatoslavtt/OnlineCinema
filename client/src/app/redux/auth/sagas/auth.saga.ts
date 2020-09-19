@@ -16,9 +16,7 @@ function* register(action: any) {
     } else {
       yield history.push(AuthRoutes.SIGN_IN);
     }
-  } catch (err) {
-    yield put(Actions.registerFailed(err));
-  }
+  } catch (err) {}
 }
 
 function* login(action: any) {
@@ -32,9 +30,7 @@ function* login(action: any) {
       // yield put(Actions.loginSuccess(data.body));
       yield history.push(AppRoutes.NEWS_FEED);
     }
-  } catch (err) {
-    yield put(Actions.loginFailed(err));
-  }
+  } catch (err) {}
 }
 
 export function* watchAuthorization() {
