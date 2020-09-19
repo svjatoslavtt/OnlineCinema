@@ -7,7 +7,7 @@ export const inputs = {
     placeholder: 'Email',
     name: 'email',
     value: '',
-    empty: true,
+    empty: false,
     required: true,
   },
   password: {
@@ -16,7 +16,7 @@ export const inputs = {
     placeholder: 'Password',
     name: 'password',
     value: '',
-    empty: true,
+    empty: false,
     required: true,
   }
 };
