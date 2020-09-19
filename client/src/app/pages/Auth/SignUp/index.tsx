@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import {inputs} from "./inputs-data";
@@ -14,7 +14,7 @@ const SignUp: React.FC = () => {
   type Inputs = typeof inputs;
   const [form, setForm] = useState<Inputs>(inputs);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     const checkField = Object.values(form).reduce((acc: Inputs, current) => {
       if (current.value === '') {
         acc[current.name] = {
@@ -48,7 +48,7 @@ const SignUp: React.FC = () => {
 
       dispatch(Actions.registerRequest({ form, history }));
     }
-  },[form, dispatch]);
+  };
 
   return (
     <Form
