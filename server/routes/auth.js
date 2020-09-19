@@ -10,17 +10,16 @@ const router = Router();
 router.post(
   '/register',
   [
-    check('email', 'Неккоректный email')
+    check('email', 'Неккоректный email!')
       .exists()
       .isEmail(),
-    check('password', 'Минимальная длинна 6 символов')
+    check('password', 'Минимальная длинна пароля 6 символов!')
       .exists()
       .isLength({ min: 6 }),
-    check('confirmPassword', 'Пароли не совподают')
+    check('confirmPassword', 'Пароли не совподают!')
       .exists()
       .isLength({ min: 6 })
       .custom((value, {req}) => value === req.body.password),
-    check('name', 'Поле name не может быть пустым!').exists(),
   ],
   async (req, res) => {
   try {
@@ -28,8 +27,7 @@ router.post(
 
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        errors: errors.array(),
-        message: 'Неккоректные данные при регистрации!',
+        message: errors.array()[0].msg,
       });
     }
 
@@ -60,9 +58,8 @@ router.post(
   [
     check('email', 'Email обязательное поле!')
       .exists()
-      .normalizeEmail()
       .isEmail(),
-    check('password', 'Введите пароль').exists(),
+    check('password', 'Введите пароль!').exists(),
   ],
   async (req, res) => {
     try {
@@ -70,8 +67,7 @@ router.post(
 
       if (!errors.isEmpty()) {
         return res.status(400).json({
-          errors: errors.array(),
-          message: 'Неккоректные данные при регистрации!',
+          message: errors.array()[0].msg,
         });
       }
 
@@ -95,7 +91,7 @@ router.post(
         { expiresIn: '1h' }
       );
 
-      return res.json({ token, ...user });
+      return res.json({ token, user });
     } catch (err) {
       return res.status(500).json({ message: 'Something went wrong, please try again...' });
     }
