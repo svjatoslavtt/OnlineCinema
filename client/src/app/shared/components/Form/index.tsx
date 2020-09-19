@@ -19,8 +19,6 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
   const login = title === 'Вход';
 
-  console.log(Object.values(form).map((item: any) => item));
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
