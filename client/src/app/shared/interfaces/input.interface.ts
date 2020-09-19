@@ -3,5 +3,7 @@ export interface InputInterface {
   type: string;
   placeholder: string;
   name: string;
+  value: string;
+  empty?: boolean;
   required?: boolean;
 }
