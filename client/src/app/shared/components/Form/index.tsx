@@ -1,13 +1,14 @@
 import React from "react";
-import styles from "./style.module.scss";
 import {NavLink} from "react-router-dom";
 
-import Button from "../Button";
+import styles from "./style.module.scss";
 
-import {InputInterface} from "../../interfaces/input.interface";
+import Button from "../Button";
+import Input from "../Input";
 
 import {AuthRoutes} from "../../../routes/routes-const";
-import Input from "../Input";
+import {useSelector} from "react-redux";
+import {getAuthStateErrors} from "../../../redux/auth/selectors";
 
 interface FormProps {
   handleSubmit: () => void;
@@ -16,7 +17,9 @@ interface FormProps {
   title: string;
 }
 
-const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
+const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = 'Вход' }) => {
+  const errors = useSelector(getAuthStateErrors);
+
   const login = title === 'Вход';
 
   return (
@@ -42,7 +45,6 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
                 type={item.type}
                 name={item.name}
                 placeholder={item.placeholder}
-                value={item.value}
                 required={item.required}
                 empty={item.empty}
                 form={form}
@@ -53,6 +55,8 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
         </div>
 
         <Button text={login ? 'Войти' : 'Готово'} onClick={handleSubmit} />
+
+        {errors && (<span className={styles.errors}>{errors}</span>)}
       </div>
     </div>
   )
