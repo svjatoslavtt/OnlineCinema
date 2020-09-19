@@ -21,7 +21,10 @@ function* register(action: any) {
 function* login(action: any) {
   try {
     const history = { ...action.payload.history };
-    yield call(request, ApiEndPoints.login, 'POST', { ...action.payload.form });
+    const data = yield call(request, ApiEndPoints.login, 'POST', { ...action.payload.form });
+    yield put(Actions.loginSuccess({ token: data.token, user: data.user }));
+    yield localStorage.setItem('token', JSON.stringify({ token: data.token }));
+    yield localStorage.setItem('id', JSON.stringify({ id: data.user._id }));
     yield history.push(AppRoutes.NEWS_FEED);
   } catch (err) {
     yield put(Actions.loginFailed(err));
