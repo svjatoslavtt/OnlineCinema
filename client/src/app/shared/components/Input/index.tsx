@@ -34,15 +34,19 @@ const Input: React.FC<InputProps> = ({
   }
 
   return (
-    <input
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      value={form.value}
-      required={required}
-      className={empty ? styles.noValid : styles.valid}
-      onChange={handleChange}
-    />
+    <>
+      <input
+        id={form[name].id}
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        value={form.value}
+        required={required}
+        className={empty ? styles.noValid : styles.valid}
+        onChange={handleChange}
+      />
+      <label htmlFor={form[name].id} className={empty ? styles.noValidLabel : styles.validLabel} />
+    </>
   );
 }
 
