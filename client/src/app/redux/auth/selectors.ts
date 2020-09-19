@@ -8,3 +8,8 @@ export const getAuthStateErrors = createSelector(
   getAuthState,
   (state) => state.errors
 );
+
+export const getAuthToken = createSelector(
+  getAuthState,
+  (state) => state.token
+);
