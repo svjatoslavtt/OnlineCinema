@@ -1,6 +1,8 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
+
+import {inputs} from "./inputs-data";
 
 import {Login} from "../../../shared/interfaces/auth.interface";
 import {Actions} from "../../../redux/auth/action";
@@ -22,7 +24,12 @@ const SignIn: React.FC = () => {
   }, [form, dispatch]);
 
   return (
-    <Form setForm={setForm} form={form} handleSubmit={handleSubmit} title='Вход' />
+    <Form
+      setForm={setForm}
+      form={form}
+      handleSubmit={handleSubmit}
+      title='Вход'
+    />
   )
 }
 
