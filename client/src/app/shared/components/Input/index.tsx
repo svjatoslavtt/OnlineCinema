@@ -6,7 +6,6 @@ interface InputProps {
   type: string;
   name: string;
   placeholder: string;
-  value: string;
   empty: boolean | undefined;
   setForm: any;
   form: any;
@@ -17,7 +16,6 @@ const Input: React.FC<InputProps> = ({
   type,
   name,
   placeholder,
-  value,
   empty,
   required,
   setForm,
