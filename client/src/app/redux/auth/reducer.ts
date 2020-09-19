@@ -1,13 +1,13 @@
 import {ActionTypes, ActionTypeUnion} from "./action";
 
-interface AuthInterface {
+export interface AuthInterface {
   user: any;
-  errors: any;
+  errors: string;
 }
 
 const authInitialState: AuthInterface = {
   user: null,
-  errors: null,
+  errors: '',
 };
 
 export const reducer = (state = authInitialState, action: ActionTypeUnion) => {
@@ -16,7 +16,18 @@ export const reducer = (state = authInitialState, action: ActionTypeUnion) => {
     case ActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        errors: '',
+      }
+    case ActionTypes.LOGIN_FAILED:
+      return {
+        ...state,
+        errors: action.payload.message,
+      }
+    case ActionTypes.REGISTER_SUCCESS:
+      return {
+        ...state,
+        errors: '',
       }
     case ActionTypes.REGISTER_FAILED:
       return {
