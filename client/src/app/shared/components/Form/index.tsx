@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "./style.module.scss";
 import {NavLink} from "react-router-dom";
-import {AuthRoutes} from "../../../routes/routes-const";
+
 import Button from "../Button";
+
+import {InputInterface} from "../../interfaces/input.interface";
+
+import {AuthRoutes} from "../../../routes/routes-const";
+import Input from "../Input";
 
 interface FormProps {
   handleSubmit: () => void;
@@ -12,11 +17,9 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  }
-
   const login = title === 'Вход';
+
+  console.log(Object.values(form).map((item: any) => item));
 
   return (
     <div className={styles.container}>
@@ -35,62 +38,19 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
       <div className={styles.formWrapper}>
         <div className={styles.form}>
           <div className={styles.inputWrapper}>
-            {login ? (
-              <>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="password"
-                  value={form.password}
-                  placeholder="Password"
-                  onChange={handleChange}
-                />
-              </>
-            ) : (
-              <>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  placeholder="Name"
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="surname"
-                  value={form.surname}
-                  placeholder="Surname"
-                  onChange={handleChange}
-                />
-                <input
-                  type="password"
-                  name="password"
-                  value={form.password}
-                  placeholder="Password"
-                  onChange={handleChange}
-                />
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={form.confirmPassword}
-                  placeholder="Confirm password"
-                  onChange={handleChange}
-                />
-              </>
-            )}
+            {Object.values(form).map((item: any) => (
+              <Input
+                key={item.id}
+                type={item.type}
+                name={item.name}
+                placeholder={item.placeholder}
+                value={item.value}
+                required={item.required}
+                empty={item.empty}
+                form={form}
+                setForm={setForm}
+              />
+            ))}
           </div>
         </div>
 
