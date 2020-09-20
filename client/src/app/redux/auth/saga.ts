@@ -7,6 +7,8 @@ import {request} from "../../shared/hooks/request";
 
 import {AppRoutes, AuthRoutes} from "../../routes/routes-const";
 
+import {LoginInputs} from "../../pages/Auth/SignIn";
+
 function* register(action: any) {
   try {
     const history = { ...action.payload.history };
@@ -21,7 +23,15 @@ function* register(action: any) {
 function* login(action: any) {
   try {
     const history = { ...action.payload.history };
-    const data = yield call(request, ApiEndPoints.login, 'POST', { ...action.payload.form });
+    const form: LoginInputs = { ...action.payload.form };
+    const formData = Object.values(form).reduce((acc, item) => {
+      acc = {
+        ...acc,
+        [item.name]: item.value
+      }
+      return acc;
+    }, {});
+    const data = yield call(request, ApiEndPoints.login, 'POST', formData);
     yield put(Actions.loginSuccess({ token: data.token, user: data.user }));
     yield localStorage.setItem('token', JSON.stringify({ token: data.token }));
     yield localStorage.setItem('id', JSON.stringify({ id: data.user._id }));

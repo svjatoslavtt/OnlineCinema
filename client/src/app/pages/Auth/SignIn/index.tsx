@@ -7,29 +7,22 @@ import {inputs} from "./inputs-data";
 import {Actions} from "../../../redux/auth/action";
 import Form from "../../../shared/components/Form";
 
+export type LoginInputs = typeof inputs;
+
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  type Inputs = typeof inputs;
-  const [form, setForm] = useState<Inputs>(inputs);
+  const [form, setForm] = useState<LoginInputs>(inputs);
 
   const handleSubmit = () => {
     const isEmpty = Object.values(form).some((item) => item.value === '');
 
     if (isEmpty) {
-      dispatch(Actions.loginFailed({ message: 'Все поля должны быть заполнены!' }));
-    } else {
-      const formData = Object.values(form).reduce((acc, item) => {
-        acc = {
-          ...acc,
-          [item.name]: item.value
-        }
-        return acc;
-      }, {});
+      return dispatch(Actions.loginFailed({ message: 'Все поля должны быть заполнены!' }));
+    } 
 
-      dispatch(Actions.loginRequest({form: formData, history}));
-    }
+    return dispatch(Actions.loginRequest({form, history}));
   };
 
   return (
