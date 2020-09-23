@@ -1,5 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import styles from "./style.module.scss";
+
+import { getAuthLoading } from "../../../redux/auth/selectors";
 
 interface ButtonProps {
   text: string;
@@ -12,6 +16,8 @@ enum ButtonTextColor {
 }
 
 const Button: React.FC<ButtonProps> = ({ text, color = ButtonTextColor.WHITE, onClick }) => {
+  const loading = useSelector(getAuthLoading);
+  
   switch (text) {
     case 'Вход':
       text = 'Войти'
@@ -22,9 +28,9 @@ const Button: React.FC<ButtonProps> = ({ text, color = ButtonTextColor.WHITE, on
   }
 
   return (
-    <div onClick={onClick} className={styles.authBlock} style={{color}}>
-      <span>{text}</span>
-    </div>
+    <button disabled={loading} onClick={onClick} className={styles.authBlock} style={{color}}>
+      <span>{loading ? 'Обработка...' : text}</span>
+    </button>
   )
 }
 

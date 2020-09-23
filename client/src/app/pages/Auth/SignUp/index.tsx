@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import {inputs} from "./inputs-data";
@@ -35,6 +35,7 @@ const SignUp: React.FC = () => {
 
     if (isEmpty) {
       setForm(checkField);
+      return dispatch(Actions.registerFailed({ message: 'Все поля должны быть заполнены!' }));
     } else {
       setForm(checkField);
 
@@ -46,7 +47,7 @@ const SignUp: React.FC = () => {
         return acc;
       }, {});
 
-      dispatch(Actions.registerRequest({ form, history }));
+      return dispatch(Actions.registerRequest({ form, history }));
     }
   };
 

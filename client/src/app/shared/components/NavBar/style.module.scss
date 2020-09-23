@@ -1,15 +1,27 @@
 @import "../../../static/fonts/index";
 
 .navBar {
-  height: 64px;
+  height: 100px;
   max-width: 1300px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   border-radius: 5px;
   position: fixed;
   padding: 0 50px;
+}
+
+.navBarHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.navBarPages {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .logo {
@@ -27,21 +39,43 @@
   margin-left: 20px;
 }
 
-.toFilmsLink {
-  font-size: 18px;
-  margin-left: 50px;
-  margin-top: 10px;
-  border-bottom: 4px solid #ff9800;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
 .buttonsWrapper {
   display: flex;
-  align-items: center;
-  background: #8967c7;
   padding: 0 20px;
-  color: #eee;
   border-radius: 5px;
+}
+
+.myOffice,
+.logout {
+  border: 1px solid #313131;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .12s ease-in-out;
+  margin-right: 25px;
+
+  &:hover {
+    background-color: #313131;
+    color: #eee;
+  }
+}
+
+.logout {
+  margin-right: 0;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: #eee;
+    color: initial;
+  }
+}
+
+.pageLink {
+  font-size: 16px;
+  margin-right: 25px;
+  border-bottom: 1px solid transparent;
+}
+
+.linkActive {
+  border-bottom: 1px solid #313131;
 }

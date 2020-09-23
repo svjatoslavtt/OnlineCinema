@@ -3,8 +3,10 @@
   background: #8967c7;
   cursor: pointer;
   transition: all .2s ease-in-out;
-  text-align: center;
   border-radius: 5px;
+  margin: 0 auto;
+  display: block;
+  outline: none;
 
   &:hover {
     background: #7552b3;
