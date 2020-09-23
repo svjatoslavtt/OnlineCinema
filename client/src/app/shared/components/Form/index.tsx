@@ -7,8 +7,9 @@ import Button from "../Button";
 import Input from "../Input";
 
 import {AuthRoutes} from "../../../routes/routes-const";
-import {useSelector} from "react-redux";
-import {getAuthStateErrors} from "../../../redux/auth/selectors";
+import {useDispatch, useSelector} from "react-redux";
+import {getAuthErrors} from "../../../redux/auth/selectors";
+import { Actions } from "../../../redux/auth/action";
 
 interface FormProps {
   handleSubmit: () => void;
@@ -18,9 +19,12 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = 'Вход' }) => {
-  const errors = useSelector(getAuthStateErrors);
+  const errors = useSelector(getAuthErrors);
+  const dispatch = useDispatch();
 
   const login = title === 'Вход';
+
+  const handlerClearErrors = () => dispatch(Actions.clearErrors());
 
   return (
     <div className={styles.container}>
@@ -30,7 +34,7 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = 'Вх�
         </div>
 
         {login && (
-          <NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp}>
+          <NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp} onClick={handlerClearErrors}>
             Регистрация
           </NavLink>
         )}
