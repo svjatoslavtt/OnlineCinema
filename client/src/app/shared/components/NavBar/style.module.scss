@@ -2,13 +2,46 @@
 
 .navBar {
   height: 64px;
+  max-width: 1300px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 5px;
+  position: fixed;
+  padding: 0 50px;
 }
 
 .logo {
   font-size: 32px;
   font-family: $lightItalic;
+}
+
+.linkWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.toFilmsLink {
+  font-size: 18px;
+  margin-left: 50px;
+  margin-top: 10px;
+  border-bottom: 4px solid #ff9800;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  align-items: center;
+  background: #8967c7;
+  padding: 0 20px;
+  color: #eee;
+  border-radius: 5px;
 }

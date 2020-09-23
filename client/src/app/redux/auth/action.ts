@@ -10,16 +10,20 @@ export enum ActionTypes {
   REGISTER_REQUEST = 'REGISTER_REQUEST',
   REGISTER_SUCCESS = 'REGISTER_SUCCESS',
   REGISTER_FAILED = 'REGISTER_FAILED',
+
+  LOGOUT = 'LOGOUT',
 }
 
 export const Actions = {
   loginRequest: (payload: any) => action(ActionTypes.LOGIN_REQUEST, payload),
-  loginSuccess: (payload: any) => action(ActionTypes.LOGIN_SUCCESS, payload),
+  loginSuccess: (payload: { token: string, user: any }) => action(ActionTypes.LOGIN_SUCCESS, payload),
   loginFailed: (payload: any) => action(ActionTypes.LOGIN_FAILED, payload),
 
   registerRequest: (payload: any) => action(ActionTypes.REGISTER_REQUEST, payload),
   registerSuccess: () => action(ActionTypes.REGISTER_SUCCESS),
   registerFailed: (payload: any) => action(ActionTypes.REGISTER_FAILED, payload),
+
+  logout: () => action(ActionTypes.LOGOUT),
 }
 
 export type ActionTypeUnion = ActionType<typeof Actions>;

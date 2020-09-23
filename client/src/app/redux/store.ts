@@ -1,10 +1,14 @@
 import createSagaMiddleware from 'redux-saga';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 
-import { reducer as authReducer } from '../redux/auth/reducer';
+import {AuthInterface, reducer as authReducer} from '../redux/auth/reducer';
 import {rootSaga} from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
+
+export interface RootState {
+  auth: AuthInterface;
+}
 
 const rootReducers = combineReducers({
   auth: authReducer,

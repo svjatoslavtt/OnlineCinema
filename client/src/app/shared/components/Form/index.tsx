@@ -1,8 +1,14 @@
 import React from "react";
-import styles from "./style.module.scss";
 import {NavLink} from "react-router-dom";
-import {AuthRoutes} from "../../../routes/routes-const";
+
+import styles from "./style.module.scss";
+
 import Button from "../Button";
+import Input from "../Input";
+
+import {AuthRoutes} from "../../../routes/routes-const";
+import {useSelector} from "react-redux";
+import {getAuthStateErrors} from "../../../redux/auth/selectors";
 
 interface FormProps {
   handleSubmit: () => void;
@@ -11,10 +17,8 @@ interface FormProps {
   title: string;
 }
 
-const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  }
+const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = 'Вход' }) => {
+  const errors = useSelector(getAuthStateErrors);
 
   const login = title === 'Вход';
 
@@ -35,66 +39,24 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
       <div className={styles.formWrapper}>
         <div className={styles.form}>
           <div className={styles.inputWrapper}>
-            {login ? (
-              <>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="password"
-                  value={form.password}
-                  placeholder="Password"
-                  onChange={handleChange}
-                />
-              </>
-            ) : (
-              <>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  placeholder="Name"
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="surname"
-                  value={form.surname}
-                  placeholder="Surname"
-                  onChange={handleChange}
-                />
-                <input
-                  type="password"
-                  name="password"
-                  value={form.password}
-                  placeholder="Password"
-                  onChange={handleChange}
-                />
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={form.confirmPassword}
-                  placeholder="Confirm password"
-                  onChange={handleChange}
-                />
-              </>
-            )}
+            {Object.values(form).map((item: any) => (
+              <Input
+                key={item.id}
+                type={item.type}
+                name={item.name}
+                placeholder={item.placeholder}
+                required={item.required}
+                empty={item.empty}
+                form={form}
+                setForm={setForm}
+              />
+            ))}
           </div>
         </div>
 
         <Button text={login ? 'Войти' : 'Готово'} onClick={handleSubmit} />
+
+        {errors && (<span className={styles.errors}>{errors}</span>)}
       </div>
     </div>
   )
