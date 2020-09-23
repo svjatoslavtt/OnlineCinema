@@ -14,35 +14,43 @@ const NavBar: React.FC = () => {
   const dispatch = useDispatch();
   const token = useSelector(getAuthToken);
 
-  const redirectToSignIn = () => history.push(AuthRoutes.SIGN_IN);
+  const redirectToSignIn = () => {
+    dispatch(Actions.clearErrors());
+    history.push(AuthRoutes.SIGN_IN)
+  };
 
   const redirectToMyOffice = () => history.push(AppRoutes.MY_OFFICE);
 
-  const handlerLogout = () => {
-    dispatch(Actions.logout());
-  }
-
+  const handlerLogout = () => dispatch(Actions.logout());
+  
   return (
     <div className={styles.navBar}>
-      <div className={styles.linkWrapper}>
-        <div className={styles.logo}>
-          onlinECinema
+      <div className={styles.navBarHead}>
+        <div className={styles.linkWrapper}>
+          <div className={styles.logo}>
+            onlinECinema
+          </div>
         </div>
 
-        <div className={styles.toFilmsLink}>
-          <NavLink to={AppRoutes.NEWS_FEED}>фильмы</NavLink>
-        </div>
+        {token ? (
+          <div className={styles.buttonsWrapper}>
+            <span onClick={redirectToMyOffice} className={styles.myOffice}>
+              Мой кабинет
+            </span>
+
+            <span onClick={handlerLogout} className={styles.logout}>
+              Выйти
+            </span>
+          </div>
+        ) : (
+          <div onClick={redirectToSignIn} className={styles.myOffice}>Войти в систему</div>
+        )}
       </div>
 
-      {token ? (
-        <div className={styles.buttonsWrapper}>
-          <Button onClick={redirectToMyOffice} text={'Мой кабинет'}/>
-          /
-          <Button onClick={handlerLogout} text={'Выйти'}/>
-        </div>
-      ) : (
-        <Button onClick={redirectToSignIn} text={'Войти в систему'}/>
-      )}
+      <div className={styles.navBarPages}>
+        <NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Фильмы</NavLink>
+        <NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>Категории</NavLink>
+      </div>
     </div>
   )
 }
