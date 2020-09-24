@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 import styles from "./style.module.scss";
 
@@ -7,7 +8,6 @@ import Button from "../Button";
 import Input from "../Input";
 
 import {AuthRoutes} from "../../../routes/routes-const";
-import {useDispatch, useSelector} from "react-redux";
 import {getAuthErrors} from "../../../redux/auth/selectors";
 import { Actions } from "../../../redux/auth/action";
 
