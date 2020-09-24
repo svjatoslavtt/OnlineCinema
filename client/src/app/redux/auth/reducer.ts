@@ -26,6 +26,7 @@ export const reducer = (state = authInitialState, action: ActionTypeUnion) => {
         errors: '',
       }
     case ActionTypes.LOGIN_SUCCESS:
+      localStorage.setItem('user', JSON.stringify({name: action.payload.user.name, surname: action.payload.user.surname}));
       return {
         ...state,
         user: action.payload.user,

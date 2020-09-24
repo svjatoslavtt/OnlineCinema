@@ -1,18 +1,19 @@
 import React from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
 
 import styles from './style.module.scss';
 
-import Button from "../Button";
 import {AppRoutes, AuthRoutes} from "../../../routes/routes-const";
-import {useDispatch, useSelector} from "react-redux";
-import {getAuthToken} from "../../../redux/auth/selectors";
+import {getAuthToken, getUserName} from "../../../redux/auth/selectors";
 import {Actions} from "../../../redux/auth/action";
 
 const NavBar: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const token = useSelector(getAuthToken);
+  const getUser = localStorage.getItem('user');
+  const user = getUser && JSON.parse(getUser);
 
   const redirectToSignIn = () => {
     dispatch(Actions.clearErrors());
@@ -34,6 +35,7 @@ const NavBar: React.FC = () => {
 
         {token ? (
           <div className={styles.buttonsWrapper}>
+            {user && <span className={styles.user}>{`${user.name} ${user.surname}`}</span>}
             <span onClick={redirectToMyOffice} className={styles.myOffice}>
               Мой кабинет
             </span>

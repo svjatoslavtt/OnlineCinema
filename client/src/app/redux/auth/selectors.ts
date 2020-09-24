@@ -18,3 +18,8 @@ export const getAuthLoading = createSelector(
   getAuthState,
   (state) => state.loading
 );
+
+export const getUserName = createSelector(
+  getAuthState,
+  (state) => ({ name: state.user?.name, surname: state.user?.surname })
+);
