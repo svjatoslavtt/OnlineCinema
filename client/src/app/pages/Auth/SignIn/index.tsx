@@ -1,17 +1,17 @@
 import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
+import { History } from 'history';
 
 import {inputs} from "./inputs-data";
 
 import {Actions} from "../../../redux/auth/action";
 import Form from "../../../shared/components/Form";
-
-export type LoginInputs = typeof inputs;
+import { LoginInputs } from "../../../shared/interfaces/auth.interface";
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useHistory<History>();
 
   const [form, setForm] = useState<LoginInputs>(inputs);
 
@@ -22,7 +22,12 @@ const SignIn: React.FC = () => {
       return dispatch(Actions.loginFailed({ message: 'Все поля должны быть заполнены!' }));
     } 
 
-    return dispatch(Actions.loginRequest({form, history}));
+    return dispatch(Actions.loginRequest({
+      form: {
+        email: form.email.value, 
+        password: form.password.value
+      }, 
+      history}));
   };
 
   return (
