@@ -28,7 +28,7 @@ const NavBar: React.FC = () => {
       <div className={styles.navBarHead}>
         <div className={styles.linkWrapper}>
           <div className={styles.logo}>
-            onlinECinema
+            Moviestock
           </div>
         </div>
 
