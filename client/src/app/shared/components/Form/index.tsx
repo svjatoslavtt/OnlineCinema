@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {NavLink} from "react-router-dom";
 
 import styles from "./style.module.scss";
@@ -16,13 +16,23 @@ interface FormProps {
   form: any;
   setForm: any;
   title: string;
-}
+};
 
-const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = 'Вход' }) => {
-  const errors = useSelector(getAuthErrors);
+enum FormParams {
+  LOGIN = 'Вход',
+  COME_IN = 'Войти',
+  DONE = 'Готово',
+};
+
+const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = FormParams.LOGIN }) => {
   const dispatch = useDispatch();
 
-  const login = title === 'Вход';
+  const pageParams = {
+    isLogin: title === FormParams.LOGIN,
+    buttonText: title === FormParams.LOGIN ? FormParams.COME_IN : FormParams.DONE,
+  };
+
+  const errors = useSelector(getAuthErrors);
 
   const handlerClearErrors = () => dispatch(Actions.clearErrors());
 
@@ -33,7 +43,7 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = 'Вх�
           {title}
         </div>
 
-        {login && (
+        {pageParams.isLogin && (
           <NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp} onClick={handlerClearErrors}>
             Регистрация
           </NavLink>
@@ -58,7 +68,7 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = 'Вх�
           </div>
         </div>
 
-        <Button text={login ? 'Войти' : 'Готово'} onClick={handleSubmit} />
+        <Button text={pageParams.buttonText} onClick={handleSubmit} />
 
         {errors && (<span className={styles.errors}>{errors}</span>)}
       </div>
