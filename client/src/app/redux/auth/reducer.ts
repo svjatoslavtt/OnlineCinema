@@ -1,7 +1,8 @@
+import { User } from "../../shared/interfaces/auth.interface";
 import {ActionTypes, ActionTypeUnion} from "./action";
 
 export interface AuthInterface {
-  user: any;
+  user: User | null;
   token: string | null;
   errors: string;
   loading: false;
