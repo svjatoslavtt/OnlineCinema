@@ -6,16 +6,17 @@ import {inputs} from "./inputs-data";
 
 import {Actions} from "../../../redux/auth/action";
 import Form from "../../../shared/components/Form";
+import { RegisterUser } from "../../../shared/interfaces/auth.interface";
 
 const SignUp: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  type Inputs = typeof inputs;
-  const [form, setForm] = useState<Inputs>(inputs);
+  type RegisterInputs = typeof inputs;
+  const [form, setForm] = useState<RegisterInputs>(inputs);
 
   const handleSubmit = () => {
-    const checkField = Object.values(form).reduce((acc: Inputs, current) => {
+    const checkField = Object.values(form).reduce((acc: RegisterInputs, current) => {
       if (current.value === '') {
         acc[current.name] = {
           ...current,
@@ -39,13 +40,21 @@ const SignUp: React.FC = () => {
     } else {
       setForm(checkField);
 
+      const formInitialValue: RegisterUser = {
+        email: '',
+        name: '',
+        surname: '',
+        password: '',
+        confirmPassword: '',
+      }
+
       const form = Object.values(checkField).reduce((acc, item) => {
         acc = {
           ...acc,
           [item.name]: item.value
         }
         return acc;
-      }, {});
+      }, formInitialValue);
 
       return dispatch(Actions.registerRequest({ form, history }));
     }
