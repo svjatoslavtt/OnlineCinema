@@ -7,9 +7,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  border-radius: 5px;
-  position: fixed;
-  padding: 0 50px;
+	border-radius: 5px;
+	margin-bottom: 50px;
 }
 
 .navBarHead {
@@ -41,7 +40,6 @@
 
 .buttonsWrapper {
   display: flex;
-  padding: 0 20px;
   border-radius: 5px;
 }
 
@@ -66,8 +64,14 @@
   }
 }
 
+.myOfficeActive {
+	background-color: #313131;
+	color: #eee;
+}
+
 .logout {
-  margin-right: 0;
+	margin-right: 0;
+	padding-right: 0;
   border: 1px solid transparent;
 
   &:hover {

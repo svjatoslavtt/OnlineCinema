@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import styles from './style.module.scss';
 
 import {AppRoutes, AuthRoutes} from "../../../routes/routes-const";
-import {getAuthToken, getUserName} from "../../../redux/auth/selectors";
+import {getAuthToken} from "../../../redux/auth/selectors";
 import {Actions} from "../../../redux/auth/action";
 
 const NavBar: React.FC = () => {
@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
   const dispatch = useDispatch();
   const token = useSelector(getAuthToken);
   const getUser = localStorage.getItem('user');
-  const user = getUser && JSON.parse(getUser);
+	const user = getUser && JSON.parse(getUser);
 
   const redirectToSignIn = () => {
     dispatch(Actions.clearErrors());
@@ -22,14 +22,14 @@ const NavBar: React.FC = () => {
 
   const redirectToMyOffice = () => history.push(AppRoutes.MY_OFFICE);
 
-  const handlerLogout = () => dispatch(Actions.logout());
+	const handlerLogout = () => dispatch(Actions.logout());
   
   return (
     <div className={styles.navBar}>
       <div className={styles.navBarHead}>
         <div className={styles.linkWrapper}>
           <div className={styles.logo}>
-            Moviestock
+            <NavLink to={AppRoutes.NEWS_FEED}>Moviestock</NavLink>
           </div>
         </div>
 
@@ -51,7 +51,7 @@ const NavBar: React.FC = () => {
 
       <div className={styles.navBarPages}>
         <NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Фильмы</NavLink>
-        <NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>Категории</NavLink>
+				{token && (<NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>Мой кабинет</NavLink>)}
       </div>
     </div>
   )
