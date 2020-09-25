@@ -11,7 +11,8 @@ body {
   color: #313131;
   max-width: 1300px;
   width: 100%;
-  margin: 0 auto;
+	margin: 0 auto;
+	padding: 0 3%;
 }
 
 * {
@@ -25,7 +26,7 @@ code {
     monospace;
 }
 
-input {
+input, textarea {
   height: 35px;
   width: 100%;
   margin-bottom: 10px;
@@ -35,6 +36,12 @@ input {
   font-size: 14px;
   border: 1px solid #eee;
   font-family: $light
+}
+
+textarea {
+	resize: none;
+	padding: 15px;
+	height: 150px;
 }
 
 a {
