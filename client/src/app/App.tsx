@@ -16,10 +16,10 @@ const App: React.FC = () => {
       <NavBar />
       <Switch>
         <Route exact={true} path={AppRoutes.NEWS_FEED} component={NewsFeed} />
-				<PrivateRoute exact={true} path={AppRoutes.MY_OFFICE} component={MyOffice} />
         <Route exact={true} path={AuthRoutes.SIGN_IN} component={SignIn} />
         <Route exact={true} path={AuthRoutes.SIGN_UP} component={SignUp} />
-				<Route exact={true} path={AppRoutes.UPLOAD_FILM} component={UploadFilm} />
+				<PrivateRoute exact={true} path={AppRoutes.MY_OFFICE} component={MyOffice} />
+				<PrivateRoute exact={true} path={AppRoutes.UPLOAD_FILM} component={UploadFilm} />
         <Redirect to={AppRoutes.NEWS_FEED} />
       </Switch>
     </>
