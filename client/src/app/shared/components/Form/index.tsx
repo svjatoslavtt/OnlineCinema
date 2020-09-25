@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -10,6 +10,7 @@ import Input from "../Input";
 import {AuthRoutes} from "../../../routes/routes-const";
 import {getAuthErrors, getAuthToken} from "../../../redux/auth/selectors";
 import { Actions } from "../../../redux/auth/action";
+import Error from "../Error";
 
 interface FormProps {
   handleSubmit: () => void;
@@ -80,7 +81,7 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = FormPa
 
 						<Button text={pageParams.buttonText} onClick={handleSubmit} />
 
-						{errors && (<span className={styles.errors}>{errors}</span>)}
+						{errors && <Error text={errors} />}
 					</div>
 				</>
 			)}
