@@ -1,21 +1,25 @@
-.container {
+.formContainer {
   max-width: 350px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	top: 0;
+	right: 0;
 }
 
-.header {
+.formHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 15px;
 }
 
-.title {
+.formTitle {
   font-size: 32px;
 }
 
@@ -23,11 +27,11 @@
   text-decoration: underline;
 }
 
-.formWrapper {
+.formFieldsWrapper {
   position: relative;
 }
 
-.form {
+.formFields {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,4 +52,17 @@
   padding: 10px 15px;
   width: 100%;
   border-radius: 5px;
+}
+
+.formWarning {
+	line-height: 1.5;
+	text-align: center;
+}
+
+.voiteYes {
+	padding: 0 15px;
+	color: #7552b3;
+	font-size: 18px;
+	cursor: pointer;
+	text-decoration: underline;
 }

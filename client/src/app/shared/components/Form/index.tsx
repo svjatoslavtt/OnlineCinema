@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -8,7 +8,7 @@ import Button from "../Button";
 import Input from "../Input";
 
 import {AuthRoutes} from "../../../routes/routes-const";
-import {getAuthErrors} from "../../../redux/auth/selectors";
+import {getAuthErrors, getAuthToken} from "../../../redux/auth/selectors";
 import { Actions } from "../../../redux/auth/action";
 
 interface FormProps {
@@ -25,7 +25,8 @@ enum FormParams {
 };
 
 const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = FormParams.LOGIN }) => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const token = useSelector(getAuthToken);
 
   const pageParams = {
     isLogin: title === FormParams.LOGIN,
@@ -34,44 +35,55 @@ const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = FormPa
 
   const errors = useSelector(getAuthErrors);
 
-  const handlerClearErrors = () => dispatch(Actions.clearErrors());
+	const handlerClearErrors = () => dispatch(Actions.clearErrors());
+	
+	const handlerLogout = () => dispatch(Actions.logout());
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.title}>
-          {title}
-        </div>
+    <div className={styles.formContainer}>
+			{token ? (
+				<div className={styles.formWarning}>
+					Вы авторизованы. Для того что-бы продолжить необходимо выйти. Вы хотите выйти?
+					<span className={styles.voiteYes} onClick={handlerLogout}>Да</span>
+				</div>
+			) : (
+				<>
+					<div className={styles.formHeader}>
+						<div className={styles.formTitle}>
+							{title}
+						</div>
 
-        {pageParams.isLogin && (
-          <NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp} onClick={handlerClearErrors}>
-            Регистрация
-          </NavLink>
-        )}
-      </div>
+						{pageParams.isLogin && (
+							<NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp} onClick={handlerClearErrors}>
+								Регистрация
+							</NavLink>
+						)}
+					</div>
 
-      <div className={styles.formWrapper}>
-        <div className={styles.form}>
-          <div className={styles.inputWrapper}>
-            {Object.values(form).map((item: any) => (
-              <Input
-                key={item.id}
-                type={item.type}
-                name={item.name}
-                placeholder={item.placeholder}
-                required={item.required}
-                empty={item.empty}
-                form={form}
-                setForm={setForm}
-              />
-            ))}
-          </div>
-        </div>
+					<div className={styles.formFieldsWrapper}>
+						<div className={styles.formFields}>
+							<div className={styles.inputWrapper}>
+								{Object.values(form).map((item: any) => (
+									<Input
+										key={item.id}
+										type={item.type}
+										name={item.name}
+										placeholder={item.placeholder}
+										required={item.required}
+										empty={item.empty}
+										form={form}
+										setForm={setForm}
+									/>
+								))}
+							</div>
+						</div>
 
-        <Button text={pageParams.buttonText} onClick={handleSubmit} />
+						<Button text={pageParams.buttonText} onClick={handleSubmit} />
 
-        {errors && (<span className={styles.errors}>{errors}</span>)}
-      </div>
+						{errors && (<span className={styles.errors}>{errors}</span>)}
+					</div>
+				</>
+			)}
     </div>
   )
 }
