@@ -6,7 +6,7 @@ import styles from './style.module.scss';
 import image from '../../../../static/images/film.jpeg';
 
 const Film: React.FC = () => {
-	const [value, setValue] = useState<number | null>(2.5);
+	const [value] = useState<number | null>(2.5);
 
 	return (
 		<div className={styles.filmContainer}>

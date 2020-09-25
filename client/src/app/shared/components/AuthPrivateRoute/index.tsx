@@ -1,6 +1,6 @@
 import React from "react";
 import { RouteProps, Redirect, Route } from "react-router-dom";
-import {AppRoutes, AuthRoutes} from "../../../routes/routes-const";
+import {AppRoutes} from "../../../routes/routes-const";
 import {useSelector} from "react-redux";
 import {getAuthToken} from "../../../redux/auth/selectors";
 

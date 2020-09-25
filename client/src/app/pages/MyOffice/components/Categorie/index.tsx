@@ -1,10 +1,9 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
 import Film from '../../../NewsFeed/components/Film.tsx';
-import { NavLink } from 'react-router-dom';
-import App from '../../../../App';
 import { AppRoutes } from '../../../../routes/routes-const';
 
 interface CategorieProps {
