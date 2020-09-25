@@ -1,0 +1,59 @@
+@import "../../../../static/fonts/index.scss";
+
+.uploadFilmTitle {
+	font-size: 22px;
+}
+
+.uploadFilmWrapper {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 20px;
+}
+
+.uploadFilmImage {
+	width: 48%;
+}
+
+.uploadFilmFields {
+	width: 48%;
+}
+
+.uploadFilmRating {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 40px;
+}
+
+.uploadFilmButton {
+	display: flex;
+	justify-content: center;
+}
+
+.uploadFilmImage {
+	max-width: 250px;
+	width: 250px;
+	max-height: 350px;
+	height: 350px;
+	background-size: cover;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+
+	& > span {
+		font-size: 30px;
+		color: #eee;
+		font-family: $bold;
+		cursor: default;
+	}
+}
+
+.uploadFilmText {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.filed {
+	margin-bottom: 20px;
+}
