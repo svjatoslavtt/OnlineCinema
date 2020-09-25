@@ -1,5 +1,3 @@
-import {InputInterface} from "../../../shared/interfaces/input.interface";
-
 export const inputs = {
   email: {
     id: 1,

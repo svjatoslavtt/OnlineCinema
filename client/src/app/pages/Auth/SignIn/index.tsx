@@ -22,12 +22,14 @@ const SignIn: React.FC = () => {
       return dispatch(Actions.loginFailed({ message: 'Все поля должны быть заполнены!' }));
     } 
 
-    return dispatch(Actions.loginRequest({
-      form: {
-        email: form.email.value, 
-        password: form.password.value
-      }, 
-      history}));
+    return dispatch(
+			Actions.loginRequest({
+				form: {
+					email: form.email.value, 
+					password: form.password.value
+				}, 
+				history
+			}));
   };
 
   return (
