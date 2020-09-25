@@ -12,7 +12,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...re
   const token = useSelector(getAuthToken);
 
   const onRender = (props: RouteProps) => {
-    if (!token) {
+    if (token) {
       return <Component { ...props } />
     } else {
       return (
