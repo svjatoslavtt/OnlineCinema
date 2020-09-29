@@ -10,13 +10,19 @@ const schema = new Schema({
     required: true,
   },
   image: {
-    type: File,
+    type: String,
     required: true,
   },
   likes: {
-    type: Number,
+		type: Number,
+		default: 0,
     required: true,
-  },
+	},
+	rating: {
+		type: Number,
+		default: 0,
+		required: true,
+	},
   owner: {
     type: Types.ObjectId,
     ref: 'User',

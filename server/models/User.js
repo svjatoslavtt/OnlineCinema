@@ -23,7 +23,13 @@ const schema = new Schema({
       type: Types.ObjectId,
       ref: 'Film',
     },
-  ],
+	],
+	likes: [
+		{
+			type: Types.ObjectId,
+			ref: 'Film',
+		}
+	]
 });
 
 module.exports = model('User', schema);
