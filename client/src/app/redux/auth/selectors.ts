@@ -1,20 +1,17 @@
 import { createSelector } from 'reselect';
 
+import { AuthInterface } from './reducer';
+
 import {RootState} from "../store";
 
 const getAuthState = (state: RootState) => state.auth;
 
 export const getAuthErrors = createSelector(
   getAuthState,
-  (state) => state.errors
+  (state: AuthInterface) => state.errors
 );
 
 export const getAuthToken = createSelector(
   getAuthState,
-  (state) => state.token
-);
-
-export const getAuthLoading = createSelector(
-  getAuthState,
-  (state) => state.loading
+  (state: AuthInterface) => state.token
 );
