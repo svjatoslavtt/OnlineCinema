@@ -1,4 +1,6 @@
 export enum ApiEndPoints {
-  login = '/api/auth/login',
-  register = 'api/auth/register',
+  LOGIN = '/api/auth/login',
+	REGISTER = 'api/auth/register',
+	
+	FILM_UPLOAD = '/api/film/upload',
 }
