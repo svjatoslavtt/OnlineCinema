@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import styles from "./style.module.scss";
 
-import { getAuthLoading } from "../../../redux/auth/selectors";
+import { getLoading } from "../../../redux/loading/selectors";
 
 interface ButtonProps {
   text: string;
@@ -16,7 +16,7 @@ enum ButtonTextColor {
 }
 
 const Button: React.FC<ButtonProps> = ({ text, color = ButtonTextColor.WHITE, onClick }) => {
-  const loading = useSelector(getAuthLoading);
+  const loading = useSelector(getLoading);
   
   switch (text) {
     case 'Вход':
