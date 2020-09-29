@@ -1,17 +1,23 @@
 import createSagaMiddleware from 'redux-saga';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 
-import {AuthInterface, reducer as authReducer} from '../redux/auth/reducer';
 import {rootSaga} from "./sagas";
+import {AuthInterface, reducer as authReducer} from './auth/reducer';
+import {FilmUploadInterface, reducer as filmUploadReducer} from './film-upload/reducer';
+import {LoadingState ,reducer as loadingReducer} from './loading/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export interface RootState {
-  auth: AuthInterface;
+	auth: AuthInterface;
+	filmUpload: FilmUploadInterface;
+	loading: LoadingState;
 }
 
 const rootReducers = combineReducers({
-  auth: authReducer,
+	auth: authReducer,
+	filmUpload: filmUploadReducer,
+	loading: loadingReducer
 });
 
 const store = createStore(
