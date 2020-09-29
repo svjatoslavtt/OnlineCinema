@@ -6,7 +6,7 @@ import styles from './style.module.scss';
 
 import {AppRoutes, AuthRoutes} from "../../../routes/routes-const";
 import {getAuthToken} from "../../../redux/auth/selectors";
-import {Actions} from "../../../redux/auth/action";
+import {Actions} from "../../../redux/auth/actions";
 
 const NavBar: React.FC = () => {
   const history = useHistory();

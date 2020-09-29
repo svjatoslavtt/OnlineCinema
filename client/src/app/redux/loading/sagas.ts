@@ -1,9 +1,9 @@
 import { all, put, takeEvery } from "redux-saga/effects";
 
-import { Actions } from "./action";
+import { Actions } from "./actions";
 
-import { ActionTypes as AuthActionTypes } from "../auth/action";
-import { ActionTypes as FilmActionTypes } from "../film-upload/action";
+import { ActionTypes as AuthActionTypes } from "../auth/actions";
+import { ActionTypes as FilmActionTypes } from "../film-upload/actions";
 
 function* loadingStart() {
 	yield put(Actions.loadingStart());

@@ -6,7 +6,7 @@ import styles from './style.module.scss';
 import Button from '../../../../shared/components/Button';
 import Error from '../../../../shared/components/Error';
 import { useDispatch } from 'react-redux';
-import { Actions } from '../../../../redux/film-upload/action';
+import { Actions } from '../../../../redux/film-upload/actions';
 import { useHistory } from 'react-router-dom';
 
 interface UploadFields {

@@ -9,7 +9,7 @@ import Input from "../Input";
 
 import {AuthRoutes} from "../../../routes/routes-const";
 import {getAuthErrors, getAuthToken} from "../../../redux/auth/selectors";
-import { Actions } from "../../../redux/auth/action";
+import { Actions } from "../../../redux/auth/actions";
 import Error from "../Error";
 
 interface FormProps {

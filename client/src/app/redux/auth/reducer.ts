@@ -1,5 +1,5 @@
 import { User } from "../../shared/interfaces/auth.interface";
-import {ActionTypes, ActionTypeUnion} from "./action";
+import {ActionTypes, ActionTypeUnion} from "./actions";
 
 export interface AuthInterface {
   user: User | null;

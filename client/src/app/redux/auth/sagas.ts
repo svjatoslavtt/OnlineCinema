@@ -1,6 +1,6 @@
 import { call, put, all, takeEvery } from 'redux-saga/effects'
 
-import {Actions, ActionTypes} from "./action";
+import {Actions, ActionTypes} from "./actions";
 
 import {ApiEndPoints} from "../../routes/api-routes-const";
 import {request} from "../../shared/hooks/request";

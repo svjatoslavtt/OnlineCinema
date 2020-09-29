@@ -1,7 +1,7 @@
-import {watchAuthorization} from "./auth/saga";
+import {watchAuthorization} from "./auth/sagas";
 import { all } from "redux-saga/effects";
-import { watchUploadFilm } from "./film-upload/saga";
-import { watchLoadingStart, watchLoadingStop } from "./loading/saga";
+import { watchUploadFilm } from "./film-upload/sagas";
+import { watchLoadingStart, watchLoadingStop } from "./loading/sagas";
 
 export function* rootSaga() {
   yield all([

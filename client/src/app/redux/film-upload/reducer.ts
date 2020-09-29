@@ -1,4 +1,4 @@
-import {ActionTypes, ActionTypeUnion} from "./action";
+import {ActionTypes, ActionTypeUnion} from "./actions";
 
 export interface FilmUploadInterface {
 	error: string;
