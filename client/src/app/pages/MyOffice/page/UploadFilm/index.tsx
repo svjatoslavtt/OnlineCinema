@@ -5,6 +5,9 @@ import styles from './style.module.scss';
 
 import Button from '../../../../shared/components/Button';
 import Error from '../../../../shared/components/Error';
+import { useDispatch } from 'react-redux';
+import { Actions } from '../../../../redux/film-upload/action';
+import { useHistory } from 'react-router-dom';
 
 interface UploadFields {
 	image: string | null | ArrayBuffer;
@@ -14,6 +17,8 @@ interface UploadFields {
 }
 
 const UploadFilm: React.FC = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
 	const uploadFileElement = useRef<HTMLInputElement>(null);
 
 	const fieldsInitialValue: UploadFields = {
@@ -26,7 +31,7 @@ const UploadFilm: React.FC = () => {
 	const [fields, setFields] = useState(fieldsInitialValue);
 	const [error, setError] = useState('');
 
-	const handlerChangeField = (event: any) => {
+	const handlerChangeField = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 		setFields({
 			...fields,
 			[event.target.name]: event.target.value,
@@ -58,9 +63,19 @@ const UploadFilm: React.FC = () => {
 		if (isEmpty) {
 			return setError('Все поля должны быть заполены!')
 		}
-		
-		setError('');
+
 		setFields(fieldsInitialValue);
+		setError('');
+
+		const { id }: { id: string } = JSON.parse(localStorage.getItem('id') as string);
+
+		return dispatch(Actions.uploadFilmRequest({
+			film: {
+				...fields,
+				userId: id,
+			},
+			history,
+		}));
 	};
 
 	return (
