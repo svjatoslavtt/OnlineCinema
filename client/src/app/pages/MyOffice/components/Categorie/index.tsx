@@ -10,13 +10,17 @@ interface CategorieProps {
 	title: string;
 }
 
+enum CategorieParams {
+	MY_FILM = 'Мои фильмы',
+}
+
 const Categorie: React.FC<CategorieProps> = ({ title }) => {
 	return (
 		<div className={styles.categorie}>
 			<div className={styles.categorieHeaderWrapper}>
 				<span className={styles.categorieTitle}>{title}</span>
 
-				{title === 'Мои фильмы' && (
+				{title === CategorieParams.MY_FILM && (
 					<NavLink to={AppRoutes.UPLOAD_FILM} className={styles.categorieAddNewFilm}>
 						Загрузить новый фильм
 					</NavLink>
