@@ -3,29 +3,31 @@ import Rating from '@material-ui/lab/Rating';
 
 import styles from './style.module.scss';
 
-import image from '../../../../static/images/film.jpeg';
+type FilmProps = {
+	title: string;
+	rating: number;
+	image: string;
+}
 
-const Film: React.FC = () => {
-	const [value] = useState<number | null>(2.5);
-
-	return (
-		<div className={styles.filmContainer}>
+const Film: React.FC<FilmProps> = ({ title, rating, image }) => (
+	<div className={styles.filmContainer}>
+		<div className={styles.imageContainer}>
 			<div className={styles.filmImage}>
 				<img src={image} alt="movie"/>
 			</div>
+		</div>
 
-			<div className={styles.filmData}>
-				<div className={styles.filmTitle}>Место под соснами</div>
-				<div className={styles.filmRating}>
-					<Rating
-						name="read-only"
-						value={value}
-						readOnly
-					/>
-				</div>
+		<div className={styles.filmData}>
+			<div className={styles.filmTitle}>{title}</div>
+			<div className={styles.filmRating}>
+				<Rating
+					name="read-only"
+					value={rating}
+					readOnly
+				/>
 			</div>
 		</div>
-	)
-}
+	</div>
+);
 
 export default Film;
