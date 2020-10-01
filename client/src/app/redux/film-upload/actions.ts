@@ -1,4 +1,5 @@
 import { action, ActionType } from 'typesafe-actions';
+
 import { FilmUploadRequest } from '../../shared/interfaces/film-upload.interface';
 
 export enum ActionTypes {
@@ -9,7 +10,7 @@ export enum ActionTypes {
 
 export const Actions = {
 	uploadFilmRequest: (payload: FilmUploadRequest) => action(ActionTypes.UPLOAD_FILM_REQUEST, payload),
-	uploadFilmSuccess: () => action(ActionTypes.UPLOAD_FILM_SUCCESS),
+	uploadFilmSuccess: (payload: { message: string }) => action(ActionTypes.UPLOAD_FILM_SUCCESS, payload),
 	uploadFilmFailed: (payload: { message: string }) => action(ActionTypes.UPLOAD_FILM_FAILED, payload),
 };
 

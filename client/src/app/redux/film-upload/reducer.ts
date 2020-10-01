@@ -1,10 +1,10 @@
 import {ActionTypes, ActionTypeUnion} from "./actions";
 
-export interface FilmUploadInterface {
+export interface FilmUploadState {
 	error: string;
 };
 
-const filmUploadInitialState: FilmUploadInterface = {
+const filmUploadInitialState: FilmUploadState = {
 	error: '',
 };
 
