@@ -28,7 +28,7 @@ const Categorie: React.FC<CategorieProps> = ({ title }) => {
 			</div>
 
 			<div className={styles.categorieFilmsWrapper}>
-				<Film />
+				{/* <Film /> */}
 			</div>
 		</div>
 	)

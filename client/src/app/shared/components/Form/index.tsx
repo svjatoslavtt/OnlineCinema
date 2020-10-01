@@ -25,16 +25,15 @@ enum FormParams {
   DONE = 'Готово',
 };
 
-const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title = FormParams.LOGIN }) => {
+const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
 	const dispatch = useDispatch();
 	const token = useSelector(getAuthToken);
+	const errors = useSelector(getAuthErrors);
 
   const pageParams = {
     isLogin: title === FormParams.LOGIN,
     buttonText: title === FormParams.LOGIN ? FormParams.COME_IN : FormParams.DONE,
   };
-
-  const errors = useSelector(getAuthErrors);
 
 	const handlerClearErrors = () => dispatch(Actions.clearErrors());
 	
