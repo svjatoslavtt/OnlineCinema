@@ -89,3 +89,9 @@
 .linkActive {
   border-bottom: 1px solid #313131;
 }
+
+@media all and (max-width: 600px) {
+	.buttonsWrapper {
+		display: none;
+	}
+}
