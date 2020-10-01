@@ -1,13 +1,13 @@
 import { User } from "../../shared/interfaces/auth.interface";
 import {ActionTypes, ActionTypeUnion} from "./actions";
 
-export interface AuthInterface {
+export interface AuthState {
   user: User | null;
   token: string | null;
   errors: string;
 }
 
-const authInitialState: AuthInterface = {
+const authInitialState: AuthState = {
   user: null,
   token: localStorage.getItem('token'),
   errors: '',
