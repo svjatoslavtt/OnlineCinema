@@ -4,18 +4,25 @@ import { useSelector } from "react-redux";
 import styles from "./style.module.scss";
 
 import { getLoading } from "../../../redux/loading/selectors";
-
-interface ButtonProps {
-  text: string;
-  color?: string;
-  onClick?: () => void;
-}
+import { ButtonTypes } from "../../interfaces/button.types";
 
 enum ButtonTextColor {
   WHITE = '#ffffff',
-}
+};
 
-const Button: React.FC<ButtonProps> = ({ text, color = ButtonTextColor.WHITE, onClick }) => {
+type ButtonPropsTypes = {
+  text: string;
+  color?: string;
+	onClick?: (event?: any) => void;
+	type?: string;
+};
+
+const Button: React.FC<ButtonPropsTypes> = ({ 
+	text, 
+	color = ButtonTextColor.WHITE, 
+	onClick, 
+	type = ButtonTypes.BUTTON
+}) => {
   const loading = useSelector(getLoading);
   
   switch (text) {
@@ -28,7 +35,13 @@ const Button: React.FC<ButtonProps> = ({ text, color = ButtonTextColor.WHITE, on
   }
 
   return (
-    <button disabled={loading} onClick={onClick} className={styles.authBlock} style={{color}}>
+		<button 
+			disabled={loading} 
+			onClick={onClick} 
+			type={type as ButtonTypes} 
+			className={styles.authBlock} 
+			style={{color}}
+		>
       <span>{loading ? 'Обработка...' : text}</span>
     </button>
   )
