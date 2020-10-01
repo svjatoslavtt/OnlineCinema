@@ -17,9 +17,7 @@ export function* watchLoadingStart() {
 	yield all([
 		takeEvery([
 			AuthActionTypes.LOGIN_REQUEST,
-			
 			AuthActionTypes.REGISTER_REQUEST,
-
 			FilmActionTypes.UPLOAD_FILM_REQUEST,
 		], loadingStart)
 	]);
@@ -30,10 +28,8 @@ export function* watchLoadingStop() {
 		takeEvery([
 			AuthActionTypes.LOGIN_SUCCESS,
 			AuthActionTypes.LOGIN_FAILED,
-
 			AuthActionTypes.REGISTER_SUCCESS,
 			AuthActionTypes.REGISTER_FAILED,
-
 			FilmActionTypes.UPLOAD_FILM_SUCCESS,
 			FilmActionTypes.UPLOAD_FILM_FAILED,
 		], loadingStop)
