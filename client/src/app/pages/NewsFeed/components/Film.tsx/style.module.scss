@@ -1,3 +1,5 @@
+@import "../../../../static/styles/colors.module.scss";
+
 .filmContainer {
 	width: 19.7%;
 	background-color: #fff;
@@ -13,9 +15,9 @@
 	}
 
 	&:hover {
-		background-color: #313131;
+		background-color: $darkGrey;
 		transform: scale(1.015);
-		color: #eee;
+		color: $lightGrey;
 	}
 }
 
