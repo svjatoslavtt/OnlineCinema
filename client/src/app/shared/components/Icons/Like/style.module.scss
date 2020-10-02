@@ -1,0 +1,14 @@
+.likeSvg {
+	display: flex;
+	
+	& > svg {
+		width: 26px;
+		height: 26px;
+		cursor: pointer;
+		transition: all .15s ease-in-out;
+
+		&:hover {
+			transform: scale(1.15);
+		}
+	}
+}
