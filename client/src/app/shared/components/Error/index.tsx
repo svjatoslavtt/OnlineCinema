@@ -2,11 +2,11 @@ import React from 'react';
 
 import styles from './style.module.scss';
 
-interface ErrorProps {
+type ErrorTypes = {
 	text: string;
 };
 
-const Error: React.FC<ErrorProps> = ({ text }) => (
+const Error: React.FC<ErrorTypes> = ({ text }) => (
 	<span className={styles.errors}>{text}</span>
 );
 
