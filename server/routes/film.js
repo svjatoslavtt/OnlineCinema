@@ -64,7 +64,38 @@ router.get('/news-feed', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ films: transformFilms.reverse() });
+		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse() });
+	} catch (err) {
+		return res.status(500).json({ message: err.toString() });
+	}
+});
+
+router.post('/my-films', async (req, res) => {
+	try {
+		const films = await Film.find({ owner: req.body.id });
+
+		const transformFilms = [];
+
+		films.forEach(item => {
+			transformFilms.push({
+				title: item.title,
+				rating: item.rating,
+				image: item.image,
+				id: item._id,
+			});
+		});
+
+		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse() });
+	} catch (err) {
+		return res.status(500).json({ message: err.toString() });
+	}
+});
+
+router.get('/detailed/:id', async (req, res) => {
+	try {
+		const currentFilm = await Film.findById(req.params.id);
+
+		return res.status(200).json({ message: 'Фильм получен успешно', currentFilm: currentFilm });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
