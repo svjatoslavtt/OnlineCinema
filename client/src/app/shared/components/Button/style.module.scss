@@ -1,15 +1,18 @@
-.authBlock {
-  padding: 8px 15px;
-  background: #8967c7;
+@import "../../../static/styles/colors.module.scss"; 
+
+.button {
+  padding: 10px 15px;
+  background: $button;
   cursor: pointer;
-  transition: all .2s ease-in-out;
+  transition: all .1s ease-in-out;
   border-radius: 5px;
   margin: 0 auto;
   display: block;
-  outline: none;
+	outline: none;
+	border: none;
 
   &:hover {
-    background: #7552b3;
+    background: $buttonHover;
   }
 
   .span {
