@@ -1,0 +1,33 @@
+@import "../../../static/fonts/index.scss";
+@import "../../../static/styles/colors.module.scss";
+
+.categorieHeaderWrapper {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+	padding: 8px 10px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.categorieTitle {
+	font-size: 18px;
+	font-family: $regular;
+}
+
+.categorieAddNewFilm {
+	position: absolute;
+	right: 10px;
+	padding: 4px 10px;
+	border-radius: 5px;
+	background-color: $button;
+	color: $lightGrey;
+	font-size: 15px;
+	transition: all .1s ease-in-out;
+	cursor: pointer;
+
+	&:hover {
+		background-color: $buttonHover;
+	}
+}
