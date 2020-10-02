@@ -12,7 +12,7 @@ import {getAuthErrors, getAuthToken} from "../../../redux/auth/selectors";
 import { Actions } from "../../../redux/auth/actions";
 import Error from "../Error";
 
-interface FormProps {
+type FormTypes = {
   handleSubmit: () => void;
   form: any;
   setForm: any;
@@ -25,7 +25,7 @@ enum FormParams {
   DONE = 'Готово',
 };
 
-const Form: React.FC<FormProps> = ({ handleSubmit, setForm, form, title }) => {
+const Form: React.FC<FormTypes> = ({ handleSubmit, setForm, form, title }) => {
 	const dispatch = useDispatch();
 	const token = useSelector(getAuthToken);
 	const errors = useSelector(getAuthErrors);

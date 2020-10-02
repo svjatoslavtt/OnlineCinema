@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from './style.module.scss';
 
-interface InputProps {
+type InputTypes = {
   type: string;
   name: string;
   placeholder: string;
@@ -12,7 +12,7 @@ interface InputProps {
   required: boolean | undefined;
 }
 
-const Input: React.FC<InputProps> = ({
+const Input: React.FC<InputTypes> = ({
   type,
   name,
   placeholder,

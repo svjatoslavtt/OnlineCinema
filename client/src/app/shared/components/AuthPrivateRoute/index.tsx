@@ -4,11 +4,11 @@ import {AppRoutes} from "../../../routes/routes-const";
 import {useSelector} from "react-redux";
 import {getAuthToken} from "../../../redux/auth/selectors";
 
-interface PrivateRouteProps extends RouteProps {
+type PrivateRouteTypes = {
   component: React.FC;
-}
+} & RouteProps;
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest}) => {
+const PrivateRoute: React.FC<PrivateRouteTypes> = ({ component: Component, ...rest}) => {
   const token = useSelector(getAuthToken);
 
   const onRender = (props: RouteProps) => {
