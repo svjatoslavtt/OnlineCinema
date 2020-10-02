@@ -2,12 +2,14 @@ import Rating from '@material-ui/lab/Rating';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
+import styles from './style.module.scss';
+
 import { Actions } from '../../redux/get-films/action';
 import { getCurrentFilm } from '../../redux/get-films/selectors';
 import Title from '../../shared/components/Title';
 import Like from '../../shared/components/Icons/Like';
 
-import styles from './style.module.scss';
 
 const FilmDetailed: React.FC = () => {
 	const { id }: { id: string } = useParams();

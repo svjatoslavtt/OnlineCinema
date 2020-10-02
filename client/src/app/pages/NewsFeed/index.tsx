@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../redux/get-films/action";
 import { getFilms } from "../../redux/get-films/selectors";
-import Categorie from "../MyOffice/components/Categorie";
+import Categorie from "../../shared/components/Categorie";
 import styles from "./style.module.scss";
 
 const NewsFeed: React.FC = () => {

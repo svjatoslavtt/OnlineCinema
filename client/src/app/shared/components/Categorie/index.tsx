@@ -2,9 +2,9 @@ import React from 'react';
 
 import styles from './style.module.scss';
 
-import Film from '../../../NewsFeed/components/Film.tsx';
-import Title from '../../../../shared/components/Title';
-import { FilmTypes } from '../../../../redux/get-films/reducer';
+import Film from '../../../pages/NewsFeed/components/Film.tsx';
+import Title from '../Title';
+import { FilmTypes } from '../../../redux/get-films/reducer';
 
 type CategorieTypes = {
 	title: string;
