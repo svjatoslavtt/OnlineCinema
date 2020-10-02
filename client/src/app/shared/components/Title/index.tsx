@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
@@ -19,17 +19,17 @@ const Title: React.FC<TitleTypes> = ({ title, goBack}) => {
 
 	return (
 		<div className={styles.categorieHeaderWrapper}>
-				{goBack && (
-						<GoBackArrow />
-					)
-				}
-				<span className={styles.categorieTitle}>{title}</span>
+			{goBack && (
+				<GoBackArrow />
+			)}
 
-				{title === CategorieParams.MY_FILM && (
-					<NavLink to={AppRoutes.UPLOAD_FILM} className={styles.categorieAddNewFilm}>
-						Загрузить новый фильм
-					</NavLink>
-				)}
+			<span className={styles.categorieTitle}>{title}</span>
+
+			{title === CategorieParams.MY_FILM && (
+				<NavLink to={AppRoutes.UPLOAD_FILM} className={styles.categorieAddNewFilm}>
+					Загрузить новый фильм
+				</NavLink>
+			)}
 			</div>
 	);
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../../redux/get-films/action";
-import { getFilms } from "../../redux/get-films/selectors";
+import { Actions } from "../../redux/films/action";
+import { getFilms } from "../../redux/films/selectors";
 import Categorie from "../../shared/components/Categorie";
 import styles from "./style.module.scss";
 

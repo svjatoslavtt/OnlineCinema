@@ -5,7 +5,7 @@ import {rootSaga} from "./saga";
 import {AuthState, reducer as authReducer} from './auth/reducer';
 import {FilmUploadState, reducer as filmUploadReducer} from './film-upload/reducer';
 import {LoadingState ,reducer as loadingReducer} from './loading/reducer';
-import {FilmsState ,reducer as getFilmsReducer} from './get-films/reducer';
+import {FilmsState ,reducer as getFilmsReducer} from './films/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 

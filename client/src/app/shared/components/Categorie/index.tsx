@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 
 import Film from '../../../pages/NewsFeed/components/Film.tsx';
 import Title from '../Title';
-import { FilmTypes } from '../../../redux/get-films/reducer';
+import { FilmTypes } from '../../../redux/films/reducer';
 
 type CategorieTypes = {
 	title: string;
