@@ -3,6 +3,7 @@ export enum AppRoutes {
 		MY_OFFICE = '/my-office',
 		DETAILED_FILM = '/detailed-film',
 		UPLOAD_FILM = '/my-office/upload-film',
+		FILM_DETAILED = '/detailed',
 }
 
 export enum AuthRoutes {

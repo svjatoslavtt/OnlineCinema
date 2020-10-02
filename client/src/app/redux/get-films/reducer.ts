@@ -1,6 +1,6 @@
 import { ActionTypes, ActionTypesUnion } from "./action";
 
-type Film = {
+export type FilmTypes = {
 	image: string;
 	title: string;
 	rating: number;
@@ -8,11 +8,15 @@ type Film = {
 };
 
 export type FilmsState = {
-	films: Film[] | null;
+	films: FilmTypes[] | null;
+	myFilms: FilmTypes[] | null;
+	currentFilm: any | null;
 };
 
 export const filmsInitialState: FilmsState = {
 	films: null,
+	myFilms: null,
+	currentFilm: null,
 };
 
 export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
@@ -23,6 +27,16 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				...state,
 				films: [...action.payload.films],
 			}
+		case ActionTypes.GET_MY_FILMS_SUCCESS:
+			return {
+				...state,
+				myFilms: [...action.payload.films],
+			}	
+		case ActionTypes.GET_CURRENT_FILM_SUCCESS:
+			return {
+				...state,
+				currentFilm: action.payload.currentFilm,
+			}	
 		default: return state;	
 	}
 };
