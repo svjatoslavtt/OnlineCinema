@@ -1,0 +1,10 @@
+.goBackArrow {
+	display: flex;
+	margin-right: 15px;
+
+	& > svg {
+		cursor: pointer;
+		width: 16px;
+		height: 16px;
+	}
+}
