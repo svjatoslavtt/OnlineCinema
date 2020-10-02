@@ -1,0 +1,53 @@
+.filDetailedContentWrapper {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 30px;
+}
+
+.imageBlock {
+	width: 40%;
+}
+
+.imageWrapper {
+	position: relative;
+	padding-bottom: 100%;
+	width: 100%;
+
+	& > img {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		border-radius: 5px;
+		object-fit: cover;
+	}
+}
+
+.infoBlock {
+	width: 50%;
+}
+
+.title {
+	font-size: 24px;
+	margin-bottom: 15px;
+}
+
+.description {
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+
+.rating {
+	margin-bottom: 15px;
+}
+
+.likesBlock {
+	display: flex;
+	align-items: center;
+}
+
+.likes {
+	display: block;
+	margin-left: 15px;
+	font-size: 24px;
+}
