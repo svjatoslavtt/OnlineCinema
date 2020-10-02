@@ -8,7 +8,8 @@ import styles from './style.module.scss';
 import Button from '../../../../shared/components/Button';
 import Error from '../../../../shared/components/Error';
 import { Actions } from '../../../../redux/film-upload/actions';
-import { ButtonTypes } from '../../../../shared/interfaces/button.types';
+import { ButtonTypesEnum } from '../../../../shared/interfaces/button.types';
+import Title from '../../../../shared/components/Title';
 
 type UploadFields = {
 	title: string;
@@ -85,9 +86,7 @@ const UploadFilm: React.FC = () => {
 
 	return (
 		<div>
-			<div className={styles.uploadFilmTitle}>
-				Загрузить фильм
-			</div>
+			<Title title='Загрузить фильм' goBack={true} />
 
 			<div style={{position: 'relative'}}>
 				<form className={styles.uploadFilmWrapper} onSubmit={handlerSubmit}>
@@ -137,7 +136,7 @@ const UploadFilm: React.FC = () => {
 							/>
 						</div>
 
-						<Button text='Сохранить' type={ButtonTypes.SUBMIT} onClick={handlerSubmit} />
+						<Button text='Сохранить' type={ButtonTypesEnum.SUBMIT} onClick={handlerSubmit} />
 					</div>
 				</form>
 				{error && <Error text={error} />}
