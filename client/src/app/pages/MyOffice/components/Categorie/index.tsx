@@ -1,34 +1,39 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
 import Film from '../../../NewsFeed/components/Film.tsx';
-import { AppRoutes } from '../../../../routes/routes-const';
+import Title from '../../../../shared/components/Title';
+import { FilmTypes } from '../../../../redux/get-films/reducer';
 
-interface CategorieProps {
+type CategorieTypes = {
 	title: string;
+	data?: FilmTypes[] | null;
 }
 
-enum CategorieParams {
-	MY_FILM = 'Мои фильмы',
-}
-
-const Categorie: React.FC<CategorieProps> = ({ title }) => {
+const Categorie: React.FC<CategorieTypes> = ({ title, data }) => {
 	return (
 		<div className={styles.categorie}>
-			<div className={styles.categorieHeaderWrapper}>
-				<span className={styles.categorieTitle}>{title}</span>
-
-				{title === CategorieParams.MY_FILM && (
-					<NavLink to={AppRoutes.UPLOAD_FILM} className={styles.categorieAddNewFilm}>
-						Загрузить новый фильм
-					</NavLink>
-				)}
-			</div>
+			
+			<Title title={title} />
 
 			<div className={styles.categorieFilmsWrapper}>
-				{/* <Film /> */}
+				{data ? 
+					data.length && 
+						data.map(({ id, title, rating, image }) => {
+							return (
+								<Film 
+									key={`${id}-${Math.round(Math.random() * 10000)}`}
+									title={title}
+									rating={rating}
+									image={image}
+									id={id}
+							/>
+							)
+						}) : (
+							<div className={styles.emptyData}>Фильмов пока нет</div>
+						)
+				}
 			</div>
 		</div>
 	)
