@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../redux/get-films/action";
 import { getFilms } from "../../redux/get-films/selectors";
-
-import Film from "./components/Film.tsx";
+import Categorie from "../MyOffice/components/Categorie";
 import styles from "./style.module.scss";
 
 const NewsFeed: React.FC = () => {
@@ -16,19 +15,7 @@ const NewsFeed: React.FC = () => {
 
   return (
     <div className={styles.newsFeedContainer}>
-			{films && 
-				films.length && 
-					films.map(({ id, title, rating, image }) => {
-						return (
-							<Film 
-								key={id}
-								title={title}
-								rating={rating}
-								image={image}
-						/>
-						)
-					})
-			}
+			<Categorie title='Все фильмы' data={films} />
     </div>
   )
 }
