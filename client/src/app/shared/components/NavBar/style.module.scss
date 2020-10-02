@@ -1,4 +1,5 @@
 @import "../../../static/fonts/index";
+@import "../../../static/styles/colors.module.scss";
 
 .navBar {
   height: 100px;
@@ -51,43 +52,28 @@
 
 .myOffice,
 .logout {
-  border: 1px solid #313131;
   padding: 8px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: all .12s ease-in-out;
-  margin-right: 25px;
-
-  &:hover {
-    background-color: #313131;
-    color: #eee;
-  }
-}
-
-.myOfficeActive {
-	background-color: #313131;
-	color: #eee;
+	margin-right: 25px;
+	background-color: $darkGrey;
+	color: $lightGrey;
+	font-size: 14px;
 }
 
 .logout {
 	margin-right: 0;
-	padding-right: 0;
-  border: 1px solid transparent;
-
-  &:hover {
-    background-color: #eee;
-    color: initial;
-  }
 }
 
 .pageLink {
   font-size: 16px;
   margin-right: 25px;
-  border-bottom: 1px solid transparent;
+  // border-bottom: 1px solid transparent;
 }
 
 .linkActive {
-  border-bottom: 1px solid #313131;
+  // border-bottom: 2px solid $darkGrey;
 }
 
 @media all and (max-width: 600px) {

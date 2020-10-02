@@ -20,8 +20,6 @@ const NavBar: React.FC = () => {
     history.push(AuthRoutes.SIGN_IN)
   };
 
-  const redirectToMyOffice = () => history.push(AppRoutes.MY_OFFICE);
-
 	const handlerLogout = () => dispatch(Actions.logout());
   
   return (
@@ -36,16 +34,13 @@ const NavBar: React.FC = () => {
         {token ? (
           <div className={styles.buttonsWrapper}>
             {user && <span className={styles.user}>{`${user.name} ${user.surname}`}</span>}
-            <span onClick={redirectToMyOffice} className={styles.myOffice}>
-              Мой кабинет
-            </span>
 
             <span onClick={handlerLogout} className={styles.logout}>
               Выйти
             </span>
           </div>
         ) : (
-          <div onClick={redirectToSignIn} className={styles.myOffice}>Войти в систему</div>
+          <div onClick={redirectToSignIn} className={styles.myOffice}>Войти</div>
         )}
       </div>
 
