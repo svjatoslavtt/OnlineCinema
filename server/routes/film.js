@@ -1,53 +1,8 @@
 const { Router } = require("express");
-const multer = require("multer");
-const {uuid} = require("uuidv4");
 const Film = require("../models/Film");
+const User = require("../models/User");
 
 const router = Router();
-
-const DIR = './public/images/';
-
-const storage = multer.diskStorage({
-	destination: (req, file, cb) => {
-		cb(null, DIR);
-	},
-	filename: (req, file, cb) => {
-		const fileName = file.originalname.toLowerCase().split(' ').join('-');
-		cb(null, uuid() + '-' + fileName);
-	}
-});
-
-let upload = multer({
-	storage,
-	fileFilter: (req, file, cb) => {
-		if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
-			cb(null, true);
-		} else {
-			cb(null, false);
-			return cb(new Error('Only .png, .jpg, .jpeg format'));
-		}
-	}
-})
-
-router.post('/upload', upload.single('file'), async (req, res) => {
-	try {
-		const url = req.protocol + '://' + req.get('host');
-
-		const { userId } = req.body;
-
-		const film = new Film({
-			...req.body,
-			owner: userId,
-			image: url + '/public/images/' + req.file.filename,
-		});
-
-		await film.save();
-
-		return res.status(200).json({ message: 'Фильм успешно добавлен!', film });
-	} catch (err) {
-		return res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова!' });
-	}
-});
 
 router.get('/news-feed', async (req, res) => {
 	try {
@@ -65,6 +20,18 @@ router.get('/news-feed', async (req, res) => {
 		});
 
 		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse() });
+	} catch (err) {
+		return res.status(500).json({ message: err.toString() });
+	}
+});
+
+router.post('/detailed/:filmId', async (req, res) => {
+	try {
+		const currentFilm = await Film.findById(req.params.filmId);
+
+		const isLike = currentFilm.usersId.includes(req.body.id);
+
+		return res.status(200).json({ message: 'Фильм получен успешно', currentFilm, isLike });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
@@ -91,14 +58,27 @@ router.post('/my-films', async (req, res) => {
 	}
 });
 
-router.get('/detailed/:id', async (req, res) => {
+router.post('/my-likes', async (req, res) => {
 	try {
-		const currentFilm = await Film.findById(req.params.id);
+		const userId = req.body.id;
+		const findMyself = await User.findById(userId);
+		const films = await Film.find().where('_id').in(findMyself.likes).exec();
 
-		return res.status(200).json({ message: 'Фильм получен успешно', currentFilm: currentFilm });
+		const transformFilms = [];
+
+		films.forEach(item => {
+			transformFilms.push({
+				title: item.title,
+				rating: item.rating,
+				image: item.image,
+				id: item._id,
+			});
+		});
+
+		return res.status(200).json({ message: 'Понравившееся фильмы получены успешно', films: transformFilms.reverse() });
 	} catch (err) {
-		return res.status(500).json({ message: err.toString() });
+		return res.status(500).json({ message: err.message });
 	}
-});
+})
 
 module.exports = router;

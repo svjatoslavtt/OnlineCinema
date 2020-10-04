@@ -18,6 +18,12 @@ const schema = new Schema({
 		default: 0,
     required: true,
 	},
+	usersId: [
+		{
+			type: Types.ObjectId,
+			ref: 'User',
+		},
+	],
 	rating: {
 		type: Number,
 		default: 0,
