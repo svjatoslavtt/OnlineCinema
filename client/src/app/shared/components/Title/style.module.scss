@@ -15,6 +15,15 @@
 .categorieTitle {
 	font-size: 18px;
 	font-family: $regular;
+	display: flex;
+	align-items: center;
+
+	& > svg {
+		width: 25px;
+		position: relative;
+		top: 1px;
+		left: 2px;
+	}
 }
 
 .categorieAddNewFilm {

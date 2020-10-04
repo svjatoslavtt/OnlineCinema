@@ -10,13 +10,17 @@ export type FilmTypes = {
 export type FilmsState = {
 	films: FilmTypes[] | null;
 	myFilms: FilmTypes[] | null;
+	myLikes: FilmTypes[] | null;
 	currentFilm: any | null;
+	isLike: boolean;
 };
 
 export const filmsInitialState: FilmsState = {
 	films: null,
 	myFilms: null,
+	myLikes: null,
 	currentFilm: null,
+	isLike: false,
 };
 
 export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
@@ -32,10 +36,28 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				...state,
 				myFilms: [...action.payload.films],
 			}	
+		case ActionTypes.GET_MY_LIKES_SUCCESS:
+			return {
+				...state,
+				myLikes: [...action.payload.films],
+			}	
 		case ActionTypes.GET_CURRENT_FILM_SUCCESS:
 			return {
 				...state,
 				currentFilm: action.payload.currentFilm,
+				isLike: action.payload.isLike,
+			}	
+		case ActionTypes.LIKE_FILM_SUCCESS:
+			return {
+				...state,
+				currentFilm: action.payload.film,
+				isLike: action.payload.isLike,
+			}	
+		case ActionTypes.DISLIKE_FILM_SUCCESS:
+			return {
+				...state,
+				currentFilm: action.payload.film,
+				isLike: action.payload.isLike,
 			}	
 		default: return state;	
 	}

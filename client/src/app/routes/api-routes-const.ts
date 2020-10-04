@@ -4,7 +4,11 @@ export enum ApiEndPoints {
 	
 	GET_FILMS = '/api/film/news-feed',
 	GET_MY_FILMS = '/api/film/my-films',
+	GET_MY_LIKES_FILMS = '/api/film/my-likes',
 	GET_CURRENT_FILM = '/api/film/detailed',
 
-	FILM_UPLOAD = '/api/film/upload',
-}
+	FILM_UPLOAD = '/api/film-upload',
+
+	LIKE_FILM = '/api/likes/like',
+	DISLIKE_FILM = '/api/likes/dislike',
+};

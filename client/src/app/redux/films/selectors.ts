@@ -16,7 +16,17 @@ export const getMyFilms = createSelector(
 	(state: FilmsState) => state.myFilms
 );
 
+export const getMyLikes = createSelector(
+	getFilmsState,
+	(state: FilmsState) => state.myLikes
+);
+
 export const getCurrentFilm = createSelector(
 	getFilmsState,
 	(state: FilmsState) => state.currentFilm
+);
+
+export const getIsLikeFilm = createSelector(
+	getFilmsState,
+	(state: FilmsState) => state.isLike
 );
