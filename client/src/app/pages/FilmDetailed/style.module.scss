@@ -1,4 +1,4 @@
-.filDetailedContentWrapper {
+.contentWrapper {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
@@ -48,6 +48,8 @@
 
 .likes {
 	display: block;
-	margin-left: 15px;
+	margin-left: 10px;
 	font-size: 24px;
+	position: relative;
+	bottom: 2px;
 }

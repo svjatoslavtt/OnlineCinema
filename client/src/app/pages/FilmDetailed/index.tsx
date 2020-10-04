@@ -6,18 +6,19 @@ import { useParams } from 'react-router-dom';
 import styles from './style.module.scss';
 
 import { Actions } from '../../redux/films/action';
-import { getCurrentFilm } from '../../redux/films/selectors';
+import { getCurrentFilm, getIsLikeFilm } from '../../redux/films/selectors';
 import Title from '../../shared/components/Title';
-import Like from '../../shared/components/Icons/Like';
+import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
 
 
 const FilmDetailed: React.FC = () => {
-	const { id }: { id: string } = useParams();
+	const { filmId }: { filmId: string } = useParams();
 	const dispatch = useDispatch();
 	const currentFilm = useSelector(getCurrentFilm);
 	const [rating, setRating] = useState<number | null>(0);
 	const loading = useSelector(getLoading);
+	const isLike = useSelector(getIsLikeFilm);
 
 	useEffect(() => {
 		if (currentFilm) {
@@ -27,15 +28,23 @@ const FilmDetailed: React.FC = () => {
 	}, [currentFilm]);
 
 	useEffect(() => {
-		dispatch(Actions.getCurrentFilmRequest({id}));
-	}, [dispatch]);
+		dispatch(Actions.getCurrentFilmRequest({filmId}));
+	}, [dispatch, filmId]);
+
+	const handlerLikeFilm = () => {
+		if (isLike) {
+			dispatch(Actions.dislikeFilmRequest({filmId}));
+		} else {
+			dispatch(Actions.likeFilmRequest({filmId}));
+		}
+	};
 
 	return (
-		<div className={styles.filmDetailedContainer}>
-			<Title title={'Подробнее: ' + `${loading ? '' : currentFilm?.title}`} goBack={true} />
+		<div className={styles.container}>
+			<Title title={`Подробнее: ${loading ? '' : currentFilm?.title}`} goBack={true} />
 
 			{!loading && (
-				<div className={styles.filDetailedContentWrapper}>
+				<div className={styles.contentWrapper}>
 					<div className={styles.imageBlock}>
 						<div className={styles.imageWrapper}>
 							<img src={currentFilm?.image} alt={currentFilm?.title} />
@@ -54,9 +63,9 @@ const FilmDetailed: React.FC = () => {
 							/>
 						</div>
 						<div className={styles.likesBlock}>
-							<Like />
+							<Likes onClick={handlerLikeFilm} />
 							<span className={styles.likes}>{currentFilm?.likes}</span>
-							</div>
+						</div>
 					</div>
 				</div>
 			)}
