@@ -13,7 +13,7 @@ const SignIn: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory<History>();
 
-  const [form, setForm] = useState<LoginInputs>(inputs);
+	const [form, setForm] = useState<LoginInputs>(inputs);
 
   const handleSubmit = () => {
     const isEmpty = Object.values(form).some((item) => item.value === '');

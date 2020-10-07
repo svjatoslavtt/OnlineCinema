@@ -66,3 +66,14 @@
 	position: relative;
 	bottom: 2px;
 }
+
+.error {
+	display: flex;
+	align-self: flex-start;
+	margin-top: 15px;
+	padding: 3px 10px;
+	background: #e57373;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 14px;
+}

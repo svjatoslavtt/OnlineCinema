@@ -15,10 +15,11 @@ import { getAuthToken } from '../../redux/auth/selectors';
 
 
 const FilmDetailed: React.FC = () => {
+	const [error, setError] = useState('');
+	const [rating, setRating] = useState<number | null>(0);
 	const { filmId }: { filmId: string } = useParams();
 	const dispatch = useDispatch();
 	const currentFilm = useSelector(getCurrentFilm);
-	const [rating, setRating] = useState<number | null>(0);
 	const loading = useSelector(getLoading);
 	const isLike = useSelector(getIsLikeFilm);
 	const token = useSelector(getAuthToken);
@@ -44,7 +45,7 @@ const FilmDetailed: React.FC = () => {
 						dispatch(Actions.likeFilmRequest({filmId, token}));
 					}
 				} else {
-					console.log('Need auth!');
+					setError('Нужно авторизоваться!');
 				}
 			}, 
 			500, 
@@ -81,6 +82,10 @@ const FilmDetailed: React.FC = () => {
 							<Likes onClick={handlerFilmLike} />
 							<span className={styles.likes}>{currentFilm?.likes}</span>
 						</div>
+
+						{error && (
+							<div className={styles.error}>{error}</div>
+						)}
 					</div>
 				</div>
 			)}

@@ -8,6 +8,20 @@ import {request} from "../../shared/hooks/request";
 import {AppRoutes, AuthRoutes} from "../../routes/routes-const";
 import { LoginInputs } from '../../shared/interfaces/auth.interface';
 
+function* login(action: any) {
+  try {
+    const history = { ...action.payload.history };
+    const form: LoginInputs = { ...action.payload.form };
+    const data = yield call(request, ApiEndPoints.LOGIN, 'POST', form);
+    yield put(Actions.loginSuccess({ token: data.token, user: data.user }));
+    yield localStorage.setItem('token', JSON.stringify(data.token));
+    yield localStorage.setItem('id', JSON.stringify(data.user._id));
+		yield history.goBack();
+  } catch (err) {
+    yield put(Actions.loginFailed(err));
+  }
+};
+
 function* register(action: any) {
   try {
     const history = { ...action.payload.history };
@@ -17,25 +31,11 @@ function* register(action: any) {
   } catch (err) {
     yield put(Actions.registerFailed(err));
   }
-}
-
-function* login(action: any) {
-  try {
-    const history = { ...action.payload.history };
-    const form: LoginInputs = { ...action.payload.form };
-    const data = yield call(request, ApiEndPoints.LOGIN, 'POST', form);
-    yield put(Actions.loginSuccess({ token: data.token, user: data.user }));
-    yield localStorage.setItem('token', JSON.stringify(data.token));
-    yield localStorage.setItem('id', JSON.stringify(data.user._id));
-    yield history.push(AppRoutes.NEWS_FEED);
-  } catch (err) {
-    yield put(Actions.loginFailed(err));
-  }
-}
+};
 
 export function* watchAuthorization() {
   yield all([
     takeEvery(ActionTypes.REGISTER_REQUEST, register),
     takeEvery(ActionTypes.LOGIN_REQUEST, login),
   ]);
-}
+};
