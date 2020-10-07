@@ -46,7 +46,7 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				...state,
 				currentFilm: action.payload.currentFilm,
 				isLike: action.payload.isLike,
-			}	
+			}		
 		case ActionTypes.LIKE_FILM_SUCCESS:
 			return {
 				...state,

@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './style.module.scss';
 
-import Film from '../../../pages/NewsFeed/components/Film.tsx';
+import Film from '../Film.tsx';
 import Title from '../Title';
 import { FilmTypes } from '../../../redux/films/reducer';
 

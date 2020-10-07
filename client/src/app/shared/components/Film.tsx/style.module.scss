@@ -1,4 +1,4 @@
-@import "../../../../static/styles/colors.module.scss";
+@import "../../../static/styles/colors.module.scss";
 
 .filmContainer {
 	width: 19.7%;
@@ -44,6 +44,8 @@
 
 .filmTitle {
 	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .filmRating {

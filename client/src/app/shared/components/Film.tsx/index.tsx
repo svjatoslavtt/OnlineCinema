@@ -3,7 +3,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import styles from './style.module.scss';
 import { useHistory } from 'react-router-dom';
-import { AppRoutes } from '../../../../routes/routes-const';
+import { AppRoutes } from '../../../routes/routes-const';
 
 type FilmTypes = {
 	title: string;

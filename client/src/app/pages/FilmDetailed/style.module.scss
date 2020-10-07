@@ -6,13 +6,15 @@
 }
 
 .imageBlock {
+	display: flex;
 	width: 40%;
 }
 
 .imageWrapper {
-	position: relative;
-	padding-bottom: 100%;
+	display: flex;
 	width: 100%;
+	padding-bottom: 100%;
+	position: relative;
 
 	& > img {
 		width: 100%;
@@ -24,17 +26,28 @@
 }
 
 .infoBlock {
-	width: 50%;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	width: 59%;
+	background: #ffffff;
+	border-radius: 5px;
+	margin-left: 1%;
+	overflow: hidden;
 }
 
 .title {
 	font-size: 24px;
 	margin-bottom: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .description {
-	font-size: 18px;
+	font-size: 17px;
 	margin-bottom: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .rating {

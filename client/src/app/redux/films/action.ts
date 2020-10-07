@@ -43,11 +43,11 @@ export const Actions = {
 	getCurrentFilmSuccess: (payload: any) => action(ActionTypes.GET_CURRENT_FILM_SUCCESS, payload),
 	getCurrentFilmFailed: (payload: { message: string }) => action(ActionTypes.GET_CURRENT_FILM_FAILED, payload),
 
-	likeFilmRequest: (payload: { filmId: string }) => action(ActionTypes.LIKE_FILM_REQUEST, payload), 
+	likeFilmRequest: (payload: { filmId: string, token: string }) => action(ActionTypes.LIKE_FILM_REQUEST, payload), 
 	likeFilmSuccess: (payload: any) => action(ActionTypes.LIKE_FILM_SUCCESS, payload), 
 	likeFilmFailed: (payload: { message: string }) => action(ActionTypes.LIKE_FILM_FAILED, payload), 
 
-	dislikeFilmRequest: (payload: { filmId: string }) => action(ActionTypes.DISLIKE_FILM_REQUEST, payload), 
+	dislikeFilmRequest: (payload: { filmId: string, token: string }) => action(ActionTypes.DISLIKE_FILM_REQUEST, payload), 
 	dislikeFilmSuccess: (payload: any) => action(ActionTypes.DISLIKE_FILM_SUCCESS, payload), 
 	dislikeFilmFailed: (payload: { message: string }) => action(ActionTypes.DISLIKE_FILM_FAILED, payload), 
 };

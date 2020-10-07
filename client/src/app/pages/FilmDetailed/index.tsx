@@ -1,7 +1,8 @@
 import Rating from '@material-ui/lab/Rating';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import _ from 'lodash';
 
 import styles from './style.module.scss';
 
@@ -10,6 +11,7 @@ import { getCurrentFilm, getIsLikeFilm } from '../../redux/films/selectors';
 import Title from '../../shared/components/Title';
 import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
+import { getAuthToken } from '../../redux/auth/selectors';
 
 
 const FilmDetailed: React.FC = () => {
@@ -19,6 +21,7 @@ const FilmDetailed: React.FC = () => {
 	const [rating, setRating] = useState<number | null>(0);
 	const loading = useSelector(getLoading);
 	const isLike = useSelector(getIsLikeFilm);
+	const token = useSelector(getAuthToken);
 
 	useEffect(() => {
 		if (currentFilm) {
@@ -29,19 +32,31 @@ const FilmDetailed: React.FC = () => {
 
 	useEffect(() => {
 		dispatch(Actions.getCurrentFilmRequest({filmId}));
-	}, [dispatch, filmId]);
+	}, [dispatch, filmId, token]);
 
-	const handlerLikeFilm = () => {
-		if (isLike) {
-			dispatch(Actions.dislikeFilmRequest({filmId}));
-		} else {
-			dispatch(Actions.likeFilmRequest({filmId}));
-		}
-	};
+	const handlerFilmLike = useCallback(
+		_.debounce(
+			() => {
+				if (token) {
+					if (isLike) {
+						dispatch(Actions.dislikeFilmRequest({filmId, token}));
+					} else {
+						dispatch(Actions.likeFilmRequest({filmId, token}));
+					}
+				} else {
+					console.log('Need auth!');
+				}
+			}, 
+			500, 
+			{
+				leading: true,
+				trailing: false,
+			}
+	), [isLike, token]);
 
 	return (
 		<div className={styles.container}>
-			<Title title={`Подробнее: ${loading ? '' : currentFilm?.title}`} goBack={true} />
+			<Title title='Подробнее' goBack={true} />
 
 			{!loading && (
 				<div className={styles.contentWrapper}>
@@ -63,7 +78,7 @@ const FilmDetailed: React.FC = () => {
 							/>
 						</div>
 						<div className={styles.likesBlock}>
-							<Likes onClick={handlerLikeFilm} />
+							<Likes onClick={handlerFilmLike} />
 							<span className={styles.likes}>{currentFilm?.likes}</span>
 						</div>
 					</div>

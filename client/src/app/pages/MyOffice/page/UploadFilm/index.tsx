@@ -69,7 +69,7 @@ const UploadFilm: React.FC = () => {
 			return setError('Все поля должны быть заполены!')
 		};
 
-		const { id }: { id: string } = JSON.parse(localStorage.getItem('id') as string);
+		const id: string = JSON.parse(localStorage.getItem('id') as string);
 
 		const formData = new FormData();
 		formData.append('file', filmAvatar);
@@ -114,12 +114,12 @@ const UploadFilm: React.FC = () => {
 					<div className={styles.uploadFilmFields}>
 						<div className={styles.filed}>
 							<label htmlFor='upload-input-1' className={styles.uploadFilmText}>Название</label>
-							<input id='upload-input-1' type='text' name='title' value={fields.title} onChange={handlerChangeField} />
+							<input id='upload-input-1' type='text' name='title' maxLength={50} value={fields.title} onChange={handlerChangeField} />
 						</div>
 
 						<div className={styles.filed}>
 							<label htmlFor='upload-input-2' className={styles.uploadFilmText}>Описание</label>
-							<textarea id='upload-input-2' name='description' value={fields.description} onChange={handlerChangeField} />
+							<textarea id='upload-input-2' name='description' maxLength={300} value={fields.description} onChange={handlerChangeField} />
 						</div>
 
 						<div className={styles.uploadFilmRating}>

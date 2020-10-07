@@ -35,12 +35,14 @@ const NavBar: React.FC = () => {
           <div className={styles.buttonsWrapper}>
             {user && <span className={styles.user}>{`${user.name} ${user.surname}`}</span>}
 
-            <span onClick={handlerLogout} className={styles.logout}>
+            <button onClick={handlerLogout} className={styles.logout}>
               Выйти
-            </span>
+            </button>
           </div>
         ) : (
-          <div onClick={redirectToSignIn} className={styles.myOffice}>Войти</div>
+          <button onClick={redirectToSignIn} className={styles.myOffice}>
+						Войти
+					</button>
         )}
       </div>
 
