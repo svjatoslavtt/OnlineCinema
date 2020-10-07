@@ -33,12 +33,17 @@ router.post('/', upload.single('file'), async (req, res) => {
 	try {
 		const url = req.protocol + '://' + req.get('host');
 
-		const { userId } = req.body;
+		const { userId, rating } = req.body;
 
 		const film = new Film({
 			...req.body,
 			owner: userId,
 			image: url + '/public/images/' + req.file.filename,
+			ratingUsersId: {
+				userId,
+				rating,
+			},
+			averageRating: rating,
 		});
 
 		await film.save();

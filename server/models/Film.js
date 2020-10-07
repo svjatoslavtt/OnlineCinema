@@ -8,7 +8,11 @@ const schema = new Schema({
   description: {
     type: String,
     required: true,
-  },
+	},
+	director: {
+		type: String,
+		required: true,
+	},
   image: {
     type: String,
     required: true,
@@ -27,8 +31,23 @@ const schema = new Schema({
 	rating: {
 		type: Number,
 		default: 0,
-		required: true,
 	},
+	averageRating: {
+		type: Number,
+		default: 0,
+	},
+	ratingUsersId: [
+		{
+			userId: {
+				type: Types.ObjectId,
+				ref: 'User'
+			},
+			rating: {
+				type: Number,
+				required: true,
+			},
+		}
+	],
   owner: {
     type: Types.ObjectId,
     ref: 'User',

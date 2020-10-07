@@ -15,6 +15,7 @@ app.use('/api/auth/', require('./routes/auth'));
 app.use('/api/film-upload/', require('./routes/film-upload'));
 app.use('/api/film/', require('./routes/film'));
 app.use('/api/likes/', require('./routes/likes'));
+app.use('/api/rate/', require('./routes/rating'));
 
 const PORT = config.get('port') || 5000;
 

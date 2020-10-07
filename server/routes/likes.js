@@ -6,7 +6,7 @@ const router = Router();
 
 router.post('/like/:filmId', isAuth,  async (req, res) => {
 	try {
-		const userId = req.body.userId;;
+		const userId = req.body.userId;
 
 		// update film data
 		const findFilm = await Film.findById(req.params.filmId);
@@ -21,6 +21,7 @@ router.post('/like/:filmId', isAuth,  async (req, res) => {
 		await updateFilmData.save();
 
 		const filmResponse = {
+			averageRating: updateFilmData.averageRating,
 			likes: updateFilmData.likes,
 			rating: updateFilmData.rating,
 			id: updateFilmData._id,
@@ -28,6 +29,8 @@ router.post('/like/:filmId', isAuth,  async (req, res) => {
 			description: updateFilmData.description,
 			owner: updateFilmData.owner,
 			image: updateFilmData.image,
+			director: updateFilmData.director,
+			peopleRated: updateFilmData.ratingUsersId.length,
 		};
 
 		// add film to my likes
@@ -66,6 +69,7 @@ router.post('/dislike/:filmId', isAuth, async (req, res) => {
 		await updateFilmData.save();
 
 		const filmResponse = {
+			averageRating: updateFilmData.averageRating,
 			likes: updateFilmData.likes,
 			rating: updateFilmData.rating,
 			id: updateFilmData._id,
@@ -73,6 +77,8 @@ router.post('/dislike/:filmId', isAuth, async (req, res) => {
 			description: updateFilmData.description,
 			owner: updateFilmData.owner,
 			image: updateFilmData.image,
+			director: updateFilmData.director,
+			peopleRated: updateFilmData.ratingUsersId.length,
 		};
 
 		// delete film from my likes

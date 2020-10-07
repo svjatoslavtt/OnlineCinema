@@ -13,8 +13,9 @@ router.get('/news-feed', async (req, res) => {
 		films.forEach(item => {
 			transformFilms.push({
 				title: item.title,
-				rating: item.rating,
+				averageRating: item.averageRating,
 				image: item.image,
+				director: item.director,
 				id: item._id,
 			});
 		});
@@ -29,9 +30,16 @@ router.post('/detailed/:filmId', async (req, res) => {
 	try {
 		const currentFilm = await Film.findById(req.params.filmId);
 
-		const isLike = currentFilm.usersId.includes(req.body.userId);
+		const isLike = req.body.userId ? currentFilm.usersId.includes(req.body.userId) : false;
+		const isRate = currentFilm.ratingUsersId.length ? currentFilm.ratingUsersId.some(item => item.userId.toString() === req.body.userId) : false;
+		const peopleRated = currentFilm.ratingUsersId.length;
 
-		return res.status(200).json({ message: 'Фильм получен успешно', currentFilm, isLike });
+		const data = {
+			...currentFilm._doc,
+			peopleRated
+		};
+
+		return res.status(200).json({ message: 'Фильм получен успешно', currentFilm: data, isLike, isRate });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
@@ -46,8 +54,9 @@ router.post('/my-films', async (req, res) => {
 		films.forEach(item => {
 			transformFilms.push({
 				title: item.title,
-				rating: item.rating,
+				averageRating: item.averageRating,
 				image: item.image,
+				director: item.director,
 				id: item._id,
 			});
 		});
@@ -69,8 +78,9 @@ router.post('/my-likes', async (req, res) => {
 		films.forEach(item => {
 			transformFilms.push({
 				title: item.title,
-				rating: item.rating,
+				averageRating: item.averageRating,
 				image: item.image,
+				director: item.director,
 				id: item._id,
 			});
 		});

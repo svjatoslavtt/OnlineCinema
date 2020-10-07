@@ -10,10 +10,6 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  surname: {
-    type: String,
-    required: false,
-  },
   password: {
     type: String,
     required: true,
@@ -28,8 +24,14 @@ const schema = new Schema({
 		{
 			type: Types.ObjectId,
 			ref: 'Film',
-		}
-	]
+		},
+	],
+	ratings: [
+		{
+			type: Types.ObjectId,
+			ref: 'Film',
+		},
+	],
 });
 
 module.exports = model('User', schema);
