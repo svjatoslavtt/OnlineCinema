@@ -45,7 +45,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 
 		return res.status(200).json({ message: 'Фильм успешно добавлен!', film });
 	} catch (err) {
-		return res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова!' });
+		return res.status(500).json({ message: err.message });
 	}
 });
 

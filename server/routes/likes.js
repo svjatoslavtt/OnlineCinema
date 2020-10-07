@@ -1,12 +1,12 @@
 const { Router } = require("express");
 const Film = require("../models/Film");
 const User = require("../models/User");
-
+const isAuth = require("../middleware/auth.middleware");
 const router = Router();
 
-router.post('/like/:filmId', async (req, res) => {
+router.post('/like/:filmId', isAuth,  async (req, res) => {
 	try {
-		const userId = req.body.id;
+		const userId = req.body.userId;;
 
 		// update film data
 		const findFilm = await Film.findById(req.params.filmId);
@@ -43,13 +43,13 @@ router.post('/like/:filmId', async (req, res) => {
 
 		return res.status(200).json({	isLike: updateFilmData.usersId.includes(userId), film: filmResponse });
 	} catch (err) {
-		return res.status(500).json({ message: err.toString() });
+		return res.status(500).json({ message: err.message });
 	}
 });
 
-router.post('/dislike/:filmId', async (req, res) => {
+router.post('/dislike/:filmId', isAuth, async (req, res) => {
 	try {
-		const userId = req.body.id;
+		const userId = req.body.userId;
 
 		// update film data
 		const findFilm = await Film.findById(req.params.filmId);
@@ -92,7 +92,7 @@ router.post('/dislike/:filmId', async (req, res) => {
 
 		return res.status(200).json({	isLike, film: filmResponse });
 	} catch (err) {
-		return res.status(500).json({ message: err.toString() });
+		return res.status(500).json({ message: err.message });
 	}
 });
 

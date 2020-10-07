@@ -29,7 +29,7 @@ router.post('/detailed/:filmId', async (req, res) => {
 	try {
 		const currentFilm = await Film.findById(req.params.filmId);
 
-		const isLike = currentFilm.usersId.includes(req.body.id);
+		const isLike = currentFilm.usersId.includes(req.body.userId);
 
 		return res.status(200).json({ message: 'Фильм получен успешно', currentFilm, isLike });
 	} catch (err) {
@@ -39,7 +39,7 @@ router.post('/detailed/:filmId', async (req, res) => {
 
 router.post('/my-films', async (req, res) => {
 	try {
-		const films = await Film.find({ owner: req.body.id });
+		const films = await Film.find({ owner: req.body.userId });
 
 		const transformFilms = [];
 
@@ -60,7 +60,7 @@ router.post('/my-films', async (req, res) => {
 
 router.post('/my-likes', async (req, res) => {
 	try {
-		const userId = req.body.id;
+		const userId = req.body.userId;
 		const findMyself = await User.findById(userId);
 		const films = await Film.find().where('_id').in(findMyself.likes).exec();
 
