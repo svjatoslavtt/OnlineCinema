@@ -14,6 +14,7 @@ import Title from '../../../../shared/components/Title';
 type UploadFields = {
 	title: string;
 	description: string;
+	director: string;
 	rating: number | null;
 };
 
@@ -25,6 +26,7 @@ const UploadFilm: React.FC = () => {
 	const fieldsInitialValue: UploadFields = {
 		title: '',
 		description: '',
+		director: '',
 		rating: 0,
 	};
 
@@ -75,6 +77,7 @@ const UploadFilm: React.FC = () => {
 		formData.append('file', filmAvatar);
 		formData.append('title', fields.title);
 		formData.append('description', fields.description);
+		formData.append('director', fields.director);
 		formData.append('rating', String(fields.rating));
 		formData.append('userId', id);
 		
@@ -119,7 +122,12 @@ const UploadFilm: React.FC = () => {
 
 						<div className={styles.filed}>
 							<label htmlFor='upload-input-2' className={styles.uploadFilmText}>Описание</label>
-							<textarea id='upload-input-2' name='description' maxLength={300} value={fields.description} onChange={handlerChangeField} />
+							<textarea id='upload-input-2' name='description' maxLength={500} value={fields.description} onChange={handlerChangeField} />
+						</div>
+
+						<div className={styles.filed}>
+							<label htmlFor='upload-input-3' className={styles.uploadFilmText}>Режисёр</label>
+							<input id='upload-input-3' type='text' name='director' maxLength={50} value={fields.director} onChange={handlerChangeField} />
 						</div>
 
 						<div className={styles.uploadFilmRating}>

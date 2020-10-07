@@ -43,7 +43,6 @@ const SignUp: React.FC = () => {
       const formInitialValue: RegisterUser = {
         email: '',
         name: '',
-        surname: '',
         password: '',
         confirmPassword: '',
       }

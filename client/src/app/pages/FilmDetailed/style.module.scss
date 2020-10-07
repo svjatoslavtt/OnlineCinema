@@ -50,8 +50,29 @@
 	text-overflow: ellipsis;
 }
 
-.rating {
+.director {
+	font-size: 17px;
 	margin-bottom: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.rating {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-bottom: 15px;
+}
+
+.ratingCounter {
+	display: flex;
+	align-items: flex-end;
+	font-size: 18px;
+}
+
+.peopleRated {
+	margin-left: 10px;
+	font-size: 13px;
 }
 
 .likesBlock {

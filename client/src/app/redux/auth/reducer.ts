@@ -24,8 +24,7 @@ export const reducer = (state = authInitialState, action: ActionTypeUnion) => {
     case ActionTypes.LOGIN_SUCCESS:
 			const { user, token } = action.payload;
       localStorage.setItem('user', JSON.stringify({ 
-				name: user.name, 
-				surname: user.surname 
+				name: user.name
 			}));
       return {
         ...state,

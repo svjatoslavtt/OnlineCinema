@@ -68,6 +68,22 @@ function* dislikeFilm(action: any) {
 	}
 };
 
+function* rateFilm(action: any) {
+	try {
+		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
+		const data = yield call(request, ApiEndPoints.RATE_FILM + '/' + action.payload.filmId, 'POST', 
+		{
+			userId, 
+			rating: action.payload.rating
+		}, {
+			Authorization: `Bearer ${action.payload.token}`,
+		});
+		yield put(Actions.rateFilmSuccess(data));
+	} catch (err) {
+		yield put(Actions.rateFilmFailed(err));
+	}
+}
+
 export function* watchGetFilms() {
 	yield all([
 		takeEvery(ActionTypes.GET_FILMS_REQUEST, getFilms),
@@ -76,5 +92,6 @@ export function* watchGetFilms() {
 		takeEvery(ActionTypes.GET_CURRENT_FILM_REQUEST, getCurrentFilm),
 		takeEvery(ActionTypes.LIKE_FILM_REQUEST, likeFilm),
 		takeEvery(ActionTypes.DISLIKE_FILM_REQUEST, dislikeFilm),
+		takeEvery(ActionTypes.RATE_FILM_REQUEST, rateFilm),
 	]);
 };

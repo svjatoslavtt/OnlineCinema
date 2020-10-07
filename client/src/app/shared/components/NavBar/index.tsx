@@ -33,7 +33,7 @@ const NavBar: React.FC = () => {
 
         {token ? (
           <div className={styles.buttonsWrapper}>
-            {user && <span className={styles.user}>{`${user.name} ${user.surname}`}</span>}
+            {user && <span className={styles.user}>{user.name}</span>}
 
             <button onClick={handlerLogout} className={styles.logout}>
               Выйти

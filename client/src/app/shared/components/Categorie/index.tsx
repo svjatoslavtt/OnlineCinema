@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './style.module.scss';
 
-import Film from '../Film.tsx';
+import Film from '../Film';
 import Title from '../Title';
 import { FilmTypes } from '../../../redux/films/reducer';
 
@@ -19,12 +19,12 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data }) => {
 
 			<div className={styles.categorieFilmsWrapper}>
 				{data && data.length ? 
-					data.map(({ id, title, rating, image }) => {
+					data.map(({ id, title, averageRating, image }) => {
 						return (
 							<Film 
 								key={`${id}-${Math.round(Math.random() * 10000)}`}
 								title={title}
-								rating={rating}
+								averageRating={averageRating}
 								image={image}
 								id={id}
 						/>

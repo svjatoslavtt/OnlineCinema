@@ -19,15 +19,8 @@ export const inputs: { [key: string]: InputInterface } = {
     empty: false,
     required: true,
   },
-  surname: {
-    id: 3,
-    type: 'text',
-    placeholder: 'Surname',
-    name: 'surname',
-    value: '',
-  },
   password: {
-    id: 4,
+    id: 3,
     type: 'password',
     placeholder: 'Password',
     name: 'password',
@@ -36,7 +29,7 @@ export const inputs: { [key: string]: InputInterface } = {
     required: true,
   },
   confirmPassword: {
-    id: 5,
+    id: 4,
     type: 'password',
     placeholder: 'Confirm password',
     name: 'confirmPassword',

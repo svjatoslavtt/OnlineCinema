@@ -3,7 +3,7 @@ import { ActionTypes, ActionTypesUnion } from "./action";
 export type FilmTypes = {
 	image: string;
 	title: string;
-	rating: number;
+	averageRating: number;
 	id: string;
 };
 
@@ -13,6 +13,7 @@ export type FilmsState = {
 	myLikes: FilmTypes[] | null;
 	currentFilm: any | null;
 	isLike: boolean;
+	isRate: boolean;
 };
 
 export const filmsInitialState: FilmsState = {
@@ -21,6 +22,7 @@ export const filmsInitialState: FilmsState = {
 	myLikes: null,
 	currentFilm: null,
 	isLike: false,
+	isRate: false,
 };
 
 export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
@@ -46,6 +48,7 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				...state,
 				currentFilm: action.payload.currentFilm,
 				isLike: action.payload.isLike,
+				isRate: action.payload.isRate,
 			}		
 		case ActionTypes.LIKE_FILM_SUCCESS:
 			return {
@@ -59,6 +62,12 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				currentFilm: action.payload.film,
 				isLike: action.payload.isLike,
 			}	
+		case ActionTypes.RATE_FILM_SUCCESS:
+			return {
+				...state,
+				currentFilm: action.payload.film,
+				isRate: action.payload.isRate,
+			}
 		default: return state;	
 	}
 };

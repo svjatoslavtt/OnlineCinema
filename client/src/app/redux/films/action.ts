@@ -24,6 +24,10 @@ export enum ActionTypes {
 	DISLIKE_FILM_REQUEST = 'DISLIKE_FILM_REQUEST',
 	DISLIKE_FILM_SUCCESS = 'DISLIKE_FILM_SUCCESS',
 	DISLIKE_FILM_FAILED = 'DISLIKE_FILM_FAILED',
+
+	RATE_FILM_REQUEST = 'RATE_FILM_REQUEST',
+	RATE_FILM_SUCCESS = 'RATE_FILM_SUCCESS',
+	RATE_FILM_FAILED = 'RATE_FILM_FAILED',
 };
 
 export const Actions = {
@@ -50,6 +54,10 @@ export const Actions = {
 	dislikeFilmRequest: (payload: { filmId: string, token: string }) => action(ActionTypes.DISLIKE_FILM_REQUEST, payload), 
 	dislikeFilmSuccess: (payload: any) => action(ActionTypes.DISLIKE_FILM_SUCCESS, payload), 
 	dislikeFilmFailed: (payload: { message: string }) => action(ActionTypes.DISLIKE_FILM_FAILED, payload), 
+
+	rateFilmRequest: (payload: { filmId: string, rating: number | null, token: string }) => action(ActionTypes.RATE_FILM_REQUEST, payload), 
+	rateFilmSuccess: (payload: any) => action(ActionTypes.RATE_FILM_SUCCESS, payload), 
+	rateFilmFailed: (payload: { message: string }) => action(ActionTypes.RATE_FILM_FAILED, payload),
 };
 
 export type ActionTypesUnion = ActionType<typeof Actions>;

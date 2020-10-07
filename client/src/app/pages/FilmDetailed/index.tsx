@@ -7,7 +7,7 @@ import _ from 'lodash';
 import styles from './style.module.scss';
 
 import { Actions } from '../../redux/films/action';
-import { getCurrentFilm, getIsLikeFilm } from '../../redux/films/selectors';
+import { getCurrentFilm, getIsLikeFilm, getIsRatedFilm } from '../../redux/films/selectors';
 import Title from '../../shared/components/Title';
 import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
@@ -16,24 +16,26 @@ import { getAuthToken } from '../../redux/auth/selectors';
 
 const FilmDetailed: React.FC = () => {
 	const [error, setError] = useState('');
-	const [rating, setRating] = useState<number | null>(0);
+	const [ratingHoverValue, setRatingHoverValue] = useState<number | null>(0);
 	const { filmId }: { filmId: string } = useParams();
 	const dispatch = useDispatch();
 	const currentFilm = useSelector(getCurrentFilm);
 	const loading = useSelector(getLoading);
 	const isLike = useSelector(getIsLikeFilm);
+	const isRate = useSelector(getIsRatedFilm);
 	const token = useSelector(getAuthToken);
-
-	useEffect(() => {
-		if (currentFilm) {
-			setRating(currentFilm.rating);
-		}
-		
-	}, [currentFilm]);
 
 	useEffect(() => {
 		dispatch(Actions.getCurrentFilmRequest({filmId}));
 	}, [dispatch, filmId, token]);
+
+	const handlerChangeRating = (_: React.ChangeEvent<{}>, newValue: number | null) => {
+		if (token) {
+			dispatch(Actions.rateFilmRequest({ filmId, rating: newValue, token}));
+		}
+	};
+
+	const handlerSetRating = () => !token && setError('Нужно авторизоваться!');
 
 	const handlerFilmLike = useCallback(
 		_.debounce(
@@ -53,6 +55,7 @@ const FilmDetailed: React.FC = () => {
 				leading: true,
 				trailing: false,
 			}
+			
 	), [isLike, token]);
 
 	return (
@@ -69,15 +72,39 @@ const FilmDetailed: React.FC = () => {
 					<div className={styles.infoBlock}>
 						<div className={styles.title}>{currentFilm?.title}</div>
 						<div className={styles.description}>{currentFilm?.description}</div>
+						<div className={styles.director}>{`Режисёр: ${currentFilm?.director}`}</div>
 						<div className={styles.rating}>
-							<Rating
-								name='simple-controlled'
-								value={rating}
-								onChange={(_, newValue) => {
-									setRating(newValue);
-								}}
-							/>
+							<span className={styles.ratingCounter}>
+								{`Рейтинг фильма: ${currentFilm?.averageRating}`}
+								<span className={styles.peopleRated}>{`(голосов: ${currentFilm?.peopleRated})`}</span>
+							</span>
+							<div onClick={handlerSetRating}>	
+								{
+									isRate || !token ? (
+										<Rating
+											name='read-only'
+											value={currentFilm?.averageRating}
+											precision={0.1}
+											readOnly
+										/>
+									) : (
+										<Rating
+											name='simple-controlled'
+											value={currentFilm?.averageRating}
+											onChangeActive={(_, value) => {
+												setRatingHoverValue(value);
+											}}
+											precision={0.1}
+											onChange={handlerChangeRating}
+										/>
+									)
+								}
+								{(ratingHoverValue !== 0) && (
+									<span>{ratingHoverValue}</span>
+								)}
+							</div>
 						</div>
+
 						<div className={styles.likesBlock}>
 							<Likes onClick={handlerFilmLike} />
 							<span className={styles.likes}>{currentFilm?.likes}</span>

@@ -30,3 +30,8 @@ export const getIsLikeFilm = createSelector(
 	getFilmsState,
 	(state: FilmsState) => state.isLike
 );
+
+export const getIsRatedFilm = createSelector(
+	getFilmsState,
+	(state: FilmsState) => state.isRate
+);

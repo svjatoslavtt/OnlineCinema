@@ -7,12 +7,12 @@ import { AppRoutes } from '../../../routes/routes-const';
 
 type FilmTypes = {
 	title: string;
-	rating: number;
 	image: string;
 	id: string;
+	averageRating: number;
 }
 
-const Film: React.FC<FilmTypes> = ({ title, rating, image, id }) => {
+const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
 	const history = useHistory();
 
 	const handlerDedailedRedirect = () => {
@@ -32,7 +32,8 @@ const Film: React.FC<FilmTypes> = ({ title, rating, image, id }) => {
 				<div className={styles.filmRating}>
 					<Rating
 						name="read-only"
-						value={rating}
+						value={averageRating}
+						precision={0.1}
 						readOnly
 					/>
 				</div>

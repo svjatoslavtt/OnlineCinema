@@ -16,7 +16,7 @@ function* login(action: any) {
     yield put(Actions.loginSuccess({ token: data.token, user: data.user }));
     yield localStorage.setItem('token', JSON.stringify(data.token));
     yield localStorage.setItem('id', JSON.stringify(data.user._id));
-		yield history.goBack();
+		yield history.push(AppRoutes.NEWS_FEED);
   } catch (err) {
     yield put(Actions.loginFailed(err));
   }

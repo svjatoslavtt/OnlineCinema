@@ -20,7 +20,6 @@ export interface User {
   id: string;
   email: string;
   name: string;
-  surname: string;
   password: string;
   films?: Film[];
 }
@@ -28,7 +27,6 @@ export interface User {
 export interface RegisterUser {
   email: string;
   name: string;
-  surname: string;
   password: string;
   confirmPassword: string;
 }
