@@ -10,6 +10,7 @@ import PrivateRoute from "./shared/components/AuthPrivateRoute";
 import MyOffice from './pages/MyOffice';
 import UploadFilm from './pages/MyOffice/page/UploadFilm';
 import FilmDetailed from './pages/FilmDetailed';
+import UserProfile from './pages/UserProfile';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <Route exact={true} path={AuthRoutes.SIGN_UP} component={SignUp} />
 				<Route exact={true} path={AppRoutes.NEWS_FEED} component={NewsFeed} />
 				<Route exact={true} path={AppRoutes.FILM_DETAILED + '/:filmId'} component={FilmDetailed} />
+				<Route exact={true} path={AppRoutes.USER_PROFILE + '/:userId'} component={UserProfile} />
 				<PrivateRoute exact={true} path={AppRoutes.MY_OFFICE} component={MyOffice} />
 				<PrivateRoute exact={true} path={AppRoutes.UPLOAD_FILM} component={UploadFilm} />
         <Redirect to={AppRoutes.NEWS_FEED} />
