@@ -4,18 +4,21 @@ import styles from './style.module.scss';
 
 import Film from '../Film';
 import Title from '../Title';
-import { FilmTypes } from '../../../redux/films/reducer';
+import { FilmTypes } from '../../../redux/films/types';
 
 type CategorieTypes = {
 	title: string;
 	data?: FilmTypes[] | null;
+	heartSvg?: boolean;
+	uploadFilm?: boolean;
+	goBack?: boolean;
 }
 
-const Categorie: React.FC<CategorieTypes> = ({ title, data }) => {
+const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm, goBack }) => {
 	return (
 		<div className={styles.categorie}>
 			
-			<Title title={title} />
+			<Title title={title} heartSvg={heartSvg} uploadFilm={uploadFilm} goBack={goBack} />
 
 			<div className={styles.categorieFilmsWrapper}>
 				{data && data.length ? 

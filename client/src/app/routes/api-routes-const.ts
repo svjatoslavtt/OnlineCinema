@@ -13,4 +13,7 @@ export enum ApiEndPoints {
 	DISLIKE_FILM = '/api/likes/dislike',
 
 	RATE_FILM = '/api/rate',
+
+	USER_PROFILE_FILMS = '/api/user-profile/films',
+	USER_PROFILE_LIKES = '/api/user-profile/likes',
 };

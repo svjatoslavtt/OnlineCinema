@@ -1,7 +1,7 @@
 import Rating from '@material-ui/lab/Rating';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import _ from 'lodash';
 
 import styles from './style.module.scss';
@@ -12,6 +12,7 @@ import Title from '../../shared/components/Title';
 import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
 import { getAuthToken } from '../../redux/auth/selectors';
+import { AppRoutes } from '../../routes/routes-const';
 
 
 const FilmDetailed: React.FC = () => {
@@ -99,7 +100,7 @@ const FilmDetailed: React.FC = () => {
 										/>
 									)
 								}
-								{(ratingHoverValue !== 0) && (
+								{(ratingHoverValue !== 0 && !isRate && ratingHoverValue != -1) && (
 									<span>{ratingHoverValue}</span>
 								)}
 							</div>
@@ -113,6 +114,11 @@ const FilmDetailed: React.FC = () => {
 						{error && (
 							<div className={styles.error}>{error}</div>
 						)}
+
+						<div className={styles.author}>
+							<span>Автор: </span>
+							<NavLink to={AppRoutes.USER_PROFILE + '/' + currentFilm?.owner.id}>{currentFilm?.owner.name}</NavLink>
+						</div>
 					</div>
 				</div>
 			)}

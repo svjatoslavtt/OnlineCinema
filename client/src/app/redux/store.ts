@@ -4,8 +4,11 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import {rootSaga} from "./saga";
 import {AuthState, reducer as authReducer} from './auth/reducer';
 import {FilmUploadState, reducer as filmUploadReducer} from './film-upload/reducer';
-import {LoadingState ,reducer as loadingReducer} from './loading/reducer';
-import {FilmsState ,reducer as getFilmsReducer} from './films/reducer';
+import {LoadingState, reducer as loadingReducer} from './loading/reducer';
+import {reducer as getFilmsReducer} from './films/reducer';
+import {reducer as getUserProfileReducer} from './user-profile/reducer';
+import { FilmsState } from './films/types';
+import { UserProfileTypes } from './user-profile/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,6 +17,7 @@ export interface RootState {
 	filmUpload: FilmUploadState;
 	loading: LoadingState;
 	getFilms: FilmsState;
+	userProfile: UserProfileTypes;
 }
 
 const rootReducers = combineReducers({
@@ -21,6 +25,7 @@ const rootReducers = combineReducers({
 	filmUpload: filmUploadReducer,
 	loading: loadingReducer,
 	getFilms: getFilmsReducer,
+	userProfile: getUserProfileReducer,
 });
 
 const store = createStore(

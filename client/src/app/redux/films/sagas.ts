@@ -50,6 +50,7 @@ function* likeFilm(action: any) {
 		const data = yield call(request, ApiEndPoints.LIKE_FILM + '/' + action.payload.filmId, 'POST', {userId}, {
 			Authorization: `Bearer ${action.payload.token}`,
 	});
+		console.log(data);
 		yield put(Actions.likeFilmSuccess(data)); 
 	} catch (err) {
 		yield put(Actions.likeFilmFailed(err));

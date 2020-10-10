@@ -8,7 +8,7 @@ import { getMyFilms, getMyLikes } from '../../redux/films/selectors';
 
 const MyOffice: React.FC = () => {
 	const dispatch = useDispatch();
-	const MyOwnfilms = useSelector(getMyFilms);
+	const MyOwnFilms = useSelector(getMyFilms);
 	const myLikesFilms = useSelector(getMyLikes);
 
 	useEffect(() => {
@@ -18,8 +18,8 @@ const MyOffice: React.FC = () => {
 
 	return (
 		<div className={styles.myOfficeContainer}>
-			<Categorie title='Загруженные фильмы' data={MyOwnfilms} />
-			<Categorie title='Мои лайки' data={myLikesFilms} />
+			<Categorie title='Загруженные фильмы' uploadFilm={true} data={MyOwnFilms} />
+			<Categorie title='Мои лайки' heartSvg={true} data={myLikesFilms} />
 		</div>
 	)
 }

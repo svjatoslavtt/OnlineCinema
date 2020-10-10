@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-import { FilmsState } from "./reducer";
+import { FilmsState } from "./types";
 
 import { RootState } from "../store";
 

@@ -1,20 +1,5 @@
 import { ActionTypes, ActionTypesUnion } from "./action";
-
-export type FilmTypes = {
-	image: string;
-	title: string;
-	averageRating: number;
-	id: string;
-};
-
-export type FilmsState = {
-	films: FilmTypes[] | null;
-	myFilms: FilmTypes[] | null;
-	myLikes: FilmTypes[] | null;
-	currentFilm: any | null;
-	isLike: boolean;
-	isRate: boolean;
-};
+import { FilmsState } from "./types";
 
 export const filmsInitialState: FilmsState = {
 	films: null,
@@ -53,19 +38,28 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 		case ActionTypes.LIKE_FILM_SUCCESS:
 			return {
 				...state,
-				currentFilm: action.payload.film,
+				currentFilm: {
+					...state.currentFilm,
+					likes: action.payload.likes,
+				},
 				isLike: action.payload.isLike,
 			}	
 		case ActionTypes.DISLIKE_FILM_SUCCESS:
 			return {
 				...state,
-				currentFilm: action.payload.film,
+				currentFilm: {
+					...state.currentFilm,
+					likes: action.payload.likes,
+				},
 				isLike: action.payload.isLike,
-			}	
+			}		
 		case ActionTypes.RATE_FILM_SUCCESS:
 			return {
 				...state,
-				currentFilm: action.payload.film,
+				currentFilm: {
+					...state.currentFilm,
+					...action.payload.rating,
+				},
 				isRate: action.payload.isRate,
 			}
 		default: return state;	

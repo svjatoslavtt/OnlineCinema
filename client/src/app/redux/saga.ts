@@ -4,6 +4,7 @@ import {watchAuthorization} from "./auth/sagas";
 import { watchUploadFilm } from "./film-upload/sagas";
 import { watchLoadingStart, watchLoadingStop } from "./loading/sagas";
 import { watchGetFilms } from "./films/sagas";
+import { watchUserProfile } from "./user-profile/sagas";
 
 export function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export function* rootSaga() {
 		watchLoadingStart(),
 		watchLoadingStop(),
 		watchGetFilms(),
+		watchUserProfile(),
   ]);
 }

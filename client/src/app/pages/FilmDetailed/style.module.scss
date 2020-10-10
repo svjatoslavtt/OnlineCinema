@@ -1,3 +1,5 @@
+@import "../../static/fonts/index.scss";
+
 .contentWrapper {
 	display: flex;
 	justify-content: space-between;
@@ -28,6 +30,7 @@
 .infoBlock {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 	padding: 20px;
 	width: 59%;
 	background: #ffffff;
@@ -97,4 +100,26 @@
 	color: #fff;
 	border-radius: 5px;
 	font-size: 14px;
+}
+
+.author {
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+	font-size: 14px;
+	font-family: $lightItalic;
+
+	& > span {
+		font-size: 12px;
+		margin-right: 5px;
+		font-family: $light;
+	}
+
+	& > a {
+		text-decoration: none;
+    padding: 2px 10px;
+    background: #2a9d8f;
+    border-radius: 5px;
+    color: #fff;
+	}
 }
