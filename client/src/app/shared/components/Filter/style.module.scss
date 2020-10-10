@@ -1,0 +1,128 @@
+@import "../../../static/fonts/index.scss";
+
+.filterContainer {
+	position: fixed;
+	z-index: 999;
+	left: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.filterBlock {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	padding: 20px;
+	transform: translateX(-350px);
+	width: 300px;
+	transition: transform .25s ease-in-out;
+	background: #2a9d8f;
+	color: #eee;
+	overflow-y: auto;
+
+	&.active {
+		transform: translateX(0);
+	}
+}
+
+.filterButtonClose {
+	display: flex;
+	justify-content: flex-end;
+
+	& > svg {
+		cursor: pointer;
+		fill: #eee;
+
+		&:hover {
+			fill: #264653;
+		}
+	}
+}
+
+.emtySpace {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.filterConter {
+	margin-top: 15px;
+}
+
+.filterSearchBlock {
+	margin-bottom: 15px;
+	color: #eee;
+
+	& > label {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	& > input {
+		box-sizing: border-box;
+	}
+}
+
+.inputsWrapper {
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 5px;
+	color: #264653;
+	max-height: 400px;
+	overflow: hidden;
+}
+
+.filterByDirector {
+	& > span {
+		display: block;
+		margin-bottom: 5px;
+	}
+}
+
+.directorBlock {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&:hover {
+		background-color: #eee;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 15px;
+	}
+
+	& > label {
+		flex: 1;
+		cursor: pointer;
+	}
+
+	& > input {
+		width: 20px;
+		height: 20px;
+		margin: 0;
+	}
+}
+
+.filterButtonSubmit {
+	margin-top: 15px;
+
+	& > button {
+		padding: 7px 10px;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    width: 100%;
+		background: #fff;
+		cursor: pointer;
+		font-family: $light;
+		outline: none;
+
+		&:hover {
+			background-color: #eee;
+		}
+	}
+}

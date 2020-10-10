@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import styles from './style.module.scss';
 import Categorie from '../../shared/components/Categorie';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfileFilms, getUserProfileLikes, getUserProfileName } from '../../redux/user-profile/selectors';
+import { getUserProfileFilms, getUserProfileLikes } from '../../redux/user-profile/selectors';
 import { Actions } from '../../redux/user-profile/actions';
 import { useParams } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const UserProfile: React.FC = () => {
 	useEffect(() => {
 		dispatch(Actions.getUserProfileFilmsRequest(userId));
 		dispatch(Actions.getUserProfileLikesRequest(userId));
-	}, [dispatch]);
+	}, [dispatch, userId]);
 
 	return (
 		<div className={styles.myOfficeContainer}>

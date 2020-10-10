@@ -30,6 +30,7 @@
 .infoBlock {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	position: relative;
 	padding: 20px;
 	width: 59%;
@@ -94,7 +95,7 @@
 .error {
 	display: flex;
 	justify-content: center;
-	margin-top: 15px;
+	margin: 15px 0;
 	padding: 3px 10px;
 	background: #e57373;
 	color: #fff;
@@ -103,9 +104,6 @@
 }
 
 .author {
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
 	font-size: 14px;
 	font-family: $lightItalic;
 
@@ -122,4 +120,10 @@
     border-radius: 5px;
     color: #fff;
 	}
+}
+
+.authorWrapper {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
 }

@@ -16,4 +16,7 @@ export enum ApiEndPoints {
 
 	USER_PROFILE_FILMS = '/api/user-profile/films',
 	USER_PROFILE_LIKES = '/api/user-profile/likes',
+
+	GET_DIRECTORS = '/api/filter/directors',
+	FILTER = '/api/filter/search',
 };

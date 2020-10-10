@@ -7,8 +7,10 @@ import {FilmUploadState, reducer as filmUploadReducer} from './film-upload/reduc
 import {LoadingState, reducer as loadingReducer} from './loading/reducer';
 import {reducer as getFilmsReducer} from './films/reducer';
 import {reducer as getUserProfileReducer} from './user-profile/reducer';
+import {reducer as getFilterReducer} from './filter/reducer';
 import { FilmsState } from './films/types';
 import { UserProfileTypes } from './user-profile/reducer';
+import { FilterTypes } from './filter/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +20,7 @@ export interface RootState {
 	loading: LoadingState;
 	getFilms: FilmsState;
 	userProfile: UserProfileTypes;
+	filter: FilterTypes;
 }
 
 const rootReducers = combineReducers({
@@ -26,6 +29,7 @@ const rootReducers = combineReducers({
 	loading: loadingReducer,
 	getFilms: getFilmsReducer,
 	userProfile: getUserProfileReducer,
+	filter: getFilterReducer,
 });
 
 const store = createStore(

@@ -1,0 +1,41 @@
+import { ActionTypes, ActionTypesUnion } from "./actions";
+
+import { filmsInitialState } from "../films/reducer";
+
+export type FilterTypes = {
+	filterIsOpen: boolean;
+	directors: any;
+	filterFilms: any;
+};
+
+export const filterInitialState: FilterTypes = {
+	filterIsOpen: false,
+	directors: null,
+	filterFilms: null,
+};
+
+export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
+	switch (action.type) {
+		case ActionTypes.OPEN_FILTER: 
+			return {
+				...state,
+				filterIsOpen: true,
+			};
+		case ActionTypes.CLOSE_FILTER:
+			return {
+				...state,
+				filterIsOpen: false,
+			}	
+		case ActionTypes.GET_DIRECTORS_SUCCESS:
+			return {
+				...state,
+				directors: action.payload.directors,
+			}	
+		case ActionTypes.FILTER_SUCCESS:
+			return {
+				...state,
+				filterFilms: action.payload.filter
+			}	
+		default: return state;	
+	};
+};

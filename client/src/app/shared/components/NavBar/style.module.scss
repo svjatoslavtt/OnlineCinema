@@ -21,7 +21,16 @@
 
 .navBarPages {
   display: flex;
-  justify-content: flex-start;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.navFilter {
+	background: #2a9d8f;
+	color: #eee;
+	padding: 2px 10px;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .logo {
