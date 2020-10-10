@@ -20,19 +20,6 @@ router.post('/like/:filmId', isAuth,  async (req, res) => {
 
 		await updateFilmData.save();
 
-		const filmResponse = {
-			averageRating: updateFilmData.averageRating,
-			likes: updateFilmData.likes,
-			rating: updateFilmData.rating,
-			id: updateFilmData._id,
-			title: updateFilmData.title,
-			description: updateFilmData.description,
-			owner: updateFilmData.owner,
-			image: updateFilmData.image,
-			director: updateFilmData.director,
-			peopleRated: updateFilmData.ratingUsersId.length,
-		};
-
 		// add film to my likes
 		const findMyself = await User.findById(userId);
 
@@ -41,10 +28,11 @@ router.post('/like/:filmId', isAuth,  async (req, res) => {
 		};
 
 		const updateMyData = await User.findByIdAndUpdate(userId, addFilmToMyLikes, { new: true });
-
 		await updateMyData.save();
 
-		return res.status(200).json({	isLike: updateFilmData.usersId.includes(userId), film: filmResponse });
+		const isLike = updateFilmData.usersId.includes(userId);
+
+		return res.status(200).json({	isLike, likes: updateFilmData.likes });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
@@ -65,21 +53,7 @@ router.post('/dislike/:filmId', isAuth, async (req, res) => {
 		};
 		
 		const updateFilmData = await Film.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
-
 		await updateFilmData.save();
-
-		const filmResponse = {
-			averageRating: updateFilmData.averageRating,
-			likes: updateFilmData.likes,
-			rating: updateFilmData.rating,
-			id: updateFilmData._id,
-			title: updateFilmData.title,
-			description: updateFilmData.description,
-			owner: updateFilmData.owner,
-			image: updateFilmData.image,
-			director: updateFilmData.director,
-			peopleRated: updateFilmData.ratingUsersId.length,
-		};
 
 		// delete film from my likes
 		const findMyself = await User.findById(userId);
@@ -96,7 +70,7 @@ router.post('/dislike/:filmId', isAuth, async (req, res) => {
 
 		const isLike = updateFilmData.usersId.includes(userId);
 
-		return res.status(200).json({	isLike, film: filmResponse });
+		return res.status(200).json({	isLike, likes: updateFilmData.likes });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}

@@ -27,12 +27,12 @@ let upload = multer({
 			return cb(new Error('Only .png, .jpg, .jpeg format'));
 		}
 	}
-})
+});
 
 router.post('/', upload.single('file'), async (req, res) => {
 	try {
 		const url = req.protocol + '://' + req.get('host');
-
+		
 		const { userId, rating } = req.body;
 
 		const film = new Film({

@@ -29,14 +29,19 @@ router.get('/news-feed', async (req, res) => {
 router.post('/detailed/:filmId', async (req, res) => {
 	try {
 		const currentFilm = await Film.findById(req.params.filmId);
+		const owner = await User.findById(currentFilm.owner);
 
 		const isLike = req.body.userId ? currentFilm.usersId.includes(req.body.userId) : false;
 		const isRate = currentFilm.ratingUsersId.length ? currentFilm.ratingUsersId.some(item => item.userId.toString() === req.body.userId) : false;
 		const peopleRated = currentFilm.ratingUsersId.length;
-
+		
 		const data = {
 			...currentFilm._doc,
-			peopleRated
+			peopleRated,
+			owner: {
+				id: owner._id,
+				name: owner.name,
+			},
 		};
 
 		return res.status(200).json({ message: 'Фильм получен успешно', currentFilm: data, isLike, isRate });
@@ -89,6 +94,6 @@ router.post('/my-likes', async (req, res) => {
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
-})
+});
 
 module.exports = router;

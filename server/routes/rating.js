@@ -24,18 +24,11 @@ router.post('/:filmId', isAuth,  async (req, res) => {
 
 		await updateFilmData.save();
 
-		const filmResponse = {
-			likes: updateFilmData.likes,
+		const ratingResponse = {
 			rating: updateFilmData.rating,
 			ratingUsersId: updateFilmData.ratingUsersId.length,
-			id: updateFilmData._id,
-			title: updateFilmData.title,
-			description: updateFilmData.description,
-			owner: updateFilmData.owner,
-			image: updateFilmData.image,
-			director: updateFilmData.director,
-			averageRating: updateFilmData.averageRating,	
 			peopleRated: updateFilmData.ratingUsersId.length,
+			averageRating: updateFilmData.averageRating,
 		};
 
 		// add film to my ratings
@@ -51,7 +44,7 @@ router.post('/:filmId', isAuth,  async (req, res) => {
 	
 		const isRate = updateFilmData.ratingUsersId.some(item => item.userId.toString() === userId);
 
-		return res.status(200).json({	isRate, film: filmResponse });
+		return res.status(200).json({	isRate, rating: ratingResponse });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
