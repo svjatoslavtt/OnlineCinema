@@ -6,10 +6,10 @@ const router = Router();
 router.get('/directors', async (req, res) => {
 	try {
 		const films = await Film.find();
-		const filterDirectors = films.map(item => item.director);
-		const [...directors] = new Set(filterDirectors);
+		const directors = films.map(item => item.director);
+		const [...uniqDirectors] = new Set(directors);
 	
-		return res.status(200).json({ message: 'Режиссёры получены!', directors });
+		return res.status(200).json({ message: 'Режиссёры получены!', directors: uniqDirectors });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
@@ -17,16 +17,51 @@ router.get('/directors', async (req, res) => {
 
 router.post('/search', async (req, res) => {
 	try {
-		const searchText = req.body.title;
+		let tags = [];
 
-		const films = await Film.find();
+		if (req.body.title) {
+			const films = await Film.find();
+			const searchFilm = films.filter(item => 
+				item.title.toUpperCase().includes(req.body.title.toUpperCase()));
 
-		const searchTitle = films.filter(item => 
-			item.title.toUpperCase().includes(searchText.toUpperCase()));
+			tags.push(req.body.title);	
+
+			const transformFilms = [];
+
+			searchFilm.forEach(item => {
+				transformFilms.push({
+					title: item.title,
+					averageRating: item.averageRating,
+					image: item.image,
+					director: item.director,
+					id: item._id,
+				});
+			});
+
+			return res.status(200).json({ message: 'Фильтрация по поиску успешна!', filter: [...transformFilms], tags });
+		};
+
+		let commonFilter = [];
+
+		for (key in req.body) {
+			if (commonFilter.length && key !== 'title') {
+				const data = await Film.find({...commonFilter}).where(key).in(req.body[key]).exec();
+				if (data.length) {
+					commonFilter = data;
+					tags.push(...req.body[key]);	
+				}
+			} else if (key !== 'title') {
+				const data = await Film.find().where(key).in(req.body[key]).exec();
+				if (data.length) {
+					commonFilter.push(...data);
+					tags.push(...req.body[key]);
+				}
+			};
+		};
 
 		const transformFilms = [];
 
-		searchTitle.forEach(item => {
+		commonFilter.forEach(item => {
 			transformFilms.push({
 				title: item.title,
 				averageRating: item.averageRating,
@@ -36,7 +71,7 @@ router.post('/search', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Фильтрация успешна!', filter: [...transformFilms] });
+		return res.status(200).json({ message: 'Фильтрация успешна!', filter: [...transformFilms], tags });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
