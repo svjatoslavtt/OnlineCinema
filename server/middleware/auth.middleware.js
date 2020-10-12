@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 		const token = req.headers.authorization.split(' ')[1];
 
 		if (!token) {
-				return res.status(401).json({ message: 'Нужно зарегистрироваться!' });
+			return res.status(401).json({ message: 'Нужно зарегистрироваться!' });
 		}
 
 		req.user = jwt.verify(token, config.get('jwtSecret'));
