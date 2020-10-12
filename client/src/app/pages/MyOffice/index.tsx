@@ -12,13 +12,8 @@ const MyOffice: React.FC = () => {
 	const myLikesFilms = useSelector(getMyLikes);
 
 	useEffect(() => {
-		if (!myOwnFilms?.length) {
-			dispatch(Actions.getMyFilmsRequest());
-		}
-
-		if (!myLikesFilms?.length) {
-			dispatch(Actions.getMyLikesRequest());
-		}
+		dispatch(Actions.getMyFilmsRequest());
+		dispatch(Actions.getMyLikesRequest());
 	}, [dispatch]);
 
 	return (
