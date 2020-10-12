@@ -61,7 +61,7 @@ const FilmDetailed: React.FC = () => {
 	), [isLike, token]);
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.filmDetailed}>
 			<Title title='Подробнее' goBack={true} />
 
 			<div className={styles.contentWrapper}>

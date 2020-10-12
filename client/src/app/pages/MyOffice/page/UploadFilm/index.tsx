@@ -88,7 +88,7 @@ const UploadFilm: React.FC = () => {
 	};
 
 	return (
-		<div>
+		<div className={styles.uploadFilm}>
 			<Title title='Загрузить фильм' goBack={true} />
 
 			<div style={{position: 'relative'}}>
