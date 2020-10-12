@@ -67,7 +67,8 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 								id={id}
 						/>
 						)
-					}) : !loading && (
+					}) : 
+					!loading && (
 						<div className={styles.emptyData}>Фильмов пока нет</div>
 					)}
 			</div>

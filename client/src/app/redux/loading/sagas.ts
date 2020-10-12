@@ -18,15 +18,15 @@ function* loadingStop() {
 export function* watchLoadingStart() {
 	yield all([
 		takeEvery([
-			// AuthActionTypes.LOGIN_REQUEST,
-			// AuthActionTypes.REGISTER_REQUEST,
-			// UploadFilmActionTypes.UPLOAD_FILM_REQUEST,
-			// FilmsActinTypes.GET_CURRENT_FILM_REQUEST,
-			// FilmsActinTypes.GET_FILMS_REQUEST,
-			// FilmsActinTypes.GET_MY_FILMS_REQUEST,
-			// FilmsActinTypes.GET_MY_LIKES_REQUEST,
-			// UserProfileActinTypes.USER_PROFILE_FILMS_REQUEST,
-			// UserProfileActinTypes.USER_PROFILE_LIKES_REQUEST,
+			AuthActionTypes.LOGIN_REQUEST,
+			AuthActionTypes.REGISTER_REQUEST,
+			UploadFilmActionTypes.UPLOAD_FILM_REQUEST,
+			FilmsActinTypes.GET_CURRENT_FILM_REQUEST,
+			FilmsActinTypes.GET_FILMS_REQUEST,
+			FilmsActinTypes.GET_MY_FILMS_REQUEST,
+			FilmsActinTypes.GET_MY_LIKES_REQUEST,
+			UserProfileActinTypes.USER_PROFILE_FILMS_REQUEST,
+			UserProfileActinTypes.USER_PROFILE_LIKES_REQUEST,
 		], loadingStart)
 	]);
 };
@@ -34,24 +34,24 @@ export function* watchLoadingStart() {
 export function* watchLoadingStop() {
 	yield all([
 		takeEvery([
-			// AuthActionTypes.LOGIN_SUCCESS,
-			// AuthActionTypes.LOGIN_FAILED,
-			// AuthActionTypes.REGISTER_SUCCESS,
-			// AuthActionTypes.REGISTER_FAILED,
-			// UploadFilmActionTypes.UPLOAD_FILM_SUCCESS,
-			// UploadFilmActionTypes.UPLOAD_FILM_FAILED,
-			// FilmsActinTypes.GET_CURRENT_FILM_SUCCESS,
-			// FilmsActinTypes.GET_CURRENT_FILM_FAILED,
-			// FilmsActinTypes.GET_FILMS_SUCCESS,
-			// FilmsActinTypes.GET_FILMS_FAILED,
-			// FilmsActinTypes.GET_MY_FILMS_SUCCESS,
-			// FilmsActinTypes.GET_MY_FILMS_FAILED,
-			// FilmsActinTypes.GET_MY_LIKES_SUCCESS,
-			// FilmsActinTypes.GET_MY_LIKES_FAILED,
-			// UserProfileActinTypes.USER_PROFILE_FILMS_SUCCESS,
-			// UserProfileActinTypes.USER_PROFILE_FILMS_FAILED,
-			// UserProfileActinTypes.USER_PROFILE_LIKES_SUCCESS,
-			// UserProfileActinTypes.USER_PROFILE_LIKES_FAILED,
+			AuthActionTypes.LOGIN_SUCCESS,
+			AuthActionTypes.LOGIN_FAILED,
+			AuthActionTypes.REGISTER_SUCCESS,
+			AuthActionTypes.REGISTER_FAILED,
+			UploadFilmActionTypes.UPLOAD_FILM_SUCCESS,
+			UploadFilmActionTypes.UPLOAD_FILM_FAILED,
+			FilmsActinTypes.GET_CURRENT_FILM_SUCCESS,
+			FilmsActinTypes.GET_CURRENT_FILM_FAILED,
+			FilmsActinTypes.GET_FILMS_SUCCESS,
+			FilmsActinTypes.GET_FILMS_FAILED,
+			FilmsActinTypes.GET_MY_FILMS_SUCCESS,
+			FilmsActinTypes.GET_MY_FILMS_FAILED,
+			FilmsActinTypes.GET_MY_LIKES_SUCCESS,
+			FilmsActinTypes.GET_MY_LIKES_FAILED,
+			UserProfileActinTypes.USER_PROFILE_FILMS_SUCCESS,
+			UserProfileActinTypes.USER_PROFILE_FILMS_FAILED,
+			UserProfileActinTypes.USER_PROFILE_LIKES_SUCCESS,
+			UserProfileActinTypes.USER_PROFILE_LIKES_FAILED,
 		], loadingStop)
 	]);
 };

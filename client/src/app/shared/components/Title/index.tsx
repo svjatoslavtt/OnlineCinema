@@ -7,7 +7,7 @@ import { AppRoutes } from '../../../routes/routes-const';
 import GoBackArrow from '../Icons/GoBackArrow';
 import LikeSvg from '../Icons/Likes/Like';
 import { useSelector } from 'react-redux';
-import { getUserProfileName } from '../../../redux/user-profile/selectors';
+import { getUserProfileData } from '../../../redux/user-profile/selectors';
 
 type TitleTypes = {
 	title: string;
@@ -18,7 +18,7 @@ type TitleTypes = {
 
 const Title: React.FC<TitleTypes> = ({ title, goBack, heartSvg, uploadFilm }) => {
 	const params: { userId: string } = useParams();
-	const user: { name: string } | null = useSelector(getUserProfileName);
+	const user: { name: string, id: string } | null = useSelector(getUserProfileData);
 
 	return (
 		<div className={styles.categorieHeaderWrapper}>

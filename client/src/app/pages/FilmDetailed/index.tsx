@@ -14,7 +14,6 @@ import { getLoading } from '../../redux/loading/selectors';
 import { getAuthToken } from '../../redux/auth/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 
-
 const FilmDetailed: React.FC = () => {
 	const [error, setError] = useState('');
 	const [ratingHoverValue, setRatingHoverValue] = useState<number | null>(0);
@@ -27,7 +26,9 @@ const FilmDetailed: React.FC = () => {
 	const token = useSelector(getAuthToken);
 
 	useEffect(() => {
-		dispatch(Actions.getCurrentFilmRequest({filmId}));
+		if (filmId !== currentFilm?._id) {
+			dispatch(Actions.getCurrentFilmRequest({filmId}));
+		} 
 	}, [dispatch, filmId, token]);
 
 	const handlerChangeRating = (_: React.ChangeEvent<{}>, newValue: number | null) => {
@@ -63,14 +64,16 @@ const FilmDetailed: React.FC = () => {
 		<div className={styles.container}>
 			<Title title='Подробнее' goBack={true} />
 
-			{!loading && (
-				<div className={styles.contentWrapper}>
-					<div className={styles.imageBlock}>
-						<div className={styles.imageWrapper}>
+			<div className={styles.contentWrapper}>
+				<div className={styles.imageBlock}>
+					<div className={styles.imageWrapper}>
+						{!loading && (
 							<img src={currentFilm?.image} alt={currentFilm?.title} />
-						</div>
+						)}
 					</div>
-					<div className={styles.infoBlock}>
+				</div>
+				<div className={styles.infoBlock}>
+					{!loading && (
 						<div>
 							<div className={styles.title}>{currentFilm?.title}</div>
 							<div className={styles.description}>{currentFilm?.description}</div>
@@ -116,16 +119,18 @@ const FilmDetailed: React.FC = () => {
 								<div className={styles.error}>{error}</div>
 							)}
 						</div>
-						
+					)}
+					
+					{!loading && (
 						<div className={styles.authorWrapper}>
 							<div className={styles.author}>
 								<span>Автор: </span>
 								<NavLink to={AppRoutes.USER_PROFILE + '/' + currentFilm?.owner.id}>{currentFilm?.owner.name}</NavLink>
 							</div>
 						</div>
-					</div>
+					)}
 				</div>
-			)}
+			</div>
 		</div>
 	);
 };

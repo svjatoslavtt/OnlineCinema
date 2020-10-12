@@ -28,6 +28,7 @@ export type CurrentFilmTypes = {
 	owner: FilmOwnerTypes;
 	ratingUsersId: UsersSetRating[];
 	usersId: string[];
+	_id: string;
 };
 
 export type FilmsState = {

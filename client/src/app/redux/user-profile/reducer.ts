@@ -4,7 +4,7 @@ import { ActionTypes, ActionTypesUnion } from "./actions";
 export type UserProfileTypes = {
 	films: FilmTypes[] | null;
 	likes: FilmTypes[] | null;
-	user: { name: string } | null;
+	user: { name: string, id: string } | null;
 };
 
 export const userProfileInitialState: UserProfileTypes = {

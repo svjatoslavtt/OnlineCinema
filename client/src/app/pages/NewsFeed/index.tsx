@@ -13,8 +13,10 @@ const NewsFeed: React.FC = () => {
 	const filterFilms = useSelector(getFilterFilms);
 
 	useEffect(() => {
-		dispatch(Actions.getFilmsRequest());
-	}, [dispatch]);
+		if (!films?.length) {
+			dispatch(Actions.getFilmsRequest());
+		}
+	}, [dispatch, films]);
 
 	const [filmsState, setFilmsState] = useState<any>(null);
 

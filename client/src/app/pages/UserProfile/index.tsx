@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import styles from './style.module.scss';
 import Categorie from '../../shared/components/Categorie';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfileFilms, getUserProfileLikes } from '../../redux/user-profile/selectors';
+import { getUserProfileData, getUserProfileFilms, getUserProfileLikes } from '../../redux/user-profile/selectors';
 import { Actions } from '../../redux/user-profile/actions';
 import { useParams } from 'react-router-dom';
 
@@ -12,10 +12,13 @@ const UserProfile: React.FC = () => {
 	const { userId }: { userId: string } = useParams();
 	const userFilms = useSelector(getUserProfileFilms);
 	const userLikes = useSelector(getUserProfileLikes);
+	const user = useSelector(getUserProfileData);
 
 	useEffect(() => {
-		dispatch(Actions.getUserProfileFilmsRequest(userId));
-		dispatch(Actions.getUserProfileLikesRequest(userId));
+		if (user?.id !== userId) {
+			dispatch(Actions.getUserProfileFilmsRequest(userId));
+			dispatch(Actions.getUserProfileLikesRequest(userId));
+		}
 	}, [dispatch, userId]);
 
 	return (

@@ -6,7 +6,7 @@ import { RootState } from "../store";
 
 const getUserProfile = (state: RootState) => state.userProfile;
 
-export const getUserProfileName = createSelector(
+export const getUserProfileData = createSelector(
 	getUserProfile,
 	(state: UserProfileTypes) => state.user
 );

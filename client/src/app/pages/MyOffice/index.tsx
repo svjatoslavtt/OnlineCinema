@@ -8,17 +8,22 @@ import { getMyFilms, getMyLikes } from '../../redux/films/selectors';
 
 const MyOffice: React.FC = () => {
 	const dispatch = useDispatch();
-	const MyOwnFilms = useSelector(getMyFilms);
+	const myOwnFilms = useSelector(getMyFilms);
 	const myLikesFilms = useSelector(getMyLikes);
 
 	useEffect(() => {
-		dispatch(Actions.getMyFilmsRequest());
-		dispatch(Actions.getMyLikesRequest());
+		if (!myOwnFilms?.length) {
+			dispatch(Actions.getMyFilmsRequest());
+		}
+
+		if (!myLikesFilms?.length) {
+			dispatch(Actions.getMyLikesRequest());
+		}
 	}, [dispatch]);
 
 	return (
 		<div className={styles.myOfficeContainer}>
-			<Categorie title='Загруженные фильмы' uploadFilm={true} data={MyOwnFilms} />
+			<Categorie title='Загруженные фильмы' uploadFilm={true} data={myOwnFilms} />
 			<Categorie title='Мои лайки' heartSvg={true} data={myLikesFilms} />
 		</div>
 	)
