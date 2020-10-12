@@ -11,6 +11,8 @@ export enum ActionTypes {
 	FILTER_REQUEST = 'FILTER_REQUEST',
 	FILTER_SUCCESS = 'FILTER_SUCCESS',
 	FILTER_FAILED = 'FILTER_FAILED',
+
+	RESET_FILTER = 'RESET_FILTER',
 };
 
 export const Actions = {
@@ -24,6 +26,8 @@ export const Actions = {
 	filterRequest: (payload: any) => action(ActionTypes.FILTER_REQUEST, payload),
 	filterSuccess: (payload: any) => action(ActionTypes.FILTER_SUCCESS, payload),
 	filterFailed: (payload: { message: string }) => action(ActionTypes.FILTER_FAILED, payload),
+
+	resetFilter: () => action(ActionTypes.RESET_FILTER),
 };
 
 export type ActionTypesUnion = ActionType<typeof Actions>;

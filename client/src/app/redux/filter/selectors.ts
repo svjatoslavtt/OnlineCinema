@@ -20,3 +20,8 @@ export const getFilterFilms = createSelector(
 	getFilterState,
 	(state: FilterTypes) => state.filterFilms
 );
+
+export const getFilterTags = createSelector(
+	getFilterState,
+	(state: FilterTypes) => state.tags
+);

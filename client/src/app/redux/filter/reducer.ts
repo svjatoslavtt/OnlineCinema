@@ -6,12 +6,14 @@ export type FilterTypes = {
 	filterIsOpen: boolean;
 	directors: any;
 	filterFilms: any;
+	tags: string[] | null;
 };
 
 export const filterInitialState: FilterTypes = {
 	filterIsOpen: false,
 	directors: null,
 	filterFilms: null,
+	tags: null,
 };
 
 export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
@@ -34,7 +36,14 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 		case ActionTypes.FILTER_SUCCESS:
 			return {
 				...state,
-				filterFilms: action.payload.filter
+				filterFilms: action.payload.filter,
+				tags: action.payload.tags,
+			}	
+		case ActionTypes.RESET_FILTER:
+			return {
+				...state,
+				filterFilms: null,
+				tags: null,
 			}	
 		default: return state;	
 	};

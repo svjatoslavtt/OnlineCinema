@@ -85,14 +85,14 @@ const FilmDetailed: React.FC = () => {
 										isRate || !token ? (
 											<Rating
 												name='read-only'
-												value={currentFilm?.averageRating}
+												value={currentFilm?.averageRating ?? 5}
 												precision={0.1}
 												readOnly
 											/>
 										) : (
 											<Rating
 												name='simple-controlled'
-												value={currentFilm?.averageRating}
+												value={currentFilm?.averageRating ?? 5}
 												onChangeActive={(_, value) => {
 													setRatingHoverValue(value);
 												}}

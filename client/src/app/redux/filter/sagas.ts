@@ -14,7 +14,7 @@ function* getDirectors() {
 
 function* filter(action: any) {
 	try {
-		const data = yield call(request, ApiEndPoints.FILTER, 'POST', {title: action.payload});
+		const data = yield call(request, ApiEndPoints.FILTER, 'POST', action.payload);
 		yield put(Actions.filterSuccess(data));
 	} catch (err) {
 		yield put(Actions.filterFailed(err));
