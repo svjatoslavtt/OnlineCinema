@@ -23,6 +23,7 @@ router.get('/films/:userId', async (req, res) => {
 
 		const user = {
 			name: findMyself.name,
+			id: req.params.userId,
 		};
 
 		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse(), user });

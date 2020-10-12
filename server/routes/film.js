@@ -20,7 +20,10 @@ router.get('/news-feed', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse() });
+
+		const ten = transformFilms.filter((_, idx) => idx < 10);
+
+		return res.status(200).json({ message: 'Фильмы получены успешно', films: ten.reverse() });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
