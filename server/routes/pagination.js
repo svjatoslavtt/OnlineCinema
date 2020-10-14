@@ -6,6 +6,8 @@ const router = Router();
 router.post('/page', async (req, res) => {
 	try {
 		const page = req.body.page;
+
+		// get 10 films for current page
 		const lastIndeOfRequestFilms = Number(page + '0');
 		const films = await Film.find();
 		const filmsForCurrentPage = [];
@@ -28,6 +30,7 @@ router.post('/page', async (req, res) => {
 			});
 		});
 
+		// get page count for pagination
 		const pageCount = Math.ceil(films.length / 10);
 		const pageArray = [];
 
