@@ -38,4 +38,6 @@ export type FilmsState = {
 	currentFilm: CurrentFilmTypes | null;
 	isLike: boolean;
 	isRate: boolean;
+	pageCount: number[] | null;
+	pagination: any;
 };

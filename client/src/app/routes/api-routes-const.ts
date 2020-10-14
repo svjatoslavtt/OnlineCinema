@@ -19,4 +19,7 @@ export enum ApiEndPoints {
 
 	GET_DIRECTORS = '/api/filter/directors',
 	FILTER = '/api/filter/search',
+
+	PAGINATION = '/api/pagination/page',
+	PAGE_COUNT = '/api/pagination/page-count',
 };

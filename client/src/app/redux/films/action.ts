@@ -28,6 +28,10 @@ export enum ActionTypes {
 	RATE_FILM_REQUEST = 'RATE_FILM_REQUEST',
 	RATE_FILM_SUCCESS = 'RATE_FILM_SUCCESS',
 	RATE_FILM_FAILED = 'RATE_FILM_FAILED',
+
+	GET_CURRENT_PAGE_REQUEST = 'GET_CURRENT_PAGE_REQUEST',
+	GET_CURRENT_PAGE_SUCCESS = 'GET_CURRENT_PAGE_SUCCESS',
+	GET_CURRENT_PAGE_FAILED = 'GET_CURRENT_PAGE_FAILED',
 };
 
 export const Actions = {
@@ -58,6 +62,10 @@ export const Actions = {
 	rateFilmRequest: (payload: { filmId: string, rating: number | null, token: string }) => action(ActionTypes.RATE_FILM_REQUEST, payload), 
 	rateFilmSuccess: (payload: any) => action(ActionTypes.RATE_FILM_SUCCESS, payload), 
 	rateFilmFailed: (payload: { message: string }) => action(ActionTypes.RATE_FILM_FAILED, payload),
+
+	getCurrentPageRequest: (payload: { page: number }) => action(ActionTypes.GET_CURRENT_PAGE_REQUEST, payload),
+	getCurrentPageSuccess: (payload: any) => action(ActionTypes.GET_CURRENT_PAGE_SUCCESS, payload),
+	getCurrentPageFailed: (payload: { message: string }) => action(ActionTypes.GET_CURRENT_PAGE_FAILED, payload),
 };
 
 export type ActionTypesUnion = ActionType<typeof Actions>;

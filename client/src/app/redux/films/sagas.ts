@@ -10,7 +10,7 @@ function* getFilms() {
 		yield put(Actions.getFilmsSuccess(data));
 	} catch (err) {
 		yield put(Actions.getFilmsFailed(err));
-	}
+	};
 };
 
 function* getMyFilms() {
@@ -20,7 +20,7 @@ function* getMyFilms() {
 		yield put(Actions.getMyFilmsSuccess(data));
 	} catch (err) {
 		yield put (Actions.getMyFilmsFailed(err));
-	}
+	};
 };
 
 function* getMyLikes() {
@@ -30,7 +30,7 @@ function* getMyLikes() {
 		yield put(Actions.getMyLikesSuccess(data));
 	} catch (err) {
 		yield put (Actions.getMyLikesFailed(err));
-	}
+	};
 };
 
 function* getCurrentFilm(action: any) {
@@ -41,7 +41,7 @@ function* getCurrentFilm(action: any) {
 		yield put(Actions.getCurrentFilmSuccess(data));
 	} catch (err) {
 		yield put(Actions.getCurrentFilmFailed(err));
-	}
+	};
 };
 
 function* likeFilm(action: any) {
@@ -54,7 +54,7 @@ function* likeFilm(action: any) {
 		yield put(Actions.likeFilmSuccess(data)); 
 	} catch (err) {
 		yield put(Actions.likeFilmFailed(err));
-	}
+	};
 };
 
 function* dislikeFilm(action: any) {
@@ -66,7 +66,7 @@ function* dislikeFilm(action: any) {
 		yield put(Actions.dislikeFilmSuccess(data)); 
 	} catch (err) {
 		yield put(Actions.dislikeFilmFailed(err.message));
-	}
+	};
 };
 
 function* rateFilm(action: any) {
@@ -82,8 +82,18 @@ function* rateFilm(action: any) {
 		yield put(Actions.rateFilmSuccess(data));
 	} catch (err) {
 		yield put(Actions.rateFilmFailed(err));
-	}
-}
+	};
+};
+
+function* getCurrentPage(action: any) {
+	try {
+		const page = action.payload.page;
+		const data = yield call(request, ApiEndPoints.PAGINATION, 'POST', {page});
+		yield put(Actions.getCurrentPageSuccess(data));
+	} catch (err) {
+		yield put(Actions.getCurrentPageFailed(err));
+	};
+};
 
 export function* watchGetFilms() {
 	yield all([
@@ -94,5 +104,6 @@ export function* watchGetFilms() {
 		takeEvery(ActionTypes.LIKE_FILM_REQUEST, likeFilm),
 		takeEvery(ActionTypes.DISLIKE_FILM_REQUEST, dislikeFilm),
 		takeEvery(ActionTypes.RATE_FILM_REQUEST, rateFilm),
+		takeEvery(ActionTypes.GET_CURRENT_PAGE_REQUEST, getCurrentPage),
 	]);
 };

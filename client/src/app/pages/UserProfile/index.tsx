@@ -19,7 +19,7 @@ const UserProfile: React.FC = () => {
 			dispatch(Actions.getUserProfileFilmsRequest(userId));
 			dispatch(Actions.getUserProfileLikesRequest(userId));
 		}
-	}, [dispatch, userId]);
+	}, [dispatch, userId, user]);
 
 	return (
 		<div className={styles.myOfficeContainer}>

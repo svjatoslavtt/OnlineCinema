@@ -5,6 +5,7 @@ import { Actions } from "../../redux/films/action";
 import { getFilms } from "../../redux/films/selectors";
 import { getFilterFilms } from "../../redux/filter/selectors";
 import Categorie from "../../shared/components/Categorie";
+import Pagination from "../../shared/components/Pagination";
 import styles from "./style.module.scss";
 
 const NewsFeed: React.FC = () => {
@@ -12,13 +13,17 @@ const NewsFeed: React.FC = () => {
 	const films = useSelector(getFilms);
 	const filterFilms = useSelector(getFilterFilms);
 
+	const [filmsState, setFilmsState] = useState<any>(null);
+
+	useEffect(() => {
+		dispatch(Actions.getCurrentPageRequest({page: 1}));
+	}, []);
+
 	useEffect(() => {
 		if (!films?.length) {
 			dispatch(Actions.getFilmsRequest());
 		}
 	}, [dispatch, films]);
-
-	const [filmsState, setFilmsState] = useState<any>(null);
 
 	useEffect(() => {
 		if (filterFilms) {
@@ -31,6 +36,7 @@ const NewsFeed: React.FC = () => {
   return (
     <div className={styles.newsFeedContainer}>
 			<Categorie title='Все фильмы' data={filmsState} />
+			<Pagination />
     </div>
   )
 }

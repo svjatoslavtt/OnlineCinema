@@ -45,6 +45,6 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				filterFilms: null,
 				tags: null,
 			}	
-		default: return state;	
+		default: return state;
 	};
 };

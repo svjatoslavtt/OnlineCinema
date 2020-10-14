@@ -29,7 +29,7 @@ const FilmDetailed: React.FC = () => {
 		if (filmId !== currentFilm?._id) {
 			dispatch(Actions.getCurrentFilmRequest({filmId}));
 		} 
-	}, [dispatch, filmId, token]);
+	}, [dispatch, filmId, token, currentFilm]);
 
 	const handlerChangeRating = (_: React.ChangeEvent<{}>, newValue: number | null) => {
 		if (token) {

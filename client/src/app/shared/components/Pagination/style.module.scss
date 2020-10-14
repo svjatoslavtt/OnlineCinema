@@ -1,0 +1,34 @@
+@import "../../../static/styles/colors.module.scss";
+
+.paginationContainer {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.paginationBlock {
+	display: flex;
+}
+
+.paginationPage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	background: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 10px;
+	transition: all .125s ease-in-out;
+
+	&:hover {
+		background-color: $green;
+		color: #eee;
+	}
+}
+
+.activePage {
+	background-color: $green;
+	color: #eee;
+}

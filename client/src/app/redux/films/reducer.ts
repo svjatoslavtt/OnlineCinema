@@ -8,6 +8,8 @@ export const filmsInitialState: FilmsState = {
 	currentFilm: null,
 	isLike: false,
 	isRate: false,
+	pageCount: null,
+	pagination: null,
 };
 
 export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
@@ -61,6 +63,12 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 					...action.payload.rating,
 				},
 				isRate: action.payload.isRate,
+			}
+		case ActionTypes.GET_CURRENT_PAGE_SUCCESS:
+			return {
+				...state,
+				films: action.payload.films,
+				pagination: action.payload.pagination,
 			}
 		default: return state;	
 	}

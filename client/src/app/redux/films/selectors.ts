@@ -35,3 +35,13 @@ export const getIsRatedFilm = createSelector(
 	getFilmsState,
 	(state: FilmsState) => state.isRate
 );
+
+export const getPageCount = createSelector(
+	getFilmsState,
+	(state: FilmsState) => state.pageCount
+);
+
+export const getPagination = createSelector(
+	getFilmsState,
+	(state: FilmsState) => state.pagination
+);
