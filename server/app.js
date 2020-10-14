@@ -18,6 +18,7 @@ app.use('/api/likes/', require('./routes/likes'));
 app.use('/api/rate/', require('./routes/rating'));
 app.use('/api/user-profile/', require('./routes/user-profile'));
 app.use('/api/filter/', require('./routes/filter'));
+app.use('/api/pagination/', require('./routes/pagination'));
 
 const PORT = config.get('port') || 5000;
 

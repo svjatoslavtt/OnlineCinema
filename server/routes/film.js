@@ -8,9 +8,15 @@ router.get('/news-feed', async (req, res) => {
 	try {
 		const films = await Film.find();
 
+		const firstTenFilms = [];
+
+		for (let i = 9; i >= 0; i--) {
+			firstTenFilms.push(films[i]);
+		};
+
 		const transformFilms = [];
 
-		films.forEach(item => {
+		firstTenFilms.forEach(item => {
 			transformFilms.push({
 				title: item.title,
 				averageRating: item.averageRating,
