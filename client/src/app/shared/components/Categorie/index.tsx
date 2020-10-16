@@ -60,7 +60,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 					</div>
 				)}
 				<div className={styles.filmsContainer}>
-					{data && data.length && 
+					{data && data.length ? 
 						data.map(({ id, title, averageRating, image }) => {
 							return (
 								<Film 
@@ -71,9 +71,9 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 									id={id}
 							/>
 							)
-						})
+						}) : null
 					}
-					{!loading && !data && (
+					{!loading && data && !data.length && (
 						<div className={styles.emptyData}>Фильмов пока нет</div>
 					)}
 				</div>

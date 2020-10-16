@@ -33,7 +33,7 @@ const Pagination: React.FC = () => {
 		<div className={styles.paginationContainer}>
 			<div className={styles.paginationBlock}>
 				{pagination && pagination.currentPage !== 1 && (
-					<div className={styles.paginationPage} onClick={() => handlerNextPrevButtons('prev')}>
+					<div className={styles.paginationPageNextPrev} onClick={() => handlerNextPrevButtons('prev')}>
 						<NavigateBeforeIcon />
 					</div>
 				)}
@@ -58,7 +58,7 @@ const Pagination: React.FC = () => {
 				}
 
 				{pagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] && (
-					<div className={styles.paginationPage} onClick={() => handlerNextPrevButtons('next')}>
+					<div className={styles.paginationPageNextPrev} onClick={() => handlerNextPrevButtons('next')}>
 						<NavigateNextIcon />
 					</div>
 				)}

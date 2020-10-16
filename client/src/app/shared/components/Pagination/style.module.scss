@@ -10,7 +10,7 @@
 	display: flex;
 }
 
-.paginationPage {
+.paginationPage, .paginationPageNextPrev {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -31,11 +31,18 @@
 		background-color: $green;
 
 		& > span, svg {
-			color: #eee;
+			fill: #eee;
 		}
 	}
 }
 
+.paginationPageNextPrev {
+	background-color: #264653;
+
+	& > svg {
+		fill: #eee;
+	}
+}
 
 .activePage {
 	background-color: $green;

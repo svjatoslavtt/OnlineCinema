@@ -26,7 +26,7 @@
 }
 
 .navFilter {
-	background: #2a9d8f;
+	background: #264653;
 	color: #eee;
 	padding: 2px 10px;
 	border-radius: 5px;
@@ -40,12 +40,12 @@
 
 .linkWrapper {
   display: flex;
-  align-items: center;
+	align-items: center;
 }
 
 .navLink {
   font-size: 18px;
-  margin-left: 20px;
+	margin-left: 20px;
 }
 
 .buttonsWrapper {
@@ -79,7 +79,15 @@
 
 .pageLink {
   font-size: 16px;
-  margin-right: 25px;
+	padding: 2px 10px;
+	margin-right: 15px;
+}
+
+.linkActive {
+	padding: 2px 10px;
+	background: #2a9d8f;
+	border-radius: 5px;
+	color: #eee;
 }
 
 @media all and (max-width: 600px) {
