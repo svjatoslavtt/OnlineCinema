@@ -1,13 +1,54 @@
+@import "../../../static/fonts/index.scss";
+
 .categorie {
 	margin-bottom: 40px;
 	width: 100%;
+	position: relative;
+}
+
+.loadingForEmpty {
+	margin-bottom: 140px;
+
+	& > div {
+		margin-top: 50px;
+	}
 }
 
 .categorieFilmsWrapper {
+	position: relative;
+}
+
+.filmsContainer {
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 20px;
 	width: 100%;
+	margin-top: 20px;
+	position: relative;
+}
+
+.loadingBlock {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background: rgba(255, 255, 255, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+	box-sizing: border-box;
+	margin-right: .3%;
+
+	& > span {
+		display: block;
+    font-family: "Raleway-Bold";
+    font-size: 28px;
+    background: #2a9d8f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #eee;
+	}
 }
 
 .emptyData {

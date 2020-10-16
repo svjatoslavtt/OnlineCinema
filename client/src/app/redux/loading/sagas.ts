@@ -25,6 +25,7 @@ export function* watchLoadingStart() {
 			FilmsActinTypes.GET_FILMS_REQUEST,
 			FilmsActinTypes.GET_MY_FILMS_REQUEST,
 			FilmsActinTypes.GET_MY_LIKES_REQUEST,
+			FilmsActinTypes.GET_CURRENT_PAGE_REQUEST,
 			UserProfileActinTypes.USER_PROFILE_FILMS_REQUEST,
 			UserProfileActinTypes.USER_PROFILE_LIKES_REQUEST,
 		], loadingStart)
@@ -48,6 +49,8 @@ export function* watchLoadingStop() {
 			FilmsActinTypes.GET_MY_FILMS_FAILED,
 			FilmsActinTypes.GET_MY_LIKES_SUCCESS,
 			FilmsActinTypes.GET_MY_LIKES_FAILED,
+			FilmsActinTypes.GET_CURRENT_PAGE_SUCCESS,
+			FilmsActinTypes.GET_CURRENT_PAGE_FAILED,
 			UserProfileActinTypes.USER_PROFILE_FILMS_SUCCESS,
 			UserProfileActinTypes.USER_PROFILE_FILMS_FAILED,
 			UserProfileActinTypes.USER_PROFILE_LIKES_SUCCESS,

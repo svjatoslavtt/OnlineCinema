@@ -25,15 +25,13 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 	const loading = useSelector(getLoading);
 
 	const handlerResetFilter = () => dispatch(Actions.resetFilter());
+
+	const loadingStyle = [styles.categorie, !data?.length && styles.loadingForEmpty];
 	
 	return (
-		<div className={styles.categorie}>
+		<div className={loadingStyle.join(' ')}>
 			
 			<Title title={title} heartSvg={heartSvg} uploadFilm={uploadFilm} goBack={goBack} />
-
-			{loading && (
-				<div className={styles.loader}>Загрузка...</div>
-			)}
 
 			{title === 'Все фильмы' && tags && tags.length && (
 				<div className={styles.tagsBlock}>
@@ -56,21 +54,29 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 			)}
 
 			<div className={styles.categorieFilmsWrapper}>
-				{data && data.length ? 
-					data.map(({ id, title, averageRating, image }) => {
-						return (
-							<Film 
-								key={`${id}-${Math.round(Math.random() * 10000)}`}
-								title={title}
-								averageRating={averageRating}
-								image={image}
-								id={id}
-						/>
-						)
-					}) : 
-					!loading && (
+				{loading && (
+					<div className={styles.loadingBlock}>
+						<span>Загрузка...</span>
+					</div>
+				)}
+				<div className={styles.filmsContainer}>
+					{data && data.length && 
+						data.map(({ id, title, averageRating, image }) => {
+							return (
+								<Film 
+									key={`${id}-${Math.round(Math.random() * 10000)}`}
+									title={title}
+									averageRating={averageRating}
+									image={image}
+									id={id}
+							/>
+							)
+						})
+					}
+					{!loading && !data && (
 						<div className={styles.emptyData}>Фильмов пока нет</div>
 					)}
+				</div>
 			</div>
 		</div>
 	)
