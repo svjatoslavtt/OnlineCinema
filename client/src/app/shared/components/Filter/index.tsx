@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CancelIcon from '@material-ui/icons/Cancel';
+import queryString from 'query-string';
+import { useHistory } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
@@ -9,6 +11,7 @@ import { getDirectors, getFilterIsOpen } from '../../../redux/filter/selectors';
 
 const Filter: React.FC = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const fitlerIsOpen = useSelector(getFilterIsOpen);
 	const directors = useSelector(getDirectors);
 
@@ -46,8 +49,15 @@ const Filter: React.FC = () => {
 			};
 		};
 
+		const params = queryString.stringify(sendData);
+
+		history.replace({
+			pathname: history.location.pathname,
+			search: params,
+		});
+
 		if (sendData.hasOwnProperty('title')) {
-			dispatch(Actions.filterRequest({title: sendData.title}));
+			dispatch(Actions.filterRequest({ title: sendData.title }));
 		} else if (Object.keys(sendData).length !== 0) {
 			dispatch(Actions.filterRequest(sendData));
 		};

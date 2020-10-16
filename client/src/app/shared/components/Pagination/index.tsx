@@ -2,38 +2,51 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import queryString from 'query-string';
+import { useHistory } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
 import { Actions } from '../../../redux/films/action';
 import { getPagination } from '../../../redux/films/selectors';
 
+enum SwitchPageEnum {
+	NEXT = 1,
+	PREV = -1,
+};
+
 const Pagination: React.FC = () => {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const pagination = useSelector(getPagination);
 
 	const handlerPageRequest = (page: number) => {
 		if (pagination.currentPage !== page) {
-			dispatch(Actions.getCurrentPageRequest({page}));
+			dispatch(Actions.getCurrentPageRequest({ page }));
 		};
+
+		const params = queryString.stringify({ page });
+
+		history.replace({
+			pathname: history.location.pathname,
+			search: params,
+		});
 	};
 
-	const handlerNextPrevButtons = (action: string) => {
-		switch (action) {
-			case 'prev':
-				dispatch(Actions.getCurrentPageRequest({page: pagination.currentPage - 1}));
-				break;
-			case 'next':
-				dispatch(Actions.getCurrentPageRequest({page: pagination.currentPage + 1}));
-				break;
-		};
+	const handlerSwitchButtons = (number: number) => {
+		dispatch(Actions.getCurrentPageRequest({ page: pagination.currentPage + (number) }));
+
+		history.replace({
+			pathname: history.location.pathname,
+			search: queryString.stringify({ page: pagination.currentPage + (number) }),
+		});
 	};
 
 	return (
 		<div className={styles.paginationContainer}>
 			<div className={styles.paginationBlock}>
 				{pagination && pagination.currentPage !== 1 && (
-					<div className={styles.paginationPageNextPrev} onClick={() => handlerNextPrevButtons('prev')}>
+					<div className={styles.paginationPageNextPrev} onClick={() => handlerSwitchButtons(SwitchPageEnum.PREV)}>
 						<NavigateBeforeIcon />
 					</div>
 				)}
@@ -58,7 +71,7 @@ const Pagination: React.FC = () => {
 				}
 
 				{pagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] && (
-					<div className={styles.paginationPageNextPrev} onClick={() => handlerNextPrevButtons('next')}>
+					<div className={styles.paginationPageNextPrev} onClick={() => handlerSwitchButtons(SwitchPageEnum.NEXT)}>
 						<NavigateNextIcon />
 					</div>
 				)}
