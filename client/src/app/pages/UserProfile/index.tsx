@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import styles from './style.module.scss';
+
 import Categorie from '../../shared/components/Categorie';
-import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfileData, getUserProfileFilms, getUserProfileLikes } from '../../redux/user-profile/selectors';
 import { Actions } from '../../redux/user-profile/actions';
-import { useParams } from 'react-router-dom';
 
 const UserProfile: React.FC = () => {
 	const dispatch = useDispatch();

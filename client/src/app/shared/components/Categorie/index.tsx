@@ -17,9 +17,10 @@ type CategorieTypes = {
 	heartSvg?: boolean;
 	uploadFilm?: boolean;
 	goBack?: boolean;
+	newsFeed?: boolean;
 }
 
-const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm, goBack }) => {
+const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm, goBack, newsFeed }) => {
 	const dispatch = useDispatch();
 	const tags = useSelector(getFilterTags);
 	const loading = useSelector(getLoading);
@@ -31,7 +32,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 	return (
 		<div className={loadingStyle.join(' ')}>
 			
-			<Title title={title} heartSvg={heartSvg} uploadFilm={uploadFilm} goBack={goBack} />
+			<Title title={title} heartSvg={heartSvg} uploadFilm={uploadFilm} goBack={goBack} newsFeed={newsFeed} />
 
 			{title === 'Все фильмы' && tags && tags.length && (
 				<div className={styles.tagsBlock}>

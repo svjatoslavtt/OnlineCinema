@@ -9,7 +9,7 @@
 .loadingForEmpty {
 	margin-bottom: 140px;
 
-	& > div {
+	.categorieFilmsWrapper {
 		margin-top: 50px;
 	}
 }
@@ -102,10 +102,4 @@
 			transform: scale(1.15);
 		}
 	}
-}
-
-.loader {
-	display: flex;
-	justify-content: center;
-	margin-top: 30px;
 }

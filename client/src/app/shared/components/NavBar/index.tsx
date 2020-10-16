@@ -7,7 +7,6 @@ import styles from './style.module.scss';
 import {AppRoutes, AuthRoutes} from "../../../routes/routes-const";
 import {getAuthToken} from "../../../redux/auth/selectors";
 import {Actions} from "../../../redux/auth/actions";
-import {Actions as FilterActions} from "../../../redux/filter/actions";
 
 const NavBar: React.FC = () => {
   const history = useHistory();
@@ -23,7 +22,7 @@ const NavBar: React.FC = () => {
 
 	const handlerLogout = () => dispatch(Actions.logout());
 
-	const handlerOpenFilter = () => dispatch(FilterActions.openFilter());
+	// const handlerOpenFilter = () => dispatch(FilterActions.openFilter());
   
   return (
     <div className={styles.navBar}>
@@ -52,7 +51,7 @@ const NavBar: React.FC = () => {
       <div className={styles.navBarPages}>
         <NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Фильмы</NavLink>
 				{token && (<NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>Мой кабинет</NavLink>)}
-				<div className={styles.navFilter} onClick={handlerOpenFilter}>Фильтр</div>
+				{/* <div className={styles.navFilter} onClick={handlerOpenFilter}>Фильтр</div> */}
       </div>
     </div>
   )

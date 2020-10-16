@@ -17,7 +17,7 @@ const NewsFeed: React.FC = () => {
 
 	useEffect(() => {
 		dispatch(Actions.getCurrentPageRequest({page: 1}))
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (filterFilms) {
@@ -29,7 +29,7 @@ const NewsFeed: React.FC = () => {
 
   return (
     <div className={styles.newsFeedContainer}>
-			<Categorie title='Все фильмы' data={filmsState} />
+			<Categorie title='Все фильмы' data={filmsState} newsFeed={true} />
 			{!filterFilms && <Pagination />}
     </div>
   );
