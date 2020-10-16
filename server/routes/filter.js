@@ -38,7 +38,7 @@ router.post('/search', async (req, res) => {
 				});
 			});
 
-			return res.status(200).json({ message: 'Фильтрация по поиску успешна!', filter: [...transformFilms], tags });
+			return res.status(200).json({ message: 'Фильтрация по поиску успешна!', filter: [...transformFilms].reverse(), tags });
 		};
 
 		let commonFilter = [];
@@ -71,7 +71,7 @@ router.post('/search', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Фильтрация успешна!', filter: [...transformFilms], tags });
+		return res.status(200).json({ message: 'Фильтрация успешна!', filter: [...transformFilms].reverse(), tags });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}

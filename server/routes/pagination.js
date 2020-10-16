@@ -10,17 +10,18 @@ router.post('/page', async (req, res) => {
 		// get 10 films for current page
 		const lastIndeOfRequestFilms = Number(page + '0');
 		const films = await Film.find();
-		const filmsForCurrentPage = [];
- 
-		for (let i = lastIndeOfRequestFilms; i >= (lastIndeOfRequestFilms - 10); i--) {
-			if (films[i - 1] && i >= lastIndeOfRequestFilms - 9) {
-				filmsForCurrentPage.push(films[i - 1]);
+
+		const reverseFilmsForCurrentPage = [];
+
+		for (let k = ((films.length - 1) - lastIndeOfRequestFilms + 10); k >= ((films.length - 1) - lastIndeOfRequestFilms + 1); k--) {
+			if (k >= 0) {
+				reverseFilmsForCurrentPage.push(films[k]);
 			};
 		};
 
 		const transformFilms = [];
 
-		filmsForCurrentPage.forEach(item => {
+		reverseFilmsForCurrentPage.forEach(item => {
 			transformFilms.push({
 				title: item.title,
 				averageRating: item.averageRating,
@@ -32,16 +33,16 @@ router.post('/page', async (req, res) => {
 
 		// get page count for pagination
 		const pageCount = Math.ceil(films.length / 10);
-		const pageArray = [];
+		const pagesArray = [];
 
 		for (let i = 1; i <= pageCount; i++) {
 			if (i <= (page + 2) && i >= (page - 2)) {
-				pageArray.push(i);
+				pagesArray.push(i);
 			};
 		};
 
 		const pagination = {
-			pages: pageArray,
+			pages: pagesArray,
 			currentPage: page,
 		};
 

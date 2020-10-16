@@ -10,7 +10,7 @@ router.get('/news-feed', async (req, res) => {
 
 		const firstTenFilms = [];
 
-		for (let i = 9; i >= 0; i--) {
+		for (let i = films.length - 1; i >= films.length - 10; i--) {
 			firstTenFilms.push(films[i]);
 		};
 
@@ -26,7 +26,7 @@ router.get('/news-feed', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse() });
+		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
