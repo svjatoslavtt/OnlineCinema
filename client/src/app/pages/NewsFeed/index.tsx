@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import queryString from 'query-string';
 
 import { Actions } from "../../redux/films/action";
-import { Actions as FilterActions } from "../../redux/filter/actions";
 import { getFilms } from "../../redux/films/selectors";
 import { getFilterFilms } from "../../redux/filter/selectors";
 import Categorie from "../../shared/components/Categorie";

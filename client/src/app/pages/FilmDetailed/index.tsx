@@ -1,8 +1,9 @@
 import Rating from '@material-ui/lab/Rating';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import _ from 'lodash';
+import EditIcon from '@material-ui/icons/Edit';
 
 import styles from './style.module.scss';
 
@@ -15,6 +16,7 @@ import { getAuthToken } from '../../redux/auth/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 
 const FilmDetailed: React.FC = () => {
+	const history = useHistory();
 	const [error, setError] = useState('');
 	const [ratingHoverValue, setRatingHoverValue] = useState<number | null>(0);
 	const { filmId }: { filmId: string } = useParams();
@@ -26,10 +28,10 @@ const FilmDetailed: React.FC = () => {
 	const token = useSelector(getAuthToken);
 
 	useEffect(() => {
-		if (filmId !== currentFilm?._id) {
+		// if (filmId !== currentFilm?._id) {
 			dispatch(Actions.getCurrentFilmRequest({filmId}));
-		} 
-	}, [dispatch, filmId, token, currentFilm]);
+		// } 
+	}, [dispatch]);
 
 	const handlerChangeRating = (_: React.ChangeEvent<{}>, newValue: number | null) => {
 		if (token) {
@@ -60,6 +62,12 @@ const FilmDetailed: React.FC = () => {
 			
 	), [isLike, token]);
 
+	const isOwner = currentFilm?.owner.id === JSON.parse(localStorage.getItem('id') as string);
+
+	const handlerEditFilm = () => {
+		history.push(AppRoutes.EDIT_FILM + '/' + filmId);
+	};
+
 	return (
 		<div className={styles.filmDetailed}>
 			<Title title='Подробнее' goBack={true} />
@@ -69,6 +77,11 @@ const FilmDetailed: React.FC = () => {
 					<div className={styles.imageWrapper}>
 						{!loading && (
 							<img src={currentFilm?.image} alt={currentFilm?.title} />
+						)}
+						{isOwner && (
+							<div className={styles.editFilm} onClick={handlerEditFilm}>
+								<EditIcon />
+							</div>
 						)}
 					</div>
 				</div>

@@ -10,6 +10,7 @@ type FilmTypes = {
 	image: string;
 	id: string;
 	averageRating: number;
+	owner?: string;
 }
 
 const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {

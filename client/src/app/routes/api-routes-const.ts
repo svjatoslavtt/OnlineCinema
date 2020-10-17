@@ -6,6 +6,7 @@ export enum ApiEndPoints {
 	GET_MY_FILMS = '/api/film/my-films',
 	GET_MY_LIKES_FILMS = '/api/film/my-likes',
 	GET_CURRENT_FILM = '/api/film/detailed',
+	EDIT_FILM = '/api/film/edit',
 
 	FILM_UPLOAD = '/api/film-upload',
 

@@ -1,5 +1,5 @@
-@import "../../../../static/fonts/index.scss";
-@import "../../../../static/styles/colors.module.scss";
+@import "../../static/fonts/index.scss";
+@import "../../static/styles/colors.module.scss";
 
 .uploadFilm {
 	margin-bottom: 100px;
@@ -33,6 +33,7 @@
 
 .uploadFilmImage {
 	width: 100%;
+	max-width: 250px;
 	max-height: 350px;
 	height: 350px;
 	background-color: #fff;

@@ -8,10 +8,11 @@ import SignUp from "./pages/Auth/SignUp";
 import NavBar from "./shared/components/NavBar";
 import PrivateRoute from "./shared/components/AuthPrivateRoute";
 import MyOffice from './pages/MyOffice';
-import UploadFilm from './pages/MyOffice/page/UploadFilm';
+import UploadFilm from './pages/UploadFilm';
 import FilmDetailed from './pages/FilmDetailed';
 import UserProfile from './pages/UserProfile';
 import Filter from './shared/components/Filter';
+import EditFilm from './pages/EditFilm';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
         <Route exact={true} path={AuthRoutes.SIGN_IN} component={SignIn} />
         <Route exact={true} path={AuthRoutes.SIGN_UP} component={SignUp} />
 				<Route exact={true} path={AppRoutes.NEWS_FEED} component={NewsFeed} />
+				<Route exact={true} path={AppRoutes.EDIT_FILM + '/:filmId'} component={EditFilm} />
 				<Route exact={true} path={AppRoutes.FILM_DETAILED + '/:filmId'} component={FilmDetailed} />
 				<Route exact={true} path={AppRoutes.USER_PROFILE + '/:userId'} component={UserProfile} />
 				<PrivateRoute exact={true} path={AppRoutes.MY_OFFICE} component={MyOffice} />
@@ -29,7 +31,7 @@ const App: React.FC = () => {
         <Redirect to={AppRoutes.NEWS_FEED} />
       </Switch>
     </>
-  )
-}
+  );
+};
 
 export default App;

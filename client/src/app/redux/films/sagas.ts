@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { ApiEndPoints } from "../../routes/api-routes-const";
+import { AppRoutes } from "../../routes/routes-const";
 
 import { request } from "../../shared/hooks/request";
 import { Actions, ActionTypes } from "./action";
@@ -95,6 +97,16 @@ function* getCurrentPage(action: any) {
 	};
 };
 
+function* editFilm(action: any) {
+	try {
+		const history = { ...action.payload.history };
+		yield call(axios.post, ApiEndPoints.EDIT_FILM, action.payload.formData as FormData);
+		yield history.push(AppRoutes.FILM_DETAILED + '/' + action.payload.id);
+	} catch (err) {
+		yield put(Actions.editFilmFailed(err));
+	};
+};
+
 export function* watchGetFilms() {
 	yield all([
 		takeEvery(ActionTypes.GET_FILMS_REQUEST, getFilms),
@@ -105,5 +117,6 @@ export function* watchGetFilms() {
 		takeEvery(ActionTypes.DISLIKE_FILM_REQUEST, dislikeFilm),
 		takeEvery(ActionTypes.RATE_FILM_REQUEST, rateFilm),
 		takeEvery(ActionTypes.GET_CURRENT_PAGE_REQUEST, getCurrentPage),
+		takeEvery(ActionTypes.EDIT_FILM_REQUEST, editFilm),
 	]);
 };

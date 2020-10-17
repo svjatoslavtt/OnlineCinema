@@ -3,6 +3,7 @@ export type FilmTypes = {
 	title: string;
 	averageRating: number;
 	id: string;
+	owner: string;
 };
 
 export type FilmOwnerTypes = {

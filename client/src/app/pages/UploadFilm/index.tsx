@@ -1,15 +1,18 @@
 import Rating from '@material-ui/lab/Rating';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './style.module.scss';
 
-import Button from '../../../../shared/components/Button';
-import Error from '../../../../shared/components/Error';
-import { Actions } from '../../../../redux/film-upload/actions';
-import { ButtonTypesEnum } from '../../../../shared/interfaces/button.types';
-import Title from '../../../../shared/components/Title';
+import Button from '../../shared/components/Button';
+import Error from '../../shared/components/Error';
+import { Actions as FilmUploadAction } from '../../redux/film-upload/actions';
+import { Actions as FilmsActions } from '../../redux/films/action';
+import { ButtonTypesEnum } from '../../shared/interfaces/button.types';
+import Title from '../../shared/components/Title';
+import { Actions } from '../../redux/films/action';
+import { getCurrentFilm } from '../../redux/films/selectors';
 
 type UploadFields = {
 	title: string;
@@ -18,10 +21,18 @@ type UploadFields = {
 	rating: number | null;
 };
 
-const UploadFilm: React.FC = () => {
+type UploadFilmTypes = {
+	filmId?: string;
+};
+
+const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const uploadFileElement = useRef<HTMLInputElement>(null);
+	const currentFilm = useSelector(getCurrentFilm);
+	const [showUploadImage, setShowUploadImage] = useState<string | null | ArrayBuffer>('');
+	const [filmAvatar, setFilmAvatar] = useState('');
+	const [error, setError] = useState('');
 
 	const fieldsInitialValue: UploadFields = {
 		title: '',
@@ -30,10 +41,40 @@ const UploadFilm: React.FC = () => {
 		rating: 0,
 	};
 
-	const [showUploadImage, setShowUploadImage] = useState<string | null | ArrayBuffer>('');
-	const [filmAvatar, setFilmAvatar] = useState('');
 	const [fields, setFields] = useState(fieldsInitialValue);
-	const [error, setError] = useState('');
+
+	useEffect(() => {
+		if (filmId) {
+			dispatch(Actions.getCurrentFilmRequest({ filmId }));
+		}; 
+	}, [dispatch, filmId]);
+
+	const toDataURL = (url: string) => {
+		let xhr = new XMLHttpRequest();
+		xhr.onload = function() {
+			var reader = new FileReader();
+			reader.onloadend = function() {
+				setShowUploadImage(reader.result);
+			}
+			reader.readAsDataURL(xhr.response);
+		};
+		xhr.open('GET', url);
+		xhr.responseType = 'blob';
+		xhr.send();
+	};
+
+	useEffect(() => {
+		if (currentFilm) {
+			toDataURL(currentFilm.image);
+
+			setFields({
+				title: currentFilm.title,
+				description: currentFilm.description,
+				director: currentFilm.director,
+				rating: currentFilm.rating,
+			});
+		}
+	}, [currentFilm]);
 
 	const handlerChangeField = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 		setFields({
@@ -50,8 +91,6 @@ const UploadFilm: React.FC = () => {
 
 	const handlerUploadImage = (event: any) => {
 		const reader = new FileReader();
-
-		setFilmAvatar(event.target.files[0]);
 
 		reader.onload = () => {
 			if (reader.readyState === 2) {
@@ -74,14 +113,21 @@ const UploadFilm: React.FC = () => {
 		const id: string = JSON.parse(localStorage.getItem('id') as string);
 
 		const formData = new FormData();
-		formData.append('file', filmAvatar);
+		if (filmAvatar) {
+			formData.append('file', filmAvatar);
+		}
 		formData.append('title', fields.title);
 		formData.append('description', fields.description);
 		formData.append('director', fields.director);
 		formData.append('rating', String(fields.rating));
 		formData.append('userId', id);
+		formData.append('filmId', filmId as string);
 		
-		dispatch(Actions.uploadFilmRequest({formData, history}));
+		if (filmId) {
+			dispatch(FilmsActions.editFilmRequest({ formData, id: filmId, history }));
+		} else {
+			dispatch(FilmUploadAction.uploadFilmRequest({ formData, history }));
+		}
 
 		setFields(fieldsInitialValue);
 		setError('');

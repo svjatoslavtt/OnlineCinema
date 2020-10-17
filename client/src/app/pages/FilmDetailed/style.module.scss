@@ -32,6 +32,29 @@
 	}
 }
 
+.editFilm {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #eee;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all .125s ease-in-out;
+
+	&:hover {
+		background-color: #2a9d8f;
+
+		& > svg {
+			fill: #eee;
+		}
+	}
+}
+
 .infoBlock {
 	display: flex;
 	flex-direction: column;
