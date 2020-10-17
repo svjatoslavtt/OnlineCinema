@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const Film = require("../models/Film");
 const User = require("../models/User");
+const multer = require("multer");
+const {v4} = require("uuid");
 
 const router = Router();
 
@@ -75,6 +77,57 @@ router.post('/my-films', async (req, res) => {
 		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse() });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
+	}
+});
+
+const DIR = './public/images/';
+
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, DIR);
+	},
+	filename: (req, file, cb) => {
+		const fileName = file.originalname.toLowerCase().split(' ').join('-');
+		cb(null, v4() + '-' + fileName);
+	}
+});
+
+let upload = multer({
+	storage,
+	fileFilter: (req, file, cb) => {
+		if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
+			cb(null, true);
+		} else {
+			cb(null, false);
+			return cb(new Error('Only .png, .jpg, .jpeg format'));
+		}
+	}
+});
+
+router.post('/edit', upload.single('file'), async (req, res) => {
+	try {
+		const url = req.protocol + '://' + req.get('host');
+
+		let fullData = {};
+
+		if (req.file) {
+			fullData = {
+				...req.body,
+				image: url + '/public/images/' + req.file.filename,
+			};
+		} else {
+			fullData = {
+				...req.body,
+			};
+		};
+
+		const film = await Film.findByIdAndUpdate(req.body.filmId, fullData, { new: true });
+
+		await film.save();
+	
+		return res.status(200).json({ message: 'Фильм успешно изменён!' });
+	} catch (err) {
+		return res.status(500).json({ message: err.message });
 	}
 });
 

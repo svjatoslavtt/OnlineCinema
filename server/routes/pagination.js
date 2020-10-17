@@ -28,6 +28,7 @@ router.post('/page', async (req, res) => {
 				image: item.image,
 				director: item.director,
 				id: item._id,
+				owner: item.owner,
 			});
 		});
 
