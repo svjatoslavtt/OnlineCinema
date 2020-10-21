@@ -75,14 +75,16 @@
 	overflow: hidden;
 }
 
-.filterByDirector {
+.filterSection {
+	margin-bottom: 15px;
+	
 	& > span {
 		display: block;
 		margin-bottom: 5px;
 	}
 }
 
-.directorBlock {
+.inputBlock {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

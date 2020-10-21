@@ -43,50 +43,81 @@ const Filter: React.FC = () => {
 	const handlerSubmitForm = (event: any) => {
 		event.preventDefault();
 		const data = new FormData(event.target);
+
+		// create common object with filter data 
 		const obj: any = {
 			title: '',
-			director: [],
+			director: {},
+			popular: false,
 		};
 
 		data.forEach((value, key) => {
 			if (key === 'title') {
-				obj[key] = value;
+				obj[key] = value as string;
+			} else if (key === 'popular') {
+				obj[key] = value === 'on' && true;
 			} else {
-				obj.director.push(key);
-			};
+				obj.director = {
+					...obj.director,
+					[key]: value === 'on' && true
+				};
+			}
 		});
 
+		// if filter has title then return only title and put on in url params
+		if (obj.title !== '') {
+			const params = queryString.stringify({ title: obj.title });
+			history.replace({
+				pathname: history.location.pathname,
+				search: params,
+			});
+
+			return dispatch(Actions.filterRequest({ title: obj.title }));
+		};
+
+		// return all others filter data and put on in url params
 		let sendData: any = {};
 
 		for (let key in obj) {
-			if (obj[key] !== '' && obj[key].length) {
+			if (obj[key] === 'title') delete obj.title
+			if (Object.values(obj[key]).length !== 0 || obj[key] === true) {
 				sendData[key] = obj[key];
 			};
 		};
 
-		let params = '';
+		let directorsParams = '';
+		if (sendData.hasOwnProperty('director')) {
+			if (Object.keys(sendData.director).length !== 0) {
+				directorsParams = queryString.stringify({ directors: Object.keys(sendData.director) }, {arrayFormat: 'index'});
+			};	
+		};
+		
+		const popularParams = queryString.stringify({ popular: sendData.popular });
 
-		if (sendData.hasOwnProperty('title')) {
-			delete sendData.director;
-			params = queryString.stringify(sendData);
-		} else {
-			params = queryString.stringify(sendData);
-		}
+		if (Object.keys(sendData).length !== 0) {
+			history.replace({	
+				pathname: history.location.pathname,
+				search: createParamsString([directorsParams, popularParams]),
+			});
 
-		history.replace({
-			pathname: history.location.pathname,
-			search: params,
-		});
-
-		if (sendData.hasOwnProperty('title')) {
-			dispatch(Actions.filterRequest({ title: sendData.title }));
-		} else if (Object.keys(sendData).length !== 0) {
 			dispatch(Actions.filterRequest(sendData));
 		};
 
+		// clear filter data and close filter component
 		setFilterSearch('');
-
 		dispatch(Actions.closeFilter());
+	};
+
+	const createParamsString = (params: string[]) => {
+		if (params.length) {
+			const str = params.join('&');
+
+			if (str[str.length - 1] === '&') {
+				return str.substring(0, str.length - 1);
+			} 
+
+			return str;
+		};
 	};
 
 	useEffect(() => {
@@ -97,8 +128,6 @@ const Filter: React.FC = () => {
 			setCheckedDirectors(null);
 		}
 	}, [history.location.search]) ;
-
-	console.log('checkedDirectors', checkedDirectors);
 
 	const filterStyles = [styles.filterBlock, fitlerIsOpen ? styles.active : null];
 	const filterContainerStyles = [styles.filterContainer, fitlerIsOpen ? styles.active : null];
@@ -117,7 +146,7 @@ const Filter: React.FC = () => {
 							<input id="input-search-1" type="text" name="title" value={filterSearch} onChange={e => setFilterSearch(e.target.value)} />
 						</div>
 
-						<div className={styles.filterByDirector}>
+						<div className={styles.filterSection}>
 							<span>По режиссёрам:</span>
 
 							<div className={styles.inputsWrapper}>
@@ -132,7 +161,7 @@ const Filter: React.FC = () => {
 												isChecked = true;
 											}
 											return (
-												<div key={index} className={styles.directorBlock}>
+												<div key={index} className={styles.inputBlock}>
 													<label htmlFor={inputKey}>{item}</label>
 													<input 
 													id={inputKey} 
@@ -144,6 +173,21 @@ const Filter: React.FC = () => {
 											)
 										})		
 								}
+							</div>
+						</div>
+
+						<div className={styles.filterSection}>
+							<span>По популярности:</span>
+
+							<div className={styles.inputsWrapper}>
+								<div className={styles.inputBlock}>
+									<label htmlFor='input-popular-394'>Cамые популярные</label>
+									<input 
+										id='input-popular-394' 
+										name='popular' 
+										type='checkbox'
+								/>
+								</div>
 							</div>
 						</div>
 
