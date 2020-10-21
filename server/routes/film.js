@@ -80,6 +80,7 @@ router.post('/my-films', async (req, res) => {
 	}
 });
 
+// edit film 
 const DIR = './public/images/';
 
 const storage = multer.diskStorage({
