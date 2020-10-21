@@ -36,6 +36,8 @@ export enum ActionTypes {
 	EDIT_FILM_REQUEST = 'EDIT_FILM_REQUEST',
 	EDIT_FILM_SUCESS = 'EDIT_FILM_SUCCESS',
 	EDIT_FILM_FAILED = 'EDIT_FILM_FAILED',
+
+	UPLOAD_PAGE = 'UPLOAD_PAGE',
 };
 
 export const Actions = {
@@ -74,6 +76,8 @@ export const Actions = {
 	editFilmRequest: (payload: any) => action(ActionTypes.EDIT_FILM_REQUEST, payload),
 	editFilmSuccess: (payload: any) => action(ActionTypes.EDIT_FILM_SUCESS, payload),
 	editFilmFailed: (payload: { message: string }) => action(ActionTypes.EDIT_FILM_FAILED, payload),
+
+	uploadPage: () =>  action(ActionTypes.UPLOAD_PAGE),
 };
 
 export type ActionTypesUnion = ActionType<typeof Actions>;

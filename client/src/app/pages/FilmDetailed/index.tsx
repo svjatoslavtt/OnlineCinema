@@ -28,10 +28,8 @@ const FilmDetailed: React.FC = () => {
 	const token = useSelector(getAuthToken);
 
 	useEffect(() => {
-		// if (filmId !== currentFilm?._id) {
-			dispatch(Actions.getCurrentFilmRequest({filmId}));
-		// } 
-	}, [dispatch]);
+		dispatch(Actions.getCurrentFilmRequest({filmId}));
+	}, [dispatch, filmId]);
 
 	const handlerChangeRating = (_: React.ChangeEvent<{}>, newValue: number | null) => {
 		if (token) {

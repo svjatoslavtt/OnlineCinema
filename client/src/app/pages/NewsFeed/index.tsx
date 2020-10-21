@@ -40,7 +40,7 @@ const NewsFeed: React.FC = () => {
   return (
     <div className={styles.newsFeedContainer}>
 			<Categorie title='Все фильмы' data={filmsState} newsFeed={true} />
-			<Pagination />
+			{!filterFilms && <Pagination />}
     </div>
   );
 };

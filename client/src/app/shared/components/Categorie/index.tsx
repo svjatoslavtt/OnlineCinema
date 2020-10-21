@@ -1,5 +1,6 @@
 import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
+import { useHistory } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
@@ -10,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilterTags } from '../../../redux/filter/selectors';
 import { Actions } from '../../../redux/filter/actions';
 import { getLoading } from '../../../redux/loading/selectors';
+
 
 type CategorieTypes = {
 	title: string;
@@ -24,8 +26,12 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 	const dispatch = useDispatch();
 	const tags = useSelector(getFilterTags);
 	const loading = useSelector(getLoading);
+	const history = useHistory();
 
-	const handlerResetFilter = () => dispatch(Actions.resetFilter());
+	const handlerResetFilter = () => {
+		history.push('/');
+		dispatch(Actions.resetFilter());
+	};
 
 	const loadingStyle = [styles.categorie, !data?.length && styles.loadingForEmpty];
 	

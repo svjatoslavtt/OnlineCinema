@@ -70,6 +70,11 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				films: action.payload.films,
 				pagination: action.payload.pagination,
 			}
+		case ActionTypes.UPLOAD_PAGE: 
+			return {
+				...state,
+				currentFilm: null,
+			}	
 		default: return state;	
 	}
 };

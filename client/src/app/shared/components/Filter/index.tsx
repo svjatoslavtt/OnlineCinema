@@ -15,6 +15,8 @@ const Filter: React.FC = () => {
 	const fitlerIsOpen = useSelector(getFilterIsOpen);
 	const directors = useSelector(getDirectors);
 
+	const [checkedDirectors, setCheckedDirectors] = useState<null | { director: string[] }>(null);
+
 	const [filterSearch, setFilterSearch] = useState<string>('');
 
 	useEffect(() => {
@@ -24,6 +26,19 @@ const Filter: React.FC = () => {
 	}, [dispatch, fitlerIsOpen]);
 
 	const handlerCloseFilter = () => dispatch(Actions.closeFilter());
+
+	useEffect(() => {
+		const parseUrl = queryString.parseUrl(history.location.search);
+
+		if (Object.keys(parseUrl.query).length !== 0) {
+			if (parseUrl.query.title) {
+				const title = parseUrl.query.title;
+				dispatch(Actions.filterRequest({ title }));
+			} else if (!parseUrl.query.page) {
+				dispatch(Actions.filterRequest(parseUrl.query));
+			}
+		};
+	}, [dispatch, history.location.search]);
 
 	const handlerSubmitForm = (event: any) => {
 		event.preventDefault();
@@ -49,7 +64,14 @@ const Filter: React.FC = () => {
 			};
 		};
 
-		const params = queryString.stringify(sendData);
+		let params = '';
+
+		if (sendData.hasOwnProperty('title')) {
+			delete sendData.director;
+			params = queryString.stringify(sendData);
+		} else {
+			params = queryString.stringify(sendData);
+		}
 
 		history.replace({
 			pathname: history.location.pathname,
@@ -66,6 +88,17 @@ const Filter: React.FC = () => {
 
 		dispatch(Actions.closeFilter());
 	};
+
+	useEffect(() => {
+		const parseUrl = queryString.parseUrl(history.location.search);
+		if (parseUrl.query.director) {
+			setCheckedDirectors(parseUrl.query as { director: string[] });
+		} else {
+			setCheckedDirectors(null);
+		}
+	}, [history.location.search]) ;
+
+	console.log('checkedDirectors', checkedDirectors);
 
 	const filterStyles = [styles.filterBlock, fitlerIsOpen ? styles.active : null];
 	const filterContainerStyles = [styles.filterContainer, fitlerIsOpen ? styles.active : null];
@@ -92,10 +125,21 @@ const Filter: React.FC = () => {
 									directors.length &&
 										directors.map((item: any, index: number) => {
 											const inputKey = `director-input-${index}-${Math.round(Math.random() * 99999)}`;
+
+											let isChecked = false;
+
+											if (checkedDirectors && checkedDirectors.director && checkedDirectors.director.includes(item)) {
+												isChecked = true;
+											}
 											return (
 												<div key={index} className={styles.directorBlock}>
 													<label htmlFor={inputKey}>{item}</label>
-													<input id={inputKey} name={item} type='checkbox' />
+													<input 
+													id={inputKey} 
+													name={item} 
+													type='checkbox'
+													defaultChecked={isChecked} 
+												/>
 												</div>
 											)
 										})		

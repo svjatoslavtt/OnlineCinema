@@ -13,6 +13,7 @@ import { ButtonTypesEnum } from '../../shared/interfaces/button.types';
 import Title from '../../shared/components/Title';
 import { Actions } from '../../redux/films/action';
 import { getCurrentFilm } from '../../redux/films/selectors';
+import { AppRoutes } from '../../routes/routes-const';
 
 type UploadFields = {
 	title: string;
@@ -73,8 +74,21 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 				director: currentFilm.director,
 				rating: currentFilm.rating,
 			});
-		}
+		} 
 	}, [currentFilm]);
+
+	useEffect(() => {
+		if (history.location.pathname === AppRoutes.UPLOAD_FILM) {
+			dispatch(Actions.uploadPage());
+		};  
+	}, [dispatch, history.location.pathname]);
+
+	useEffect(() => {
+		if (!currentFilm) {
+			setFields(fieldsInitialValue);
+			setShowUploadImage('');
+		}
+	}, [dispatch, currentFilm]);
 
 	const handlerChangeField = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 		setFields({
@@ -113,9 +127,11 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 		const id: string = JSON.parse(localStorage.getItem('id') as string);
 
 		const formData = new FormData();
+
 		if (filmAvatar) {
 			formData.append('file', filmAvatar);
 		}
+		
 		formData.append('title', fields.title);
 		formData.append('description', fields.description);
 		formData.append('director', fields.director);
@@ -142,7 +158,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 					<div className={styles.uploadFilmImageWrapper}>
 						<span className={styles.uploadFilmText}>Загрузите картинку для фильма</span>	
 						<div className={styles.uploadFilmImage}>
-							{showUploadImage ? (
+							{showUploadImage && currentFilm ? (
 								<img src={showUploadImage as string} alt="avatar" />
 							) : (
 								<span>avatar</span> 
