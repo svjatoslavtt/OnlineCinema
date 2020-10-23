@@ -18,6 +18,7 @@ router.get('/films/:userId', async (req, res) => {
 				image: item.image,
 				director: item.director,
 				id: item._id,
+				likes: item.likes,
 			});
 		});
 
@@ -46,6 +47,7 @@ router.get('/likes/:userId', async (req, res) => {
 				image: item.image,
 				director: item.director,
 				id: item._id,
+				likes: item.likes,
 			});
 		});
 

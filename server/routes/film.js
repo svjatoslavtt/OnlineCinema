@@ -25,6 +25,7 @@ router.get('/news-feed', async (req, res) => {
 				image: item.image,
 				director: item.director,
 				id: item._id,
+				likes: item.likes,
 			});
 		});
 
@@ -71,6 +72,7 @@ router.post('/my-films', async (req, res) => {
 				image: item.image,
 				director: item.director,
 				id: item._id,
+				likes: item.likes,
 			});
 		});
 
@@ -147,6 +149,7 @@ router.post('/my-likes', async (req, res) => {
 				image: item.image,
 				director: item.director,
 				id: item._id,
+				likes: item.likes,
 			});
 		});
 

@@ -29,6 +29,7 @@ router.post('/page', async (req, res) => {
 				director: item.director,
 				id: item._id,
 				owner: item.owner,
+				likes: item.likes,
 			});
 		});
 
