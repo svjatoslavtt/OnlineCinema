@@ -22,10 +22,10 @@ const NewsFeed: React.FC = () => {
 	useEffect(() => {
 		const parseUrl = queryString.parseUrl(history.location.search);
 
-		if (Object.keys(parseUrl.query).length !== 0) {
-			dispatch(Actions.getCurrentPageRequest({page: Number(parseUrl.query.page)}));
-		} else {
-			dispatch(Actions.getCurrentPageRequest({page: 1}))
+		if (Object.keys(parseUrl.query).length !== 0 && parseUrl.query.page) {
+			dispatch(Actions.getCurrentPageRequest({ page: Number(parseUrl.query.page) }));
+		} else if (Object.keys(parseUrl.query).length === 0) {
+			dispatch(Actions.getCurrentPageRequest({ page: 1 }));
 		};
 	}, [dispatch, history.location.search]);
 

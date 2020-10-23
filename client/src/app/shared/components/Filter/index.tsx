@@ -15,9 +15,9 @@ const Filter: React.FC = () => {
 	const fitlerIsOpen = useSelector(getFilterIsOpen);
 	const directors = useSelector(getDirectors);
 
-	const [checkedDirectors, setCheckedDirectors] = useState<null | { director: string[] }>(null);
-
-	const [filterSearch, setFilterSearch] = useState<string>('');
+	const [titleData, setTitleData] = useState<{ title: string }>({ title: '' });
+	const [directorsData, setDirectorsData] = useState<{ [key: string]: string } | any>({});
+	const [popularData, setPopularData] = useState({ popular: false });
 
 	useEffect(() => {
 		if (fitlerIsOpen) {
@@ -27,106 +27,109 @@ const Filter: React.FC = () => {
 
 	const handlerCloseFilter = () => dispatch(Actions.closeFilter());
 
+	const handlerTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setDirectorsData({});
+		setPopularData({ popular: false });
+		setTitleData({ title: event.target.value });
+	};
+
+	const handlerDirectorsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (directorsData[event.target.name]) {
+			return setDirectorsData({
+				...directorsData,
+				[event.target.name]: false
+			});
+		};
+
+		setTitleData({ title: '' });
+		setPopularData({ popular: false });
+
+		setDirectorsData({
+			...directorsData,
+			[event.target.name]: event.target.value === 'on',
+		});
+	};
+
+	const handlerPopularChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (popularData.popular) {
+			return setPopularData({ popular: false });
+		};
+
+		setDirectorsData({});
+		setTitleData({ title: '' });
+
+		setPopularData({ popular: event.target.value === 'on' });
+	};
+
+	// parse filtering data from url params
 	useEffect(() => {
-		const parseUrl = queryString.parseUrl(history.location.search);
+		const parseUrl = queryString.parseUrl(history.location.search, { arrayFormat: 'index' });
 
 		if (Object.keys(parseUrl.query).length !== 0) {
 			if (parseUrl.query.title) {
 				const title = parseUrl.query.title;
 				dispatch(Actions.filterRequest({ title }));
-			} else if (!parseUrl.query.page) {
-				dispatch(Actions.filterRequest(parseUrl.query));
-			}
+			} else if (parseUrl.query.director) {
+				dispatch(Actions.filterRequest({ director: parseUrl.query.director}));
+			} else if (parseUrl.query.popular) {
+				dispatch(Actions.filterRequest({ popular: true}));
+			};
 		};
 	}, [dispatch, history.location.search]);
 
-	const handlerSubmitForm = (event: any) => {
-		event.preventDefault();
-		const data = new FormData(event.target);
-
-		// create common object with filter data 
-		const obj: any = {
-			title: '',
-			director: {},
-			popular: false,
-		};
-
-		data.forEach((value, key) => {
-			if (key === 'title') {
-				obj[key] = value as string;
-			} else if (key === 'popular') {
-				obj[key] = value === 'on' && true;
-			} else {
-				obj.director = {
-					...obj.director,
-					[key]: value === 'on' && true
-				};
-			}
+	const handlerCreateUrlParams = (title: string, data: any) => {
+		const params = queryString.stringify({ [title]: data }, { arrayFormat: 'index' });
+		return history.replace({
+			pathname: history.location.pathname,
+			search: params,
 		});
-
-		// if filter has title then return only title and put on in url params
-		if (obj.title !== '') {
-			const params = queryString.stringify({ title: obj.title });
-			history.replace({
-				pathname: history.location.pathname,
-				search: params,
-			});
-
-			return dispatch(Actions.filterRequest({ title: obj.title }));
-		};
-
-		// return all others filter data and put on in url params
-		let sendData: any = {};
-
-		for (let key in obj) {
-			if (obj[key] === 'title') delete obj.title
-			if (Object.values(obj[key]).length !== 0 || obj[key] === true) {
-				sendData[key] = obj[key];
-			};
-		};
-
-		let directorsParams = '';
-		if (sendData.hasOwnProperty('director')) {
-			if (Object.keys(sendData.director).length !== 0) {
-				directorsParams = queryString.stringify({ directors: Object.keys(sendData.director) }, {arrayFormat: 'index'});
-			};	
-		};
-		
-		const popularParams = queryString.stringify({ popular: sendData.popular });
-
-		if (Object.keys(sendData).length !== 0) {
-			history.replace({	
-				pathname: history.location.pathname,
-				search: createParamsString([directorsParams, popularParams]),
-			});
-
-			dispatch(Actions.filterRequest(sendData));
-		};
-
-		// clear filter data and close filter component
-		setFilterSearch('');
-		dispatch(Actions.closeFilter());
 	};
 
-	const createParamsString = (params: string[]) => {
-		if (params.length) {
-			const str = params.join('&');
+	const handlerSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
 
-			if (str[str.length - 1] === '&') {
-				return str.substring(0, str.length - 1);
-			} 
+		// filtering data by title
+		if (titleData.title) {
+			handlerCreateUrlParams('title', titleData.title);
+			setDirectorsData({});
+			setPopularData({ popular: false });
 
-			return str;
+			return dispatch(Actions.filterRequest(titleData)); 
+		};
+
+		// filtering data by directors
+		if (Object.keys(directorsData).length !== 0) {
+			const directors = Object.keys(directorsData).filter(item => directorsData[item]);
+			handlerCreateUrlParams('director', directors);
+
+			return dispatch(Actions.filterRequest({ director: directors }));
+		};
+
+		// filtering data by popular
+		if (popularData.popular) {
+			handlerCreateUrlParams('popular', popularData.popular);
+
+			return dispatch(Actions.filterRequest(popularData));
 		};
 	};
 
+	// set up checkboxes checked from params
 	useEffect(() => {
-		const parseUrl = queryString.parseUrl(history.location.search);
+		const parseUrl = queryString.parseUrl(history.location.search, { arrayFormat: 'index' });
+
 		if (parseUrl.query.director) {
-			setCheckedDirectors(parseUrl.query as { director: string[] });
-		} else {
-			setCheckedDirectors(null);
-		}
+			const directors: string[] = parseUrl.query.director as string[];
+			const customDirectorsObject = directors.reduce((acc: { [key: string]: boolean }, curr: string) => {
+				return acc = {
+					...acc,
+					[curr]: true,
+				};
+			}, {});
+
+			setDirectorsData(customDirectorsObject);
+		} else if (parseUrl.query.popular) {
+			setPopularData({ popular: true });
+		};
 	}, [history.location.search]) ;
 
 	const filterStyles = [styles.filterBlock, fitlerIsOpen ? styles.active : null];
@@ -143,7 +146,7 @@ const Filter: React.FC = () => {
 					<div className={styles.filterConter}>
 						<div className={styles.filterSearchBlock}>
 							<label htmlFor="input-search-1">Поиск:</label>
-							<input id="input-search-1" type="text" name="title" value={filterSearch} onChange={e => setFilterSearch(e.target.value)} />
+							<input id="input-search-1" type="text" name="title" value={titleData.title} onChange={handlerTitleChange} />
 						</div>
 
 						<div className={styles.filterSection}>
@@ -155,11 +158,6 @@ const Filter: React.FC = () => {
 										directors.map((item: any, index: number) => {
 											const inputKey = `director-input-${index}-${Math.round(Math.random() * 99999)}`;
 
-											let isChecked = false;
-
-											if (checkedDirectors && checkedDirectors.director && checkedDirectors.director.includes(item)) {
-												isChecked = true;
-											}
 											return (
 												<div key={index} className={styles.inputBlock}>
 													<label htmlFor={inputKey}>{item}</label>
@@ -167,7 +165,8 @@ const Filter: React.FC = () => {
 													id={inputKey} 
 													name={item} 
 													type='checkbox'
-													defaultChecked={isChecked} 
+													onChange={handlerDirectorsChange}
+													checked={!!directorsData[item]}
 												/>
 												</div>
 											)
@@ -186,6 +185,8 @@ const Filter: React.FC = () => {
 										id='input-popular-394' 
 										name='popular' 
 										type='checkbox'
+										onChange={handlerPopularChange}
+										checked={popularData.popular}
 								/>
 								</div>
 							</div>

@@ -19,7 +19,7 @@ export enum ApiEndPoints {
 	USER_PROFILE_LIKES = '/api/user-profile/likes',
 
 	GET_DIRECTORS = '/api/filter/directors',
-	FILTER = '/api/filter/search',
+	FILTER = '/api/filter/filtering',
 
 	PAGINATION = '/api/pagination/page',
 	PAGE_COUNT = '/api/pagination/page-count',

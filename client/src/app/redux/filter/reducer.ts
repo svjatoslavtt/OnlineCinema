@@ -38,6 +38,7 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				...state,
 				filterFilms: action.payload.filter,
 				tags: action.payload.tags,
+				filterIsOpen: false,
 			}	
 		case ActionTypes.RESET_FILTER:
 			return {
