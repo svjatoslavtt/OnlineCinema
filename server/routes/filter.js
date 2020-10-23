@@ -44,20 +44,32 @@ router.post('/search', async (req, res) => {
 		let commonFilter = [];
 
 		for (key in req.body) {
-			if (commonFilter.length && key !== 'title') {
+			if (commonFilter.length) {
 				const data = await Film.find({...commonFilter}).where(key).in(req.body[key]).exec();
 				if (data.length) {
 					commonFilter = data;
 					tags.push(...req.body[key]);	
 				}
-			} else if (key !== 'title') {
+			} else if (key === 'director') {
 				const data = await Film.find().where(key).in(req.body[key]).exec();
 				if (data.length) {
 					commonFilter.push(...data);
 					tags.push(...req.body[key]);
 				}
+			}
+
+			if (key === 'popular' && commonFilter.length) {
+				const data = await Film.find({...commonFilter});
+				commonFilter = data.sort((a, b) => a.likes - b.likes);
+				tags.push(key);
+			} else if (key === 'popular') {
+				const data = await Film.find();
+				commonFilter = data.sort((a, b) => a.likes - b.likes);
+				tags.push(key);
 			};
 		};
+
+		console.log(commonFilter);
 
 		const transformFilms = [];
 
