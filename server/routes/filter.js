@@ -75,7 +75,7 @@ router.post('/filtering', async (req, res) => {
 				});
 			});
 	
-			return res.status(200).json({ message: 'Фильтрация успешна!', filter: [...transformFilms], tags });
+			return res.status(200).json({ message: 'Фильтрация успешна!', filter: transformFilms, tags });
 		};
 
 		if (req.body.popular) {
@@ -96,7 +96,7 @@ router.post('/filtering', async (req, res) => {
 				});
 			});
 
-			return res.status(200).json({ message: 'Фильтрация успешна!', filter: [...transformFilms], tags });
+			return res.status(200).json({ message: 'Фильтрация успешна!', filter: transformFilms, tags });
 		};
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
