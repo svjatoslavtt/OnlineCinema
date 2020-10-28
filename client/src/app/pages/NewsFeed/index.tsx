@@ -10,7 +10,6 @@ import Pagination from "../../shared/components/Pagination";
 import styles from "./style.module.scss";
 import { useHistory } from "react-router-dom";
 
-
 const NewsFeed: React.FC = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -27,7 +26,7 @@ const NewsFeed: React.FC = () => {
 		} else if (Object.keys(parseUrl.query).length === 0) {
 			dispatch(Actions.getCurrentPageRequest({ page: 1 }));
 		};
-	}, [dispatch, history.location.search]);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (filterFilms) {

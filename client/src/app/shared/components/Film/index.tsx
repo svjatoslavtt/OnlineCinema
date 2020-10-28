@@ -4,7 +4,6 @@ import Rating from '@material-ui/lab/Rating';
 import styles from './style.module.scss';
 import { useHistory } from 'react-router-dom';
 import { AppRoutes } from '../../../routes/routes-const';
-import LikeSvg from '../Icons/Likes/Like';
 
 type FilmTypes = {
 	title: string;
@@ -27,12 +26,6 @@ const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id, likes }) =
 			<div className={styles.imageContainer}>
 				<div className={styles.filmImage}>
 					<img src={image} alt="movie"/>
-					<div className={styles.imageLayoutContainer}>
-						<div className={styles.imageLayout}>
-							<LikeSvg />
-							<span>{likes}</span>
-						</div>	
-					</div>
 				</div>
 			</div>
 

@@ -70,12 +70,12 @@ const Filter: React.FC = () => {
 				const title = parseUrl.query.title;
 				dispatch(Actions.filterRequest({ title }));
 			} else if (parseUrl.query.director) {
-				dispatch(Actions.filterRequest({ director: parseUrl.query.director}));
+				dispatch(Actions.filterRequest({ director: parseUrl.query.director }));
 			} else if (parseUrl.query.popular) {
-				dispatch(Actions.filterRequest({ popular: true}));
+				dispatch(Actions.filterRequest({ popular: true }));
 			};
 		};
-	}, [dispatch, history.location.search]);
+	}, [dispatch]);
 
 	const handlerCreateUrlParams = (title: string, data: any) => {
 		const params = queryString.stringify({ [title]: data }, { arrayFormat: 'index' });

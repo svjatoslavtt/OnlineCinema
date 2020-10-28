@@ -6,6 +6,7 @@ import { ActionTypes as AuthActionTypes } from "../auth/actions";
 import { ActionTypes as UploadFilmActionTypes } from "../film-upload/actions";
 import { ActionTypes as FilmsActinTypes } from "../films/action";
 import { ActionTypes as UserProfileActinTypes } from "../user-profile/actions";
+import { ActionTypes as FilterTypes } from "../filter/actions";
 
 function* loadingStart() {
 	yield put(Actions.loadingStart());
@@ -28,6 +29,7 @@ export function* watchLoadingStart() {
 			FilmsActinTypes.GET_CURRENT_PAGE_REQUEST,
 			UserProfileActinTypes.USER_PROFILE_FILMS_REQUEST,
 			UserProfileActinTypes.USER_PROFILE_LIKES_REQUEST,
+			FilterTypes.FILTER_REQUEST,
 		], loadingStart)
 	]);
 };
@@ -55,6 +57,8 @@ export function* watchLoadingStop() {
 			UserProfileActinTypes.USER_PROFILE_FILMS_FAILED,
 			UserProfileActinTypes.USER_PROFILE_LIKES_SUCCESS,
 			UserProfileActinTypes.USER_PROFILE_LIKES_FAILED,
+			FilterTypes.FILTER_SUCCESS,
+			FilterTypes.FILTER_FAILED,
 		], loadingStop)
 	]);
 };
