@@ -46,6 +46,7 @@ router.post('/page', async (req, res) => {
 		const pagination = {
 			pages: pagesArray,
 			currentPage: page,
+			lastPage: pageCount,
 		};
 
 		return res.status(200).json({ message: `Страница ${page} успешно получена!`, films: transformFilms, pagination });

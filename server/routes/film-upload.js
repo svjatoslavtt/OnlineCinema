@@ -31,7 +31,9 @@ let upload = multer({
 
 router.post('/', upload.single('file'), async (req, res) => {
 	try {
-		const url = req.protocol + '://' + req.get('host');
+		const url = 'https://' + req.get('host');
+
+		console.log(url);
 		
 		const { userId, rating } = req.body;
 
