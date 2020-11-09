@@ -145,12 +145,12 @@ const Filter: React.FC = () => {
 				<form onSubmit={handlerSubmitForm}>
 					<div className={styles.filterConter}>
 						<div className={styles.filterSearchBlock}>
-							<label htmlFor="input-search-1">Поиск:</label>
+							<label htmlFor="input-search-1">По названию:</label>
 							<input id="input-search-1" type="text" name="title" value={titleData.title} onChange={handlerTitleChange} />
 						</div>
 
 						<div className={styles.filterSection}>
-							<span>По режиссёрам:</span>
+							<span>По авторам:</span>
 
 							<div className={styles.inputsWrapper}>
 								{directors && 
@@ -170,7 +170,7 @@ const Filter: React.FC = () => {
 												/>
 												</div>
 											)
-										}) : <div>Пусто</div>
+										}) : <div>Авторов пока нет</div>
 								}
 							</div>
 						</div>

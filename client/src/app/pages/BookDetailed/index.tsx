@@ -7,8 +7,8 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import styles from './style.module.scss';
 
-import { Actions } from '../../redux/films/action';
-import { getCurrentFilm, getIsLikeFilm, getIsRatedFilm } from '../../redux/films/selectors';
+import { Actions } from '../../redux/books/action';
+import { getCurrentFilm, getIsLikeFilm, getIsRatedFilm } from '../../redux/books/selectors';
 import Title from '../../shared/components/Title';
 import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
@@ -28,14 +28,14 @@ const FilmDetailed: React.FC = () => {
 	const token = useSelector(getAuthToken);
 
 	useEffect(() => {
-		dispatch(Actions.getCurrentFilmRequest({filmId}));
+		dispatch(Actions.getCurrentBookRequest({ filmId }));
 	}, [dispatch, filmId]);
 
 	const handlerChangeRating = useCallback(
 		_.debounce(
 			(_: React.ChangeEvent<{}>, newValue: number | null) => {
 				if (token) {
-					dispatch(Actions.rateFilmRequest({ filmId, rating: newValue, token }));
+					dispatch(Actions.rateBookRequest({ filmId, rating: newValue, token }));
 				}
 			}, 
 			500, 
@@ -53,9 +53,9 @@ const FilmDetailed: React.FC = () => {
 			() => {
 				if (token) {
 					if (isLike) {
-						dispatch(Actions.dislikeFilmRequest({ filmId, token }));
+						dispatch(Actions.dislikeBookRequest({ filmId, token }));
 					} else {
-						dispatch(Actions.likeFilmRequest({ filmId, token }));
+						dispatch(Actions.likeBookRequest({ filmId, token }));
 					}
 				} else {
 					setError('Нужно авторизоваться!');
@@ -72,7 +72,7 @@ const FilmDetailed: React.FC = () => {
 	const isOwner = currentFilm?.owner.id === JSON.parse(localStorage.getItem('id') as string);
 
 	const handlerEditFilm = () => {
-		history.push(AppRoutes.EDIT_FILM + '/' + filmId);
+		history.push(AppRoutes.EDIT_BOOK + '/' + filmId);
 	};
 
 	return (

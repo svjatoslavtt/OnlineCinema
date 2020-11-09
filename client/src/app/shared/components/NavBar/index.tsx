@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
       <div className={styles.navBarHead}>
         <div className={styles.linkWrapper}>
           <div className={styles.logo}>
-            <NavLink to={AppRoutes.NEWS_FEED}>Moviestock</NavLink>
+            <NavLink to={AppRoutes.NEWS_FEED}>BooksStock</NavLink>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ const NavBar: React.FC = () => {
       </div>
 
       <div className={styles.navBarPages}>
-        <NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Фильмы</NavLink>
+        <NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Книги</NavLink>
 				{token && (<NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>Мой кабинет</NavLink>)}
       </div>
     </div>

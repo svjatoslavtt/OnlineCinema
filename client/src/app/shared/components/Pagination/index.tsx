@@ -8,8 +8,8 @@ import animateScrollTo from 'animated-scroll-to';
 
 import styles from './style.module.scss';
 
-import { Actions } from '../../../redux/films/action';
-import { getPagination } from '../../../redux/films/selectors';
+import { Actions } from '../../../redux/books/action';
+import { getPagination } from '../../../redux/books/selectors';
 
 enum SwitchPageEnum {
 	NEXT = 1,
@@ -84,19 +84,19 @@ const Pagination: React.FC = () => {
 	return (
 		<div className={styles.paginationContainer}>
 			<div className={styles.paginationBlock}>
-				{isPagination && pagination.currentPage !== pagination.pages[0] && (
+				{isPagination && pagination.currentPage !== pagination.pages[0] ? (
 					<div className={styles.paginationLastPage} onClick={() => handlerSwitchButtons(1, HelperButtonsEnum.START)}>
 						Первая страница
 					</div>
-				)}
+				) : null}
 
-				{isPagination && pagination.currentPage !== 1 && (
+				{isPagination && pagination.currentPage !== 1 ? (
 					<div className={styles.paginationPageNextPrev} onClick={() => handlerSwitchButtons(SwitchPageEnum.PREV)}>
 						<NavigateBeforeIcon />
 					</div>
-				)}
+				) : null}
 				
-				{pagination && pagination.pages && pagination.pages.length !== 1 &&
+				{pagination && pagination.pages && pagination.pages.length !== 1 ?
 					pagination.pages.map((item: number) => {
 						const key = Math.round(Math.random() * 9999)
 						if (item === (pagination && pagination.currentPage)) {
@@ -112,20 +112,20 @@ const Pagination: React.FC = () => {
 								<span>{item}</span>
 							</div>
 						);
-					})
+					}) : null
 				}
 
-				{isPagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] && (
+				{isPagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] ? (
 					<div className={styles.paginationPageNextPrev} onClick={() => handlerSwitchButtons(SwitchPageEnum.NEXT)}>
 						<NavigateNextIcon />
 					</div>
-				)}
+				) : null}
 
-				{isPagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] && (
+				{isPagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] ? (
 					<div className={styles.paginationLastPage} onClick={() => handlerSwitchButtons(pagination.pages[pagination.pages.length - 1], HelperButtonsEnum.FINISH)}>
 						Последня страница
 					</div>
-				)}
+				) : null}
 			</div>
 		</div>
 	);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getIsLikeFilm } from '../../../../redux/films/selectors';
+import { getIsLikeFilm } from '../../../../redux/books/selectors';
 import DislikeSvg from './Dislike';
 import LikeSvg from './Like';
 

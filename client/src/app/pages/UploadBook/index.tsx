@@ -7,12 +7,12 @@ import styles from './style.module.scss';
 
 import Button from '../../shared/components/Button';
 import Error from '../../shared/components/Error';
-import { Actions as FilmUploadAction } from '../../redux/film-upload/actions';
-import { Actions as FilmsActions } from '../../redux/films/action';
+import { Actions as FilmUploadAction } from '../../redux/book-upload/actions';
+import { Actions as FilmsActions } from '../../redux/books/action';
 import { ButtonTypesEnum } from '../../shared/interfaces/button.types';
 import Title from '../../shared/components/Title';
-import { Actions } from '../../redux/films/action';
-import { getCurrentFilm } from '../../redux/films/selectors';
+import { Actions } from '../../redux/books/action';
+import { getCurrentFilm } from '../../redux/books/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 
 type UploadFields = {
@@ -47,7 +47,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 
 	useEffect(() => {
 		if (filmId) {
-			dispatch(Actions.getCurrentFilmRequest({ filmId }));
+			dispatch(Actions.getCurrentBookRequest({ filmId }));
 		}; 
 	}, [dispatch, filmId]);
 
@@ -79,7 +79,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 	}, [currentFilm, filmId]);
 
 	useEffect(() => {
-		if (history.location.pathname === AppRoutes.UPLOAD_FILM) {
+		if (history.location.pathname === AppRoutes.UPLOAD_BOOK) {
 			dispatch(Actions.uploadPage());
 		};  
 	}, [dispatch, history.location.pathname]);
@@ -144,7 +144,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 		};
 		
 		if (filmId) {
-			dispatch(FilmsActions.editFilmRequest({ formData, id: filmId, history }));
+			dispatch(FilmsActions.editBookRequest({ formData, id: filmId, history }));
 		} else {
 			dispatch(FilmUploadAction.uploadFilmRequest({ formData, history }));
 		}

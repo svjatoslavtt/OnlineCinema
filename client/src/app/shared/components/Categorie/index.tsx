@@ -4,14 +4,13 @@ import { useHistory } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
-import Film from '../Film';
+import Book from '../Book';
 import Title from '../Title';
-import { FilmTypes } from '../../../redux/films/types';
+import { FilmTypes } from '../../../redux/books/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilterTags } from '../../../redux/filter/selectors';
 import { Actions } from '../../../redux/filter/actions';
 import { getLoading } from '../../../redux/loading/selectors';
-
 
 type CategorieTypes = {
 	title: string;
@@ -40,7 +39,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 			
 			<Title title={title} heartSvg={heartSvg} uploadFilm={uploadFilm} goBack={goBack} newsFeed={newsFeed} />
 
-			{title === 'Все фильмы' && tags && tags.length && (
+			{title === 'Все книги' && tags && tags.length && (
 				<div className={styles.tagsBlock}>
 					<div className={styles.tagsTitle}>Поиск по:</div>
 					<div className={styles.tagsWrapper}>
@@ -70,7 +69,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 					{data && data.length ? 
 						data.map(({ id, title, averageRating, image, owner }) => {
 							return (
-								<Film 
+								<Book 
 									key={`${id}-${Math.round(Math.random() * 10000)}`}
 									title={title}
 									averageRating={averageRating}
@@ -82,7 +81,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 						}) : null
 					}
 					{!loading && data && !data.length && (
-						<div className={styles.emptyData}>Фильмов пока нет</div>
+						<div className={styles.emptyData}>Книг пока нет</div>
 					)}
 				</div>
 			</div>

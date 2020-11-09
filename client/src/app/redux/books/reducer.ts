@@ -14,12 +14,12 @@ export const filmsInitialState: FilmsState = {
 
 export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
 	switch (action.type) {
-		case ActionTypes.GET_FILMS_SUCCESS: 
+		case ActionTypes.GET_BOOKS_SUCCESS: 
 			return {
 				...state,
 				films: [...action.payload.films],
 			}
-		case ActionTypes.GET_MY_FILMS_SUCCESS:
+		case ActionTypes.GET_MY_BOOKS_SUCCESS:
 			return {
 				...state,
 				myFilms: [...action.payload.films],
@@ -29,14 +29,14 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				...state,
 				myLikes: [...action.payload.films],
 			}	
-		case ActionTypes.GET_CURRENT_FILM_SUCCESS:
+		case ActionTypes.GET_CURRENT_BOOK_SUCCESS:
 			return {
 				...state,
 				currentFilm: action.payload.currentFilm,
 				isLike: action.payload.isLike,
 				isRate: action.payload.isRate,
 			}		
-		case ActionTypes.LIKE_FILM_SUCCESS:
+		case ActionTypes.LIKE_BOOK_SUCCESS:
 			return {
 				...state,
 				currentFilm: {
@@ -45,7 +45,7 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				},
 				isLike: action.payload.isLike,
 			}	
-		case ActionTypes.DISLIKE_FILM_SUCCESS:
+		case ActionTypes.DISLIKE_BOOK_SUCCESS:
 			return {
 				...state,
 				currentFilm: {
@@ -54,7 +54,7 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 				},
 				isLike: action.payload.isLike,
 			}		
-		case ActionTypes.RATE_FILM_SUCCESS:
+		case ActionTypes.RATE_BOOK_SUCCESS:
 			return {
 				...state,
 				currentFilm: {

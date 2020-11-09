@@ -45,8 +45,8 @@ const Title: React.FC<TitleTypes> = ({ title, goBack, heartSvg, uploadFilm, news
 			</span>
 
 			{uploadFilm && (
-				<NavLink to={AppRoutes.UPLOAD_FILM} className={`${styles.categorieTitleTag} ${styles.mobile}`}>
-					{isMobile ? <AddIcon /> : 'Загрузить новый фильм'}
+				<NavLink to={AppRoutes.UPLOAD_BOOK} className={`${styles.categorieTitleTag} ${styles.mobile}`}>
+					{isMobile ? <AddIcon /> : 'Загрузить новую книгу'}
 				</NavLink>
 			)}
 

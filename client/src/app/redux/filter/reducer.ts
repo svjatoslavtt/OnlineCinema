@@ -1,6 +1,6 @@
 import { ActionTypes, ActionTypesUnion } from "./actions";
 
-import { filmsInitialState } from "../films/reducer";
+import { filmsInitialState } from "../books/reducer";
 
 export type FilterTypes = {
 	filterIsOpen: boolean;

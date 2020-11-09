@@ -3,12 +3,12 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 
 import {rootSaga} from "./saga";
 import {AuthState, reducer as authReducer} from './auth/reducer';
-import {FilmUploadState, reducer as filmUploadReducer} from './film-upload/reducer';
+import {FilmUploadState, reducer as filmUploadReducer} from './book-upload/reducer';
 import {LoadingState, reducer as loadingReducer} from './loading/reducer';
-import {reducer as getFilmsReducer} from './films/reducer';
+import {reducer as getFilmsReducer} from './books/reducer';
 import {reducer as getUserProfileReducer} from './user-profile/reducer';
 import {reducer as getFilterReducer} from './filter/reducer';
-import { FilmsState } from './films/types';
+import { FilmsState } from './books/types';
 import { UserProfileTypes } from './user-profile/reducer';
 import { FilterTypes } from './filter/reducer';
 

@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import styles from './style.module.scss';
 import Categorie from '../../shared/components/Categorie';
 import { useDispatch, useSelector } from 'react-redux';
-import { Actions } from '../../redux/films/action';
-import { getMyFilms, getMyLikes } from '../../redux/films/selectors';
+import { Actions } from '../../redux/books/action';
+import { getMyFilms, getMyLikes } from '../../redux/books/selectors';
 
 const MyOffice: React.FC = () => {
 	const dispatch = useDispatch();
@@ -12,13 +12,13 @@ const MyOffice: React.FC = () => {
 	const myLikesFilms = useSelector(getMyLikes);
 
 	useEffect(() => {
-		dispatch(Actions.getMyFilmsRequest());
+		dispatch(Actions.getMyBooksRequest());
 		dispatch(Actions.getMyLikesRequest());
 	}, [dispatch]);
 
 	return (
 		<div className={styles.myOfficeContainer}>
-			<Categorie title='Загруженные фильмы' uploadFilm={true} data={myOwnFilms} />
+			<Categorie title='Загруженные книги' uploadFilm={true} data={myOwnFilms} />
 			<Categorie title='Мои лайки' heartSvg={true} data={myLikesFilms} />
 		</div>
 	)

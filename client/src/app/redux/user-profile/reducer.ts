@@ -1,4 +1,4 @@
-import { FilmTypes } from "../films/types";
+import { FilmTypes } from "../books/types";
 import { ActionTypes, ActionTypesUnion } from "./actions";
 
 export type UserProfileTypes = {

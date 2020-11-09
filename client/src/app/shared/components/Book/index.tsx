@@ -17,7 +17,7 @@ const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
 	const history = useHistory();
 
 	const handlerDedailedRedirect = () => {
-		history.push(AppRoutes.FILM_DETAILED + '/' + id);
+		history.push(AppRoutes.BOOK_DETAILED + '/' + id);
 	};
 
 	return (

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import queryString from 'query-string';
 
-import { Actions } from "../../redux/films/action";
-import { getFilms } from "../../redux/films/selectors";
+import { Actions } from "../../redux/books/action";
+import { getFilms } from "../../redux/books/selectors";
 import { getFilterFilms } from "../../redux/filter/selectors";
 import Categorie from "../../shared/components/Categorie";
 import Pagination from "../../shared/components/Pagination";
@@ -40,7 +40,7 @@ const NewsFeed: React.FC = () => {
   return (
 		<>
 			<div className={styles.newsFeedContainer}>
-				<Categorie title='Все фильмы' data={filmsState} newsFeed={true} />
+				<Categorie title='Все книги' data={filmsState} newsFeed={true} />
 				{!filterFilms && <Pagination />}
 			</div>
 			<Filter />
