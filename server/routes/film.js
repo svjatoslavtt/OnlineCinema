@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const Film = require("../models/Film");
+const Book = require("../models/Book");
 const User = require("../models/User");
 const multer = require("multer");
 const {v4} = require("uuid");
@@ -8,7 +8,7 @@ const router = Router();
 
 router.get('/news-feed', async (req, res) => {
 	try {
-		const films = await Film.find();
+		const films = await Book.find();
 
 		const firstTenFilms = [];
 
@@ -37,7 +37,7 @@ router.get('/news-feed', async (req, res) => {
 
 router.post('/detailed/:filmId', async (req, res) => {
 	try {
-		const currentFilm = await Film.findById(req.params.filmId);
+		const currentFilm = await Book.findById(req.params.filmId);
 		const owner = await User.findById(currentFilm.owner);
 
 		const isLike = req.body.userId ? currentFilm.usersId.includes(req.body.userId) : false;
@@ -61,7 +61,7 @@ router.post('/detailed/:filmId', async (req, res) => {
 
 router.post('/my-films', async (req, res) => {
 	try {
-		const films = await Film.find({ owner: req.body.userId });
+		const films = await Book.find({ owner: req.body.userId });
 
 		const transformFilms = [];
 
@@ -124,7 +124,7 @@ router.post('/edit', upload.single('file'), async (req, res) => {
 			};
 		};
 
-		const film = await Film.findByIdAndUpdate(req.body.filmId, fullData, { new: true });
+		const film = await Book.findByIdAndUpdate(req.body.filmId, fullData, { new: true });
 
 		await film.save();
 	
@@ -138,7 +138,7 @@ router.post('/my-likes', async (req, res) => {
 	try {
 		const userId = req.body.userId;
 		const findMyself = await User.findById(userId);
-		const films = await Film.find().where('_id').in(findMyself.likes).exec();
+		const films = await Book.find().where('_id').in(findMyself.likes).exec();
 
 		const transformFilms = [];
 

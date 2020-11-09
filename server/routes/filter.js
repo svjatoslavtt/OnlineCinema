@@ -1,11 +1,11 @@
 const { Router } = require("express");
-const Film = require("../models/Film");
+const Book = require("../models/Book");
 
 const router = Router();
 
 router.get('/directors', async (req, res) => {
 	try {
-		const films = await Film.find();
+		const films = await Book.find();
 		const directors = films.map(item => item.director);
 		const [...uniqDirectors] = new Set(directors);
 	
@@ -20,7 +20,7 @@ router.post('/filtering', async (req, res) => {
 		let tags = [];
 
 		if (req.body.title) {
-			const films = await Film.find();
+			const films = await Book.find();
 			const searchFilm = films.filter(item => 
 				item.title.toUpperCase().includes(req.body.title.toUpperCase()));
 
@@ -47,13 +47,13 @@ router.post('/filtering', async (req, res) => {
 
 			for (key in req.body) {
 				if (commonFilter.length && key === 'director') {
-					const data = await Film.find({...commonFilter}).where(key).in(req.body[key]).exec();
+					const data = await Book.find({...commonFilter}).where(key).in(req.body[key]).exec();
 					if (data.length) {
 						commonFilter = data;
 						tags.push(...req.body[key]);	
 					}
 				} else if (key === 'director') {
-					const data = await Film.find().where(key).in(req.body[key]).exec();
+					const data = await Book.find().where(key).in(req.body[key]).exec();
 					console.log(data);
 					if (data.length) {
 						commonFilter.push(...data);
@@ -79,7 +79,7 @@ router.post('/filtering', async (req, res) => {
 		};
 
 		if (req.body.popular) {
-			const films = await Film.find();
+			const films = await Book.find();
 			const popularFilms = films.sort((a, b) => b.likes - a.likes);
 			tags.push('самые популярные');
 

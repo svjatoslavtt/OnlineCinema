@@ -17,19 +17,19 @@ const schema = new Schema({
   films: [
     {
       type: Types.ObjectId,
-      ref: 'Film',
+      ref: 'Book',
     },
 	],
 	likes: [
 		{
 			type: Types.ObjectId,
-			ref: 'Film',
+			ref: 'Book',
 		},
 	],
 	ratings: [
 		{
 			type: Types.ObjectId,
-			ref: 'Film',
+			ref: 'Book',
 		},
 	],
 });

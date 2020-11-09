@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const Film = require("../models/Film");
+const Book = require("../models/Book");
 const User = require("../models/User");
 const isAuth = require("../middleware/auth.middleware");
 const router = Router();
@@ -10,7 +10,7 @@ router.post('/:filmId', isAuth,  async (req, res) => {
 		const rating = req.body.rating;
 
 		// update film data
-		const findFilm = await Film.findById(req.params.filmId);
+		const findFilm = await Book.findById(req.params.filmId);
 
 		const averageRating = ((findFilm.rating + rating) / (findFilm.ratingUsersId.length + 1)).toFixed(1);
 		

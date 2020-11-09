@@ -1,12 +1,12 @@
 const { Router } = require("express");
-const Film = require("../models/Film");
+const Book = require("../models/Book");
 const User = require("../models/User");
 
 const router = Router();
 
 router.get('/films/:userId', async (req, res) => {
 	try {
-		const films = await Film.find({ owner: req.params.userId });
+		const films = await Book.find({ owner: req.params.userId });
 		const findMyself = await User.findById(req.params.userId);
 
 		const transformFilms = [];
@@ -36,7 +36,7 @@ router.get('/films/:userId', async (req, res) => {
 router.get('/likes/:userId', async (req, res) => {
 	try {
 		const findMyself = await User.findById(req.params.userId);
-		const films = await Film.find().where('_id').in(findMyself.likes).exec();
+		const films = await Book.find().where('_id').in(findMyself.likes).exec();
 
 		const transformFilms = [];
 

@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const multer = require("multer");
 const {uuid} = require("uuidv4");
-const Film = require("../models/Film");
+const Book = require("../models/Book");
 
 const router = Router();
 
@@ -37,7 +37,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 		
 		const { userId, rating } = req.body;
 
-		const film = new Film({
+		const film = new Book({
 			...req.body,
 			owner: userId,
 			image: url + '/public/images/' + req.file.filename,

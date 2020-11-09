@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const Film = require("../models/Film");
+const Book = require("../models/Book");
 const User = require("../models/User");
 const isAuth = require("../middleware/auth.middleware");
 const router = Router();
@@ -9,14 +9,14 @@ router.post('/like/:filmId', isAuth,  async (req, res) => {
 		const userId = req.body.userId;
 
 		// update film data
-		const findFilm = await Film.findById(req.params.filmId);
+		const findFilm = await Book.findById(req.params.filmId);
 		
 		const newFilmData = {
 			likes: findFilm.likes + 1,
 			usersId: [...findFilm.usersId, userId],
 		};
 
-		const updateFilmData = await Film.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
+		const updateFilmData = await Book.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
 
 		await updateFilmData.save();
 
@@ -43,7 +43,7 @@ router.post('/dislike/:filmId', isAuth, async (req, res) => {
 		const userId = req.body.userId;
 
 		// update film data
-		const findFilm = await Film.findById(req.params.filmId);
+		const findFilm = await Book.findById(req.params.filmId);
 
 		const filmUsersId = findFilm.usersId.filter(item => item.toString() !== userId);
 		
@@ -52,7 +52,7 @@ router.post('/dislike/:filmId', isAuth, async (req, res) => {
 			usersId: [...filmUsersId],
 		};
 		
-		const updateFilmData = await Film.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
+		const updateFilmData = await Book.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
 		await updateFilmData.save();
 
 		// delete film from my likes

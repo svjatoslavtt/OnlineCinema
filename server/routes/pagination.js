@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const Film = require("../models/Film");
+const Book = require("../models/Book");
 
 const router = Router();
 
@@ -9,7 +9,7 @@ router.post('/page', async (req, res) => {
 
 		// get 10 films for current page
 		const lastIndeOfRequestFilms = Number(page + '0');
-		const films = await Film.find();
+		const films = await Book.find();
 
 		const reverseFilmsForCurrentPage = [];
 
