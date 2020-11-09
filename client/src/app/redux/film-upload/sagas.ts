@@ -9,7 +9,7 @@ import { AppRoutes } from "../../routes/routes-const";
 function* uploadFilm(action: any) {
 	try {
 		const history = { ...action.payload.history };
-		yield call(axios.post, ApiEndPoints.FILM_UPLOAD, action.payload.formData as FormData);
+		yield call(axios.post, process.env.REACT_APP_API + ApiEndPoints.FILM_UPLOAD, action.payload.formData as FormData);
 		yield history.push(AppRoutes.MY_OFFICE);
 	} catch (err) {
 		yield put(Actions.uploadFilmFailed(err));

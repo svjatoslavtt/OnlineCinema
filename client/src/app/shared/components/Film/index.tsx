@@ -11,10 +11,9 @@ type FilmTypes = {
 	id: string;
 	averageRating: number;
 	owner?: string;
-	likes: number;
-}
+};
 
-const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id, likes }) => {
+const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
 	const history = useHistory();
 
 	const handlerDedailedRedirect = () => {
@@ -28,6 +27,8 @@ const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id, likes }) =
 					<img src={image} alt="movie"/>
 				</div>
 			</div>
+
+			<div className={styles.filmRatingAsNumer}>{averageRating.toFixed(1)}</div>
 
 			<div className={styles.filmData}>
 				<div className={styles.filmTitle}>{title}</div>

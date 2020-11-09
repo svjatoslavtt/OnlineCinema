@@ -31,11 +31,20 @@ const FilmDetailed: React.FC = () => {
 		dispatch(Actions.getCurrentFilmRequest({filmId}));
 	}, [dispatch, filmId]);
 
-	const handlerChangeRating = (_: React.ChangeEvent<{}>, newValue: number | null) => {
-		if (token) {
-			dispatch(Actions.rateFilmRequest({ filmId, rating: newValue, token}));
-		}
-	};
+	const handlerChangeRating = useCallback(
+		_.debounce(
+			(_: React.ChangeEvent<{}>, newValue: number | null) => {
+				if (token) {
+					dispatch(Actions.rateFilmRequest({ filmId, rating: newValue, token }));
+				}
+			}, 
+			500, 
+			{
+				leading: true,
+				trailing: false,
+			}
+			
+	), [isLike, token]);
 
 	const handlerSetRating = () => !token && setError('Нужно авторизоваться!');
 
@@ -44,9 +53,9 @@ const FilmDetailed: React.FC = () => {
 			() => {
 				if (token) {
 					if (isLike) {
-						dispatch(Actions.dislikeFilmRequest({filmId, token}));
+						dispatch(Actions.dislikeFilmRequest({ filmId, token }));
 					} else {
-						dispatch(Actions.likeFilmRequest({filmId, token}));
+						dispatch(Actions.likeFilmRequest({ filmId, token }));
 					}
 				} else {
 					setError('Нужно авторизоваться!');

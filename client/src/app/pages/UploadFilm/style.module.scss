@@ -16,6 +16,10 @@
 	position: relative;
 }
 
+.uploadFilmImageWrapper {
+	margin-bottom: 30px;
+}
+
 .uploadFilmFields {
 	width: 48%;
 }
@@ -23,6 +27,7 @@
 .uploadFilmRating {
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
 	margin-bottom: 40px;
 }
 
@@ -69,4 +74,18 @@
 
 .inputUploadFile {
 	display: none;
+}
+
+@media all and (max-width: 700px) {
+	.uploadFilmWrapper {
+		flex-direction: column;
+	}
+
+	.uploadFilmImage {
+		max-width: 100%;
+	}
+
+	.uploadFilmFields {
+		width: 100%;
+	}
 }

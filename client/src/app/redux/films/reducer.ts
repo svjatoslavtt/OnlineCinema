@@ -13,7 +13,6 @@ export const filmsInitialState: FilmsState = {
 };
 
 export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
-	console.log(action);
 	switch (action.type) {
 		case ActionTypes.GET_FILMS_SUCCESS: 
 			return {

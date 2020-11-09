@@ -4,6 +4,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
+import animateScrollTo from 'animated-scroll-to';
 
 import styles from './style.module.scss';
 
@@ -15,13 +16,21 @@ enum SwitchPageEnum {
 	PREV = -1,
 };
 
+enum HelperButtonsEnum {
+	START = 'START',
+	FINISH = 'FINISH',
+};
+
 const Pagination: React.FC = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const pagination = useSelector(getPagination);
 
+	const isPagination: boolean = pagination && pagination.pages && pagination.pages.length;
+
 	const handlerPageRequest = (page: number) => {
 		if (pagination.currentPage !== page) {
+			scrollToTop();
 			dispatch(Actions.getCurrentPageRequest({ page }));
 		};
 
@@ -33,25 +42,61 @@ const Pagination: React.FC = () => {
 		});
 	};
 
-	const handlerSwitchButtons = (number: number) => {
-		dispatch(Actions.getCurrentPageRequest({ page: pagination.currentPage + (number) }));
+	const scrollToTop = () => {
+    animateScrollTo(window.pageYOffset - window.pageYOffset, {speed: 300, maxDuration: 1000, minDuration: 100});
+	};
+
+	const handlerHelperButton = (number: number) => {
+		scrollToTop();
+
+		history.replace({
+			pathname: history.location.pathname,
+			search: queryString.stringify({ page: number }),
+		});
+
+		return dispatch(Actions.getCurrentPageRequest({ page: number }));
+	};
+
+	const handlerSwitchButtons = (number: number, side?: HelperButtonsEnum) => {
+		if (side) {
+			switch (side) {
+				case HelperButtonsEnum.START:
+					handlerHelperButton(1);
+					
+					break;
+				case HelperButtonsEnum.FINISH:
+					handlerHelperButton(isPagination && pagination.lastPage);
+					break;
+			};
+			return false;
+		};
+
+		scrollToTop();
 
 		history.replace({
 			pathname: history.location.pathname,
 			search: queryString.stringify({ page: pagination.currentPage + (number) }),
 		});
+
+		dispatch(Actions.getCurrentPageRequest({ page: pagination.currentPage + (number) }));
 	};
 
 	return (
 		<div className={styles.paginationContainer}>
 			<div className={styles.paginationBlock}>
-				{pagination && pagination.currentPage !== 1 && (
+				{isPagination && pagination.currentPage !== pagination.pages[0] && (
+					<div className={styles.paginationLastPage} onClick={() => handlerSwitchButtons(1, HelperButtonsEnum.START)}>
+						Первая страница
+					</div>
+				)}
+
+				{isPagination && pagination.currentPage !== 1 && (
 					<div className={styles.paginationPageNextPrev} onClick={() => handlerSwitchButtons(SwitchPageEnum.PREV)}>
 						<NavigateBeforeIcon />
 					</div>
 				)}
 				
-				{pagination && pagination.pages && pagination.pages &&
+				{pagination && pagination.pages && pagination.pages.length !== 1 &&
 					pagination.pages.map((item: number) => {
 						const key = Math.round(Math.random() * 9999)
 						if (item === (pagination && pagination.currentPage)) {
@@ -70,9 +115,15 @@ const Pagination: React.FC = () => {
 					})
 				}
 
-				{pagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] && (
+				{isPagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] && (
 					<div className={styles.paginationPageNextPrev} onClick={() => handlerSwitchButtons(SwitchPageEnum.NEXT)}>
 						<NavigateNextIcon />
+					</div>
+				)}
+
+				{isPagination && pagination.currentPage !== pagination.pages[pagination.pages.length - 1] && (
+					<div className={styles.paginationLastPage} onClick={() => handlerSwitchButtons(pagination.pages[pagination.pages.length - 1], HelperButtonsEnum.FINISH)}>
+						Последня страница
 					</div>
 				)}
 			</div>

@@ -11,14 +11,12 @@ import MyOffice from './pages/MyOffice';
 import UploadFilm from './pages/UploadFilm';
 import FilmDetailed from './pages/FilmDetailed';
 import UserProfile from './pages/UserProfile';
-import Filter from './shared/components/Filter';
 import EditFilm from './pages/EditFilm';
 
 const App: React.FC = () => {
   return (
     <>
       <NavBar />
-			<Filter />
       <Switch>
         <Route exact={true} path={AuthRoutes.SIGN_IN} component={SignIn} />
         <Route exact={true} path={AuthRoutes.SIGN_UP} component={SignUp} />

@@ -52,7 +52,6 @@ function* likeFilm(action: any) {
 		const data = yield call(request, ApiEndPoints.LIKE_FILM + '/' + action.payload.filmId, 'POST', {userId}, {
 			Authorization: `Bearer ${action.payload.token}`,
 	});
-		console.log(data);
 		yield put(Actions.likeFilmSuccess(data)); 
 	} catch (err) {
 		yield put(Actions.likeFilmFailed(err));
@@ -100,7 +99,7 @@ function* getCurrentPage(action: any) {
 function* editFilm(action: any) {
 	try {
 		const history = { ...action.payload.history };
-		yield call(axios.post, ApiEndPoints.EDIT_FILM, action.payload.formData as FormData);
+		yield call(axios.post, process.env.REACT_APP_API + ApiEndPoints.EDIT_FILM, action.payload.formData as FormData);
 		yield history.push(AppRoutes.FILM_DETAILED + '/' + action.payload.id);
 	} catch (err) {
 		yield put(Actions.editFilmFailed(err));

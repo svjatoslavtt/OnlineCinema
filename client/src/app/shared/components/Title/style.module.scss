@@ -34,7 +34,6 @@
 	background-color: $button;
 	color: $lightGrey;
 	font-size: 15px;
-	transition: all .1s ease-in-out;
 	cursor: pointer;
 
 	&:hover {
@@ -49,4 +48,17 @@
 	border-radius: 5px;
 	padding: 2px 12px;
 	margin-right: 15px;
+}
+
+@media all and (max-width: 500px) {
+	.mobile {
+		border-radius: 100%;
+    padding: initial;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+		text-align: center;
+	}
 }

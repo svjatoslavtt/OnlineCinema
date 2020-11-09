@@ -31,6 +31,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 	const history = useHistory();
 	const uploadFileElement = useRef<HTMLInputElement>(null);
 	const currentFilm = useSelector(getCurrentFilm);
+
 	const [showUploadImage, setShowUploadImage] = useState<string | null | ArrayBuffer>('');
 	const [filmAvatar, setFilmAvatar] = useState('');
 	const [error, setError] = useState('');
@@ -65,7 +66,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 	};
 
 	useEffect(() => {
-		if (currentFilm) {
+		if (currentFilm && filmId) {
 			toDataURL(currentFilm.image);
 
 			setFields({
@@ -75,7 +76,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 				rating: currentFilm.rating,
 			});
 		} 
-	}, [currentFilm]);
+	}, [currentFilm, filmId]);
 
 	useEffect(() => {
 		if (history.location.pathname === AppRoutes.UPLOAD_FILM) {
@@ -120,8 +121,8 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 
 		const isEmpty = Object.values(fields).some((item) => item === '' || item === 0 || !item);
 
-		if (isEmpty) {
-			return setError('Все поля должны быть заполены!')
+		if (isEmpty || !filmAvatar) {
+			return setError('Все поля должны быть заполнены!')
 		};
 
 		const id: string = JSON.parse(localStorage.getItem('id') as string);
@@ -130,14 +131,17 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 
 		if (filmAvatar) {
 			formData.append('file', filmAvatar);
-		}
+		};
 		
 		formData.append('title', fields.title);
 		formData.append('description', fields.description);
 		formData.append('director', fields.director);
 		formData.append('rating', String(fields.rating));
 		formData.append('userId', id);
-		formData.append('filmId', filmId as string);
+
+		if (filmId) {
+			formData.append('filmId', filmId as string);
+		};
 		
 		if (filmId) {
 			dispatch(FilmsActions.editFilmRequest({ formData, id: filmId, history }));
@@ -158,7 +162,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 					<div className={styles.uploadFilmImageWrapper}>
 						<span className={styles.uploadFilmText}>Загрузите картинку для фильма</span>	
 						<div className={styles.uploadFilmImage}>
-							{showUploadImage && currentFilm ? (
+							{showUploadImage || (showUploadImage && currentFilm) ? (
 								<img src={showUploadImage as string} alt="avatar" />
 							) : (
 								<span>avatar</span> 

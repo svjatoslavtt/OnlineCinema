@@ -68,7 +68,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 				)}
 				<div className={styles.filmsContainer}>
 					{data && data.length ? 
-						data.map(({ id, title, averageRating, image, owner, likes }) => {
+						data.map(({ id, title, averageRating, image, owner }) => {
 							return (
 								<Film 
 									key={`${id}-${Math.round(Math.random() * 10000)}`}
@@ -77,7 +77,6 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 									image={image}
 									id={id}
 									owner={owner}
-									likes={likes}
 							/>
 							)
 						}) : null

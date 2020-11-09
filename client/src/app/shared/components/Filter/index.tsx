@@ -154,7 +154,7 @@ const Filter: React.FC = () => {
 
 							<div className={styles.inputsWrapper}>
 								{directors && 
-									directors.length &&
+									directors.length ?
 										directors.map((item: any, index: number) => {
 											const inputKey = `director-input-${index}-${Math.round(Math.random() * 99999)}`;
 
@@ -170,7 +170,7 @@ const Filter: React.FC = () => {
 												/>
 												</div>
 											)
-										})		
+										}) : <div>Пусто</div>
 								}
 							</div>
 						</div>
