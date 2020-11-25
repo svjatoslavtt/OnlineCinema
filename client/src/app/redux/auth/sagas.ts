@@ -3,7 +3,7 @@ import { call, put, all, takeEvery } from 'redux-saga/effects'
 import {Actions, ActionTypes} from "./actions";
 
 import {ApiEndPoints} from "../../routes/api-routes-const";
-import {request} from "../../shared/hooks/request";
+import {request} from "../../shared/utils/request";
 
 import {AppRoutes, AuthRoutes} from "../../routes/routes-const";
 import { LoginInputs } from '../../shared/interfaces/auth.interface';

@@ -1,6 +1,6 @@
 import { call, put, takeEvery, all } from "redux-saga/effects";
 import { ApiEndPoints } from "../../routes/api-routes-const";
-import { request } from "../../shared/hooks/request";
+import { request } from "../../shared/utils/request";
 import { Actions, ActionTypes } from "./actions";
 
 function* getUserProfileFilms(action: any) {

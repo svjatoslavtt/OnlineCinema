@@ -3,7 +3,7 @@ import { all, call, put, takeEvery } from "redux-saga/effects";
 import { ApiEndPoints } from "../../routes/api-routes-const";
 import { AppRoutes } from "../../routes/routes-const";
 
-import { request } from "../../shared/hooks/request";
+import { request } from "../../shared/utils/request";
 import { Actions, ActionTypes } from "./action";
 
 function* getFilms() {
