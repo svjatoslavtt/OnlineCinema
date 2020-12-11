@@ -1,6 +1,6 @@
 {
   "port": 5000,
   "jwtSecret": "svyatoslavtt online-cinema",
-  "baseUrl": "https://still-wildwood-95504.herokuapp.com",
+  "baseUrl": "http://localhost:5000/",
   "mongoUri": "mongodb+srv://svyatoslavtt:01291997svjat@cluster0.wkxgk.mongodb.net/app?retryWrites=true&w=majority"
 }

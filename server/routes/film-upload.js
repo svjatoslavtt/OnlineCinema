@@ -31,10 +31,8 @@ let upload = multer({
 
 router.post('/', upload.single('file'), async (req, res) => {
 	try {
-		const url = 'https://' + req.get('host');
+		const url = 'http://' + req.get('host');
 
-		console.log(url);
-		
 		const { userId, rating } = req.body;
 
 		const film = new Book({
