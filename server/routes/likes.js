@@ -4,19 +4,19 @@ const User = require("../models/User");
 const isAuth = require("../middleware/auth.middleware");
 const router = Router();
 
-router.post('/like/:filmId', isAuth,  async (req, res) => {
+router.post('/like/:bookId', isAuth,  async (req, res) => {
 	try {
 		const userId = req.body.userId;
 
 		// update film data
-		const findFilm = await Book.findById(req.params.filmId);
+		const findFilm = await Book.findById(req.params.bookId);
 		
 		const newFilmData = {
 			likes: findFilm.likes + 1,
 			usersId: [...findFilm.usersId, userId],
 		};
 
-		const updateFilmData = await Book.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
+		const updateFilmData = await Book.findByIdAndUpdate(req.params.bookId, newFilmData, { new: true });
 
 		await updateFilmData.save();
 
@@ -38,12 +38,12 @@ router.post('/like/:filmId', isAuth,  async (req, res) => {
 	}
 });
 
-router.post('/dislike/:filmId', isAuth, async (req, res) => {
+router.post('/dislike/:bookId', isAuth, async (req, res) => {
 	try {
 		const userId = req.body.userId;
 
 		// update film data
-		const findFilm = await Book.findById(req.params.filmId);
+		const findFilm = await Book.findById(req.params.bookId);
 
 		const filmUsersId = findFilm.usersId.filter(item => item.toString() !== userId);
 		
@@ -52,13 +52,13 @@ router.post('/dislike/:filmId', isAuth, async (req, res) => {
 			usersId: [...filmUsersId],
 		};
 		
-		const updateFilmData = await Book.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
+		const updateFilmData = await Book.findByIdAndUpdate(req.params.bookId, newFilmData, { new: true });
 		await updateFilmData.save();
 
 		// delete film from my likes
 		const findMyself = await User.findById(userId);
 
-		const deleteFilmFromMyLikes = findMyself.likes.filter(item => item.toString() !== req.params.filmId);
+		const deleteFilmFromMyLikes = findMyself.likes.filter(item => item.toString() !== req.params.bookId);
 
 		const myNewData = {
 			likes: [...deleteFilmFromMyLikes],

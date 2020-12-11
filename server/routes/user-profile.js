@@ -27,7 +27,7 @@ router.get('/films/:userId', async (req, res) => {
 			id: req.params.userId,
 		};
 
-		return res.status(200).json({ message: 'Фильмы получены успешно', films: transformFilms.reverse(), user });
+		return res.status(200).json({ message: 'Книги получены успешно', films: transformFilms.reverse(), user });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
@@ -51,7 +51,7 @@ router.get('/likes/:userId', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Понравившееся фильмы получены успешно', films: transformFilms.reverse() });
+		return res.status(200).json({ message: 'Понравившееся книги получены успешно', films: transformFilms.reverse() });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}

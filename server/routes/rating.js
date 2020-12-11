@@ -4,13 +4,13 @@ const User = require("../models/User");
 const isAuth = require("../middleware/auth.middleware");
 const router = Router();
 
-router.post('/:filmId', isAuth,  async (req, res) => {
+router.post('/:bookId', isAuth,  async (req, res) => {
 	try {
 		const userId = req.body.userId;
 		const rating = req.body.rating;
 
 		// update film data
-		const findFilm = await Book.findById(req.params.filmId);
+		const findFilm = await Book.findById(req.params.bookId);
 
 		const averageRating = ((findFilm.rating + rating) / (findFilm.ratingUsersId.length + 1)).toFixed(1);
 		
@@ -20,7 +20,7 @@ router.post('/:filmId', isAuth,  async (req, res) => {
 			ratingUsersId: [...findFilm.ratingUsersId, { userId, rating }],
 		};
 
-		const updateFilmData = await Film.findByIdAndUpdate(req.params.filmId, newFilmData, { new: true });
+		const updateFilmData = await Film.findByIdAndUpdate(req.params.bookId, newFilmData, { new: true });
 
 		await updateFilmData.save();
 
