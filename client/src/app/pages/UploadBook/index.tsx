@@ -14,6 +14,7 @@ import Title from '../../shared/components/Title';
 import { Actions } from '../../redux/books/action';
 import { getCurrentFilm } from '../../redux/books/selectors';
 import { AppRoutes } from '../../routes/routes-const';
+import image404 from '../../static/images/image404.jpg';
 
 type UploadFields = {
 	title: string;
@@ -163,7 +164,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ filmId }) => {
 						<span className={styles.uploadFilmText}>Загрузите картинку для фильма</span>	
 						<div className={styles.uploadFilmImage}>
 							{showUploadImage || (showUploadImage && currentFilm) ? (
-								<img src={showUploadImage as string} alt="avatar" />
+								<img src={showUploadImage as string || image404} alt="avatar" />
 							) : (
 								<span>avatar</span> 
 							)}

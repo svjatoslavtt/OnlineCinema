@@ -14,6 +14,7 @@ import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
 import { getAuthToken } from '../../redux/auth/selectors';
 import { AppRoutes } from '../../routes/routes-const';
+import image404 from '../../static/images/image404.jpg';
 
 const FilmDetailed: React.FC = () => {
 	const history = useHistory();
@@ -83,7 +84,7 @@ const FilmDetailed: React.FC = () => {
 				<div className={styles.imageBlock}>
 					<div className={styles.imageWrapper}>
 						{!loading && (
-							<img src={currentFilm?.image} alt={currentFilm?.title} />
+							<img src={currentFilm?.image || image404} alt={currentFilm?.title} />
 						)}
 						{isOwner && (
 							<div className={styles.editFilm} onClick={handlerEditFilm}>

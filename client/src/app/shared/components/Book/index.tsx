@@ -4,6 +4,7 @@ import Rating from '@material-ui/lab/Rating';
 import styles from './style.module.scss';
 import { useHistory } from 'react-router-dom';
 import { AppRoutes } from '../../../routes/routes-const';
+import image404 from '../../../static/images/image404.jpg';
 
 type FilmTypes = {
 	title: string;
@@ -24,7 +25,7 @@ const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
 		<div className={styles.filmContainer} onClick={handlerDedailedRedirect}>
 			<div className={styles.imageContainer}>
 				<div className={styles.filmImage}>
-					<img src={image} alt="movie"/>
+					<img src={undefined || image404} alt="movie"/>
 				</div>
 			</div>
 
