@@ -20,7 +20,7 @@ const FilmDetailed: React.FC = () => {
 	const history = useHistory();
 	const [error, setError] = useState('');
 	const [ratingHoverValue, setRatingHoverValue] = useState<number | null>(0);
-	const { filmId }: { filmId: string } = useParams();
+	const { bookId }: { bookId: string } = useParams();
 	const dispatch = useDispatch();
 	const currentFilm = useSelector(getCurrentFilm);
 	const loading = useSelector(getLoading);
@@ -29,14 +29,14 @@ const FilmDetailed: React.FC = () => {
 	const token = useSelector(getAuthToken);
 
 	useEffect(() => {
-		dispatch(Actions.getCurrentBookRequest({ filmId }));
-	}, [dispatch, filmId]);
+		dispatch(Actions.getCurrentBookRequest({ bookId }));
+	}, [dispatch, bookId]);
 
 	const handlerChangeRating = useCallback(
 		_.debounce(
 			(_: React.ChangeEvent<{}>, newValue: number | null) => {
 				if (token) {
-					dispatch(Actions.rateBookRequest({ filmId, rating: newValue, token }));
+					dispatch(Actions.rateBookRequest({ bookId, rating: newValue, token }));
 				}
 			}, 
 			500, 
@@ -54,9 +54,9 @@ const FilmDetailed: React.FC = () => {
 			() => {
 				if (token) {
 					if (isLike) {
-						dispatch(Actions.dislikeBookRequest({ filmId, token }));
+						dispatch(Actions.dislikeBookRequest({ bookId, token }));
 					} else {
-						dispatch(Actions.likeBookRequest({ filmId, token }));
+						dispatch(Actions.likeBookRequest({ bookId, token }));
 					}
 				} else {
 					setError('Нужно авторизоваться!');
@@ -73,7 +73,7 @@ const FilmDetailed: React.FC = () => {
 	const isOwner = currentFilm?.owner.id === JSON.parse(localStorage.getItem('id') as string);
 
 	const handlerEditFilm = () => {
-		history.push(AppRoutes.EDIT_BOOK + '/' + filmId);
+		history.push(AppRoutes.EDIT_BOOK + '/' + bookId);
 	};
 
 	return (
@@ -101,7 +101,7 @@ const FilmDetailed: React.FC = () => {
 							<div className={styles.director}>{`Режисёр: ${currentFilm?.director}`}</div>
 							<div className={styles.rating}>
 								<span className={styles.ratingCounter}>
-									{`Рейтинг фильма: ${currentFilm?.averageRating}`}
+									{`Рейтинг книги: ${currentFilm?.averageRating}`}
 									<span className={styles.peopleRated}>{`(голосов: ${currentFilm?.peopleRated})`}</span>
 								</span>
 								<div onClick={handlerSetRating}>	

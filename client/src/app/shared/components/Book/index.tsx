@@ -25,7 +25,7 @@ const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
 		<div className={styles.filmContainer} onClick={handlerDedailedRedirect}>
 			<div className={styles.imageContainer}>
 				<div className={styles.filmImage}>
-					<img src={undefined || image404} alt="movie"/>
+					<img src={image || image404} alt="movie"/>
 				</div>
 			</div>
 

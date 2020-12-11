@@ -21,8 +21,8 @@ const App: React.FC = () => {
         <Route exact={true} path={AuthRoutes.SIGN_IN} component={SignIn} />
         <Route exact={true} path={AuthRoutes.SIGN_UP} component={SignUp} />
 				<Route exact={true} path={AppRoutes.NEWS_FEED} component={Home} />
-				<Route exact={true} path={AppRoutes.EDIT_BOOK + '/:filmId'} component={EditBook} />
-				<Route exact={true} path={AppRoutes.BOOK_DETAILED + '/:filmId'} component={BookDetailed} />
+				<Route exact={true} path={AppRoutes.EDIT_BOOK + '/:bookId'} component={EditBook} />
+				<Route exact={true} path={AppRoutes.BOOK_DETAILED + '/:bookId'} component={BookDetailed} />
 				<Route exact={true} path={AppRoutes.USER_PROFILE + '/:userId'} component={UserProfile} />
 				<PrivateRoute exact={true} path={AppRoutes.MY_OFFICE} component={MyOffice} />
 				<PrivateRoute exact={true} path={AppRoutes.UPLOAD_BOOK} component={UploadBook} />

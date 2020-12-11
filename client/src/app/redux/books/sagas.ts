@@ -37,9 +37,9 @@ function* getMyLikes() {
 
 function* getCurrentFilm(action: any) {
 	try {
-		const filmId = action.payload.filmId;
+		const bookId = action.payload.bookId;
 		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
-		const data = yield call(request, ApiEndPoints.GET_CURRENT_FILM + '/' + filmId, 'POST', {userId});
+		const data = yield call(request, ApiEndPoints.GET_CURRENT_FILM + '/' + bookId, 'POST', {userId});
 		yield put(Actions.getCurrentBookSuccess(data));
 	} catch (err) {
 		yield put(Actions.getCurrentBookFailed(err));
@@ -49,7 +49,7 @@ function* getCurrentFilm(action: any) {
 function* likeFilm(action: any) {
 	try {
 		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
-		const data = yield call(request, ApiEndPoints.LIKE_FILM + '/' + action.payload.filmId, 'POST', {userId}, {
+		const data = yield call(request, ApiEndPoints.LIKE_FILM + '/' + action.payload.bookId, 'POST', {userId}, {
 			Authorization: `Bearer ${action.payload.token}`,
 	});
 		yield put(Actions.likeBookSuccess(data)); 
@@ -61,7 +61,7 @@ function* likeFilm(action: any) {
 function* dislikeFilm(action: any) {
 	try {
 		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
-		const data = yield call(request, ApiEndPoints.DISLIKE_FILM + '/' + action.payload.filmId, 'POST', {userId}, {
+		const data = yield call(request, ApiEndPoints.DISLIKE_FILM + '/' + action.payload.bookId, 'POST', {userId}, {
 			Authorization: `Bearer ${action.payload.token}`,
 	});
 		yield put(Actions.dislikeBookSuccess(data)); 
@@ -73,7 +73,7 @@ function* dislikeFilm(action: any) {
 function* rateFilm(action: any) {
 	try {
 		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
-		const data = yield call(request, ApiEndPoints.RATE_FILM + '/' + action.payload.filmId, 'POST', 
+		const data = yield call(request, ApiEndPoints.RATE_FILM + '/' + action.payload.bookId, 'POST', 
 		{
 			userId, 
 			rating: action.payload.rating

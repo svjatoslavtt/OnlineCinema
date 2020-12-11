@@ -53,19 +53,19 @@ export const Actions = {
 	getMyLikesSuccess: (payload: any) => action(ActionTypes.GET_MY_LIKES_SUCCESS, payload),
 	getMyLikesFailed: (payload: { message: string }) => action(ActionTypes.GET_MY_LIKES_FAILED, payload),
 
-	getCurrentBookRequest: (payload: { filmId: string }) => action(ActionTypes.GET_CURRENT_BOOK_REQUEST, payload),
+	getCurrentBookRequest: (payload: { bookId: string }) => action(ActionTypes.GET_CURRENT_BOOK_REQUEST, payload),
 	getCurrentBookSuccess: (payload: any) => action(ActionTypes.GET_CURRENT_BOOK_SUCCESS, payload),
 	getCurrentBookFailed: (payload: { message: string }) => action(ActionTypes.GET_CURRENT_BOOK_FAILED, payload),
 
-	likeBookRequest: (payload: { filmId: string, token: string }) => action(ActionTypes.LIKE_BOOK_REQUEST, payload), 
+	likeBookRequest: (payload: { bookId: string, token: string }) => action(ActionTypes.LIKE_BOOK_REQUEST, payload), 
 	likeBookSuccess: (payload: any) => action(ActionTypes.LIKE_BOOK_SUCCESS, payload), 
 	likeBookFailed: (payload: { message: string }) => action(ActionTypes.LIKE_BOOK_FAILED, payload), 
 
-	dislikeBookRequest: (payload: { filmId: string, token: string }) => action(ActionTypes.DISLIKE_BOOK_REQUEST, payload), 
+	dislikeBookRequest: (payload: { bookId: string, token: string }) => action(ActionTypes.DISLIKE_BOOK_REQUEST, payload), 
 	dislikeBookSuccess: (payload: any) => action(ActionTypes.DISLIKE_BOOK_SUCCESS, payload), 
 	dislikeBookFailed: (payload: { message: string }) => action(ActionTypes.DISLIKE_BOOK_FAILED, payload), 
 
-	rateBookRequest: (payload: { filmId: string, rating: number | null, token: string }) => action(ActionTypes.RATE_BOOK_REQUEST, payload), 
+	rateBookRequest: (payload: { bookId: string, rating: number | null, token: string }) => action(ActionTypes.RATE_BOOK_REQUEST, payload), 
 	rateBookSuccess: (payload: any) => action(ActionTypes.RATE_BOOK_SUCCESS, payload), 
 	rateBookFailed: (payload: { message: string }) => action(ActionTypes.RATE_BOOK_FAILED, payload),
 

@@ -24,7 +24,7 @@ const UserProfile: React.FC = () => {
 
 	return (
 		<div className={styles.myOfficeContainer}>
-			<Categorie title='Загруженные фильмы' goBack={true} data={userFilms} />
+			<Categorie title='Загруженные книги' goBack={true} data={userFilms} />
 			<Categorie title='Лайки' heartSvg={true} data={userLikes} />
 		</div>
 	)
