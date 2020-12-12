@@ -8,9 +8,28 @@
 }
 
 .logo {
-	font-size: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	font-size: 52px;
 	color: #fff;
-	font-family: $bold;
+	font-family: 'Raleway-LightItalic';
+	background: #009688;
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+
+	&::after {
+		content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #009688;
+    bottom: -2px;
+    transform: rotate(45deg);
+    border-radius: 4%;
+	}
 }
 
 .formContainer {
