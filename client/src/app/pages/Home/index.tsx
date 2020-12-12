@@ -43,7 +43,7 @@ const NewsFeed: React.FC = () => {
 			<NavBar />
 			<div className={styles.newsFeedContainer}>
 				<Categorie title='Все книги' data={booksState} newsFeed={true} />
-				{!filterBooks && <Pagination />}
+				{/* {!filterBooks && <Pagination />} */}
 			</div>
 			<Filter />
 		</>
