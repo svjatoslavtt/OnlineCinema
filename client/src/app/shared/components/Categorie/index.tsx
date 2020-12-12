@@ -37,9 +37,9 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadBook
 	return (
 		<div className={loadingStyle.join(' ')}>
 			
-			{/* <Title title={title} heartSvg={heartSvg} uploadBook={uploadBook} goBack={goBack} newsFeed={newsFeed} /> */}
+			<Title title={title} heartSvg={heartSvg} uploadBook={uploadBook} goBack={goBack} newsFeed={newsFeed} />
 
-			{/* {title === 'Все книги' && tags && tags.length && (
+			{title === 'Все книги' && tags && tags.length && (
 				<div className={styles.tagsBlock}>
 					<div className={styles.tagsTitle}>Поиск по:</div>
 					<div className={styles.tagsWrapper}>
@@ -57,9 +57,9 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadBook
 						<CloseIcon />
 					</div>
 				</div>
-			)} */}
+			)}
 
-		{/* <div className={styles.categorieBooksWrapper}>
+		<div className={styles.categorieBooksWrapper}>
 				{loading && (
 					<div className={styles.loadingBlock}>
 						<span>Загрузка...</span>
@@ -84,7 +84,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadBook
 						<div className={styles.emptyData}>Книг пока нет</div>
 					)}
 				</div>
-			</div> */}
+			</div>
 		</div>
 	)
 }

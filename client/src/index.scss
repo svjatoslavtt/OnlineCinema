@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 }
 
-div, span, body, html {
+div, span, body, html, ul, li {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@ body {
   width: 100%;
 	margin: 0 auto;
 	padding: 0 3%;
-  background: $lightGrey;
+  background: #fff;
   font-family: $regular;
   color: $darkGrey;
 	letter-spacing: 0.5px;
@@ -49,4 +49,8 @@ a {
 svg {
 	cursor: pointer;
 	fill: $darkGrey;
+}
+
+ul {
+	list-style: none;
 }
