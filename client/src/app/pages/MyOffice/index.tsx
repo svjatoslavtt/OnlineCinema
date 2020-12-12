@@ -5,6 +5,7 @@ import Categorie from '../../shared/components/Categorie';
 import { useDispatch, useSelector } from 'react-redux';
 import { Actions } from '../../redux/books/action';
 import { getMyFilms, getMyLikes } from '../../redux/books/selectors';
+import NavBar from '../../shared/components/NavBar';
 
 const MyOffice: React.FC = () => {
 	const dispatch = useDispatch();
@@ -17,10 +18,13 @@ const MyOffice: React.FC = () => {
 	}, [dispatch]);
 
 	return (
-		<div className={styles.myOfficeContainer}>
-			<Categorie title='Загруженные книги' uploadFilm={true} data={myOwnFilms} />
-			<Categorie title='Мои лайки' heartSvg={true} data={myLikesFilms} />
-		</div>
+		<>
+			<NavBar />
+			<div className={styles.myOfficeContainer}>
+				<Categorie title='Загруженные книги' uploadFilm={true} data={myOwnFilms} />
+				<Categorie title='Мои лайки' heartSvg={true} data={myLikesFilms} />
+			</div>
+		</>
 	)
 }
 

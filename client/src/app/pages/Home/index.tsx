@@ -10,6 +10,7 @@ import Pagination from "../../shared/components/Pagination";
 import styles from "./style.module.scss";
 import { useHistory } from "react-router-dom";
 import Filter from "../../shared/components/Filter";
+import NavBar from "../../shared/components/NavBar";
 
 const NewsFeed: React.FC = () => {
 	const history = useHistory();
@@ -39,6 +40,7 @@ const NewsFeed: React.FC = () => {
 	
   return (
 		<>
+			<NavBar />
 			<div className={styles.newsFeedContainer}>
 				<Categorie title='Все книги' data={filmsState} newsFeed={true} />
 				{!filterFilms && <Pagination />}

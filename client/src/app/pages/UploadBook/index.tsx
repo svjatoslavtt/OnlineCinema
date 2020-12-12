@@ -15,6 +15,7 @@ import { Actions } from '../../redux/books/action';
 import { getCurrentFilm } from '../../redux/books/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
+import NavBar from '../../shared/components/NavBar';
 
 type UploadFields = {
 	title: string;
@@ -155,68 +156,71 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 	};
 
 	return (
-		<div className={styles.uploadFilm}>
-			<Title title='Загрузить книгу' goBack={true} />
+		<>
+			<NavBar />
+			<div className={styles.uploadFilm}>
+				<Title title='Загрузить книгу' goBack={true} />
 
-			<div style={{position: 'relative'}}>
-				<form className={styles.uploadFilmWrapper} onSubmit={handlerSubmit}>
-					<div className={styles.uploadFilmImageWrapper}>
-						<span className={styles.uploadFilmText}>Загрузите картинку для книги</span>	
-						<div className={styles.uploadFilmImage}>
-							{showUploadImage || (showUploadImage && currentFilm) ? (
-								<img src={showUploadImage as string || image404} alt="avatar" />
-							) : (
-								<span>avatar</span> 
-							)}
-						</div>
-						<input 
-							ref={uploadFileElement} 
-							type='file' 
-							name='image' 
-							accept="image/*" 
-							onChange={handlerUploadImage} 
-							className={styles.inputUploadFile}
-							onClick={handlerUseInputFile}
-						/>
-						<Button text='Загрузить' onClick={handlerUseInputFile} />
-					</div>
-
-					<div className={styles.uploadFilmFields}>
-						<div className={styles.filed}>
-							<label htmlFor='upload-input-1' className={styles.uploadFilmText}>Название</label>
-							<input id='upload-input-1' type='text' name='title' maxLength={50} value={fields.title} onChange={handlerChangeField} />
-						</div>
-
-						<div className={styles.filed}>
-							<label htmlFor='upload-input-2' className={styles.uploadFilmText}>Описание</label>
-							<textarea id='upload-input-2' name='description' maxLength={500} value={fields.description} onChange={handlerChangeField} />
-						</div>
-
-						<div className={styles.filed}>
-							<label htmlFor='upload-input-3' className={styles.uploadFilmText}>Автор</label>
-							<input id='upload-input-3' type='text' name='director' maxLength={50} value={fields.director} onChange={handlerChangeField} />
-						</div>
-
-						<div className={styles.uploadFilmRating}>
-							<span className={styles.uploadFilmText}>Выберите рейтинг книги</span>
-							<Rating
-								name='simple-controlled'
-								value={fields.rating}
-								onChange={(_, newValue) => {
-									setFields(prevState => ({
-										...prevState,
-										rating: newValue,
-									}));
-								}}
+				<div style={{position: 'relative'}}>
+					<form className={styles.uploadFilmWrapper} onSubmit={handlerSubmit}>
+						<div className={styles.uploadFilmImageWrapper}>
+							<span className={styles.uploadFilmText}>Загрузите картинку для книги</span>	
+							<div className={styles.uploadFilmImage}>
+								{showUploadImage || (showUploadImage && currentFilm) ? (
+									<img src={showUploadImage as string || image404} alt="avatar" />
+								) : (
+									<span>avatar</span> 
+								)}
+							</div>
+							<input 
+								ref={uploadFileElement} 
+								type='file' 
+								name='image' 
+								accept="image/*" 
+								onChange={handlerUploadImage} 
+								className={styles.inputUploadFile}
+								onClick={handlerUseInputFile}
 							/>
+							<Button text='Загрузить' onClick={handlerUseInputFile} />
 						</div>
 
-						<Button text='Сохранить' type={ButtonTypesEnum.SUBMIT} onClick={handlerSubmit} />
-					</div>
-				</form>
-				{error && <Error text={error} />}
+						<div className={styles.uploadFilmFields}>
+							<div className={styles.filed}>
+								<label htmlFor='upload-input-1' className={styles.uploadFilmText}>Название</label>
+								<input id='upload-input-1' type='text' name='title' maxLength={50} value={fields.title} onChange={handlerChangeField} />
+							</div>
+
+							<div className={styles.filed}>
+								<label htmlFor='upload-input-2' className={styles.uploadFilmText}>Описание</label>
+								<textarea id='upload-input-2' name='description' maxLength={500} value={fields.description} onChange={handlerChangeField} />
+							</div>
+
+							<div className={styles.filed}>
+								<label htmlFor='upload-input-3' className={styles.uploadFilmText}>Автор</label>
+								<input id='upload-input-3' type='text' name='director' maxLength={50} value={fields.director} onChange={handlerChangeField} />
+							</div>
+
+							<div className={styles.uploadFilmRating}>
+								<span className={styles.uploadFilmText}>Выберите рейтинг книги</span>
+								<Rating
+									name='simple-controlled'
+									value={fields.rating}
+									onChange={(_, newValue) => {
+										setFields(prevState => ({
+											...prevState,
+											rating: newValue,
+										}));
+									}}
+								/>
+							</div>
+
+							<Button text='Сохранить' type={ButtonTypesEnum.SUBMIT} onClick={handlerSubmit} />
+						</div>
+					</form>
+					{error && <Error text={error} />}
+				</div>
 			</div>
-		</div>
+		</>	
 	)
 }
 

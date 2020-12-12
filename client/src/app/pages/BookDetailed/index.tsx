@@ -15,6 +15,7 @@ import { getLoading } from '../../redux/loading/selectors';
 import { getAuthToken } from '../../redux/auth/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
+import NavBar from '../../shared/components/NavBar';
 
 const FilmDetailed: React.FC = () => {
 	const history = useHistory();
@@ -77,82 +78,85 @@ const FilmDetailed: React.FC = () => {
 	};
 
 	return (
-		<div className={styles.filmDetailed}>
-			<Title title='Подробнее' goBack={true} />
+		<>
+			<NavBar />
+			<div className={styles.filmDetailed}>
+				<Title title='Подробнее' goBack={true} />
 
-			<div className={styles.contentWrapper}>
-				<div className={styles.imageBlock}>
-					<div className={styles.imageWrapper}>
+				<div className={styles.contentWrapper}>
+					<div className={styles.imageBlock}>
+						<div className={styles.imageWrapper}>
+							{!loading && (
+								<img src={currentFilm?.image || image404} alt={currentFilm?.title} />
+							)}
+							{isOwner && (
+								<div className={styles.editFilm} onClick={handlerEditFilm}>
+									<EditIcon />
+								</div>
+							)}
+						</div>
+					</div>
+					<div className={styles.infoBlock}>
 						{!loading && (
-							<img src={currentFilm?.image || image404} alt={currentFilm?.title} />
+							<div>
+								<div className={styles.title}>{currentFilm?.title}</div>
+								<div className={styles.description}>{currentFilm?.description}</div>
+								<div className={styles.director}>{`Режисёр: ${currentFilm?.director}`}</div>
+								<div className={styles.rating}>
+									<span className={styles.ratingCounter}>
+										{`Рейтинг книги: ${currentFilm?.averageRating}`}
+										<span className={styles.peopleRated}>{`(голосов: ${currentFilm?.peopleRated})`}</span>
+									</span>
+									<div onClick={handlerSetRating}>	
+										{
+											isRate || !token ? (
+												<Rating
+													name='read-only'
+													value={currentFilm?.averageRating ?? 5}
+													precision={0.1}
+													readOnly
+												/>
+											) : (
+												<Rating
+													name='simple-controlled'
+													value={currentFilm?.averageRating ?? 5}
+													onChangeActive={(_, value) => {
+														setRatingHoverValue(value);
+													}}
+													precision={0.1}
+													onChange={handlerChangeRating}
+												/>
+											)
+										}
+										{(ratingHoverValue !== 0 && !isRate && ratingHoverValue !== -1) && (
+											<span>{ratingHoverValue}</span>
+										)}
+									</div>
+								</div>
+
+								<div className={styles.likesBlock}>
+									<Likes onClick={handlerFilmLike} />
+									<span className={styles.likes}>{currentFilm?.likes}</span>
+								</div>
+
+								{error && (
+									<div className={styles.error}>{error}</div>
+								)}
+							</div>
 						)}
-						{isOwner && (
-							<div className={styles.editFilm} onClick={handlerEditFilm}>
-								<EditIcon />
+						
+						{!loading && (
+							<div className={styles.authorWrapper}>
+								<div className={styles.author}>
+									<span>Автор: </span>
+									<NavLink to={AppRoutes.USER_PROFILE + '/' + currentFilm?.owner.id}>{currentFilm?.owner.name}</NavLink>
+								</div>
 							</div>
 						)}
 					</div>
 				</div>
-				<div className={styles.infoBlock}>
-					{!loading && (
-						<div>
-							<div className={styles.title}>{currentFilm?.title}</div>
-							<div className={styles.description}>{currentFilm?.description}</div>
-							<div className={styles.director}>{`Режисёр: ${currentFilm?.director}`}</div>
-							<div className={styles.rating}>
-								<span className={styles.ratingCounter}>
-									{`Рейтинг книги: ${currentFilm?.averageRating}`}
-									<span className={styles.peopleRated}>{`(голосов: ${currentFilm?.peopleRated})`}</span>
-								</span>
-								<div onClick={handlerSetRating}>	
-									{
-										isRate || !token ? (
-											<Rating
-												name='read-only'
-												value={currentFilm?.averageRating ?? 5}
-												precision={0.1}
-												readOnly
-											/>
-										) : (
-											<Rating
-												name='simple-controlled'
-												value={currentFilm?.averageRating ?? 5}
-												onChangeActive={(_, value) => {
-													setRatingHoverValue(value);
-												}}
-												precision={0.1}
-												onChange={handlerChangeRating}
-											/>
-										)
-									}
-									{(ratingHoverValue !== 0 && !isRate && ratingHoverValue !== -1) && (
-										<span>{ratingHoverValue}</span>
-									)}
-								</div>
-							</div>
-
-							<div className={styles.likesBlock}>
-								<Likes onClick={handlerFilmLike} />
-								<span className={styles.likes}>{currentFilm?.likes}</span>
-							</div>
-
-							{error && (
-								<div className={styles.error}>{error}</div>
-							)}
-						</div>
-					)}
-					
-					{!loading && (
-						<div className={styles.authorWrapper}>
-							<div className={styles.author}>
-								<span>Автор: </span>
-								<NavLink to={AppRoutes.USER_PROFILE + '/' + currentFilm?.owner.id}>{currentFilm?.owner.name}</NavLink>
-							</div>
-						</div>
-					)}
-				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

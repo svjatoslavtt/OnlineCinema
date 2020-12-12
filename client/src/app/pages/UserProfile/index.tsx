@@ -7,6 +7,7 @@ import styles from './style.module.scss';
 import Categorie from '../../shared/components/Categorie';
 import { getUserProfileData, getUserProfileFilms, getUserProfileLikes } from '../../redux/user-profile/selectors';
 import { Actions } from '../../redux/user-profile/actions';
+import NavBar from '../../shared/components/NavBar';
 
 const UserProfile: React.FC = () => {
 	const dispatch = useDispatch();
@@ -23,10 +24,13 @@ const UserProfile: React.FC = () => {
 	}, [dispatch, userId, user]);
 
 	return (
-		<div className={styles.myOfficeContainer}>
-			<Categorie title='Загруженные книги' goBack={true} data={userFilms} />
-			<Categorie title='Лайки' heartSvg={true} data={userLikes} />
-		</div>
+		<>
+			<NavBar />
+			<div className={styles.myOfficeContainer}>
+				<Categorie title='Загруженные книги' goBack={true} data={userFilms} />
+				<Categorie title='Лайки' heartSvg={true} data={userLikes} />
+			</div>
+		</>
 	)
 }
 
