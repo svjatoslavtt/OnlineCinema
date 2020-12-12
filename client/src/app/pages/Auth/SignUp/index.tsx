@@ -7,7 +7,7 @@ import {inputs} from "./inputs-data";
 
 import {Actions} from "../../../redux/auth/actions";
 import Form from "../../../shared/components/Form";
-import { RegisterUser } from "../../../shared/interfaces/auth.interface";
+import { RegisterUser } from "../../../shared/types/auth.types";
 
 const SignUp: React.FC = () => {
   const dispatch = useDispatch();

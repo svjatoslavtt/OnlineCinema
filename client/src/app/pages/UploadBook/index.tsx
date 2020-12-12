@@ -9,7 +9,7 @@ import Button from '../../shared/components/Button';
 import Error from '../../shared/components/Error';
 import { Actions as BookUploadAction } from '../../redux/book-upload/actions';
 import { Actions as BooksActions } from '../../redux/books/action';
-import { ButtonTypesEnum } from '../../shared/interfaces/button.types';
+import { ButtonTypesEnum } from '../../shared/types/button.types';
 import Title from '../../shared/components/Title';
 import { Actions } from '../../redux/books/action';
 import { getCurrentBook } from '../../redux/books/selectors';

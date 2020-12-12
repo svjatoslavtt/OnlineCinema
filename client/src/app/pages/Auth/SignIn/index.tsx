@@ -8,7 +8,7 @@ import {inputs} from "./inputs-data";
 
 import {Actions} from "../../../redux/auth/actions";
 import Form from "../../../shared/components/Form";
-import { LoginInputs } from "../../../shared/interfaces/auth.interface";
+import { LoginInputs } from "../../../shared/types/auth.types";
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch();

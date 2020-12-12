@@ -1,6 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
 
-import { BookUploadRequest } from '../../shared/interfaces/book-upload.interface';
+import { BookUploadRequest } from '../../shared/types/book-upload.types';
 
 export enum ActionTypes {
 	UPLOAD_FILM_REQUEST = 'UPLOAD_FILM_REQUEST',

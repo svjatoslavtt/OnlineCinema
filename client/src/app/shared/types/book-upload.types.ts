@@ -1,6 +1,6 @@
 import { History } from 'history';
 
-export interface BookUploadRequest {
+export type BookUploadRequest = {
 	formData: FormData;
 	history: History;
 }

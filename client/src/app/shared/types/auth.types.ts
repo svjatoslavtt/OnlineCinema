@@ -2,12 +2,12 @@ import { History } from 'history';
 
 import { inputs } from "../../pages/Auth/SignIn/inputs-data";
 
-export interface Login {
+export type Login = {
   email: string;
   password: string;
 }
 
-interface Book {
+type Book = {
   id: string;
   title: string;
   description: string;
@@ -16,7 +16,7 @@ interface Book {
   owner: string;
 }
 
-export interface User {
+export type User = {
   id: string;
   email: string;
   name: string;
@@ -24,7 +24,7 @@ export interface User {
   books?: Book[];
 }
 
-export interface RegisterUser {
+export type RegisterUser = {
   email: string;
   name: string;
   password: string;
@@ -33,12 +33,12 @@ export interface RegisterUser {
 
 export type LoginInputs = typeof inputs;
 
-export interface LoginRequest {
+export type LoginRequest = {
   form: Login;
   history: History;
 }
 
-export interface RegisterRequest {
+export type RegisterRequest = {
   form: RegisterUser;
   history: History;
 }

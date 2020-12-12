@@ -1,4 +1,4 @@
-export interface InputInterface {
+export type InputInterface = {
   id: number;
   type: string;
   placeholder: string;

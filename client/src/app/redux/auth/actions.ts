@@ -1,6 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
 
-import {LoginRequest, RegisterRequest, User} from "../../shared/interfaces/auth.interface";
+import {LoginRequest, RegisterRequest, User} from "../../shared/types/auth.types";
 
 export enum ActionTypes {
   LOGIN_REQUEST = 'LOGIN_REQUEST',

@@ -1,4 +1,4 @@
-import {InputInterface} from "../../../shared/interfaces/input.interface";
+import {InputInterface} from "../../../shared/types/input.types";
 
 export const inputs: { [key: string]: InputInterface } = {
   email: {

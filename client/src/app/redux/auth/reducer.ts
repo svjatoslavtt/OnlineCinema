@@ -1,4 +1,4 @@
-import { User } from "../../shared/interfaces/auth.interface";
+import { User } from "../../shared/types/auth.types";
 import {ActionTypes, ActionTypeUnion} from "./actions";
 
 export interface AuthState {

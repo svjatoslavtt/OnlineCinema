@@ -6,7 +6,7 @@ import {ApiEndPoints} from "../../routes/api-routes-const";
 import {request} from "../../shared/utils/request";
 
 import {AppRoutes, AuthRoutes} from "../../routes/routes-const";
-import { LoginInputs } from '../../shared/interfaces/auth.interface';
+import { LoginInputs } from '../../shared/types/auth.types';
 
 function* login(action: any) {
   try {

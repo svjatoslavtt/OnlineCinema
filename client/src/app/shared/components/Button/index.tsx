@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import styles from "./style.module.scss";
 
 import { getLoading } from "../../../redux/loading/selectors";
-import { ButtonTypesEnum } from "../../interfaces/button.types";
+import { ButtonTypesEnum } from "../../types/button.types";
 
 enum ButtonTextColor {
   WHITE = '#ffffff',
