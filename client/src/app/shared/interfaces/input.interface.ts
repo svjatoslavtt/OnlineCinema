@@ -5,5 +5,6 @@ export interface InputInterface {
   name: string;
   value: string;
   empty?: boolean;
-  required?: boolean;
+	required?: boolean;
+	icon?: string;
 }

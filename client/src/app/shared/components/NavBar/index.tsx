@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
 	const handlerLogout = () => dispatch(Actions.logout());
   
   return (
-    <div className={styles.navBar}>
+    <header className={styles.navBar}>
       <div className={styles.navBarHead}>
         <div className={styles.linkWrapper}>
           <div className={styles.logo}>
@@ -46,11 +46,11 @@ const NavBar: React.FC = () => {
         )}
       </div>
 
-      <div className={styles.navBarPages}>
-        <NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Книги</NavLink>
+      <nav className={styles.navBarPages}>
+        <NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Главная</NavLink>
 				{token && (<NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>Мой кабинет</NavLink>)}
-      </div>
-    </div>
+      </nav>
+    </header>
   )
 }
 

@@ -6,7 +6,8 @@ export const inputs = {
     name: 'email',
     value: '',
     empty: false,
-    required: true,
+		required: true,
+		icon: 'fas fa-envelope',
   },
   password: {
     id: 2,
@@ -15,6 +16,7 @@ export const inputs = {
     name: 'password',
     value: '',
     empty: false,
-    required: true,
+		required: true,
+		icon: 'fas fa-lock',
   }
 };

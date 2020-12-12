@@ -8,7 +8,8 @@ export const inputs: { [key: string]: InputInterface } = {
     name: 'email',
     value: '',
     empty: false,
-    required: true,
+		required: true,
+		icon: 'fas fa-envelope',
   },
   name: {
     id: 2,
@@ -17,7 +18,8 @@ export const inputs: { [key: string]: InputInterface } = {
     name: 'name',
     value: '',
     empty: false,
-    required: true,
+		required: true,
+		icon: 'fas fa-signature',
   },
   password: {
     id: 3,
@@ -26,7 +28,8 @@ export const inputs: { [key: string]: InputInterface } = {
     name: 'password',
     value: '',
     empty: false,
-    required: true,
+		required: true,
+		icon: 'fas fa-user-lock',
   },
   confirmPassword: {
     id: 4,
@@ -35,6 +38,7 @@ export const inputs: { [key: string]: InputInterface } = {
     name: 'confirmPassword',
     value: '',
     empty: false,
-    required: true,
+		required: true,
+		icon: 'fas fa-user-lock',
   },
 };

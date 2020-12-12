@@ -1,6 +1,10 @@
 @import "app/static/fonts/index.scss";
 @import "./app/static/styles/colors.module.scss";
 
+* {
+	box-sizing: border-box;
+}
+
 div, span, body, html {
   box-sizing: border-box;
   margin: 0;
@@ -27,7 +31,6 @@ body {
 input, textarea {
   height: 35px;
   width: 100%;
-  margin-bottom: 10px;
   padding: 0 15px;
   border-radius: 5px;
   outline: none;

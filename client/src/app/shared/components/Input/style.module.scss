@@ -1,3 +1,29 @@
+@import '../../../static/fonts/index.scss';
+
+.container {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.input {
+	height: 38px;
+	width: 100%;
+	padding: 0 15px 0 40px;
+	color: #454545;
+	border: 1px solid transparent;
+	border-radius: 25px;
+	background: #dededeee;
+	outline: none;
+	font-size: 13px;
+	font-family: $regular;
+	transition: all .1s ease-in-out;
+
+	&:focus {
+		background-color: #fff;
+		border: 1px solid #dededeee;
+	}
+}
+
 .noValid {
   position: relative;
 }
@@ -18,7 +44,7 @@
     display: block;
     position: absolute;
     left: 10px;
-    top: 2px;
+    top: -3px;
     font-size: 28px;
     color: #ef5350;
   }

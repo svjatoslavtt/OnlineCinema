@@ -1,34 +1,71 @@
+@import '../../../static/fonts/index.scss';
+
+.container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+}
+
+.logo {
+	font-size: 100px;
+	color: #fff;
+	font-family: $bold;
+}
+
 .formContainer {
-  max-width: 350px;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	top: 0;
-	right: 0;
+	max-width: 500px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background: #fff;
+	border-radius: 10px;
+	padding: 50px 25px;
+	position: relative;
+	z-index: 1;
 }
 
 .formHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 15px;
+  justify-content: center;
+	margin-bottom: 25px;
+	font-family: $bold;
 }
 
 .formTitle {
-  font-size: 32px;
+  font-size: 20px;
+}
+
+.createAccount {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	& > i {
+		transition: transform .25s ease-out;
+		margin-left: 5px;
+		color: #454554;
+	}
+
+	&:hover {
+		& > i {
+			transform: translateX(7px);
+		}
+	}
 }
 
 .signUp {
-  text-decoration: underline;
+  font-family: $bold;
+	font-size: 13px;
 }
 
 .formFieldsWrapper {
-  position: relative;
+	position: relative;
+	max-width: 270px;
+	width: 100%;
+	margin: 0 auto 20px auto;
 }
 
 .formFields {
@@ -38,8 +75,9 @@
   position: relative;
 }
 
-.inputWrapper {
-  margin-bottom: 20px;
+.inputsWrapper {
+	width: 100%;
+  margin-bottom: 10px;
 }
 
 .formWarning {
@@ -53,4 +91,13 @@
 	font-size: 18px;
 	cursor: pointer;
 	text-decoration: underline;
+}
+
+.inputIcon {
+	position: absolute;
+	top: 0;
+	left: 15px;
+	bottom: 0;
+	display: flex;
+	align-items: center;
 }

@@ -1,14 +1,12 @@
 .errors {
-  position: absolute;
-  bottom: -65px;
-  display: flex;
+	position: absolute;
+	bottom: 25px;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
   font-size: 14px;
   color: #ef5350;
   background: #fff;
-  padding: 5px 15px;
-  width: 100%;
 	border-radius: 5px;
-	left: 0;
-	right: 0;
-	margin: 0 auto;
 }

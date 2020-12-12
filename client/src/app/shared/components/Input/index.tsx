@@ -9,7 +9,8 @@ type InputTypes = {
   empty: boolean | undefined;
   setForm: any;
   form: any;
-  required: boolean | undefined;
+	required: boolean | undefined;
+	icon: React.ReactNode;
 }
 
 const Input: React.FC<InputTypes> = ({
@@ -19,7 +20,8 @@ const Input: React.FC<InputTypes> = ({
   empty,
   required,
   setForm,
-  form,
+	form,
+	icon,
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -29,10 +31,13 @@ const Input: React.FC<InputTypes> = ({
         value: event.target.value
       }
     });
-  }
+	}
+	
+	const classesIput = [styles.input, empty ? styles.noValid : styles.valid];
 
   return (
-    <>
+    <div className={styles.container}>
+			{icon}
       <input
         id={form[name].id}
         type={type}
@@ -40,11 +45,11 @@ const Input: React.FC<InputTypes> = ({
         placeholder={placeholder}
         value={form.value}
         required={required}
-        className={empty ? styles.noValid : styles.valid}
+        className={classesIput.join(' ')}
         onChange={handleChange}
       />
       <label htmlFor={form[name].id} className={empty ? styles.noValidLabel : styles.validLabel} />
-    </>
+    </div>
   );
 }
 

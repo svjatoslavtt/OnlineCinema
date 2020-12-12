@@ -1,15 +1,16 @@
 @import "../../../static/styles/colors.module.scss"; 
 
 .button {
-  padding: 10px 15px;
-  background: $button;
-  cursor: pointer;
-  transition: all .1s ease-in-out;
-  border-radius: 5px;
-  margin: 0 auto;
-  display: block;
+  padding: 13px 15px;
+	background: #264653;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+	border-radius: 25px;
+	margin: 0 auto;
+	display: block;
 	outline: none;
 	border: none;
+	width: 100%;
 
   &:hover {
     background: $buttonHover;

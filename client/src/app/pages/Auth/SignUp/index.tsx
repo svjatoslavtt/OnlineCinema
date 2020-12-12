@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import styles from '../style.module.scss';
 import {inputs} from "./inputs-data";
 
 import {Actions} from "../../../redux/auth/actions";
@@ -36,7 +37,7 @@ const SignUp: React.FC = () => {
 
     if (isEmpty) {
       setForm(checkField);
-      return dispatch(Actions.registerFailed({ message: 'Все поля должны быть заполнены!' }));
+      return dispatch(Actions.registerFailed({ message: 'All fields must be filled!' }));
     } else {
       setForm(checkField);
 
@@ -60,12 +61,14 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <Form
-      form={form}
-      setForm={setForm}
-      handleSubmit={handleSubmit}
-      title='Регистрация'
-    />
+		<main className={styles.container}>
+			<Form
+				form={form}
+				setForm={setForm}
+				handleSubmit={handleSubmit}
+				title='Registration'
+			/>
+		</main>
   )
 }
 

@@ -42,7 +42,7 @@ const Button: React.FC<ButtonTypes> = ({
 			className={styles.button} 
 			style={{color}}
 		>
-      <span>{loading ? 'Обработка...' : text}</span>
+      <span>{loading ? 'Loading...' : text}</span>
     </button>
   )
 }

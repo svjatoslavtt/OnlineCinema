@@ -20,9 +20,9 @@ type FormTypes = {
 };
 
 enum FormParams {
-  LOGIN = 'Вход',
-  COME_IN = 'Войти',
-  DONE = 'Готово',
+  LOGIN = 'Member Login',
+  COME_IN = 'Login',
+  DONE = 'Create',
 };
 
 const Form: React.FC<FormTypes> = ({ handleSubmit, setForm, form, title }) => {
@@ -40,51 +40,79 @@ const Form: React.FC<FormTypes> = ({ handleSubmit, setForm, form, title }) => {
 	const handlerLogout = () => dispatch(Actions.logout());
 
   return (
-    <div className={styles.formContainer}>
-			{token ? (
-				<div className={styles.formWarning}>
-					Вы авторизованы. Для того что-бы продолжить необходимо выйти. Вы хотите выйти?
-					<span className={styles.voiteYes} onClick={handlerLogout}>Да</span>
-				</div>
-			) : (
-				<>
-					<div className={styles.formHeader}>
-						<div className={styles.formTitle}>
-							{title}
-						</div>
-
-						{pageParams.isLogin && (
-							<NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp} onClick={handlerClearErrors}>
-								Регистрация
-							</NavLink>
-						)}
+		<article className={styles.container}>
+			<section className={styles.logo}>BooksStock</section>
+			<section className={styles.formContainer}>
+				{token ? (
+					<div className={styles.formWarning}>
+						Вы авторизованы. Для того что-бы продолжить необходимо выйти. Вы хотите выйти?
+						<span className={styles.voiteYes} onClick={handlerLogout}>Да</span>
 					</div>
-
-					<div className={styles.formFieldsWrapper}>
-						<div className={styles.formFields}>
-							<div className={styles.inputWrapper}>
-								{Object.values(form).map((item: any) => (
-									<Input
-										key={item.id}
-										type={item.type}
-										name={item.name}
-										placeholder={item.placeholder}
-										required={item.required}
-										empty={item.empty}
-										form={form}
-										setForm={setForm}
-									/>
-								))}
+				) : (
+					<>
+						<div className={styles.formHeader}>
+							<div className={styles.formTitle}>
+								{title}
 							</div>
 						</div>
 
-						<Button text={pageParams.buttonText} onClick={handleSubmit} />
+						<div className={styles.formFieldsWrapper}>
+							<div className={styles.formFields}>
+								<div className={styles.inputsWrapper}>
+									{Object.values(form).map((item: any) => {
+										let icon;
+
+										if (item.icon) {
+											icon = (
+												<div className={styles.inputIcon}>
+													<i className={item.icon} style={{ color: '#264653', fontSize: 14, zIndex: 1 }}></i>
+												</div>
+											)	
+										}
+										
+										return (
+											<Input
+												key={item.id}
+												type={item.type}
+												name={item.name}
+												placeholder={item.placeholder}
+												required={item.required}
+												empty={item.empty}
+												form={form}
+												setForm={setForm}
+												icon={icon}
+											/>
+										)
+									})}
+								</div>
+							</div>
+
+							<Button text={pageParams.buttonText} onClick={handleSubmit} />
+
+							{pageParams.isLogin && (
+								<div className={styles.createAccount} onClick={handlerClearErrors}>
+									<NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp}>
+										Create your Account
+									</NavLink>
+									<i className="fas fa-long-arrow-alt-right"></i>
+								</div>
+							)}
+
+							{!pageParams.isLogin && (
+								<div className={styles.createAccount} onClick={handlerClearErrors}>
+									<NavLink to={AuthRoutes.SIGN_IN} className={styles.signUp}>
+										Login
+									</NavLink>
+									<i className="fas fa-long-arrow-alt-right"></i>
+								</div>
+							)}
+						</div>
 
 						{errors && <Error text={errors} />}
-					</div>
-				</>
-			)}
-    </div>
+					</>
+				)}
+			</section>
+		</article>
   )
 }
 
