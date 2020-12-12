@@ -16,9 +16,9 @@ export const getDirectors = createSelector(
 	(state: FilterTypes) => state.directors
 );
 
-export const getFilterFilms = createSelector(
+export const getFilterBooks = createSelector(
 	getFilterState,
-	(state: FilterTypes) => state.filterFilms
+	(state: FilterTypes) => state.filterBooks
 );
 
 export const getFilterTags = createSelector(

@@ -1,14 +1,14 @@
-import { FilmTypes } from "../books/types";
+import { BookTypes } from "../books/types";
 import { ActionTypes, ActionTypesUnion } from "./actions";
 
 export type UserProfileTypes = {
-	films: FilmTypes[] | null;
-	likes: FilmTypes[] | null;
+	books: BookTypes[] | null;
+	likes: BookTypes[] | null;
 	user: { name: string, id: string } | null;
 };
 
 export const userProfileInitialState: UserProfileTypes = {
-	films: null,
+	books: null,
 	likes: null,
 	user: null,
 };
@@ -18,13 +18,13 @@ export const reducer = (state = userProfileInitialState, action: ActionTypesUnio
 		case ActionTypes.USER_PROFILE_FILMS_SUCCESS:
 			return {
 				...state,
-				films: [...action.payload.films],
+				books: [...action.payload.books],
 				user: action.payload.user,
 			};
 		case ActionTypes.USER_PROFILE_LIKES_SUCCESS: 
 			return {
 				...state,
-				likes: [...action.payload.films],
+				likes: [...action.payload.books],
 			};
 		default: return state;	
 	};

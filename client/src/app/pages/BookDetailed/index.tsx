@@ -8,7 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import styles from './style.module.scss';
 
 import { Actions } from '../../redux/books/action';
-import { getCurrentFilm, getIsLikeFilm, getIsRatedFilm } from '../../redux/books/selectors';
+import { getCurrentBook, getIsLikeBook, getIsRatedBook } from '../../redux/books/selectors';
 import Title from '../../shared/components/Title';
 import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
@@ -17,16 +17,16 @@ import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
 import NavBar from '../../shared/components/NavBar';
 
-const FilmDetailed: React.FC = () => {
+const BookDetailed: React.FC = () => {
 	const history = useHistory();
 	const [error, setError] = useState('');
 	const [ratingHoverValue, setRatingHoverValue] = useState<number | null>(0);
 	const { bookId }: { bookId: string } = useParams();
 	const dispatch = useDispatch();
-	const currentFilm = useSelector(getCurrentFilm);
+	const currentBook = useSelector(getCurrentBook);
 	const loading = useSelector(getLoading);
-	const isLike = useSelector(getIsLikeFilm);
-	const isRate = useSelector(getIsRatedFilm);
+	const isLike = useSelector(getIsLikeBook);
+	const isRate = useSelector(getIsRatedBook);
 	const token = useSelector(getAuthToken);
 
 	useEffect(() => {
@@ -50,7 +50,7 @@ const FilmDetailed: React.FC = () => {
 
 	const handlerSetRating = () => !token && setError('Нужно авторизоваться!');
 
-	const handlerFilmLike = useCallback(
+	const handlerBookLike = useCallback(
 		_.debounce(
 			() => {
 				if (token) {
@@ -71,26 +71,26 @@ const FilmDetailed: React.FC = () => {
 			
 	), [isLike, token]);
 
-	const isOwner = currentFilm?.owner.id === JSON.parse(localStorage.getItem('id') as string);
+	const isOwner = currentBook?.owner.id === JSON.parse(localStorage.getItem('id') as string);
 
-	const handlerEditFilm = () => {
+	const handlerEditBook = () => {
 		history.push(AppRoutes.EDIT_BOOK + '/' + bookId);
 	};
 
 	return (
 		<>
 			<NavBar />
-			<div className={styles.filmDetailed}>
+			<div className={styles.bookDetailed}>
 				<Title title='Подробнее' goBack={true} />
 
 				<div className={styles.contentWrapper}>
 					<div className={styles.imageBlock}>
 						<div className={styles.imageWrapper}>
 							{!loading && (
-								<img src={currentFilm?.image || image404} alt={currentFilm?.title} />
+								<img src={currentBook?.image || image404} alt={currentBook?.title} />
 							)}
 							{isOwner && (
-								<div className={styles.editFilm} onClick={handlerEditFilm}>
+								<div className={styles.editBook} onClick={handlerEditBook}>
 									<EditIcon />
 								</div>
 							)}
@@ -99,27 +99,27 @@ const FilmDetailed: React.FC = () => {
 					<div className={styles.infoBlock}>
 						{!loading && (
 							<div>
-								<div className={styles.title}>{currentFilm?.title}</div>
-								<div className={styles.description}>{currentFilm?.description}</div>
-								<div className={styles.director}>{`Режисёр: ${currentFilm?.director}`}</div>
+								<div className={styles.title}>{currentBook?.title}</div>
+								<div className={styles.description}>{currentBook?.description}</div>
+								<div className={styles.director}>{`Режисёр: ${currentBook?.director}`}</div>
 								<div className={styles.rating}>
 									<span className={styles.ratingCounter}>
-										{`Рейтинг книги: ${currentFilm?.averageRating}`}
-										<span className={styles.peopleRated}>{`(голосов: ${currentFilm?.peopleRated})`}</span>
+										{`Рейтинг книги: ${currentBook?.averageRating}`}
+										<span className={styles.peopleRated}>{`(голосов: ${currentBook?.peopleRated})`}</span>
 									</span>
 									<div onClick={handlerSetRating}>	
 										{
 											isRate || !token ? (
 												<Rating
 													name='read-only'
-													value={currentFilm?.averageRating ?? 5}
+													value={currentBook?.averageRating ?? 5}
 													precision={0.1}
 													readOnly
 												/>
 											) : (
 												<Rating
 													name='simple-controlled'
-													value={currentFilm?.averageRating ?? 5}
+													value={currentBook?.averageRating ?? 5}
 													onChangeActive={(_, value) => {
 														setRatingHoverValue(value);
 													}}
@@ -135,8 +135,8 @@ const FilmDetailed: React.FC = () => {
 								</div>
 
 								<div className={styles.likesBlock}>
-									<Likes onClick={handlerFilmLike} />
-									<span className={styles.likes}>{currentFilm?.likes}</span>
+									<Likes onClick={handlerBookLike} />
+									<span className={styles.likes}>{currentBook?.likes}</span>
 								</div>
 
 								{error && (
@@ -149,7 +149,7 @@ const FilmDetailed: React.FC = () => {
 							<div className={styles.authorWrapper}>
 								<div className={styles.author}>
 									<span>Автор: </span>
-									<NavLink to={AppRoutes.USER_PROFILE + '/' + currentFilm?.owner.id}>{currentFilm?.owner.name}</NavLink>
+									<NavLink to={AppRoutes.USER_PROFILE + '/' + currentBook?.owner.id}>{currentBook?.owner.name}</NavLink>
 								</div>
 							</div>
 						)}
@@ -160,4 +160,4 @@ const FilmDetailed: React.FC = () => {
 	);
 };
 
-export default FilmDetailed;
+export default BookDetailed;

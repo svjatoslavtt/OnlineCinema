@@ -11,9 +11,9 @@ export const getUserProfileData = createSelector(
 	(state: UserProfileTypes) => state.user
 );
 
-export const getUserProfileFilms = createSelector(
+export const getUserProfileBooks = createSelector(
 	getUserProfile,
-	(state: UserProfileTypes) => state.films
+	(state: UserProfileTypes) => state.books
 );
 
 export const getUserProfileLikes = createSelector(

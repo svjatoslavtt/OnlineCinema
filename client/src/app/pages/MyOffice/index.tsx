@@ -4,13 +4,13 @@ import styles from './style.module.scss';
 import Categorie from '../../shared/components/Categorie';
 import { useDispatch, useSelector } from 'react-redux';
 import { Actions } from '../../redux/books/action';
-import { getMyFilms, getMyLikes } from '../../redux/books/selectors';
+import { getMyBooks, getMyLikes } from '../../redux/books/selectors';
 import NavBar from '../../shared/components/NavBar';
 
 const MyOffice: React.FC = () => {
 	const dispatch = useDispatch();
-	const myOwnFilms = useSelector(getMyFilms);
-	const myLikesFilms = useSelector(getMyLikes);
+	const myOwnBooks = useSelector(getMyBooks);
+	const myLikesBooks = useSelector(getMyLikes);
 
 	useEffect(() => {
 		dispatch(Actions.getMyBooksRequest());
@@ -21,8 +21,8 @@ const MyOffice: React.FC = () => {
 		<>
 			<NavBar />
 			<div className={styles.myOfficeContainer}>
-				<Categorie title='Загруженные книги' uploadFilm={true} data={myOwnFilms} />
-				<Categorie title='Мои лайки' heartSvg={true} data={myLikesFilms} />
+				<Categorie title='Загруженные книги' uploadBook={true} data={myOwnBooks} />
+				<Categorie title='Мои лайки' heartSvg={true} data={myLikesBooks} />
 			</div>
 		</>
 	)

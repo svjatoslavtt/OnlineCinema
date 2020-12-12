@@ -1,47 +1,47 @@
 import { createSelector } from "reselect";
 
-import { FilmsState } from "./types";
+import { BooksState } from "./types";
 
 import { RootState } from "../store";
 
-const getFilmsState = (state: RootState) => state.getFilms;
+const getBooksState = (state: RootState) => state.getBooks;
 
-export const getFilms = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.films
+export const getBooks = createSelector(
+	getBooksState,
+	(state: BooksState) => state.books
 );
 
-export const getMyFilms = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.myFilms
+export const getMyBooks = createSelector(
+	getBooksState,
+	(state: BooksState) => state.myBooks
 );
 
 export const getMyLikes = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.myLikes
+	getBooksState,
+	(state: BooksState) => state.myLikes
 );
 
-export const getCurrentFilm = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.currentFilm
+export const getCurrentBook = createSelector(
+	getBooksState,
+	(state: BooksState) => state.currentBook
 );
 
-export const getIsLikeFilm = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.isLike
+export const getIsLikeBook = createSelector(
+	getBooksState,
+	(state: BooksState) => state.isLike
 );
 
-export const getIsRatedFilm = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.isRate
+export const getIsRatedBook = createSelector(
+	getBooksState,
+	(state: BooksState) => state.isRate
 );
 
 export const getPageCount = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.pageCount
+	getBooksState,
+	(state: BooksState) => state.pageCount
 );
 
 export const getPagination = createSelector(
-	getFilmsState,
-	(state: FilmsState) => state.pagination
+	getBooksState,
+	(state: BooksState) => state.pagination
 );

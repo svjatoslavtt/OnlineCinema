@@ -7,12 +7,12 @@ import styles from './style.module.scss';
 
 import Button from '../../shared/components/Button';
 import Error from '../../shared/components/Error';
-import { Actions as FilmUploadAction } from '../../redux/book-upload/actions';
-import { Actions as FilmsActions } from '../../redux/books/action';
+import { Actions as BookUploadAction } from '../../redux/book-upload/actions';
+import { Actions as BooksActions } from '../../redux/books/action';
 import { ButtonTypesEnum } from '../../shared/interfaces/button.types';
 import Title from '../../shared/components/Title';
 import { Actions } from '../../redux/books/action';
-import { getCurrentFilm } from '../../redux/books/selectors';
+import { getCurrentBook } from '../../redux/books/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
 import NavBar from '../../shared/components/NavBar';
@@ -24,18 +24,18 @@ type UploadFields = {
 	rating: number | null;
 };
 
-type UploadFilmTypes = {
+type UploadBookTypes = {
 	bookId?: string;
 };
 
-const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
+const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const uploadFileElement = useRef<HTMLInputElement>(null);
-	const currentFilm = useSelector(getCurrentFilm);
+	const currentBook = useSelector(getCurrentBook);
 
 	const [showUploadImage, setShowUploadImage] = useState<string | null | ArrayBuffer>('');
-	const [filmAvatar, setFilmAvatar] = useState('');
+	const [bookAvatar, setBookAvatar] = useState('');
 	const [error, setError] = useState('');
 
 	const fieldsInitialValue: UploadFields = {
@@ -68,17 +68,17 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 	};
 
 	useEffect(() => {
-		if (currentFilm && bookId) {
-			toDataURL(currentFilm.image);
+		if (currentBook && bookId) {
+			toDataURL(currentBook.image);
 
 			setFields({
-				title: currentFilm.title,
-				description: currentFilm.description,
-				director: currentFilm.director,
-				rating: currentFilm.rating,
+				title: currentBook.title,
+				description: currentBook.description,
+				director: currentBook.director,
+				rating: currentBook.rating,
 			});
 		} 
-	}, [currentFilm, bookId]);
+	}, [currentBook, bookId]);
 
 	useEffect(() => {
 		if (history.location.pathname === AppRoutes.UPLOAD_BOOK) {
@@ -87,11 +87,11 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 	}, [dispatch, history.location.pathname]);
 
 	useEffect(() => {
-		if (!currentFilm) {
+		if (!currentBook) {
 			setFields(fieldsInitialValue);
 			setShowUploadImage('');
 		}
-	}, [dispatch, currentFilm]);
+	}, [dispatch, currentBook]);
 
 	const handlerChangeField = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 		setFields({
@@ -115,7 +115,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 			}
 		}
 		reader.readAsDataURL(event.target.files[0]);
-		setFilmAvatar(event.target.files[0]);
+		setBookAvatar(event.target.files[0]);
 	};
 
 	const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -123,7 +123,7 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 
 		const isEmpty = Object.values(fields).some((item) => item === '' || item === 0 || !item);
 
-		if (isEmpty || !filmAvatar) {
+		if (isEmpty || !bookAvatar) {
 			return setError('Все поля должны быть заполнены!')
 		};
 
@@ -131,8 +131,8 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 
 		const formData = new FormData();
 
-		if (filmAvatar) {
-			formData.append('file', filmAvatar);
+		if (bookAvatar) {
+			formData.append('file', bookAvatar);
 		};
 		
 		formData.append('title', fields.title);
@@ -146,9 +146,9 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 		};
 		
 		if (bookId) {
-			dispatch(FilmsActions.editBookRequest({ formData, id: bookId, history }));
+			dispatch(BooksActions.editBookRequest({ formData, id: bookId, history }));
 		} else {
-			dispatch(FilmUploadAction.uploadFilmRequest({ formData, history }));
+			dispatch(BookUploadAction.uploadBookRequest({ formData, history }));
 		}
 
 		setFields(fieldsInitialValue);
@@ -158,15 +158,15 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 	return (
 		<>
 			<NavBar />
-			<div className={styles.uploadFilm}>
+			<div className={styles.uploadBook}>
 				<Title title='Загрузить книгу' goBack={true} />
 
 				<div style={{position: 'relative'}}>
-					<form className={styles.uploadFilmWrapper} onSubmit={handlerSubmit}>
-						<div className={styles.uploadFilmImageWrapper}>
-							<span className={styles.uploadFilmText}>Загрузите картинку для книги</span>	
-							<div className={styles.uploadFilmImage}>
-								{showUploadImage || (showUploadImage && currentFilm) ? (
+					<form className={styles.uploadBookWrapper} onSubmit={handlerSubmit}>
+						<div className={styles.uploadBookImageWrapper}>
+							<span className={styles.uploadBookText}>Загрузите картинку для книги</span>	
+							<div className={styles.uploadBookImage}>
+								{showUploadImage || (showUploadImage && currentBook) ? (
 									<img src={showUploadImage as string || image404} alt="avatar" />
 								) : (
 									<span>avatar</span> 
@@ -184,24 +184,24 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 							<Button text='Загрузить' onClick={handlerUseInputFile} />
 						</div>
 
-						<div className={styles.uploadFilmFields}>
+						<div className={styles.uploadBookFields}>
 							<div className={styles.filed}>
-								<label htmlFor='upload-input-1' className={styles.uploadFilmText}>Название</label>
+								<label htmlFor='upload-input-1' className={styles.uploadBookText}>Название</label>
 								<input id='upload-input-1' type='text' name='title' maxLength={50} value={fields.title} onChange={handlerChangeField} />
 							</div>
 
 							<div className={styles.filed}>
-								<label htmlFor='upload-input-2' className={styles.uploadFilmText}>Описание</label>
+								<label htmlFor='upload-input-2' className={styles.uploadBookText}>Описание</label>
 								<textarea id='upload-input-2' name='description' maxLength={500} value={fields.description} onChange={handlerChangeField} />
 							</div>
 
 							<div className={styles.filed}>
-								<label htmlFor='upload-input-3' className={styles.uploadFilmText}>Автор</label>
+								<label htmlFor='upload-input-3' className={styles.uploadBookText}>Автор</label>
 								<input id='upload-input-3' type='text' name='director' maxLength={50} value={fields.director} onChange={handlerChangeField} />
 							</div>
 
-							<div className={styles.uploadFilmRating}>
-								<span className={styles.uploadFilmText}>Выберите рейтинг книги</span>
+							<div className={styles.uploadBookRating}>
+								<span className={styles.uploadBookText}>Выберите рейтинг книги</span>
 								<Rating
 									name='simple-controlled'
 									value={fields.rating}
@@ -224,4 +224,4 @@ const UploadFilm: React.FC<UploadFilmTypes> = ({ bookId }) => {
 	)
 }
 
-export default UploadFilm;
+export default UploadBook;

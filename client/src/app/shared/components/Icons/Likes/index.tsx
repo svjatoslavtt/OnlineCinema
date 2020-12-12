@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getIsLikeFilm } from '../../../../redux/books/selectors';
+import { getIsLikeBook } from '../../../../redux/books/selectors';
 import DislikeSvg from './Dislike';
 import LikeSvg from './Like';
 
@@ -11,7 +11,7 @@ type LikeTypes = {
 };
 
 const Likes: React.FC<LikeTypes> = ({ onClick }) => {
-	const isLike = useSelector(getIsLikeFilm);
+	const isLike = useSelector(getIsLikeBook);
 
 	return (
 		<div className={style.likeSvg} onClick={onClick}>

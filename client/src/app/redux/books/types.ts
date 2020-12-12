@@ -1,4 +1,4 @@
-export type FilmTypes = {
+export type BookTypes = {
 	image: string;
 	title: string;
 	averageRating: number;
@@ -7,7 +7,7 @@ export type FilmTypes = {
 	likes: number;
 };
 
-export type FilmOwnerTypes = {
+export type BookOwnerTypes = {
 	id: string;
 	name: string;
 };
@@ -18,7 +18,7 @@ export type UsersSetRating = {
 	userId: string;
 }
 
-export type CurrentFilmTypes = {
+export type CurrentBookTypes = {
 	title: string;
 	description: string;
 	image: string;
@@ -27,17 +27,17 @@ export type CurrentFilmTypes = {
 	likes: number;
 	peopleRated: number;
 	rating: number;
-	owner: FilmOwnerTypes;
+	owner: BookOwnerTypes;
 	ratingUsersId: UsersSetRating[];
 	usersId: string[];
 	_id: string;
 };
 
-export type FilmsState = {
-	films: FilmTypes[] | null;
-	myFilms: FilmTypes[] | null;
-	myLikes: FilmTypes[] | null;
-	currentFilm: CurrentFilmTypes | null;
+export type BooksState = {
+	books: BookTypes[] | null;
+	myBooks: BookTypes[] | null;
+	myLikes: BookTypes[] | null;
+	currentBook: CurrentBookTypes | null;
 	isLike: boolean;
 	isRate: boolean;
 	pageCount: number[] | null;

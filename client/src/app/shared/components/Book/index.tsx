@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { AppRoutes } from '../../../routes/routes-const';
 import image404 from '../../../static/images/image404.jpg';
 
-type FilmTypes = {
+type BookTypes = {
 	title: string;
 	image: string;
 	id: string;
@@ -14,7 +14,7 @@ type FilmTypes = {
 	owner?: string;
 };
 
-const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
+const Book: React.FC<BookTypes> = ({ title, averageRating, image, id }) => {
 	const history = useHistory();
 
 	const handlerDedailedRedirect = () => {
@@ -22,18 +22,18 @@ const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
 	};
 
 	return (
-		<div className={styles.filmContainer} onClick={handlerDedailedRedirect}>
+		<div className={styles.bookContainer} onClick={handlerDedailedRedirect}>
 			<div className={styles.imageContainer}>
-				<div className={styles.filmImage}>
+				<div className={styles.bookImage}>
 					<img src={image || image404} alt="movie"/>
 				</div>
 			</div>
 
-			<div className={styles.filmRatingAsNumer}>{averageRating.toFixed(1)}</div>
+			<div className={styles.bookRatingAsNumer}>{averageRating.toFixed(1)}</div>
 
-			<div className={styles.filmData}>
-				<div className={styles.filmTitle}>{title}</div>
-				<div className={styles.filmRating}>
+			<div className={styles.bookData}>
+				<div className={styles.bookTitle}>{title}</div>
+				<div className={styles.bookRating}>
 					<Rating
 						name="read-only"
 						value={averageRating}
@@ -46,4 +46,4 @@ const Film: React.FC<FilmTypes> = ({ title, averageRating, image, id }) => {
 	);
 };
 
-export default Film;
+export default Book;

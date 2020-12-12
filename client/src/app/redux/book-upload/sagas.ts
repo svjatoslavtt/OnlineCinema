@@ -6,18 +6,18 @@ import { Actions, ActionTypes } from "./actions";
 import { ApiEndPoints } from "../../routes/api-routes-const";
 import { AppRoutes } from "../../routes/routes-const";
 
-function* uploadFilm(action: any) {
+function* uploadBook(action: any) {
 	try {
 		const history = { ...action.payload.history };
 		yield call(axios.post, process.env.REACT_APP_API + ApiEndPoints.FILM_UPLOAD, action.payload.formData as FormData);
 		yield history.push(AppRoutes.MY_OFFICE);
 	} catch (err) {
-		yield put(Actions.uploadFilmFailed(err));
+		yield put(Actions.uploadBookFailed(err));
 	}
 };
 
-export function* watchUploadFilm() {
+export function* watchUploadBook() {
 	yield all([
-		takeEvery(ActionTypes.UPLOAD_FILM_REQUEST, uploadFilm),
+		takeEvery(ActionTypes.UPLOAD_FILM_REQUEST, uploadBook),
 	]);
 };

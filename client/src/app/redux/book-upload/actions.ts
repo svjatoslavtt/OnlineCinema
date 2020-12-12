@@ -1,6 +1,6 @@
 import { action, ActionType } from 'typesafe-actions';
 
-import { FilmUploadRequest } from '../../shared/interfaces/film-upload.interface';
+import { BookUploadRequest } from '../../shared/interfaces/book-upload.interface';
 
 export enum ActionTypes {
 	UPLOAD_FILM_REQUEST = 'UPLOAD_FILM_REQUEST',
@@ -9,9 +9,9 @@ export enum ActionTypes {
 };
 
 export const Actions = {
-	uploadFilmRequest: (payload: FilmUploadRequest) => action(ActionTypes.UPLOAD_FILM_REQUEST, payload),
-	uploadFilmSuccess: (payload: { message: string }) => action(ActionTypes.UPLOAD_FILM_SUCCESS, payload),
-	uploadFilmFailed: (payload: { message: string }) => action(ActionTypes.UPLOAD_FILM_FAILED, payload),
+	uploadBookRequest: (payload: BookUploadRequest) => action(ActionTypes.UPLOAD_FILM_REQUEST, payload),
+	uploadBookSuccess: (payload: { message: string }) => action(ActionTypes.UPLOAD_FILM_SUCCESS, payload),
+	uploadBookFailed: (payload: { message: string }) => action(ActionTypes.UPLOAD_FILM_FAILED, payload),
 };
 
 export type ActionTypeUnion = ActionType<typeof Actions>;

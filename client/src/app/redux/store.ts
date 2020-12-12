@@ -3,12 +3,12 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 
 import {rootSaga} from "./saga";
 import {AuthState, reducer as authReducer} from './auth/reducer';
-import {FilmUploadState, reducer as filmUploadReducer} from './book-upload/reducer';
+import {BookUploadState, reducer as bookUploadReducer} from './book-upload/reducer';
 import {LoadingState, reducer as loadingReducer} from './loading/reducer';
-import {reducer as getFilmsReducer} from './books/reducer';
+import {reducer as getBooksReducer} from './books/reducer';
 import {reducer as getUserProfileReducer} from './user-profile/reducer';
 import {reducer as getFilterReducer} from './filter/reducer';
-import { FilmsState } from './books/types';
+import { BooksState } from './books/types';
 import { UserProfileTypes } from './user-profile/reducer';
 import { FilterTypes } from './filter/reducer';
 
@@ -16,18 +16,18 @@ const sagaMiddleware = createSagaMiddleware();
 
 export interface RootState {
 	auth: AuthState;
-	filmUpload: FilmUploadState;
+	bookUpload: BookUploadState;
 	loading: LoadingState;
-	getFilms: FilmsState;
+	getBooks: BooksState;
 	userProfile: UserProfileTypes;
 	filter: FilterTypes;
 }
 
 const rootReducers = combineReducers({
 	auth: authReducer,
-	filmUpload: filmUploadReducer,
+	bookUpload: bookUploadReducer,
 	loading: loadingReducer,
-	getFilms: getFilmsReducer,
+	getBooks: getBooksReducer,
 	userProfile: getUserProfileReducer,
 	filter: getFilterReducer,
 });

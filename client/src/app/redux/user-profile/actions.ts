@@ -11,9 +11,9 @@ export enum ActionTypes {
 };
 
 export const Actions = {
-	getUserProfileFilmsRequest: (payload: string) => action(ActionTypes.USER_PROFILE_FILMS_REQUEST, payload),
-	getUserProfileFilmsSuccess: (payload: any) => action(ActionTypes.USER_PROFILE_FILMS_SUCCESS, payload),
-	getUserProfileFilmsFailed: (payload: { message: string }) => action(ActionTypes.USER_PROFILE_FILMS_FAILED, payload),
+	getUserProfileBooksRequest: (payload: string) => action(ActionTypes.USER_PROFILE_FILMS_REQUEST, payload),
+	getUserProfileBooksSuccess: (payload: any) => action(ActionTypes.USER_PROFILE_FILMS_SUCCESS, payload),
+	getUserProfileBooksFailed: (payload: { message: string }) => action(ActionTypes.USER_PROFILE_FILMS_FAILED, payload),
 
 	getUserProfileLikesRequest: (payload: string) => action(ActionTypes.USER_PROFILE_LIKES_REQUEST, payload),
 	getUserProfileLikesSuccess: (payload: any) => action(ActionTypes.USER_PROFILE_LIKES_SUCCESS, payload),

@@ -1,14 +1,14 @@
 import {ActionTypes, ActionTypeUnion} from "./actions";
 
-export interface FilmUploadState {
+export interface BookUploadState {
 	error: string;
 };
 
-const filmUploadInitialState: FilmUploadState = {
+const bookUploadInitialState: BookUploadState = {
 	error: '',
 };
 
-export const reducer = (state = filmUploadInitialState, action: ActionTypeUnion) => {
+export const reducer = (state = bookUploadInitialState, action: ActionTypeUnion) => {
 	switch (action.type) {
 		case ActionTypes.UPLOAD_FILM_FAILED:
 			return {

@@ -1,22 +1,22 @@
 import { ActionTypes, ActionTypesUnion } from "./actions";
 
-import { filmsInitialState } from "../books/reducer";
+import { booksInitialState } from "../books/reducer";
 
 export type FilterTypes = {
 	filterIsOpen: boolean;
 	directors: any;
-	filterFilms: any;
+	filterBooks: any;
 	tags: string[] | null;
 };
 
 export const filterInitialState: FilterTypes = {
 	filterIsOpen: false,
 	directors: null,
-	filterFilms: null,
+	filterBooks: null,
 	tags: null,
 };
 
-export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => {
+export const reducer = (state = booksInitialState, action: ActionTypesUnion) => {
 	switch (action.type) {
 		case ActionTypes.OPEN_FILTER: 
 			return {
@@ -36,14 +36,14 @@ export const reducer = (state = filmsInitialState, action: ActionTypesUnion) => 
 		case ActionTypes.FILTER_SUCCESS:
 			return {
 				...state,
-				filterFilms: action.payload.filter,
+				filterBooks: action.payload.filter,
 				tags: action.payload.tags,
 				filterIsOpen: false,
 			}	
 		case ActionTypes.RESET_FILTER:
 			return {
 				...state,
-				filterFilms: null,
+				filterBooks: null,
 				tags: null,
 			}	
 		default: return state;

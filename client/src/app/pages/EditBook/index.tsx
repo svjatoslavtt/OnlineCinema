@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import UploadBook from '../UploadBook';
 
-const EditFilm: React.FC = () => {
+const EditBook: React.FC = () => {
 	const { bookId }: { bookId: string } = useParams();
 
 	return (
@@ -11,4 +11,4 @@ const EditFilm: React.FC = () => {
 	);
 };
 
-export default EditFilm;
+export default EditBook;

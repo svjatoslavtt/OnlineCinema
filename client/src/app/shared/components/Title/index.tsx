@@ -16,12 +16,12 @@ import {Actions as FilterActions} from "../../../redux/filter/actions";
 type TitleTypes = {
 	title: string;
 	goBack?: boolean;
-	uploadFilm?: boolean;
+	uploadBook?: boolean;
 	heartSvg?: boolean;
 	newsFeed?: boolean;
 };
 
-const Title: React.FC<TitleTypes> = ({ title, goBack, heartSvg, uploadFilm, newsFeed }) => {
+const Title: React.FC<TitleTypes> = ({ title, goBack, heartSvg, uploadBook, newsFeed }) => {
 	const dispatch = useDispatch();
 	const params: { userId: string } = useParams();
 	const user: { name: string, id: string } | null = useSelector(getUserProfileData);
@@ -44,7 +44,7 @@ const Title: React.FC<TitleTypes> = ({ title, goBack, heartSvg, uploadFilm, news
 				)}
 			</span>
 
-			{uploadFilm && (
+			{uploadBook && (
 				<NavLink to={AppRoutes.UPLOAD_BOOK} className={`${styles.categorieTitleTag} ${styles.mobile}`}>
 					{isMobile ? <AddIcon /> : 'Загрузить новую книгу'}
 				</NavLink>

@@ -1,7 +1,7 @@
 @import "../../../static/styles/colors.module.scss";
 @import "../../../static/fonts/index.scss";
 
-.filmContainer {
+.bookContainer {
 	position: relative;
 	width: 19.7%;
 	background-color: #fff;
@@ -31,7 +31,7 @@
 	width: 100%;
 	position: relative;
 
-	.filmImage {
+	.bookImage {
 		width: 100%;
     position: relative;
 		padding-bottom: 100%;
@@ -45,7 +45,7 @@
 	}
 }
 
-.filmRatingAsNumer {
+.bookRatingAsNumer {
 	position: absolute;
 	top: 10px;
 	right: 0;
@@ -91,47 +91,47 @@
 	}
 }
 
-.filmData {
+.bookData {
 	padding: 15px 0 10px;
 }
 
-.filmTitle {
+.bookTitle {
 	text-align: center;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	margin-bottom: 5px;
 }
 
-.filmRating {
+.bookRating {
 	display: flex;
 	justify-content: center;
 	margin-top: 10px;
 }
 
 @media all and (max-width: 1000px) {
-	.filmContainer {
+	.bookContainer {
 		width: 33%;
 	}
 }
 
 @media all and (max-width: 640px) {
-	.filmContainer {
+	.bookContainer {
 		width: 49.7%;
 	}
 }
 
 @media all and (max-width: 500px) {
-	.filmTitle {
+	.bookTitle {
 		font-size: 20px;
 	}
 }
 
 @media all and (max-width: 450px) {
-	.filmContainer {
+	.bookContainer {
 		width: 100%;
 	}
 
-	.filmContainer {
+	.bookContainer {
 		margin-bottom: 5%;
 	}
 }

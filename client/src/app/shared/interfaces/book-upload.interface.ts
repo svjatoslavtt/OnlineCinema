@@ -1,6 +1,6 @@
 import { History } from 'history';
 
-export interface FilmUploadRequest {
+export interface BookUploadRequest {
 	formData: FormData;
 	history: History;
 }

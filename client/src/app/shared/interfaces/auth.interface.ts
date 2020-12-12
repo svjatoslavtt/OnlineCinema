@@ -7,7 +7,7 @@ export interface Login {
   password: string;
 }
 
-interface Film {
+interface Book {
   id: string;
   title: string;
   description: string;
@@ -21,7 +21,7 @@ export interface User {
   email: string;
   name: string;
   password: string;
-  films?: Film[];
+  books?: Book[];
 }
 
 export interface RegisterUser {

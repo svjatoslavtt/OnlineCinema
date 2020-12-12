@@ -6,7 +6,7 @@ import styles from './style.module.scss';
 
 import Book from '../Book';
 import Title from '../Title';
-import { FilmTypes } from '../../../redux/books/types';
+import { BookTypes } from '../../../redux/books/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilterTags } from '../../../redux/filter/selectors';
 import { Actions } from '../../../redux/filter/actions';
@@ -14,14 +14,14 @@ import { getLoading } from '../../../redux/loading/selectors';
 
 type CategorieTypes = {
 	title: string;
-	data?: FilmTypes[] | null;
+	data?: BookTypes[] | null;
 	heartSvg?: boolean;
-	uploadFilm?: boolean;
+	uploadBook?: boolean;
 	goBack?: boolean;
 	newsFeed?: boolean;
 }
 
-const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm, goBack, newsFeed }) => {
+const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadBook, goBack, newsFeed }) => {
 	const dispatch = useDispatch();
 	const tags = useSelector(getFilterTags);
 	const loading = useSelector(getLoading);
@@ -37,7 +37,7 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 	return (
 		<div className={loadingStyle.join(' ')}>
 			
-			<Title title={title} heartSvg={heartSvg} uploadFilm={uploadFilm} goBack={goBack} newsFeed={newsFeed} />
+			<Title title={title} heartSvg={heartSvg} uploadBook={uploadBook} goBack={goBack} newsFeed={newsFeed} />
 
 			{title === 'Все книги' && tags && tags.length && (
 				<div className={styles.tagsBlock}>
@@ -59,13 +59,13 @@ const Categorie: React.FC<CategorieTypes> = ({ title, data, heartSvg, uploadFilm
 				</div>
 			)}
 
-			<div className={styles.categorieFilmsWrapper}>
+			<div className={styles.categorieBooksWrapper}>
 				{loading && (
 					<div className={styles.loadingBlock}>
 						<span>Загрузка...</span>
 					</div>
 				)}
-				<div className={styles.filmsContainer}>
+				<div className={styles.booksContainer}>
 					{data && data.length ? 
 						data.map(({ id, title, averageRating, image, owner }) => {
 							return (
