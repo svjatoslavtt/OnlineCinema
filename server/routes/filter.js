@@ -5,8 +5,8 @@ const router = Router();
 
 router.get('/directors', async (req, res) => {
 	try {
-		const films = await Book.find();
-		const directors = films.map(item => item.director);
+		const books = await Book.find();
+		const directors = books.map(item => item.director);
 		const [...uniqDirectors] = new Set(directors);
 	
 		return res.status(200).json({ message: 'Режиссёры получены!', directors: uniqDirectors });
@@ -20,16 +20,16 @@ router.post('/filtering', async (req, res) => {
 		let tags = [];
 
 		if (req.body.title) {
-			const films = await Book.find();
-			const searchFilm = films.filter(item => 
+			const books = await Book.find();
+			const searchBook = books.filter(item => 
 				item.title.toUpperCase().includes(req.body.title.toUpperCase()));
 
 			tags.push(req.body.title);	
 
-			const transformFilms = [];
+			const transformBooks = [];
 
-			searchFilm.forEach(item => {
-				transformFilms.push({
+			searchBook.forEach(item => {
+				transformBooks.push({
 					title: item.title,
 					averageRating: item.averageRating,
 					image: item.image,
@@ -39,7 +39,7 @@ router.post('/filtering', async (req, res) => {
 				});
 			});
 
-			return res.status(200).json({ message: 'Фильтрация по поиску успешна!', filter: [...transformFilms].reverse(), tags });
+			return res.status(200).json({ message: 'Фильтрация по поиску успешна!', filter: [...transformBooks].reverse(), tags });
 		};
 
 		if (req.body.director) {
@@ -62,10 +62,10 @@ router.post('/filtering', async (req, res) => {
 				};
 			};
 	
-			const transformFilms = [];
+			const transformBooks = [];
 	
 			commonFilter.forEach(item => {
-				transformFilms.push({
+				transformBooks.push({
 					title: item.title,
 					averageRating: item.averageRating,
 					image: item.image,
@@ -75,18 +75,18 @@ router.post('/filtering', async (req, res) => {
 				});
 			});
 	
-			return res.status(200).json({ message: 'Фильтрация успешна!', filter: transformFilms, tags });
+			return res.status(200).json({ message: 'Фильтрация успешна!', filter: transformBooks, tags });
 		};
 
 		if (req.body.popular) {
-			const films = await Book.find();
-			const popularFilms = films.sort((a, b) => b.likes - a.likes);
+			const books = await Book.find();
+			const popularBooks = books.sort((a, b) => b.likes - a.likes);
 			tags.push('самые популярные');
 
-			const transformFilms = [];
+			const transformBooks = [];
 	
-			popularFilms.forEach(item => {
-				transformFilms.push({
+			popularBooks.forEach(item => {
+				transformBooks.push({
 					title: item.title,
 					averageRating: item.averageRating,
 					image: item.image,
@@ -96,7 +96,7 @@ router.post('/filtering', async (req, res) => {
 				});
 			});
 
-			return res.status(200).json({ message: 'Фильтрация успешна!', filter: transformFilms, tags });
+			return res.status(200).json({ message: 'Фильтрация успешна!', filter: transformBooks, tags });
 		};
 	} catch (err) {
 		return res.status(500).json({ message: err.message });

@@ -14,7 +14,7 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  films: [
+  books: [
     {
       type: Types.ObjectId,
       ref: 'Book',

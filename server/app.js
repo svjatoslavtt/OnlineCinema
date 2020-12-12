@@ -12,8 +12,8 @@ app.use(cors());
 app.use('/public', express.static('public'));
 
 app.use('/api/auth/', require('./routes/auth'));
-app.use('/api/film-upload/', require('./routes/film-upload'));
-app.use('/api/film/', require('./routes/film'));
+app.use('/api/book-upload/', require('./routes/book-upload'));
+app.use('/api/book/', require('./routes/book'));
 app.use('/api/likes/', require('./routes/likes'));
 app.use('/api/rate/', require('./routes/rating'));
 app.use('/api/user-profile/', require('./routes/user-profile'));

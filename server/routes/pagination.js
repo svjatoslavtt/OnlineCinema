@@ -7,22 +7,22 @@ router.post('/page', async (req, res) => {
 	try {
 		const page = req.body.page;
 
-		// get 10 films for current page
-		const lastIndeOfRequestFilms = Number(page + '0');
-		const films = await Book.find();
+		// get 10 books for current page
+		const lastIndeOfRequestBooks = Number(page + '0');
+		const books = await Book.find();
 
-		const reverseFilmsForCurrentPage = [];
+		const reverseBooksForCurrentPage = [];
 
-		for (let k = ((films.length - 1) - lastIndeOfRequestFilms + 10); k >= ((films.length - 1) - lastIndeOfRequestFilms + 1); k--) {
+		for (let k = ((books.length - 1) - lastIndeOfRequestBooks + 10); k >= ((books.length - 1) - lastIndeOfRequestBooks + 1); k--) {
 			if (k >= 0) {
-				reverseFilmsForCurrentPage.push(films[k]);
+				reverseBooksForCurrentPage.push(books[k]);
 			};
 		};
 
-		const transformFilms = [];
+		const transformBooks = [];
 
-		reverseFilmsForCurrentPage.forEach(item => {
-			transformFilms.push({
+		reverseBooksForCurrentPage.forEach(item => {
+			transformBooks.push({
 				title: item.title,
 				averageRating: item.averageRating,
 				image: item.image,
@@ -34,7 +34,7 @@ router.post('/page', async (req, res) => {
 		});
 
 		// get page count for pagination
-		const pageCount = Math.ceil(films.length / 10);
+		const pageCount = Math.ceil(books.length / 10);
 		const pagesArray = [];
 
 		for (let i = 1; i <= pageCount; i++) {
@@ -49,7 +49,7 @@ router.post('/page', async (req, res) => {
 			lastPage: pageCount,
 		};
 
-		return res.status(200).json({ message: `Страница ${page} успешно получена!`, films: transformFilms, pagination });
+		return res.status(200).json({ message: `Страница ${page} успешно получена!`, books: transformBooks, pagination });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });	
 	};

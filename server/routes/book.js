@@ -8,18 +8,18 @@ const router = Router();
 
 router.get('/news-feed', async (req, res) => {
 	try {
-		const films = await Book.find();
+		const books = await Book.find();
 
-		const firstTenFilms = [];
+		const firstTenBooks = [];
 
-		for (let i = films.length - 1; i >= films.length - 10; i--) {
-			firstTenFilms.push(films[i]);
+		for (let i = books.length - 1; i >= books.length - 10; i--) {
+			firstTenBooks.push(books[i]);
 		};
 
-		const transformFilms = [];
+		const transformBooks = [];
 
-		firstTenFilms.forEach(item => {
-			transformFilms.push({
+		firstTenBooks.forEach(item => {
+			transformBooks.push({
 				title: item.title,
 				averageRating: item.averageRating,
 				image: item.image,
@@ -29,7 +29,7 @@ router.get('/news-feed', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Книги получены успешно', films: transformFilms });
+		return res.status(200).json({ message: 'Книги получены успешно', books: transformBooks });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
@@ -37,15 +37,15 @@ router.get('/news-feed', async (req, res) => {
 
 router.post('/detailed/:bookId', async (req, res) => {
 	try {
-		const currentFilm = await Book.findById(req.params.bookId);
-		const owner = await User.findById(currentFilm.owner);
+		const currentBook = await Book.findById(req.params.bookId);
+		const owner = await User.findById(currentBook.owner);
 
-		const isLike = req.body.userId ? currentFilm.usersId.includes(req.body.userId) : false;
-		const isRate = currentFilm.ratingUsersId.length ? currentFilm.ratingUsersId.some(item => item.userId.toString() === req.body.userId) : false;
-		const peopleRated = currentFilm.ratingUsersId.length;
+		const isLike = req.body.userId ? currentBook.usersId.includes(req.body.userId) : false;
+		const isRate = currentBook.ratingUsersId.length ? currentBook.ratingUsersId.some(item => item.userId.toString() === req.body.userId) : false;
+		const peopleRated = currentBook.ratingUsersId.length;
 		
 		const data = {
-			...currentFilm._doc,
+			...currentBook._doc,
 			peopleRated,
 			owner: {
 				id: owner._id,
@@ -53,20 +53,20 @@ router.post('/detailed/:bookId', async (req, res) => {
 			},
 		};
 
-		return res.status(200).json({ message: 'Книга получена успешно', currentFilm: data, isLike, isRate });
+		return res.status(200).json({ message: 'Книга получена успешно', currentBook: data, isLike, isRate });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
 });
 
-router.post('/my-films', async (req, res) => {
+router.post('/my-books', async (req, res) => {
 	try {
-		const films = await Book.find({ owner: req.body.userId });
+		const books = await Book.find({ owner: req.body.userId });
 
-		const transformFilms = [];
+		const transformBooks = [];
 
-		films.forEach(item => {
-			transformFilms.push({
+		books.forEach(item => {
+			transformBooks.push({
 				title: item.title,
 				averageRating: item.averageRating,
 				image: item.image,
@@ -76,13 +76,13 @@ router.post('/my-films', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Книги получены успешно', films: transformFilms.reverse() });
+		return res.status(200).json({ message: 'Книги получены успешно', books: transformBooks.reverse() });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
 });
 
-// edit film 
+// edit book 
 const DIR = './public/images/';
 
 const storage = multer.diskStorage({
@@ -124,9 +124,9 @@ router.post('/edit', upload.single('file'), async (req, res) => {
 			};
 		};
 
-		const film = await Book.findByIdAndUpdate(req.body.bookId, fullData, { new: true });
+		const book = await Book.findByIdAndUpdate(req.body.bookId, fullData, { new: true });
 
-		await film.save();
+		await book.save();
 	
 		return res.status(200).json({ message: 'Книга успешно изменена!' });
 	} catch (err) {
@@ -138,12 +138,12 @@ router.post('/my-likes', async (req, res) => {
 	try {
 		const userId = req.body.userId;
 		const findMyself = await User.findById(userId);
-		const films = await Book.find().where('_id').in(findMyself.likes).exec();
+		const books = await Book.find().where('_id').in(findMyself.likes).exec();
 
-		const transformFilms = [];
+		const transformBooks = [];
 
-		films.forEach(item => {
-			transformFilms.push({
+		books.forEach(item => {
+			transformBooks.push({
 				title: item.title,
 				averageRating: item.averageRating,
 				image: item.image,
@@ -153,7 +153,7 @@ router.post('/my-likes', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Понравившееся книги получены успешно', films: transformFilms.reverse() });
+		return res.status(200).json({ message: 'Понравившееся книги получены успешно', books: transformBooks.reverse() });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}

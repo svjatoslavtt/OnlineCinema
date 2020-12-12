@@ -54,4 +54,4 @@ const schema = new Schema({
   },
 });
 
-module.exports = model('Film', schema);
+module.exports = model('Book', schema);

@@ -9,40 +9,40 @@ router.post('/:bookId', isAuth,  async (req, res) => {
 		const userId = req.body.userId;
 		const rating = req.body.rating;
 
-		// update film data
-		const findFilm = await Book.findById(req.params.bookId);
+		// update book data
+		const findBook = await Book.findById(req.params.bookId);
 
-		const averageRating = ((findFilm.rating + rating) / (findFilm.ratingUsersId.length + 1)).toFixed(1);
+		const averageRating = ((findBook.rating + rating) / (findBook.ratingUsersId.length + 1)).toFixed(1);
 		
-		const newFilmData = {
-			rating: findFilm.rating + rating,
+		const newBookData = {
+			rating: findBook.rating + rating,
 			averageRating,
-			ratingUsersId: [...findFilm.ratingUsersId, { userId, rating }],
+			ratingUsersId: [...findBook.ratingUsersId, { userId, rating }],
 		};
 
-		const updateFilmData = await Film.findByIdAndUpdate(req.params.bookId, newFilmData, { new: true });
+		const updateBookData = await Book.findByIdAndUpdate(req.params.bookId, newBookData, { new: true });
 
-		await updateFilmData.save();
+		await updateBookData.save();
 
 		const ratingResponse = {
-			rating: updateFilmData.rating,
-			ratingUsersId: updateFilmData.ratingUsersId.length,
-			peopleRated: updateFilmData.ratingUsersId.length,
-			averageRating: updateFilmData.averageRating,
+			rating: updateBookData.rating,
+			ratingUsersId: updateBookData.ratingUsersId.length,
+			peopleRated: updateBookData.ratingUsersId.length,
+			averageRating: updateBookData.averageRating,
 		};
 
-		// add film to my ratings
+		// add book to my ratings
 		const findMyself = await User.findById(userId);
 
-		const addFilmToMyRatings = {
-			ratings: [...findMyself.ratings, updateFilmData._id],
+		const addBookToMyRatings = {
+			ratings: [...findMyself.ratings, updateBookData._id],
 		};
 
-		const updateMyData = await User.findByIdAndUpdate(userId, addFilmToMyRatings, { new: true });
+		const updateMyData = await User.findByIdAndUpdate(userId, addBookToMyRatings, { new: true });
 
 		await updateMyData.save();
 	
-		const isRate = updateFilmData.ratingUsersId.some(item => item.userId.toString() === userId);
+		const isRate = updateBookData.ratingUsersId.some(item => item.userId.toString() === userId);
 
 		return res.status(200).json({	isRate, rating: ratingResponse });
 	} catch (err) {

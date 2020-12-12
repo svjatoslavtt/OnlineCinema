@@ -4,15 +4,15 @@ const User = require("../models/User");
 
 const router = Router();
 
-router.get('/films/:userId', async (req, res) => {
+router.get('/books/:userId', async (req, res) => {
 	try {
-		const films = await Book.find({ owner: req.params.userId });
+		const books = await Book.find({ owner: req.params.userId });
 		const findMyself = await User.findById(req.params.userId);
 
-		const transformFilms = [];
+		const transformBooks = [];
 
-		films.forEach(item => {
-			transformFilms.push({
+		books.forEach(item => {
+			transformBooks.push({
 				title: item.title,
 				averageRating: item.averageRating,
 				image: item.image,
@@ -27,7 +27,7 @@ router.get('/films/:userId', async (req, res) => {
 			id: req.params.userId,
 		};
 
-		return res.status(200).json({ message: 'Книги получены успешно', films: transformFilms.reverse(), user });
+		return res.status(200).json({ message: 'Книги получены успешно', books: transformBooks.reverse(), user });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
@@ -36,12 +36,12 @@ router.get('/films/:userId', async (req, res) => {
 router.get('/likes/:userId', async (req, res) => {
 	try {
 		const findMyself = await User.findById(req.params.userId);
-		const films = await Book.find().where('_id').in(findMyself.likes).exec();
+		const books = await Book.find().where('_id').in(findMyself.likes).exec();
 
-		const transformFilms = [];
+		const transformBooks = [];
 
-		films.forEach(item => {
-			transformFilms.push({
+		books.forEach(item => {
+			transformBooks.push({
 				title: item.title,
 				averageRating: item.averageRating,
 				image: item.image,
@@ -51,7 +51,7 @@ router.get('/likes/:userId', async (req, res) => {
 			});
 		});
 
-		return res.status(200).json({ message: 'Понравившееся книги получены успешно', films: transformFilms.reverse() });
+		return res.status(200).json({ message: 'Понравившееся книги получены успешно', books: transformBooks.reverse() });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}

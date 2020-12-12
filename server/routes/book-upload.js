@@ -35,7 +35,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 
 		const { userId, rating } = req.body;
 
-		const film = new Book({
+		const book = new Book({
 			...req.body,
 			owner: userId,
 			image: url + '/public/images/' + req.file.filename,
@@ -46,9 +46,9 @@ router.post('/', upload.single('file'), async (req, res) => {
 			averageRating: rating,
 		});
 
-		await film.save();
+		await book.save();
 
-		return res.status(200).json({ message: 'Книга успешно добавлена!', film });
+		return res.status(200).json({ message: 'Книга успешно добавлена!', book });
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
