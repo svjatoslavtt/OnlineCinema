@@ -41,7 +41,7 @@ const NavBar: React.FC = () => {
 					<Profile />
 
 					<div className={styles.cartWrapper}>
-						<div className={styles.badge}>1</div>
+						<div className={styles.badge}>0</div>
 						<Cart />
 						<span>0.00$</span>
 					</div>

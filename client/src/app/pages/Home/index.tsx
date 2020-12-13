@@ -3,22 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import queryString from 'query-string';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { NavLink, useHistory } from "react-router-dom";
+
+import styles from "./style.module.scss";
+import { ITEM_DATA } from "./data/item-data";
+import CarouselItem from "./components/CarouselItem";
 
 import { Actions } from "../../redux/books/action";
 import { getBooks } from "../../redux/books/selectors";
 import { getFilterBooks } from "../../redux/filter/selectors";
 import Categorie from "../../shared/components/Categorie";
 import Pagination from "../../shared/components/Pagination";
-import styles from "./style.module.scss";
-import { NavLink, useHistory } from "react-router-dom";
 import Filter from "../../shared/components/Filter";
 import NavBar from "../../shared/components/NavBar";
 import { Categories } from "../../shared/svg/Categories";
 import { AppRoutes } from "../../routes/routes-const";
-import { ITEM_DATA } from "./data/item-data";
-import CarouselItem from "./components/CarouselItem";
 import popularImage from "../../static/images/popular-image2.jpg";
 import popularImage2 from "../../static/images/popular-image.jpg";
+import popularImage3 from "../../static/images/popular-image3.jpg";
+import { GENRES } from "./data/genres";
 
 const NewsFeed: React.FC = () => {
 	const history = useHistory();
@@ -27,6 +30,7 @@ const NewsFeed: React.FC = () => {
 	const filterBooks = useSelector(getFilterBooks);
 
 	const [booksState, setBooksState] = useState<any>(null);
+	const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
 
 	const parseUrl = queryString.parseUrl(history.location.search);
 
@@ -46,6 +50,11 @@ const NewsFeed: React.FC = () => {
 		}
 	}, [filterBooks, books]);
 
+	const dropdownStyles = [
+		styles.dropdownGenresList, 
+		isOpenDropdown ? styles.active : styles.disactive
+	];
+
 	const indicatorStyles = {
 		display: 'flex',
 		justifyContent: 'center',
@@ -58,14 +67,16 @@ const NewsFeed: React.FC = () => {
 		alignItems: 'center',
 		lineHeight: 1.1,
 		background: '#333333fa',
-		height: 30,
-		width: 30,
+		height: 10,
+		width: 10,
 		borderRadius: '50%',
 	};
-	
+
   return (
 		<>
 			<NavBar />
+
+			<NavLink to='/' id="navlink-item"></NavLink>
 
 			<main className={styles.home}>
 				<section className={styles.posters}>
@@ -90,17 +101,32 @@ const NewsFeed: React.FC = () => {
 					<div className={styles.postersWrapper}>
 						<div className={styles.search}>
 							<div className={styles.searchWrapper}>
-								<input className={styles.searchingInput} type="text" placeholder="Search Books Here" />
+								<div className={styles.searchingInput}>
+									<input type="text" placeholder="Search Books Here" />
+								</div>
 
-								<div className={styles.select}>
+								<div className={styles.select} onClick={setIsOpenDropdown.bind(null, !isOpenDropdown)}>
 									All genres
-									<i className="fas fa-sort-up"></i>
+									<i className="fas fa-bookmark"></i>
 								</div>
 							</div>
 
 							<button className={styles.searchingButton}>
 								<i className="fas fa-search"></i>
 							</button>
+
+							<div className={dropdownStyles.join(' ')}>
+								<div id="genresWrapper" className={styles.genresWrapper}>
+									{GENRES.map((item, idx) => {
+										return (
+											<div key={idx} className={styles.genreItemContainer}>
+												<img src={popularImage3} alt={item} />
+												<NavLink to='' className={styles.genreItem}>{item}</NavLink>
+											</div>
+										)
+									})}
+								</div>
+							</div>	
 						</div>
 
 						<div className={styles.carouselOfAnnouncement}>
@@ -120,10 +146,10 @@ const NewsFeed: React.FC = () => {
 									if (isSelected) {
 										return (
 											<li
-												style={{ ...indicatorStyles, lineHeight: 1, background: '#009688', }}
+												style={{ ...indicatorStyles, background: '#009688', }}
 												aria-label={`Selected: ${label} ${index + 1}`}
 												title={`Selected: ${label} ${index + 1}`}
-											>{`${index + 1}`}</li>
+											></li>
 										);
 									}
 									return (
@@ -137,7 +163,7 @@ const NewsFeed: React.FC = () => {
 											tabIndex={0}
 											title={`${label} ${index + 1}`}
 											aria-label={`${label} ${index + 1}`}
-										>{`${index + 1}`}</li>
+										></li>
 									);
 							}}
 							>
@@ -163,7 +189,7 @@ const NewsFeed: React.FC = () => {
 					<div className={styles.popularItem}>
 						<img className={styles.popularImage} src={popularImage} />
 						<div className={styles.popularInfo}>
-							<span className={styles.popularTitle}>Most Rating</span>
+							<span className={styles.popularTitle}>Most Sales</span>
 							<span className={styles.popularSubtitle}>
 								<NavLink to='/'>Watch books</NavLink>
 							</span>
