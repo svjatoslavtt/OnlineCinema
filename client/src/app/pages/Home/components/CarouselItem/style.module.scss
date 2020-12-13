@@ -1,0 +1,51 @@
+@import '../../../../static/fonts/index.scss';
+@import '../../../../static/styles/colors.module.scss';
+
+.carouselItemsWrapper {
+	display: flex;
+}
+
+.carouselInfoItem {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 50%;
+	height: 450px;
+	background: #f9f9f9;
+}
+
+.carouselImageItem {
+	width: 50% !important;
+}
+
+.itemTitle {
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
+	font-size: 40px;
+	font-family: $bold;
+}
+
+.itemTitleFillout {
+	display: block;
+	padding: 0px 11px;
+	margin-left: 10px;
+	background-color: $green;
+	color: $lightGrey;
+}
+
+.itemSubtitle {
+	width: 100%;
+	max-width: 370px;
+	margin-bottom: 50px;
+	font-family: $regular;
+}
+
+.itemLink {
+	display: block;
+	border-bottom: 1px solid #000;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-family: $bold;
+}
