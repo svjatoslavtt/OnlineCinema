@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { NavLink, useHistory } from "react-router-dom";
 
+import { GENRES } from "./data/genres";
 import styles from "./style.module.scss";
 import { ITEM_DATA } from "./data/item-data";
 import CarouselItem from "./components/CarouselItem";
@@ -21,7 +22,8 @@ import { AppRoutes } from "../../routes/routes-const";
 import popularImage from "../../static/images/popular-image2.jpg";
 import popularImage2 from "../../static/images/popular-image.jpg";
 import popularImage3 from "../../static/images/popular-image3.jpg";
-import { GENRES } from "./data/genres";
+import bookImage from "../../static/images/book-image.jpg";
+import { stubArray } from "lodash";
 
 const NewsFeed: React.FC = () => {
 	const history = useHistory();
@@ -75,8 +77,6 @@ const NewsFeed: React.FC = () => {
   return (
 		<>
 			<NavBar />
-
-			<NavLink to='/' id="navlink-item"></NavLink>
 
 			<main className={styles.home}>
 				<section className={styles.posters}>
@@ -196,6 +196,169 @@ const NewsFeed: React.FC = () => {
 						</div>
 					</div>
 				</section>
+
+				<section className={styles.sale}>
+					<div className={styles.saleTitle}>
+						Special Offer Books
+					</div>
+
+					<div className={styles.saleContainer}>
+
+						<div className={styles.book}>
+							<div className={styles.bookBadge}>-4%</div>
+
+							<div className={styles.bookImage}>
+								<img src={bookImage} alt="book of sale"/>
+							</div>
+
+							<div className={styles.bookInfo}>
+								<div className={styles.bookName}>Стив Джобс</div>
+								
+								<div className={styles.bookPrice}>
+									<span className={styles.oldPrice}>{`${200} ₴`}</span>
+									<span className={styles.currentPrice}>{`${192} ₴`}</span>
+								</div>
+							</div>
+
+							<div className={styles.bookActions}>
+								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
+								<button className={styles.addToCart}>Add to cart</button>
+								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
+							</div>
+						</div>
+
+						<div className={styles.book}>
+							<div className={styles.bookImage}>
+								<img src={bookImage} alt="book of sale"/>
+							</div>
+
+							<div className={styles.bookInfo}>
+								<div className={styles.bookName}>Грокаем алгоритмы</div>
+								
+								<div className={styles.bookPrice}>
+									<span className={styles.oldPrice}>{`$${200}`}</span>
+									<span className={styles.currentPrice}>{`$${159}`}</span>
+								</div>
+							</div>
+
+							<div className={styles.bookActions}>
+								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
+								<button className={styles.addToCart}>Add to cart</button>
+								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
+							</div>
+						</div>
+
+						<div className={styles.book}>
+							<div className={styles.bookImage}>
+								<img src={bookImage} alt="book of sale"/>
+							</div>
+
+							<div className={styles.bookInfo}>
+								<div className={styles.bookName}>Грокаем алгоритмы</div>
+								
+								<div className={styles.bookPrice}>
+									<span className={styles.oldPrice}>{`$${200}`}</span>
+									<span className={styles.currentPrice}>{`$${159}`}</span>
+								</div>
+							</div>
+
+							<div className={styles.bookActions}>
+								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
+								<button className={styles.addToCart}>Add to cart</button>
+								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
+							</div>
+						</div>
+
+						<div className={styles.book}>
+							<div className={styles.bookImage}>
+								<img src={bookImage} alt="book of sale"/>
+							</div>
+
+							<div className={styles.bookInfo}>
+								<div className={styles.bookName}>Грокаем алгоритмы</div>
+								
+								<div className={styles.bookPrice}>
+									<span className={styles.oldPrice}>{`$${200}`}</span>
+									<span className={styles.currentPrice}>{`$${159}`}</span>
+								</div>
+							</div>
+
+							<div className={styles.bookActions}>
+								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
+								<button className={styles.addToCart}>Add to cart</button>
+								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
+							</div>
+						</div>
+						
+						<div className={styles.viewMore}>
+							<button>view more</button>
+						</div>
+					</div>
+				</section>
+
+				<section className={styles.announcement}>
+					<div className={styles.announcementContainer}>
+						<div className={styles.announcementTitle}>
+							End of Season Clearance Sale upto 30%
+						</div>
+
+						<div className={styles.announcementSubtitle}>
+							Stock is limited. Order now to avoid disappointment.
+						</div>
+
+						<button className={styles.announcementButton}>
+							Shop now
+						</button>
+					</div>
+				</section>
+
+				<footer className={styles.footer}>
+					<div className={styles.footerContainer}>
+						<div className={styles.footerList}>
+							<div className={styles.logo}>
+								BookStock
+							</div>
+							<div className={styles.adress}>
+								59 Street, Newyork City, Rose Town, 05 Rive House
+							</div>
+							<div className={styles.number}>
+								+123 456 7890
+							</div>
+							<div className={styles.email}>
+								info@example.com
+							</div>
+						</div>
+
+						<div className={styles.footerList}>
+							<div className={styles.listTitle}>Information</div>
+							<div className={styles.listElement}>Most popular books</div>
+							<div className={styles.listElement}>Most sales books</div>
+							<div className={styles.listElement}>Books sale</div>
+							<div className={styles.listElement}>About us</div>
+							<div className={styles.listElement}>Contact us</div>
+						</div>
+
+						<div className={styles.footerList}>
+							<div className={styles.listTitle}>My account</div>
+							<div className={styles.listElement}>My account</div>
+							<div className={styles.listElement}>Login/Register</div>
+						</div>
+
+					</div>
+					<div className={styles.footerSubelemt}>
+						<div className={styles.copyright}>
+							© Copyright Metro 2020.
+						</div>
+
+						<div className={styles.socialNetworks}>
+							<span>1</span>
+							<span>2</span>
+							<span>3</span>
+							<span>4</span>
+							<span>5</span>
+						</div>
+					</div>
+				</footer>
 			</main>
 		</>
   );

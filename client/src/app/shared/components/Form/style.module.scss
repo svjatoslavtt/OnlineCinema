@@ -1,4 +1,5 @@
 @import '../../../static/fonts/index.scss';
+@import '../../../static/styles/colors.module.scss';
 
 .container {
 	display: flex;
@@ -15,7 +16,7 @@
 	font-size: 52px;
 	color: #fff;
 	font-family: 'Raleway-LightItalic';
-	background: #009688;
+	background: $green;
 	width: 350px;
 	height: 350px;
 	border-radius: 50%;
@@ -25,7 +26,7 @@
     position: absolute;
     width: 100px;
     height: 100px;
-    background-color: #009688;
+    background-color: $green;
     bottom: -2px;
     transform: rotate(45deg);
     border-radius: 4%;
