@@ -334,10 +334,14 @@ const NewsFeed: React.FC = () => {
 					</div>
 
 					<div className={styles.footerList}>
-						<div className={styles.listTitle}>Information</div>
+						<div className={styles.listTitle}>Products</div>
 						<div className={styles.listElement}>Most popular books</div>
 						<div className={styles.listElement}>Most sales books</div>
 						<div className={styles.listElement}>Books sale</div>
+					</div>
+
+					<div className={styles.footerList}>
+						<div className={styles.listTitle}>Information</div>
 						<div className={styles.listElement}>About us</div>
 						<div className={styles.listElement}>Contact us</div>
 					</div>
