@@ -311,55 +311,60 @@ const NewsFeed: React.FC = () => {
 						</button>
 					</div>
 				</section>
-
-				<footer className={styles.footer}>
-					<div className={styles.footerContainer}>
-						<div className={styles.footerList}>
-							<div className={styles.logo}>
-								BookStock
-							</div>
-							<div className={styles.adress}>
-								59 Street, Newyork City, Rose Town, 05 Rive House
-							</div>
-							<div className={styles.number}>
-								+123 456 7890
-							</div>
-							<div className={styles.email}>
-								info@example.com
-							</div>
-						</div>
-
-						<div className={styles.footerList}>
-							<div className={styles.listTitle}>Information</div>
-							<div className={styles.listElement}>Most popular books</div>
-							<div className={styles.listElement}>Most sales books</div>
-							<div className={styles.listElement}>Books sale</div>
-							<div className={styles.listElement}>About us</div>
-							<div className={styles.listElement}>Contact us</div>
-						</div>
-
-						<div className={styles.footerList}>
-							<div className={styles.listTitle}>My account</div>
-							<div className={styles.listElement}>My account</div>
-							<div className={styles.listElement}>Login/Register</div>
-						</div>
-
-					</div>
-					<div className={styles.footerSubelemt}>
-						<div className={styles.copyright}>
-							© Copyright Metro 2020.
-						</div>
-
-						<div className={styles.socialNetworks}>
-							<span>1</span>
-							<span>2</span>
-							<span>3</span>
-							<span>4</span>
-							<span>5</span>
-						</div>
-					</div>
-				</footer>
 			</main>
+
+			<footer className={styles.footer}>
+				<div className={styles.footerContainer}>
+					<div className={styles.footerList}>
+						<div className={styles.logo}>
+							BookStock
+						</div>
+						<div className={styles.adress}>
+							<i className="fas fa-map-marked-alt"></i>
+							59 Street, Newyork City, Rose Town, 05 Rive House
+						</div>
+						<div className={styles.phoneNumber}>
+							<i className="fas fa-phone-volume"></i>
+							+123 456 7890
+						</div>
+						<div className={styles.email}>
+							<i className="fas fa-envelope"></i>
+							info@example.com
+						</div>
+					</div>
+
+					<div className={styles.footerList}>
+						<div className={styles.listTitle}>Information</div>
+						<div className={styles.listElement}>Most popular books</div>
+						<div className={styles.listElement}>Most sales books</div>
+						<div className={styles.listElement}>Books sale</div>
+						<div className={styles.listElement}>About us</div>
+						<div className={styles.listElement}>Contact us</div>
+					</div>
+
+					<div className={styles.footerList}>
+						<div className={styles.listTitle}>My account</div>
+						<div className={styles.listElement}>My account</div>
+						<div className={styles.listElement}>Login/Register</div>
+					</div>
+				</div>
+
+				<div className={styles.footerLine}></div>
+
+				<div className={styles.footerSubelement}>
+					<div className={styles.copyright}>
+						© Copyright Metro 2020.
+					</div>
+
+					<div className={styles.socialNetworks}>
+						<i className="fab fa-facebook-f"></i>
+						<i className="fab fa-twitter"></i>
+						<i className="fab fa-linkedin-in"></i>
+						<i className="fab fa-youtube"></i>
+						<i className="fab fa-pinterest"></i>
+					</div>
+				</div>
+			</footer>
 		</>
   );
 };
