@@ -1,0 +1,24 @@
+.carouselOfAnnouncement {
+	margin-top: 15px;
+	height: 435px;
+	border-radius: 5px;
+	overflow: hidden;
+	width: 99.8%;
+	position: relative;
+	left: 1px;
+
+	& > div > div {
+		height: 435px;
+	}
+
+	& > div > div > ul {
+		display: flex;
+		margin: 0 0 25px 0 !important;
+		position: relative;
+		left: 20px;
+	}
+
+	& > div > div > div > ul {
+		margin-left: -1px !important;
+	}
+}
