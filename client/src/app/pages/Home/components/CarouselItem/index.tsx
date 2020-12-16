@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import styles from './style.module.scss';
 
@@ -24,7 +25,7 @@ const CarouselItem: React.FC<CarouselItemType> = ({ title, titleFill, subtitle, 
 				</div>
 
 				<div className={styles.itemLink}>
-					{itemLink}
+					<NavLink to="/">{itemLink}</NavLink>
 				</div>
 			</div>
 			<img className={styles.carouselImageItem} src={image} alt={`${title} ${titleFill}`} />
