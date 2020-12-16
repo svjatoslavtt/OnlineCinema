@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import queryString from 'query-string';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import { NavLink, useHistory } from "react-router-dom";
 
 import { GENRES } from "./data/genres";
 import styles from "./style.module.scss";
-import { ITEM_DATA } from "./data/item-data";
-import CarouselItem from "./components/CarouselItem";
+import Carousel from './components/Carousel';
 
 import { Actions } from "../../redux/books/action";
 import { getBooks } from "../../redux/books/selectors";
@@ -22,8 +20,9 @@ import { AppRoutes } from "../../routes/routes-const";
 import popularImage from "../../static/images/popular-image2.jpg";
 import popularImage2 from "../../static/images/popular-image.jpg";
 import popularImage3 from "../../static/images/popular-image3.jpg";
-import bookImage from "../../static/images/book-image.jpg";
-import { stubArray } from "lodash";
+import Footer from "../../shared/components/Footer";
+import Book from "../../shared/components/BookItem";
+import { BOOKS } from "./data/books-data";
 
 const NewsFeed: React.FC = () => {
 	const history = useHistory();
@@ -56,23 +55,6 @@ const NewsFeed: React.FC = () => {
 		styles.dropdownGenresList, 
 		isOpenDropdown ? styles.active : styles.disactive
 	];
-
-	const indicatorStyles = {
-		display: 'flex',
-		justifyContent: 'center',
-		margin: '0 8px',
-		color: '#fff',
-		fontSize: '14px',
-		fontFamily: 'Times-New-Roman, sans-serif',
-		cursor: 'pointer',
-		outline: 'none',
-		alignItems: 'center',
-		lineHeight: 1.1,
-		background: '#333333fa',
-		height: 10,
-		width: 10,
-		borderRadius: '50%',
-	};
 
   return (
 		<>
@@ -129,49 +111,7 @@ const NewsFeed: React.FC = () => {
 							</div>	
 						</div>
 
-						<div className={styles.carouselOfAnnouncement}>
-							<Carousel 
-								showArrows={false} 
-								showThumbs={false} 
-								showStatus={false} 
-								showIndicators={true} 
-								swipeable={true}
-								emulateTouch={true}
-								autoPlay={true}
-								interval={3000}
-								transitionTime={400}
-								infiniteLoop={true}
-								stopOnHover={true}
-								renderIndicator={(onClickHandler, isSelected, index, label) => {
-									if (isSelected) {
-										return (
-											<li
-												style={{ ...indicatorStyles, background: '#009688', }}
-												aria-label={`Selected: ${label} ${index + 1}`}
-												title={`Selected: ${label} ${index + 1}`}
-											></li>
-										);
-									}
-									return (
-										<li
-											style={indicatorStyles}
-											onClick={onClickHandler}
-											onKeyDown={onClickHandler}
-											value={index}
-											key={index}
-											role="button"
-											tabIndex={0}
-											title={`${label} ${index + 1}`}
-											aria-label={`${label} ${index + 1}`}
-										></li>
-									);
-							}}
-							>
-								{ITEM_DATA.map((props, index) => (
-									<CarouselItem key={index} {...props} />
-								))}
-							</Carousel >
-						</div>
+						<Carousel />
 					</div>
 				</section>
 
@@ -203,95 +143,27 @@ const NewsFeed: React.FC = () => {
 					</div>
 
 					<div className={styles.saleContainer}>
-
-						<div className={styles.book}>
-							<div className={styles.bookBadge}>-4%</div>
-
-							<div className={styles.bookImage}>
-								<img src={bookImage} alt="book of sale"/>
-							</div>
-
-							<div className={styles.bookInfo}>
-								<div className={styles.bookName}>Стив Джобс</div>
-								
-								<div className={styles.bookPrice}>
-									<span className={styles.oldPrice}>{`${200} ₴`}</span>
-									<span className={styles.currentPrice}>{`${192} ₴`}</span>
-								</div>
-							</div>
-
-							<div className={styles.bookActions}>
-								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-								<button className={styles.addToCart}>Add to cart</button>
-								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
-							</div>
-						</div>
-
-						<div className={styles.book}>
-							<div className={styles.bookImage}>
-								<img src={bookImage} alt="book of sale"/>
-							</div>
-
-							<div className={styles.bookInfo}>
-								<div className={styles.bookName}>Грокаем алгоритмы</div>
-								
-								<div className={styles.bookPrice}>
-									<span className={styles.oldPrice}>{`$${200}`}</span>
-									<span className={styles.currentPrice}>{`$${159}`}</span>
-								</div>
-							</div>
-
-							<div className={styles.bookActions}>
-								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-								<button className={styles.addToCart}>Add to cart</button>
-								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
-							</div>
-						</div>
-
-						<div className={styles.book}>
-							<div className={styles.bookImage}>
-								<img src={bookImage} alt="book of sale"/>
-							</div>
-
-							<div className={styles.bookInfo}>
-								<div className={styles.bookName}>Грокаем алгоритмы</div>
-								
-								<div className={styles.bookPrice}>
-									<span className={styles.oldPrice}>{`$${200}`}</span>
-									<span className={styles.currentPrice}>{`$${159}`}</span>
-								</div>
-							</div>
-
-							<div className={styles.bookActions}>
-								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-								<button className={styles.addToCart}>Add to cart</button>
-								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
-							</div>
-						</div>
-
-						<div className={styles.book}>
-							<div className={styles.bookImage}>
-								<img src={bookImage} alt="book of sale"/>
-							</div>
-
-							<div className={styles.bookInfo}>
-								<div className={styles.bookName}>Грокаем алгоритмы</div>
-								
-								<div className={styles.bookPrice}>
-									<span className={styles.oldPrice}>{`$${200}`}</span>
-									<span className={styles.currentPrice}>{`$${159}`}</span>
-								</div>
-							</div>
-
-							<div className={styles.bookActions}>
-								<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-								<button className={styles.addToCart}>Add to cart</button>
-								<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
-							</div>
-						</div>
+					
+						{BOOKS.map(({ id, sale, image, name, oldPrice, currentPrice }) => {
+							return (
+								<Book 
+									key={id}
+									sale={sale}
+									image={image}
+									name={name}
+									oldPrice={oldPrice}
+									currentPrice={currentPrice}
+								/>
+							)
+						})}
+					
 						
 						<div className={styles.viewMore}>
-							<button>view more</button>
+							<NavLink to='/'>
+								<button>
+									view more
+								</button>
+							</NavLink>
 						</div>
 					</div>
 				</section>
@@ -306,69 +178,16 @@ const NewsFeed: React.FC = () => {
 							Stock is limited. Order now to avoid disappointment.
 						</div>
 
-						<button className={styles.announcementButton}>
-							Shop now
-						</button>
+						<NavLink to='/'>
+							<button className={styles.announcementButton}>
+								Shop now
+							</button>
+						</NavLink>
 					</div>
 				</section>
 			</main>
 
-			<footer className={styles.footer}>
-				<div className={styles.footerContainer}>
-					<div className={styles.footerList}>
-						<div className={styles.logo}>
-							BookStock
-						</div>
-						<div className={styles.adress}>
-							<i className="fas fa-map-marked-alt"></i>
-							59 Street, Newyork City, Rose Town, 05 Rive House
-						</div>
-						<div className={styles.phoneNumber}>
-							<i className="fas fa-phone-volume"></i>
-							+123 456 7890
-						</div>
-						<div className={styles.email}>
-							<i className="fas fa-envelope"></i>
-							info@example.com
-						</div>
-					</div>
-
-					<div className={styles.footerList}>
-						<div className={styles.listTitle}>Products</div>
-						<div className={styles.listElement}>Most popular books</div>
-						<div className={styles.listElement}>Most sales books</div>
-						<div className={styles.listElement}>Books sale</div>
-					</div>
-
-					<div className={styles.footerList}>
-						<div className={styles.listTitle}>Information</div>
-						<div className={styles.listElement}>About us</div>
-						<div className={styles.listElement}>Contact us</div>
-					</div>
-
-					<div className={styles.footerList}>
-						<div className={styles.listTitle}>My account</div>
-						<div className={styles.listElement}>My account</div>
-						<div className={styles.listElement}>Login/Register</div>
-					</div>
-				</div>
-
-				<div className={styles.footerLine}></div>
-
-				<div className={styles.footerSubelement}>
-					<div className={styles.copyright}>
-						© Copyright Metro 2020.
-					</div>
-
-					<div className={styles.socialNetworks}>
-						<i className="fab fa-facebook-f"></i>
-						<i className="fab fa-twitter"></i>
-						<i className="fab fa-linkedin-in"></i>
-						<i className="fab fa-youtube"></i>
-						<i className="fab fa-pinterest"></i>
-					</div>
-				</div>
-			</footer>
+			<Footer />
 		</>
   );
 };
