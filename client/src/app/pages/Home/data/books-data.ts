@@ -1,0 +1,42 @@
+export const BOOKS = [
+	{
+		id: '1',
+		sale: 5,
+		image: require('../../../static/images/book-image.jpg'),
+		name: 'Стив Джобс',
+		oldPrice: 420,
+		currentPrice: 312,
+	},
+	{
+		id: '2',
+		sale: 12,
+		image: require('../../../static/images/book-image2.jpg'),
+		name: 'Стив Джобс',
+		oldPrice: 420,
+		currentPrice: 312,
+	},
+	{
+		id: '3',
+		sale: 1,
+		image: require('../../../static/images/film.jpeg'),
+		name: 'Стив Джобс',
+		oldPrice: 420,
+		currentPrice: 312,
+	},
+	{
+		id: '4',
+		sale: 4,
+		image: require('../../../static/images/book-image.jpg'),
+		name: 'Стив Джобс',
+		oldPrice: 420,
+		currentPrice: 312,
+	},
+	{
+		id: '5',
+		sale: 15,
+		image: require('../../../static/images/book-image.jpg'),
+		name: 'Стив Джобс',
+		oldPrice: 420,
+		currentPrice: 312,
+	},
+];
