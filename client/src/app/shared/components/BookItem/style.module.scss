@@ -1,0 +1,155 @@
+@import '../../../static/styles/colors.module.scss';
+@import '../../../static/fonts/index.scss';
+
+.book {
+	position: relative;
+	width: 25%;
+	flex: 0 0 25%;
+	height: 390px;
+	margin-bottom: 40px;
+	padding-right: 30px;
+	overflow: hidden;
+
+	&:nth-child(4n+4) {
+		padding-right: 0;
+	}
+
+	&:hover {
+		.bookInfo {
+			transform: translateY(-50px);
+		}
+		
+		.bookActions {
+			display: flex;
+			transform: translateY(-50px);
+		}
+
+		.bookImage {
+			transform: translateY(-50px);
+		}
+	}
+}
+
+.bookBadge {
+	position: absolute;
+	left: 15px;
+	top: 15px;
+	background: #ffb400;
+	padding: 3px 8px;
+	color: $darkGrey;
+	border-radius: 3px;
+	font-size: 14px;
+	z-index: 1;
+}
+
+.bookImage {
+	display: flex;
+	justify-content: center;
+	height: 80%;
+	width: 100%;
+	margin-bottom: 20px;
+	background: $lightGrey;
+	border-radius: 5px;
+	transition: transform .215s ease-in-out;
+	cursor: pointer;
+
+	& > img {
+		object-fit: contain;
+	}
+}
+
+.bookInfo {
+	margin-bottom: 10px;
+	transition: transform .215s ease-in-out;
+}
+
+.bookName {
+	font-size: 14px;
+	color: $darkGrey;
+	font-family: $bold;
+}
+
+.bookPrice {
+	display: flex;
+	align-items: flex-end;
+	color: #666;
+	font-family: $bold;
+
+	& > span {
+		margin-right: 10px;
+	}
+}
+
+.oldPrice {
+	text-decoration: line-through;
+}
+
+.currentPrice {
+	color: $darkGrey;
+	font-size: 18px;
+}
+
+.bookActions {
+	display: flex;
+	justify-content: space-between;
+	height: 40px;
+	transition: transform .215s ease-in-out;
+}
+
+.addToFavorite {
+	width: 14%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	background: $darkGrey;
+	cursor: pointer;
+
+	& > i {
+		color: $lightGrey;
+		transition: transform .125s ease-out;
+		transform: scale(1);
+	}
+
+	&:hover > i {
+		transform: scale(1.28);
+	}
+}
+
+.addToCart {
+	width: 68%;
+	border-radius: 5px;
+	background: $darkGrey;
+	border: none;
+	color: $lightGrey;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+	outline: none;
+	font-size: 16px;
+	text-transform: capitalize;
+
+	&:hover {
+		background: $gold;
+		color: $darkGrey;
+	}
+}
+
+.bookDetails {
+	width: 14%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	background: $darkGrey;
+	cursor: pointer;
+
+	& > i {
+		color: $lightGrey;
+		transition: transform .125s ease-out;
+		transform: scale(1);
+	}
+
+	&:hover > i {
+		transform: scale(1.28);
+	}
+}
