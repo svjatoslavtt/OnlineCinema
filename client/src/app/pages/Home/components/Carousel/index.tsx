@@ -32,8 +32,6 @@ const HomeCarousel: React.FC = () => {
 				showThumbs={false} 
 				showStatus={false} 
 				showIndicators={true} 
-				swipeable={true}
-				emulateTouch={true}
 				autoPlay={true}
 				interval={3000}
 				transitionTime={400}

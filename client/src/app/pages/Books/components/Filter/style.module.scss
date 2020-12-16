@@ -1,0 +1,56 @@
+@import '../../../../static/styles/colors.module.scss';
+
+.aside {
+	width: 25%;
+	background: $lightGrey;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.asideContainer {
+	background: #fff;
+	border-radius: 5px;
+}
+
+.asideList {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 15px;
+
+	&:not(:last-child):after {
+		content: '';
+    position: absolute;
+    height: 1px;
+    width: 100px;
+    background: $grey;
+		bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+	}
+}
+
+.asideTitle {
+	position: relative;
+	padding: 15px 15px 10px;
+	font-size: 16px;
+}
+
+.asideElement {
+	padding: 5px 15px 5px 20px;
+	color: rgb(92, 92, 92);
+	font-size: 14px;
+
+	&:hover {
+		background: rgba(0%, 59%, 53%, .8);
+		color: #fff;
+		cursor: pointer;
+	}
+}
+
+.asideMoreButton {
+	margin-top: 10px;
+	font-size: 13px;
+	text-align: center;
+	color: $green;
+	cursor: pointer;
+}

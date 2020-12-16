@@ -14,7 +14,7 @@ import { getFilterBooks } from "../../redux/filter/selectors";
 import Categorie from "../../shared/components/Categorie";
 import Pagination from "../../shared/components/Pagination";
 import Filter from "../../shared/components/Filter";
-import NavBar from "../../shared/components/NavBar";
+import NavBar from "../../shared/components/Header";
 import { Categories } from "../../shared/svg/Categories";
 import { AppRoutes } from "../../routes/routes-const";
 import popularImage from "../../static/images/popular-image2.jpg";
@@ -60,7 +60,7 @@ const NewsFeed: React.FC = () => {
 		<>
 			<NavBar />
 
-			<main className={styles.home}>
+			<main className={styles.container}>
 				<section className={styles.posters}>
 					<div className={styles.categories}>
 						<div className={styles.categoriesTitle}>
@@ -69,7 +69,7 @@ const NewsFeed: React.FC = () => {
 						</div>
 
 						<ul>
-							<NavLink to='/'><li>Фэнтези</li></NavLink>
+							<NavLink to={AppRoutes.BOOKS}><li>Фэнтези</li></NavLink>
 							<NavLink to='/'><li>Ужасы</li></NavLink>
 							<NavLink to='/'><li>Комиксы</li></NavLink>
 							<NavLink to='/'><li>Наука</li></NavLink>

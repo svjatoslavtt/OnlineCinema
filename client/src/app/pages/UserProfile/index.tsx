@@ -7,7 +7,7 @@ import styles from './style.module.scss';
 import Categorie from '../../shared/components/Categorie';
 import { getUserProfileData, getUserProfileBooks, getUserProfileLikes } from '../../redux/user-profile/selectors';
 import { Actions } from '../../redux/user-profile/actions';
-import NavBar from '../../shared/components/NavBar';
+import NavBar from '../../shared/components/Header';
 
 const UserProfile: React.FC = () => {
 	const dispatch = useDispatch();

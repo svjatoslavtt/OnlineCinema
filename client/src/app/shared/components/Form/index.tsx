@@ -41,7 +41,12 @@ const Form: React.FC<FormTypes> = ({ handleSubmit, setForm, form, title }) => {
 
   return (
 		<article className={styles.container}>
-			<section className={styles.logo}>BooksStock</section>
+			<NavLink to='/' className={styles.logo}>
+				<section>
+					BooksStock
+				</section>
+			</NavLink>
+
 			<section className={styles.formContainer}>
 				{token ? (
 					<div className={styles.formWarning}>

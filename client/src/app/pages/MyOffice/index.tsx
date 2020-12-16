@@ -5,7 +5,7 @@ import Categorie from '../../shared/components/Categorie';
 import { useDispatch, useSelector } from 'react-redux';
 import { Actions } from '../../redux/books/action';
 import { getMyBooks, getMyLikes } from '../../redux/books/selectors';
-import NavBar from '../../shared/components/NavBar';
+import NavBar from '../../shared/components/Header';
 
 const MyOffice: React.FC = () => {
 	const dispatch = useDispatch();

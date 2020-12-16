@@ -15,7 +15,7 @@ import { Actions } from '../../redux/books/action';
 import { getCurrentBook } from '../../redux/books/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
-import NavBar from '../../shared/components/NavBar';
+import NavBar from '../../shared/components/Header';
 
 type UploadFields = {
 	title: string;

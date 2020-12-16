@@ -11,7 +11,7 @@ import {getAuthToken} from "../../../redux/auth/selectors";
 import {Actions} from "../../../redux/auth/actions";
 import { Cart } from '../../svg/Cart';
 
-const NavBar: React.FC = () => {
+const Header: React.FC = () => {
   // const history = useHistory();
   // const dispatch = useDispatch();
   const token = useSelector(getAuthToken);
@@ -33,8 +33,9 @@ const NavBar: React.FC = () => {
 
 			<nav className={styles.navbarPages}>
 				<div className={styles.navbarLinksWrapper}>
-					<NavLink to={AppRoutes.NEWS_FEED} className={styles.pageLink} activeClassName={styles.linkActive}>Home</NavLink>
-					{token && (<NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>My office</NavLink>)}
+					<NavLink to={'/'} exact={true} className={styles.pageLink} activeClassName={styles.linkActive}>Главная</NavLink>
+					<NavLink to={AppRoutes.BOOKS + '/all'} className={styles.pageLink} activeClassName={styles.linkActive}>Книги</NavLink>
+					{token && (<NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>Мой кабинет</NavLink>)}
 				</div>
 			
 				<div className={styles.navbarOwnData}>
@@ -51,4 +52,4 @@ const NavBar: React.FC = () => {
   )
 }
 
-export default NavBar;
+export default Header;

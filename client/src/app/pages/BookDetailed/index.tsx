@@ -15,7 +15,7 @@ import { getLoading } from '../../redux/loading/selectors';
 import { getAuthToken } from '../../redux/auth/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
-import NavBar from '../../shared/components/NavBar';
+import NavBar from '../../shared/components/Header';
 
 const BookDetailed: React.FC = () => {
 	const history = useHistory();

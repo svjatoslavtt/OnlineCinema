@@ -5,6 +5,7 @@ export enum AppRoutes {
 	BOOK_DETAILED = '/detailed',
 	USER_PROFILE = '/user-profile',
 	EDIT_BOOK = '/edit',
+	BOOKS = '/books',
 };
 
 export enum AuthRoutes {

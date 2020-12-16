@@ -1,0 +1,27 @@
+@import '../../../../static/styles/colors.module.scss';
+@import '../../../../static/fonts/index.scss';
+
+.banner {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 300px;
+	background: url('../../../../static/images/category.webp') bottom center/cover;
+	background-repeat: no-repeat;
+	margin-bottom: 70px;
+}
+
+.bannerWrapper {
+	width: 100%;
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 0 3%;
+}
+
+.title {
+	width: 100%;
+	max-width: 800px;
+	font-size: 40px;
+	color: #f4f4f4;
+	font-family: $bold;
+}
