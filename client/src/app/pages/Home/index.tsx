@@ -7,13 +7,11 @@ import { NavLink, useHistory } from "react-router-dom";
 import { GENRES } from "./data/genres";
 import styles from "./style.module.scss";
 import Carousel from './components/Carousel';
+import { BOOKS } from "./data/books-data";
 
 import { Actions } from "../../redux/books/action";
 import { getBooks } from "../../redux/books/selectors";
 import { getFilterBooks } from "../../redux/filter/selectors";
-import Categorie from "../../shared/components/Categorie";
-import Pagination from "../../shared/components/Pagination";
-import Filter from "../../shared/components/Filter";
 import NavBar from "../../shared/components/Header";
 import { Categories } from "../../shared/svg/Categories";
 import { AppRoutes } from "../../routes/routes-const";
@@ -22,34 +20,22 @@ import popularImage2 from "../../static/images/popular-image.jpg";
 import popularImage3 from "../../static/images/popular-image3.jpg";
 import Footer from "../../shared/components/Footer";
 import Book from "../../shared/components/BookItem";
-import { BOOKS } from "./data/books-data";
 
 const NewsFeed: React.FC = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const books = useSelector(getBooks);
-	const filterBooks = useSelector(getFilterBooks);
-
-	const [booksState, setBooksState] = useState<any>(null);
+	
 	const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
 
 	const parseUrl = queryString.parseUrl(history.location.search);
 
-	useEffect(() => {
-		if (Object.keys(parseUrl.query).length !== 0 && parseUrl.query.page) {
-			dispatch(Actions.getCurrentPageRequest({ page: Number(parseUrl.query.page) }));
-		} else if (Object.keys(parseUrl.query).length === 0) {
-			dispatch(Actions.getCurrentPageRequest({ page: 1 }));
-		};
-	}, [dispatch]);
-
-	useEffect(() => {
-		if (filterBooks) {
-			setBooksState(filterBooks);
-		} else {
-			setBooksState(books);
-		}
-	}, [filterBooks, books]);
+	// useEffect(() => {
+	// 	if (Object.keys(parseUrl.query).length !== 0 && parseUrl.query.page) {
+	// 		dispatch(Actions.getCurrentPageRequest({ page: Number(parseUrl.query.page) }));
+	// 	} else if (Object.keys(parseUrl.query).length === 0) {
+	// 		dispatch(Actions.getCurrentPageRequest({ page: 1 }));
+	// 	};
+	// }, [dispatch]);
 
 	const dropdownStyles = [
 		styles.dropdownGenresList, 
@@ -153,6 +139,7 @@ const NewsFeed: React.FC = () => {
 									name={name}
 									oldPrice={oldPrice}
 									currentPrice={currentPrice}
+									bigGrid={true}
 								/>
 							)
 						})}
