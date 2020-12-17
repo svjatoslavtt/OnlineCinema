@@ -6,7 +6,7 @@ const Banner: React.FC = () => {
 	return (
 		<section className={styles.banner}>
 			<div className={styles.bannerWrapper}>
-				<div className={styles.title}>Книги</div>
+				<div className={styles.title}>Все книги в одном месте</div>
 			</div>
 		</section>
 	);
