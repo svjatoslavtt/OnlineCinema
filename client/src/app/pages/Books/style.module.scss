@@ -13,11 +13,16 @@
 .content {
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
 }
 
 .products {
 	width: 73%;
-	background: #f4f4f4;
 	border-radius: 5px;
-	height: 600px;
+}
+
+.producrsWrapper {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 }

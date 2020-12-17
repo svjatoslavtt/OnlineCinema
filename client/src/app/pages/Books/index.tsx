@@ -9,6 +9,8 @@ import { FILTER_DATA } from './components/Filter/filter-data';
 
 import Header from '../../shared/components/Header';
 import Footer from '../../shared/components/Footer';
+import { BOOKS } from '../Home/data/books-data';
+import Book from '../../shared/components/BookItem';
 
 const Books: React.FC = () => {
 	return (
@@ -23,7 +25,22 @@ const Books: React.FC = () => {
 				<div className={styles.content}>
 					<Filter data={FILTER_DATA}  />
 
-					<section className={styles.products}></section>
+					<section className={styles.products}>
+						<div className={styles.producrsWrapper}>
+							{BOOKS.map(({ id, sale, image, name, oldPrice, currentPrice }) => {
+								return (
+									<Book 
+										key={id}
+										sale={sale}
+										image={image}
+										name={name}
+										oldPrice={oldPrice}
+										currentPrice={currentPrice}
+									/>
+								)
+							})}
+						</div>
+					</section>
 				</div>
 			</main>
 
