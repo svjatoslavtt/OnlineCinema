@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DROPDOWN_DATA, DROPDOWN_DATA_TWO } from './filter-data';
 
 import styles from './style.module.scss';
@@ -15,6 +15,10 @@ const Filter: React.FC<FilterTypes> = ({ data }) => {
 	};
 
 	const [dropdown, setDropdown] = useState(dropdownInitialState);
+
+	const handlerOutplace = () => {
+		setDropdown(dropdownInitialState);
+	};
 
 	const handlerDropdownList = (type: string) => {
 		if (!type) {
@@ -49,6 +53,8 @@ const Filter: React.FC<FilterTypes> = ({ data }) => {
 
 	return (
 		<aside className={styles.aside}>
+			{dropdown.isOpen && <div className={styles.outplace} onClick={handlerOutplace}></div>}
+
 			<div className={styles.asideContainer}>
 
 				{data.map((item: any) => {
