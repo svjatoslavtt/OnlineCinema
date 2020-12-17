@@ -16,52 +16,12 @@ export const FILTER_DATA = [
 				title: 'Самые продаваемые',
 			},
 		],
-		dropdown: [
-			{
-				id: 'dropdown-10',
-				id_category: 'genre-10',
-				title: 'Ужасы',
-			},
-			{
-				id: 'dropdown-11',
-				id_category: 'genre-11',
-				title: 'Фантастика',
-			},
-			{
-				id: 'dropdown-12',
-				id_category: 'genre-12',
-				title: 'Детективы',
-			},
-			{
-				id: 'dropdown-13',
-				id_category: 'genre-13',
-				title: 'Научная фантастика',
-			},
-			{
-				id: 'dropdown-14',
-				id_category: 'genre-10',
-				title: 'Cамосовершенствование',
-			},
-			{
-				id: 'dropdown-15',
-				id_category: 'genre-11',
-				title: 'Ужасы',
-			},
-			{
-				id: 'dropdown-16',
-				id_category: 'genre-12',
-				title: 'Фантастика',
-			},
-			{
-				id: 'dropdown-17',
-				id_category: 'genre-13',
-				title: 'Детективы',
-			},
-		],
+		dropdown: null,
 	},
 	{
 		id: '2',
 		title: 'Жанры',
+		type: 'genres',
 		top: [
 			{
 				id: 'element-10',
@@ -130,6 +90,7 @@ export const FILTER_DATA = [
 	{
 		id: '3',
 		title: 'Авторы',
+		type: 'authors',
 		top: [
 			{
 				id: 'top-10',
@@ -244,3 +205,47 @@ export const DROPDOWN_DATA = [
 		title: 'Квентин Тарантино',
 	},
 ];
+
+export const DROPDOWN_DATA_TWO = [
+	{
+		id: 'dropdown-10',
+		id_category: 'genre-10',
+		title: 'Ужасы',
+	},
+	{
+		id: 'dropdown-11',
+		id_category: 'genre-11',
+		title: 'Фантастика',
+	},
+	{
+		id: 'dropdown-12',
+		id_category: 'genre-12',
+		title: 'Детективы',
+	},
+	{
+		id: 'dropdown-13',
+		id_category: 'genre-13',
+		title: 'Научная фантастика',
+	},
+	{
+		id: 'dropdown-14',
+		id_category: 'genre-10',
+		title: 'Cамосовершенствование',
+	},
+	{
+		id: 'dropdown-15',
+		id_category: 'genre-11',
+		title: 'Ужасы',
+	},
+	{
+		id: 'dropdown-16',
+		id_category: 'genre-12',
+		title: 'Фантастика',
+	},
+	{
+		id: 'dropdown-17',
+		id_category: 'genre-13',
+		title: 'Детективы',
+	},
+];
+
