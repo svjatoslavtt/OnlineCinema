@@ -5,6 +5,7 @@ import styles from './style.module.scss';
 import Sort from './components/Sort';
 import Filter from './components/Filter';
 import Banner from './components/Banner';
+import { FILTER_DATA } from './components/Filter/filter-data';
 
 import Header from '../../shared/components/Header';
 import Footer from '../../shared/components/Footer';
@@ -20,7 +21,7 @@ const Books: React.FC = () => {
 				<Sort />
 
 				<div className={styles.content}>
-					<Filter />
+					<Filter data={FILTER_DATA}  />
 
 					<section className={styles.products}></section>
 				</div>
