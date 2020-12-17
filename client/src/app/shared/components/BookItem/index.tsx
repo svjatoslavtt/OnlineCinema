@@ -8,12 +8,17 @@ type BookTypes = {
 	name: string;
 	oldPrice?: number;
 	currentPrice: number;
+	bigGrid?: boolean;
 };
 
-const Book: React.FC<BookTypes> = ({ sale, image, name, oldPrice, currentPrice }) => {
+const Book: React.FC<BookTypes> = ({ sale, image, name, oldPrice, currentPrice, bigGrid }) => {
+
+	const bookStyles = [
+		bigGrid ? styles.bookBigGrid : styles.book
+	];
 
 	return (
-		<div className={styles.book}>
+		<div className={bookStyles.join(' ')}>
 			<div className={styles.bookBadge}>{`-${sale}%`}</div>
 
 			<div className={styles.bookImage}>
