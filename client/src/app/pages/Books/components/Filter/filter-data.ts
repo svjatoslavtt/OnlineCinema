@@ -85,6 +85,46 @@ export const FILTER_DATA = [
 				id_category: 'genre-13',
 				title: 'Детективы',
 			},
+			{
+				id: 'dropdown-18',
+				id_category: 'genre-10',
+				title: 'Ужасы',
+			},
+			{
+				id: 'dropdown-19',
+				id_category: 'genre-11',
+				title: 'Фантастика',
+			},
+			{
+				id: 'dropdown-20',
+				id_category: 'genre-12',
+				title: 'Детективы',
+			},
+			{
+				id: 'dropdown-21',
+				id_category: 'genre-13',
+				title: 'Научная фантастика',
+			},
+			{
+				id: 'dropdown-22',
+				id_category: 'genre-10',
+				title: 'Cамосовершенствование',
+			},
+			{
+				id: 'dropdown-23',
+				id_category: 'genre-11',
+				title: 'Ужасы',
+			},
+			{
+				id: 'dropdown-24',
+				id_category: 'genre-12',
+				title: 'Фантастика',
+			},
+			{
+				id: 'dropdown-25',
+				id_category: 'genre-13',
+				title: 'Детективы',
+			},
 		],
 	},
 	{
@@ -244,6 +284,86 @@ export const DROPDOWN_DATA_TWO = [
 	},
 	{
 		id: 'dropdown-17',
+		id_category: 'genre-13',
+		title: 'Детективы',
+	},
+	{
+		id: 'dropdown-18',
+		id_category: 'genre-10',
+		title: 'Ужасы',
+	},
+	{
+		id: 'dropdown-19',
+		id_category: 'genre-11',
+		title: 'Фантастика',
+	},
+	{
+		id: 'dropdown-20',
+		id_category: 'genre-12',
+		title: 'Детективы',
+	},
+	{
+		id: 'dropdown-21',
+		id_category: 'genre-13',
+		title: 'Научная фантастика',
+	},
+	{
+		id: 'dropdown-22',
+		id_category: 'genre-10',
+		title: 'Cамосовершенствование',
+	},
+	{
+		id: 'dropdown-23',
+		id_category: 'genre-11',
+		title: 'Ужасы',
+	},
+	{
+		id: 'dropdown-24',
+		id_category: 'genre-12',
+		title: 'Фантастика',
+	},
+	{
+		id: 'dropdown-25',
+		id_category: 'genre-13',
+		title: 'Детективы',
+	},
+	{
+		id: 'dropdown-26',
+		id_category: 'genre-10',
+		title: 'Ужасы',
+	},
+	{
+		id: 'dropdown-27',
+		id_category: 'genre-11',
+		title: 'Фантастика',
+	},
+	{
+		id: 'dropdown-28',
+		id_category: 'genre-12',
+		title: 'Детективы',
+	},
+	{
+		id: 'dropdown-29',
+		id_category: 'genre-13',
+		title: 'Научная фантастика',
+	},
+	{
+		id: 'dropdown-30',
+		id_category: 'genre-10',
+		title: 'Cамосовершенствование',
+	},
+	{
+		id: 'dropdown-31',
+		id_category: 'genre-11',
+		title: 'Ужасы',
+	},
+	{
+		id: 'dropdown-32',
+		id_category: 'genre-12',
+		title: 'Фантастика',
+	},
+	{
+		id: 'dropdown-33',
 		id_category: 'genre-13',
 		title: 'Детективы',
 	},
