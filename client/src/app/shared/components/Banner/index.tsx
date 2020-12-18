@@ -6,7 +6,7 @@ type BannerTypes = {
 	title?: string;
 }
 
-const Banner: React.FC<BannerTypes> = ({ title = 'Все книиг в одном месте' }) => {
+const Banner: React.FC<BannerTypes> = ({ title = 'Все книги в одном месте' }) => {
 	return (
 		<section className={styles.banner}>
 			<div className={styles.bannerWrapper}>
