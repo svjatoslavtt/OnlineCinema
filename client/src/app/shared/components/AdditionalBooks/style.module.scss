@@ -1,0 +1,28 @@
+@import '../../../static/styles/colors.module.scss';
+@import '../../../static/fonts/index.scss';
+
+.container {
+	width: 100%;
+	padding: 40px 0;
+
+	&.grey {
+		background: $lightGrey;
+	}
+
+	&.white {
+		background: #fff;
+	}
+}
+
+.content {
+	max-width: 1400px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 3%;
+}
+
+.title {
+	font-size: 30px;
+	font-family: $bold;
+	margin-bottom: 40px;
+}

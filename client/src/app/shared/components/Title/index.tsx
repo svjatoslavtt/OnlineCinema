@@ -6,9 +6,6 @@ import AddIcon from '@material-ui/icons/Add';
 
 import styles from './style.module.scss';
 
-import GoBackArrow from '../Icons/GoBackArrow';
-import LikeSvg from '../Icons/Likes/Like';
-
 import { AppRoutes } from '../../../routes/routes-const';
 import { getUserProfileData } from '../../../redux/user-profile/selectors';
 import {Actions as FilterActions} from "../../../redux/filter/actions";
@@ -32,16 +29,9 @@ const Title: React.FC<TitleTypes> = ({ title, goBack, heartSvg, uploadBook, news
 
 	return (
 		<div className={styles.categorieHeaderWrapper}>
-			{goBack && (
-				<GoBackArrow />
-			)}
-
 			<span className={styles.categorieTitle}>
 				{user && params.userId && !heartSvg && <span className={styles.userName}>{isMobile ? user.name.length <= 9 ? user.name : user.name.substring(0, 9) + '...' : user.name}</span>}
 				{isMobile ? title.split(' ')[0] : title}
-				{heartSvg && (
-					<LikeSvg />
-				)}
 			</span>
 
 			{uploadBook && (

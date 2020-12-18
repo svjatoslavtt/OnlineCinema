@@ -1,7 +1,7 @@
 import Rating from '@material-ui/lab/Rating';
 import React from 'react';
 
-import styles from '../style.module.scss';
+import styles from './style.module.scss';
 
 type BookTypes = {
 	sale?: number;

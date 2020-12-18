@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './style.module.scss';
 
-import BookTypeList from '../BookTypeList';
 import BookTypeTable from '../BookItem/BookTypeTable';
+import BookTypeList from '../BookItem/BookTypeList';
 
 export enum ProductDisplayTypeEnum {
 	LIST = 'list',
@@ -13,9 +13,10 @@ export enum ProductDisplayTypeEnum {
 type Products = {
 	productDisplayType: ProductDisplayTypeEnum;
 	data: any;
+	bigGrid?: boolean;
 };
 
-const Products: React.FC<Products> = ({ productDisplayType, data }) => {
+const Products: React.FC<Products> = ({ productDisplayType, data, bigGrid }) => {
 	const table = productDisplayType === ProductDisplayTypeEnum.TABLE;
 
 	return (
@@ -31,6 +32,7 @@ const Products: React.FC<Products> = ({ productDisplayType, data }) => {
 								name={name}
 								oldPrice={oldPrice}
 								currentPrice={currentPrice}
+								bigGrid={bigGrid}
 							/>
 						))}
 					</div>

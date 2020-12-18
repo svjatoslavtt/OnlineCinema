@@ -1,7 +1,7 @@
 import Rating from '@material-ui/lab/Rating';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import _ from 'lodash';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -9,13 +9,16 @@ import styles from './style.module.scss';
 
 import { Actions } from '../../redux/books/action';
 import { getCurrentBook, getIsLikeBook, getIsRatedBook } from '../../redux/books/selectors';
-import Title from '../../shared/components/Title';
-import Likes from '../../shared/components/Icons/Likes';
 import { getLoading } from '../../redux/loading/selectors';
 import { getAuthToken } from '../../redux/auth/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
-import NavBar from '../../shared/components/Header';
+import Header from '../../shared/components/Header';
+import Banner from '../../shared/components/Banner';
+import bookImage from '../../static/images/book-image.jpg';
+import Footer from '../../shared/components/Footer';
+import AdditionalBooks from '../../shared/components/AdditionalBooks';
+import { BOOKS } from '../Home/data/books-data';
 
 const BookDetailed: React.FC = () => {
 	const history = useHistory();
@@ -50,27 +53,6 @@ const BookDetailed: React.FC = () => {
 
 	const handlerSetRating = () => !token && setError('Нужно авторизоваться!');
 
-	const handlerBookLike = useCallback(
-		_.debounce(
-			() => {
-				if (token) {
-					if (isLike) {
-						dispatch(Actions.dislikeBookRequest({ bookId, token }));
-					} else {
-						dispatch(Actions.likeBookRequest({ bookId, token }));
-					}
-				} else {
-					setError('Нужно авторизоваться!');
-				}
-			}, 
-			500, 
-			{
-				leading: true,
-				trailing: false,
-			}
-			
-	), [isLike, token]);
-
 	const isOwner = currentBook?.owner.id === JSON.parse(localStorage.getItem('id') as string);
 
 	const handlerEditBook = () => {
@@ -79,15 +61,16 @@ const BookDetailed: React.FC = () => {
 
 	return (
 		<>
-			<NavBar />
-			<div className={styles.bookDetailed}>
-				<Title title='Подробнее' goBack={true} />
+			<Header />
 
+			<Banner title='Стив Джобс' />
+
+			<div className={styles.bookDetailed}>
 				<div className={styles.contentWrapper}>
-					<div className={styles.imageBlock}>
-						<div className={styles.imageWrapper}>
+					<div className={styles.leftSideWrapper}>
+						<div className={styles.imageBlock}>
 							{!loading && (
-								<img src={currentBook?.image || image404} alt={currentBook?.title} />
+								<img src={bookImage || image404} alt={currentBook?.title} />
 							)}
 							{isOwner && (
 								<div className={styles.editBook} onClick={handlerEditBook}>
@@ -95,67 +78,88 @@ const BookDetailed: React.FC = () => {
 								</div>
 							)}
 						</div>
+
+						<div className={styles.buttons}>
+							<button className={styles.addToCart}>В Корзину</button>
+							<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
+						</div>
 					</div>
+
 					<div className={styles.infoBlock}>
 						{!loading && (
 							<div>
-								<div className={styles.title}>{currentBook?.title}</div>
-								<div className={styles.description}>{currentBook?.description}</div>
-								<div className={styles.director}>{`Режисёр: ${currentBook?.director}`}</div>
+								<div className={styles.title}>{currentBook?.title || 'Стив Джобс'}</div>
+
+								<div className={styles.author}>
+									<span className={styles.itemTitle}>Автор:</span>
+									{currentBook?.director || 'Айзек Конор'}
+								</div>
+
 								<div className={styles.rating}>
 									<span className={styles.ratingCounter}>
-										{`Рейтинг книги: ${currentBook?.averageRating}`}
-										<span className={styles.peopleRated}>{`(голосов: ${currentBook?.peopleRated})`}</span>
+										<span className={styles.itemTitle}>Рейтинг:</span>
+										<span className={styles.rateStars} onClick={handlerSetRating}>	
+											{
+												isRate || !token ? (
+													<Rating
+														name='read-only'
+														value={currentBook?.averageRating ?? 5}
+														precision={0.1}
+														readOnly
+													/>
+												) : (
+													<Rating
+														name='simple-controlled'
+														value={currentBook?.averageRating ?? 5}
+														onChangeActive={(_, value) => {
+															setRatingHoverValue(value);
+														}}
+														precision={0.1}
+														onChange={handlerChangeRating}
+													/>
+												)
+											}
+
+											{(ratingHoverValue !== 0 && !isRate && ratingHoverValue !== -1) && (
+												<span>{ratingHoverValue}</span>
+											)}
+										</span>
+										{currentBook?.averageRating || '5.0'}
+										<span className={styles.peopleRated}>{`(голосов: ${currentBook?.peopleRated || '413'})`}</span>
 									</span>
-									<div onClick={handlerSetRating}>	
-										{
-											isRate || !token ? (
-												<Rating
-													name='read-only'
-													value={currentBook?.averageRating ?? 5}
-													precision={0.1}
-													readOnly
-												/>
-											) : (
-												<Rating
-													name='simple-controlled'
-													value={currentBook?.averageRating ?? 5}
-													onChangeActive={(_, value) => {
-														setRatingHoverValue(value);
-													}}
-													precision={0.1}
-													onChange={handlerChangeRating}
-												/>
-											)
-										}
-										{(ratingHoverValue !== 0 && !isRate && ratingHoverValue !== -1) && (
-											<span>{ratingHoverValue}</span>
-										)}
-									</div>
+
+									
 								</div>
 
-								<div className={styles.likesBlock}>
-									<Likes onClick={handlerBookLike} />
-									<span className={styles.likes}>{currentBook?.likes}</span>
+								<div className={styles.genres}>
+									<span className={styles.itemTitle}>Жанры:</span>
+									Деловая литература, Зарубежная публицистика, Истории успеха, Биографии и мемуары, Биографии и Мемуары
 								</div>
 
-								{error && (
-									<div className={styles.error}>{error}</div>
-								)}
-							</div>
-						)}
-						
-						{!loading && (
-							<div className={styles.authorWrapper}>
-								<div className={styles.author}>
-									<span>Автор: </span>
-									<NavLink to={AppRoutes.USER_PROFILE + '/' + currentBook?.owner.id}>{currentBook?.owner.name}</NavLink>
+								<div className={styles.originalName}>
+									<span className={styles.itemTitle}>Оригинальное название:</span>
+									Steve Jobs: A Biography
 								</div>
+
+								<div className={styles.description}>
+									<span className={styles.itemTitle}>О Книге:</span>
+									{
+										currentBook?.description || `Впервые написанная и единственная «официальная» биография, созданная при стопроцентном участии самого Стива Джобса. Книга стала одним из главных бестселлеров наших лет. История выдающегося человека была написана приблизительно за три года на основании диалогов с родственниками и соседями, бесед с друзьями и врагами, интервью с коллегами и конкурентами.
+										Это рассказ о жизни легендарного человека, который оставил свой след в новой истории, изменив целый мир с помощью своего творческого гения, неустанной работы и переворота в компьютерной индустрии.`
+									}
+								</div>
+								
 							</div>
 						)}
 					</div>
 				</div>
 			</div>
+
+			<AdditionalBooks count={0} data={BOOKS} title='Другие книги автора – Уолтера Айзексона' />
+
+			<AdditionalBooks count={1} data={BOOKS} title='Похожие на книгу – "Стив Джобс"' />
+
+			<Footer />
 		</>
 	);
 };
