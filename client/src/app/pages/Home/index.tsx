@@ -19,7 +19,7 @@ import popularImage from "../../static/images/popular-image2.jpg";
 import popularImage2 from "../../static/images/popular-image.jpg";
 import popularImage3 from "../../static/images/popular-image3.jpg";
 import Footer from "../../shared/components/Footer";
-import Book from "../../shared/components/BookItem";
+import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
 
 const NewsFeed: React.FC = () => {
 	const history = useHistory();
@@ -132,7 +132,7 @@ const NewsFeed: React.FC = () => {
 					
 						{BOOKS.map(({ id, sale, image, name, oldPrice, currentPrice }) => {
 							return (
-								<Book 
+								<BookTypeTable 
 									key={id}
 									sale={sale}
 									image={image}

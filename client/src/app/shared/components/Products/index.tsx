@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './style.module.scss';
 
-import BookItem from '../BookItem';
 import BookTypeList from '../BookTypeList';
+import BookTypeTable from '../BookItem/BookTypeTable';
 
 export enum ProductDisplayTypeEnum {
 	LIST = 'list',
@@ -24,7 +24,7 @@ const Products: React.FC<Products> = ({ productDisplayType, data }) => {
 				table ? (
 					<div className={styles.productsOfTableWrapper}>
 						{data && data.length && data.map(({ id, sale, image, name, oldPrice, currentPrice }: any) => (
-							<BookItem 
+							<BookTypeTable 
 								key={id}
 								sale={sale}
 								image={image}

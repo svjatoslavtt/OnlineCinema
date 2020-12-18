@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './style.module.scss';
+import styles from '../style.module.scss';
 
 type BookTypes = {
 	sale?: number;
@@ -11,7 +11,7 @@ type BookTypes = {
 	bigGrid?: boolean;
 };
 
-const Book: React.FC<BookTypes> = ({ sale, image, name, oldPrice, currentPrice, bigGrid }) => {
+const BookTypeTable: React.FC<BookTypes> = ({ sale, image, name, oldPrice, currentPrice, bigGrid }) => {
 
 	const bookStyles = [
 		bigGrid ? styles.bookBigGrid : styles.book
@@ -36,11 +36,11 @@ const Book: React.FC<BookTypes> = ({ sale, image, name, oldPrice, currentPrice, 
 
 			<div className={styles.bookActions}>
 				<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-				<button className={styles.addToCart}>В корзину</button>
+				<button className={styles.addToCart}>Add to cart</button>
 				<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
 			</div>
 		</div>
 	);
 };
 
-export default Book;
+export default BookTypeTable;
