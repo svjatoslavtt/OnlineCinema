@@ -154,8 +154,8 @@
 	cursor: pointer;
 	transition: all .1s ease-in-out;
 	outline: none;
-	font-size: 16px;
-	text-transform: capitalize;
+	font-size: 15px;
+	text-transform: uppercase;
 
 	&:hover {
 		background: $gold;

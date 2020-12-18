@@ -51,7 +51,7 @@ const NewsFeed: React.FC = () => {
 					<div className={styles.categories}>
 						<div className={styles.categoriesTitle}>
 							<Categories />
-							Genres
+							Жанры
 						</div>
 
 						<ul>
@@ -70,11 +70,11 @@ const NewsFeed: React.FC = () => {
 						<div className={styles.search}>
 							<div className={styles.searchWrapper}>
 								<div className={styles.searchingInput}>
-									<input type="text" placeholder="Search Books Here" />
+									<input type="text" placeholder="Поиск книги" />
 								</div>
 
 								<div className={styles.select} onClick={setIsOpenDropdown.bind(null, !isOpenDropdown)}>
-									All genres
+									Все жанры
 									<i className="fas fa-bookmark"></i>
 								</div>
 							</div>
@@ -105,9 +105,9 @@ const NewsFeed: React.FC = () => {
 					<div className={styles.popularItem}>
 						<img className={styles.popularImage} src={popularImage2} />
 						<div className={styles.popularInfo}>
-							<span className={styles.popularTitle}>Most Rating</span>
+							<span className={styles.popularTitle}>Высший рейтинг</span>
 							<span className={styles.popularSubtitle}>
-								<NavLink to='/'>Watch books</NavLink>
+								<NavLink to='/'>Смотреть книги</NavLink>
 							</span>
 						</div>
 					</div>
@@ -115,9 +115,9 @@ const NewsFeed: React.FC = () => {
 					<div className={styles.popularItem}>
 						<img className={styles.popularImage} src={popularImage} />
 						<div className={styles.popularInfo}>
-							<span className={styles.popularTitle}>Most Sales</span>
+							<span className={styles.popularTitle}>Самые продаваемые</span>
 							<span className={styles.popularSubtitle}>
-								<NavLink to='/'>Watch books</NavLink>
+							<NavLink to='/'>Смотреть книги</NavLink>
 							</span>
 						</div>
 					</div>
@@ -125,7 +125,7 @@ const NewsFeed: React.FC = () => {
 
 				<section className={styles.sale}>
 					<div className={styles.saleTitle}>
-						Special Offer Books
+						Книги по скидке
 					</div>
 
 					<div className={styles.saleContainer}>
@@ -148,7 +148,7 @@ const NewsFeed: React.FC = () => {
 						<div className={styles.viewMore}>
 							<NavLink to='/'>
 								<button>
-									view more
+									Ещё
 								</button>
 							</NavLink>
 						</div>
