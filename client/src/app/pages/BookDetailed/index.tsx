@@ -15,7 +15,7 @@ import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
 import Header from '../../shared/components/Header';
 import Banner from '../../shared/components/Banner';
-import bookImage from '../../static/images/book-image.jpg';
+import bookImage from '../../static/images/test.jpg';
 import Footer from '../../shared/components/Footer';
 import AdditionalBooks from '../../shared/components/AdditionalBooks';
 import { BOOKS } from '../Home/data/books-data';
@@ -68,6 +68,8 @@ const BookDetailed: React.FC = () => {
 			<div className={styles.bookDetailed}>
 				<div className={styles.contentWrapper}>
 					<div className={styles.leftSideWrapper}>
+						{/* <div className={styles.bookBadge}>{`Скидка 25%`}</div> */}
+
 						<div className={styles.imageBlock}>
 							{!loading && (
 								<img src={bookImage || image404} alt={currentBook?.title} />
@@ -78,11 +80,6 @@ const BookDetailed: React.FC = () => {
 								</div>
 							)}
 						</div>
-
-						<div className={styles.buttons}>
-							<button className={styles.addToCart}>В Корзину</button>
-							<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-						</div>
 					</div>
 
 					<div className={styles.infoBlock}>
@@ -90,14 +87,8 @@ const BookDetailed: React.FC = () => {
 							<div>
 								<div className={styles.title}>{currentBook?.title || 'Стив Джобс'}</div>
 
-								<div className={styles.author}>
-									<span className={styles.itemTitle}>Автор:</span>
-									{currentBook?.director || 'Айзек Конор'}
-								</div>
-
 								<div className={styles.rating}>
 									<span className={styles.ratingCounter}>
-										<span className={styles.itemTitle}>Рейтинг:</span>
 										<span className={styles.rateStars} onClick={handlerSetRating}>	
 											{
 												isRate || !token ? (
@@ -114,21 +105,46 @@ const BookDetailed: React.FC = () => {
 														onChangeActive={(_, value) => {
 															setRatingHoverValue(value);
 														}}
-														precision={0.1}
+														precision={1}
 														onChange={handlerChangeRating}
 													/>
 												)
 											}
-
-											{(ratingHoverValue !== 0 && !isRate && ratingHoverValue !== -1) && (
-												<span>{ratingHoverValue}</span>
-											)}
 										</span>
 										{currentBook?.averageRating || '5.0'}
-										<span className={styles.peopleRated}>{`(голосов: ${currentBook?.peopleRated || '413'})`}</span>
+										<span className={styles.peopleRated}>{`${currentBook?.peopleRated || '413'}`}</span>
 									</span>
+								</div>
 
-									
+								<div className={styles.payment}>
+									<div className={styles.inStock}>
+										<i className="fas fa-check"></i>
+										<span>В наличии</span> 
+									</div>
+
+									<div className={styles.priceInfo}>
+										<div className={styles.currentPrice}>
+											Цена:
+											<span className={styles.currentPrice}>549</span>
+											<span>₴</span>
+
+											<span className={styles.oldPrice}>
+												<div className={styles.sale}>Скидка 23%</div>	
+												<span>749 ₴</span>	
+											</span>
+										</div>
+										<div className={styles.paymentCount}>
+											<i className="fas fa-cart-arrow-down" />
+											148 раз купили
+										</div>
+									</div>
+
+									<button className={styles.buyButton}>Добавить в корзину</button>
+								</div>
+
+								<div className={styles.author}>
+									<span className={styles.itemTitle}>Автор:</span>
+									{currentBook?.director || 'Айзек Конор'}
 								</div>
 
 								<div className={styles.genres}>
