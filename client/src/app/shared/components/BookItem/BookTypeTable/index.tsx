@@ -36,7 +36,7 @@ const BookTypeTable: React.FC<BookTypes> = ({ sale, image, name, oldPrice, curre
 
 			<div className={styles.bookActions}>
 				<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-				<button className={styles.addToCart}>Add to cart</button>
+				<button className={styles.addToCart}>В корзину</button>
 				<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
 			</div>
 		</div>

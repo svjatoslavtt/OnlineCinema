@@ -15,7 +15,9 @@ import { Actions } from '../../redux/books/action';
 import { getCurrentBook } from '../../redux/books/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
-import NavBar from '../../shared/components/Header';
+import Header from '../../shared/components/Header';
+import Footer from '../../shared/components/Footer';
+import Banner from '../../shared/components/Banner';
 
 type UploadFields = {
 	title: string;
@@ -157,10 +159,10 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 
 	return (
 		<>
-			<NavBar />
-			<div className={styles.uploadBook}>
-				<Title title='Загрузить книгу' goBack={true} />
+			<Header />
+			<Banner title='Загрузить книгу' />
 
+			<div className={styles.uploadBook}>
 				<div style={{position: 'relative'}}>
 					<form className={styles.uploadBookWrapper} onSubmit={handlerSubmit}>
 						<div className={styles.uploadBookImageWrapper}>
@@ -220,6 +222,8 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 					{error && <Error text={error} />}
 				</div>
 			</div>
+
+			<Footer />
 		</>	
 	)
 }

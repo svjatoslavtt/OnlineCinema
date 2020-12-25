@@ -2,7 +2,10 @@
 @import "../../static/styles/colors.module.scss";
 
 .uploadBook {
-	margin-bottom: 100px;
+	max-width: 1400px;
+	margin: 0 auto 100px;
+	padding: 0 3%;
+	background: #f9f9f9;
 }
 
 .uploadBookTitle {

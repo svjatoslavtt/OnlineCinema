@@ -61,14 +61,18 @@
 
 .bookBadge {
 	position: absolute;
-	left: 15px;
-	top: 15px;
-	background: #ffb400;
-	padding: 3px 8px;
-	color: $darkGrey;
-	border-radius: 3px;
+	background: #fe6564;
+	color: #f9f9f9;
+	border-radius: 50%;
 	font-size: 14px;
 	z-index: 1;
+	height: 40px;
+	display: flex;
+	width: 40px;
+	justify-content: center;
+	align-items: center;
+	left: 5px;
+	top: 5px;
 }
 
 .bookImage {
@@ -133,6 +137,7 @@
 	border-radius: 5px;
 	background: $darkGrey;
 	cursor: pointer;
+	transition: all .1s ease-in-out;
 
 	& > i {
 		color: $lightGrey;
@@ -140,8 +145,12 @@
 		transform: scale(1);
 	}
 
-	&:hover > i {
-		transform: scale(1.28);
+	&:hover {
+		background: $red;
+
+		& > i {
+			transform: scale(1.28);
+		}
 	}
 }
 
@@ -158,8 +167,8 @@
 	text-transform: uppercase;
 
 	&:hover {
-		background: $gold;
-		color: $darkGrey;
+		background: $green;
+		color: $lightGrey;
 	}
 }
 
@@ -171,6 +180,7 @@
 	border-radius: 5px;
 	background: $darkGrey;
 	cursor: pointer;
+	transition: all .1s ease-in-out;
 
 	& > i {
 		color: $lightGrey;
@@ -178,7 +188,11 @@
 		transform: scale(1);
 	}
 
-	&:hover > i {
-		transform: scale(1.28);
+	&:hover {
+		background: $red;
+
+		& > i {
+			transform: scale(1.28);
+		}
 	}
 }

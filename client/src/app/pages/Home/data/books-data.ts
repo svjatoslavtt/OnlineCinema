@@ -2,7 +2,7 @@ export const BOOKS = [
 	{
 		id: '1',
 		sale: 5,
-		image: require('../../../static/images/book-image.jpg'),
+		image: require('../../../static/images/test.jpg'),
 		name: 'Стив Джобс',
 		year: 2011,
 		author: 'Айзексон Уолтер',

@@ -40,7 +40,9 @@ const Header: React.FC = () => {
 				</div>
 			
 				<div className={styles.navbarOwnData}>
-					<Profile />
+					<NavLink to={AppRoutes.UPLOAD_BOOK}>
+						<Profile />
+					</NavLink>
 
 					<div className={styles.cartWrapper}>
 						<div className={styles.badge}>0</div>
