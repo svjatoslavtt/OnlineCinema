@@ -14,7 +14,7 @@ import Footer from '../../shared/components/Footer';
 import Products, { ProductDisplayTypeEnum } from '../../shared/components/Products';
 
 const Books: React.FC = () => {
-	const [booksType, setBooksType] = useState<ProductDisplayTypeEnum>(ProductDisplayTypeEnum.LIST);
+	const [booksType, setBooksType] = useState<ProductDisplayTypeEnum>(ProductDisplayTypeEnum.TABLE);
 
 	return (
 		<>
@@ -32,6 +32,7 @@ const Books: React.FC = () => {
 						<Products 
 							data={BOOKS}
 							productDisplayType={booksType}
+							bigGrid={true}
 						/>
 					</section>
 				</div>

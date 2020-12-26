@@ -23,17 +23,17 @@ const Sort: React.FC<SortTypes> = ({ setBooksType }) => {
 
 			<div className={styles.contentUpgrade}>
 				<div className={styles.contentType}>
-					<div className={styles.typeItem} onClick={setBooksType.bind(null, ProductDisplayTypeEnum.LIST)}>
-						<input type="radio" id="type-item-2" name="type-products" value="list" defaultChecked />
-						<label htmlFor="type-item-2">
-							<i className="fas fa-list"></i>
+					<div className={styles.typeItem} onClick={setBooksType.bind(null, ProductDisplayTypeEnum.TABLE)}>
+						<input type="radio" id="type-item-1" name="type-products" value="table" defaultChecked />
+						<label htmlFor="type-item-1">
+							<i className="fas fa-border-all"></i>
 						</label>
 					</div>
 
-					<div className={styles.typeItem} onClick={setBooksType.bind(null, ProductDisplayTypeEnum.TABLE)}>
-						<input type="radio" id="type-item-1" name="type-products" value="table" />
-						<label htmlFor="type-item-1">
-							<i className="fas fa-border-all"></i>
+					<div className={styles.typeItem} onClick={setBooksType.bind(null, ProductDisplayTypeEnum.LIST)}>
+						<input type="radio" id="type-item-2" name="type-products" value="list" />
+						<label htmlFor="type-item-2">
+							<i className="fas fa-list"></i>
 						</label>
 					</div>
 				</div>

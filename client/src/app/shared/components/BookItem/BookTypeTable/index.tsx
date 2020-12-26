@@ -44,7 +44,7 @@ const BookTypeTable: React.FC<BookTypes> = ({ sale, image, name, oldPrice, curre
 					
 				</div>
 
-				<div className={styles.bookName}>{name}</div>
+				<div className={styles.bookName}>{name.length > 50 ? name.substring(0, 50) + '...' : name}</div>
 			</div>
 
 			<div className={styles.bookActions}>
