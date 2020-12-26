@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
 				<div className={styles.footerList}>
 					<div className={styles.logo}>
 						<NavLink to='/'>
-							BookStock
+							BooksStock
 						</NavLink>
 					</div>
 					<div className={styles.adress}>
@@ -24,58 +24,58 @@ const Footer: React.FC = () => {
 					</div>
 					<div className={styles.email}>
 						<i className="fas fa-envelope"></i>
-						info@example.com
+						books@stock.com
 					</div>
 				</div>
 
 				<div className={styles.footerList}>
-					<div className={styles.listTitle}>Products</div>
+					<div className={styles.listTitle}>Книги</div>
 					<div className={styles.listElement}>
 						<NavLink to='/'>
-							Most popular books
+							Самые популярные книги
 						</NavLink>
 					</div>
 					<div className={styles.listElement}>
 						<NavLink to='/'>
-							Most sales books
+							Самые продаваемые книги
 						</NavLink>
 					</div>
 					<div className={styles.listElement}>
 						<NavLink to='/'>
-							Books sale
+							Распродажа книг
 						</NavLink>		
 					</div>
 				</div>
 
 				<div className={styles.footerList}>
-					<div className={styles.listTitle}>Information</div>
+					<div className={styles.listTitle}>Информация</div>
 					<div className={styles.listElement}>
 						<NavLink to='/'>
-							Information
+							О нас
 						</NavLink>
 					</div>
 					<div className={styles.listElement}>
 						<NavLink to='/'>
-							About us
+							Контакты
 						</NavLink>
 					</div>
 				</div>
 
 				<div className={styles.footerList}>
-					<div className={styles.listTitle}>My account</div>
+					<div className={styles.listTitle}>Мой аккаунт</div>
 					<div className={styles.listElement}>
 						<NavLink to='/'>
-							My account
+							Мой кабинет
 						</NavLink>
 					</div>
 					<div className={styles.listElement}>
 						<NavLink to={AuthRoutes.SIGN_IN}>
-							Login
+							Войти
 						</NavLink>
 					</div>
 					<div className={styles.listElement}>
 						<NavLink to={AuthRoutes.SIGN_UP}>
-							Register
+							Регистрация
 						</NavLink>
 					</div>
 				</div>
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
 
 			<div className={styles.footerSubelement}>
 				<div className={styles.copyright}>
-					© Copyright Metro 2020.
+					© Copyright BookStock 2020.
 				</div>
 
 				<div className={styles.socialNetworks}>
