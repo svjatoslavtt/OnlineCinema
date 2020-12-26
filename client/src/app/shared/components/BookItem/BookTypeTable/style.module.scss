@@ -3,21 +3,9 @@
 
 .book {
 	position: relative;
-	width: 33.33%;
-	flex: 0 0 33.33%;
-	margin-bottom: 40px;
-	padding-right: 30px;
-
-	&:nth-child(3n+3) {
-		padding-right: 0;
-	}
-}
-
-.bookBigGrid {
-	position: relative;
 	width: 25%;
 	flex: 0 0 25%;
-	margin-bottom: 60px;
+	margin-bottom: 40px;
 	padding-right: 30px;
 
 	&:nth-child(4n+4) {
@@ -25,20 +13,16 @@
 	}
 }
 
-.bookBadge {
-	position: absolute;
-	background: #fe6564;
-	color: #f9f9f9;
-	border-radius: 50%;
-	font-size: 14px;
-	z-index: 1;
-	height: 40px;
-	display: flex;
-	width: 40px;
-	justify-content: center;
-	align-items: center;
-	left: 5px;
-	top: 5px;
+.bookBigGrid {
+	position: relative;
+	width: 20%;
+	flex: 0 0 20%;
+	margin-bottom: 60px;
+	padding-right: 30px;
+
+	&:nth-child(5n+5) {
+		padding-right: 0;
+	}
 }
 
 .bookImage {
@@ -72,99 +56,3 @@
 	font-family: $regular;
 }
 
-.bookPrice {
-	display: flex;
-	align-items: flex-end;
-	margin-bottom: 5px;
-	color: #666;
-	font-family: $bold;
-
-	& > div {
-		margin-right: 10px;
-	}
-}
-
-.badgeSale {
-	position: relative;
-	left: 8px;
-	font-family: $bold;
-	background: #fe6564;
-	color: #fff;
-	padding: 1px 3px;
-	font-size: 12px;
-	border-radius: 3px;
-}
-
-.oldPrice {
-	display: flex;
-	align-items: center;
-	color: #b9b9b9;
-	font-family: $regular;
-	font-size: 22px;
-
-	& > .priceCount > span {
-		margin-left: 5px;
-		font-size: 16px;
-	}
-}
-
-.priceCount {
-	text-decoration: line-through;
-}
-
-.currentPrice {
-	color: $darkGrey;
-	font-size: 22px;
-
-	& > span {
-		margin-left: 5px;
-		font-size: 16px;
-	}
-}
-
-.bookActions {
-	display: flex;
-	height: 35px;
-}
-
-.addToFavorite {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-left: 30px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
-
-	& > i {
-		font-size: 22px;
-		color: #ccc;
-		transition: transform .175s ease-out;
-		transform: scale(1);
-	}
-
-	&:hover {
-		& > i {
-			color: $red;
-			transform: scale(1.18);
-		}
-	}
-}
-
-.addToCart {
-	width: 63%;
-	border-radius: 5px;
-	border: 1px solid #dcdcdc;
-	color: #333333fa;
-	background: #fff;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
-	outline: none;
-	font-size: 15px;
-
-	&:hover {
-		background: $green;
-		border: 1px solid $green;
-		color: $lightGrey;
-	}
-}

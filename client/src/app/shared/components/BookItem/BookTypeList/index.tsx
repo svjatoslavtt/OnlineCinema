@@ -1,24 +1,29 @@
-import Rating from '@material-ui/lab/Rating';
 import React from 'react';
+import Rating from '@material-ui/lab/Rating';
 
 import styles from './style.module.scss';
+
+import Badge from '../components/Badge';
+import Buttons from '../components/Buttons';
+import Price from '../components/Price';
 
 type BookTypes = {
 	sale?: number;
 	image: string;
 	name: string;
-	oldPrice?: number;
-	currentPrice: number;
+	price: number;
+	unsalePrice?: number;
 	description: string;
 	year: number;
 	author: string;
+	badge?: string;
 };
 
-const BookTypeList: React.FC<BookTypes> = ({ sale, image, name, oldPrice, currentPrice, description, year, author }) => {
+const BookTypeList: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, description, year, author, badge }) => {
 
 	return (
 		<div className={styles.book}>
-			<div className={styles.bookBadge}>{`-${sale}%`}</div>
+			{badge && <Badge badge={badge} />}
 
 			<div className={styles.bookImage}>
 				<img src={image} alt="book of sale"/>
@@ -29,10 +34,7 @@ const BookTypeList: React.FC<BookTypes> = ({ sale, image, name, oldPrice, curren
 					<div className={styles.bookHeadInfo}>
 						<div className={styles.bookName}>{name}</div>
 						
-						<div className={styles.bookPrice}>
-							<span className={styles.oldPrice}>{`${oldPrice} ₴`}</span>
-							<span className={styles.currentPrice}>{`${currentPrice} ₴`}</span>
-						</div>
+						<Price price={price} unsalePrice={unsalePrice} sale={sale} />
 					</div>
 
 					<div className={styles.bookAdditionalInfo}>
@@ -55,10 +57,8 @@ const BookTypeList: React.FC<BookTypes> = ({ sale, image, name, oldPrice, curren
 						/>
 					</div>
 
-					<div className={styles.bookButtons}>
-						<div className={styles.addToFavorite}><i className="fas fa-heart"></i></div>
-						<button className={styles.addToCart}>В корзину</button>
-						<div className={styles.bookDetails}><i className="fas fa-search"></i></div>
+					<div className={styles.buttonsWrapper}>
+						<Buttons />
 					</div>
 				</div>
 			</div>

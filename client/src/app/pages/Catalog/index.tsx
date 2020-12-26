@@ -32,7 +32,6 @@ const Books: React.FC = () => {
 						<Products 
 							data={BOOKS}
 							productDisplayType={booksType}
-							bigGrid={true}
 						/>
 					</section>
 				</div>

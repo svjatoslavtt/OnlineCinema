@@ -24,21 +24,22 @@ const Products: React.FC<Products> = ({ productDisplayType, data, bigGrid }) => 
 			{
 				table ? (
 					<div className={styles.productsOfTableWrapper}>
-						{data && data.length && data.map(({ id, sale, image, name, oldPrice, currentPrice }: any) => (
+						{data && data.length && data.map(({ id, sale, image, name, price, unsalePrice, badge }: any) => (
 							<BookTypeTable 
 								key={id}
 								sale={sale}
 								image={image}
 								name={name}
-								oldPrice={oldPrice}
-								currentPrice={currentPrice}
+								price={price}
+								unsalePrice={unsalePrice}
 								bigGrid={bigGrid}
+								badge={badge}
 							/>
 						))}
 					</div>
 				) : (
 					<div className={styles.productsOfListWrapper}>
-						{data && data.length && data.map(({ id, sale, image, name, description, year, author, oldPrice, currentPrice }: any) => (
+						{data && data.length && data.map(({ id, sale, image, name, description, year, author, price, unsalePrice, badge }: any) => (
 							<BookTypeList 
 								key={id}
 								sale={sale}
@@ -47,8 +48,9 @@ const Products: React.FC<Products> = ({ productDisplayType, data, bigGrid }) => 
 								year={year}
 								author={author}
 								description={description}
-								oldPrice={oldPrice}
-								currentPrice={currentPrice}
+								price={price}
+								unsalePrice={unsalePrice}
+								badge={badge}
 							/>
 						))}
 					</div>

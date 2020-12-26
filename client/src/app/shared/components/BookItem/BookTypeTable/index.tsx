@@ -2,16 +2,21 @@ import React from 'react';
 
 import styles from './style.module.scss';
 
+import Badge from '../components/Badge';
+import Buttons from '../components/Buttons';
+import Price from '../components/Price';
+
 type BookTypes = {
 	sale?: number;
 	image: string;
 	name: string;
-	oldPrice?: number;
-	currentPrice: number;
+	price: number;
+	unsalePrice?: number;
 	bigGrid?: boolean;
+	badge?: string;
 };
 
-const BookTypeTable: React.FC<BookTypes> = ({ sale, image, name, oldPrice, currentPrice, bigGrid }) => {
+const BookTypeTable: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, bigGrid, badge }) => {
 
 	const bookStyles = [
 		bigGrid ? styles.bookBigGrid : styles.book
@@ -19,38 +24,19 @@ const BookTypeTable: React.FC<BookTypes> = ({ sale, image, name, oldPrice, curre
 
 	return (
 		<div className={bookStyles.join(' ')}>
-			<div className={styles.bookBadge}>{`-${sale}%`}</div>
+			{badge && <Badge badge={badge} />}
 
 			<div className={styles.bookImage}>
 				<img src={image} alt="book of sale"/>
 			</div>
 
 			<div className={styles.bookInfo}>
-				<div className={styles.bookPrice}>
-					<div className={styles.currentPrice}>
-						{currentPrice}
-						<span>грн.</span>
-					</div>
-
-					<div className={styles.oldPrice}>
-						<div className={styles.priceCount}>
-							{oldPrice}
-							<span>грн.</span>
-						</div>
-
-						<div className={styles.badgeSale}>-10%</div>
-					</div>
-
-					
-				</div>
+				<Price price={price} unsalePrice={unsalePrice} sale={sale} />
 
 				<div className={styles.bookName}>{name.length > 50 ? name.substring(0, 50) + '...' : name}</div>
 			</div>
 
-			<div className={styles.bookActions}>
-				<button className={styles.addToCart}>В корзину</button>
-				<div className={styles.addToFavorite}><i className="far fa-heart" title="Добавить к себе"></i></div>
-			</div>
+			<Buttons />
 		</div>
 	);
 };

@@ -1,0 +1,50 @@
+@import '../../../../../static/fonts/index.scss';
+@import '../../../../../static/styles/colors.module.scss';
+
+.bookButtons {
+	display: flex;
+	width: 85%;
+	height: 33px;
+}
+
+.addToFavorite {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 30px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+
+	& > i {
+		font-size: 22px;
+		color: #ccc;
+		transition: transform .175s ease-out;
+		transform: scale(1);
+	}
+
+	&:hover {
+		& > i {
+			color: $red;
+			transform: scale(1.18);
+		}
+	}
+}
+
+.addToCart {
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid #dcdcdc;
+	color: #333333fa;
+	background: #fff;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+	outline: none;
+	font-size: 15px;
+
+	&:hover {
+		background: $green;
+		border: 1px solid $green;
+		color: $lightGrey;
+	}
+}

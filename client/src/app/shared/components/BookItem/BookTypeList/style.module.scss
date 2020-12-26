@@ -11,22 +11,6 @@
 	overflow: hidden;
 }
 
-.bookBadge {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	height: 35px;
-	width: 35px;
-	left: 5px;
-	top: 5px;
-	background: #fe6564;
-	color: #f9f9f9;
-	border-radius: 50%;
-	font-size: 13px;
-	z-index: 1;
-}
-
 .bookImage {
 	display: flex;
 	justify-content: center;
@@ -54,35 +38,16 @@
 
 .bookHeadInfo {
 	display: flex;
+	align-items: flex-start;
 	justify-content: space-between;
 	margin-bottom: 5px;
 }
 
 .bookName {
+	width: 80%;
 	font-size: 16px;
 	color: $darkGrey;
 	font-family: $bold;
-}
-
-.bookPrice {
-	display: flex;
-	align-items: flex-end;
-	color: #666;
-	font-family: $bold;
-
-	& > span {
-		margin-right: 10px;
-	}
-}
-
-.oldPrice {
-	font-size: 14px;
-	text-decoration: line-through;
-}
-
-.currentPrice {
-	color: $darkGrey;
-	font-size: 18px;
 }
 
 .bookAdditionalInfo {
@@ -98,74 +63,20 @@
 	font-family: $bold;
 }
 
+.bookActions {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.bookRating {
+	display: flex;
+}
+
 .description {
 	font-size: 14px;
 }
 
-.addToFavorite {
-	width: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
-	background: $darkGrey;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
-
-	&:hover {
-		background: $red;
-	}
-
-	& > i {
-		color: $lightGrey;
-	}
-}
-
-.addToCart {
-	width: 68%;
-	border-radius: 5px;
-	background: $darkGrey;
-	border: none;
-	color: $lightGrey;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
-	outline: none;
-	font-size: 14px;
-
-	&:hover {
-		background: $green;
-		color: $lightGrey;
-	}
-}
-
-.bookDetails {
-	width: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
-	background: $darkGrey;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
-
-	&:hover {
-		background: $red;
-	}
-
-	& > i {
-		color: $lightGrey;
-	}
-}
-
-.bookActions {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	height: 35px;
-}
-
-.bookButtons {
-	display: flex;
-	justify-content: space-between;
-	width: 45%;
+.buttonsWrapper {
+	width: 30%;
 }

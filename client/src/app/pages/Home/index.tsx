@@ -112,16 +112,17 @@ const NewsFeed: React.FC = () => {
 
 					<div className={styles.saleContainer}>
 					
-						{BOOKS.map(({ id, sale, image, name, oldPrice, currentPrice }) => {
+						{BOOKS.map(({ id, sale, image, name, price, unsalePrice, badge }) => {
 							return (
 								<BookTypeTable 
 									key={id}
 									sale={sale}
 									image={image}
 									name={name}
-									oldPrice={oldPrice}
-									currentPrice={currentPrice}
+									price={price}
+									unsalePrice={unsalePrice}
 									bigGrid={true}
+									badge={badge}
 								/>
 							)
 						})}

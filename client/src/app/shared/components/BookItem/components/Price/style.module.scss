@@ -1,0 +1,52 @@
+@import '../../../../../static/fonts/index.scss';
+@import '../../../../../static/styles/colors.module.scss';
+
+.bookPrice {
+	display: flex;
+	align-items: flex-end;
+	margin-bottom: 5px;
+	color: #666;
+	font-family: $bold;
+	font-size: 18px;
+
+	& > div {
+		margin-right: 10px;
+	}
+}
+
+.badgeSale {
+	position: relative;
+	left: 8px;
+	font-family: $bold;
+	background: #fe6564;
+	color: #fff;
+	padding: 1px 3px;
+	font-size: 12px;
+	border-radius: 3px;
+}
+
+.price {
+	white-space: nowrap;
+	font-family: $bold;
+	color: $darkGrey;
+}
+
+.unsalePrice {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	font-family: $regular;
+	color: $darkGrey;
+	white-space: nowrap;
+	color: #b9b9b9;
+
+	& > span {
+		margin-left: 5px;
+		font-size: 16px;
+	}
+
+	.priceCount {
+		text-decoration: line-through;
+	}
+}
+
