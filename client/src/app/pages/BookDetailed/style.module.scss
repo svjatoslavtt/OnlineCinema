@@ -107,6 +107,8 @@
 }
 
 .currentPrice {
+	position: relative;
+	top: 5px;
 	margin-left: 10px;
 	font-size: 22px;
 	font-family: $bold;
