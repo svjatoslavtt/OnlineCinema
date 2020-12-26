@@ -1,32 +1,15 @@
-@import '../../../static/styles/colors.module.scss';
-@import '../../../static/fonts/index.scss';
+@import '../../../../static/styles/colors.module.scss';
+@import '../../../../static/fonts/index.scss';
 
 .book {
 	position: relative;
 	width: 33.33%;
 	flex: 0 0 33.33%;
-	height: 388px;
 	margin-bottom: 40px;
 	padding-right: 30px;
-	overflow: hidden;
 
 	&:nth-child(3n+3) {
 		padding-right: 0;
-	}
-
-	&:hover {
-		.bookInfo {
-			transform: translateY(-50px);
-		}
-		
-		.bookActions {
-			display: flex;
-			transform: translateY(-50px);
-		}
-
-		.bookImage {
-			transform: translateY(-50px);
-		}
 	}
 }
 
@@ -34,28 +17,11 @@
 	position: relative;
 	width: 25%;
 	flex: 0 0 25%;
-	height: 388px;
 	margin-bottom: 40px;
 	padding-right: 30px;
-	overflow: hidden;
 
 	&:nth-child(4n+4) {
 		padding-right: 0;
-	}
-
-	&:hover {
-		.bookInfo {
-			transform: translateY(-50px);
-		}
-		
-		.bookActions {
-			display: flex;
-			transform: translateY(-50px);
-		}
-
-		.bookImage {
-			transform: translateY(-50px);
-		}
 	}
 }
 
@@ -78,7 +44,7 @@
 .bookImage {
 	display: flex;
 	justify-content: center;
-	height: 80%;
+	height: 300px;
 	width: 100%;
 	margin-bottom: 20px;
 	background: $lightGrey;
@@ -87,6 +53,8 @@
 	cursor: pointer;
 
 	& > img {
+		height: 100%;
+		width: 100%;
 		object-fit: contain;
 	}
 }
@@ -97,102 +65,105 @@
 }
 
 .bookName {
+	margin-bottom: 20px;
 	font-size: 14px;
 	color: $darkGrey;
-	font-family: $bold;
+	font-family: $regular;
 }
 
 .bookPrice {
 	display: flex;
 	align-items: flex-end;
+	margin-bottom: 5px;
 	color: #666;
 	font-family: $bold;
 
-	& > span {
+	& > div {
 		margin-right: 10px;
 	}
 }
 
+.badgeSale {
+	position: relative;
+	left: 8px;
+	font-family: $bold;
+	background: #fe6564;
+	color: #fff;
+	padding: 1px 3px;
+	font-size: 12px;
+	border-radius: 3px;
+}
+
 .oldPrice {
+	display: flex;
+	align-items: center;
+	color: #b9b9b9;
+	font-family: $regular;
+	font-size: 22px;
+
+	& > .priceCount > span {
+		margin-left: 5px;
+		font-size: 16px;
+	}
+}
+
+.priceCount {
 	text-decoration: line-through;
 }
 
 .currentPrice {
 	color: $darkGrey;
-	font-size: 18px;
+	font-size: 22px;
+
+	& > span {
+		margin-left: 5px;
+		font-size: 16px;
+	}
 }
 
 .bookActions {
 	display: flex;
-	justify-content: space-between;
-	height: 40px;
-	transition: transform .215s ease-in-out;
+	height: 35px;
 }
 
 .addToFavorite {
-	width: 14%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-left: 30px;
 	border-radius: 5px;
-	background: $darkGrey;
 	cursor: pointer;
 	transition: all .1s ease-in-out;
 
 	& > i {
-		color: $lightGrey;
-		transition: transform .125s ease-out;
+		font-size: 22px;
+		color: #ccc;
+		transition: transform .175s ease-out;
 		transform: scale(1);
 	}
 
 	&:hover {
-		background: $red;
-
 		& > i {
-			transform: scale(1.28);
+			color: $red;
+			transform: scale(1.18);
 		}
 	}
 }
 
 .addToCart {
-	width: 68%;
+	width: 63%;
 	border-radius: 5px;
-	background: $darkGrey;
-	border: none;
-	color: $lightGrey;
+	border: 1px solid #dcdcdc;
+	color: #333333fa;
+	background: #fff;
 	cursor: pointer;
 	transition: all .1s ease-in-out;
 	outline: none;
 	font-size: 15px;
-	text-transform: uppercase;
 
 	&:hover {
 		background: $green;
+		border: 1px solid $green;
 		color: $lightGrey;
-	}
-}
-
-.bookDetails {
-	width: 14%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
-	background: $darkGrey;
-	cursor: pointer;
-	transition: all .1s ease-in-out;
-
-	& > i {
-		color: $lightGrey;
-		transition: transform .125s ease-out;
-		transform: scale(1);
-	}
-
-	&:hover {
-		background: $red;
-
-		& > i {
-			transform: scale(1.28);
-		}
 	}
 }

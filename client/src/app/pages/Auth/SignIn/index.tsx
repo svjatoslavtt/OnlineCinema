@@ -39,7 +39,7 @@ const SignIn: React.FC = () => {
 				setForm={setForm}
 				form={form}
 				handleSubmit={handleSubmit}
-				title='Member Login'
+				title='Войти'
 			/>
 		</main>
   )

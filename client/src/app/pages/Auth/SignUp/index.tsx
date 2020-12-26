@@ -66,7 +66,7 @@ const SignUp: React.FC = () => {
 				form={form}
 				setForm={setForm}
 				handleSubmit={handleSubmit}
-				title='Registration'
+				title='Регистрация'
 			/>
 		</main>
   )

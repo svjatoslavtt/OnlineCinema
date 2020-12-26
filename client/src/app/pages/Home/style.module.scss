@@ -4,7 +4,7 @@
 .posters {
 	display: flex;
 	justify-content: space-between;
-	max-width: 1400px;
+	max-width: 1600px;
 	width: 100%;
 	padding: 0 3%;
 	margin: 0 auto 20px;
@@ -213,7 +213,7 @@
 }
 
 .popular {
-	max-width: 1400px;
+	max-width: 1600px;
 	width: 100%;
 	padding: 0 3%;
 	margin: 0 auto;
@@ -256,7 +256,8 @@
 	left: 25px;
 	bottom: 25px;
 	color: $grey;
-	background: rgba(110, 188, 99, .8);
+	// background: rgba(117, 177, 110, 0.8);
+	background: linear-gradient(90deg, rgba(72, 84, 162, .7), rgba(119, 32, 136, .7));
 	padding: 10px;
 }
 
@@ -271,7 +272,7 @@
 }
 
 .sale {
-	max-width: 1400px;
+	max-width: 1600px;
 	width: 100%;
 	padding: 0 3%;
 	margin: 0 auto;
@@ -327,7 +328,7 @@
 .announcementContainer {
 	width: 100%;
 	height: 100%;
-	max-width: 1400px;
+	max-width: 1600px;
 	margin: 0 auto;
 	padding: 0 3%;
 	display: flex;

@@ -20,9 +20,9 @@ type FormTypes = {
 };
 
 enum FormParams {
-  LOGIN = 'Member Login',
-  COME_IN = 'Login',
-  DONE = 'Create',
+  LOGIN = 'Войти',
+  COME_IN = 'Войти',
+  DONE = 'Создать',
 };
 
 const Form: React.FC<FormTypes> = ({ handleSubmit, setForm, form, title }) => {
@@ -97,7 +97,7 @@ const Form: React.FC<FormTypes> = ({ handleSubmit, setForm, form, title }) => {
 							{pageParams.isLogin && (
 								<div className={styles.createAccount} onClick={handlerClearErrors}>
 									<NavLink to={AuthRoutes.SIGN_UP} className={styles.signUp}>
-										Create your Account
+										Регистрация
 									</NavLink>
 									<i className="fas fa-long-arrow-alt-right"></i>
 								</div>
@@ -106,7 +106,7 @@ const Form: React.FC<FormTypes> = ({ handleSubmit, setForm, form, title }) => {
 							{!pageParams.isLogin && (
 								<div className={styles.createAccount} onClick={handlerClearErrors}>
 									<NavLink to={AuthRoutes.SIGN_IN} className={styles.signUp}>
-										Login
+										Войти
 									</NavLink>
 									<i className="fas fa-long-arrow-alt-right"></i>
 								</div>

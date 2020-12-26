@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 
 import styles from "./style.module.scss";
 
-import { getLoading } from "../../../redux/loading/selectors";
 import { ButtonTypesEnum } from "../../types/button.types";
+
+import { getLoading } from "../../../redux/loading/selectors";
 
 enum ButtonTextColor {
   WHITE = '#ffffff',
@@ -42,7 +43,7 @@ const Button: React.FC<ButtonTypes> = ({
 			className={styles.button} 
 			style={{color}}
 		>
-      <span>{loading ? 'Loading...' : text}</span>
+      <span>{loading ? 'Загрузка' : text}</span>
     </button>
   )
 }

@@ -7,6 +7,8 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import styles from './style.module.scss';
 
+import { BOOKS } from '../Home/data/books-data';
+
 import { Actions } from '../../redux/books/action';
 import { getCurrentBook, getIsLikeBook, getIsRatedBook } from '../../redux/books/selectors';
 import { getLoading } from '../../redux/loading/selectors';
@@ -18,7 +20,6 @@ import Banner from '../../shared/components/Banner';
 import bookImage from '../../static/images/test.jpg';
 import Footer from '../../shared/components/Footer';
 import AdditionalBooks from '../../shared/components/AdditionalBooks';
-import { BOOKS } from '../Home/data/books-data';
 
 const BookDetailed: React.FC = () => {
 	const history = useHistory();
@@ -68,8 +69,6 @@ const BookDetailed: React.FC = () => {
 			<div className={styles.bookDetailed}>
 				<div className={styles.contentWrapper}>
 					<div className={styles.leftSideWrapper}>
-						{/* <div className={styles.bookBadge}>{`Скидка 25%`}</div> */}
-
 						<div className={styles.imageBlock}>
 							{!loading && (
 								<img src={bookImage || image404} alt={currentBook?.title} />
