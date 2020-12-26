@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DROPDOWN_DATA, DROPDOWN_DATA_TWO } from './filter-data';
 
 import styles from './style.module.scss';
@@ -62,15 +62,15 @@ const Filter: React.FC<FilterTypes> = ({ data }) => {
 
 					return (
 						<div key={item.id} className={styles.asideList}>
-								<div className={styles.asideTitle} onClick={handlerDropdownList.bind(null, item.type)}>
-									<div>
-										{item.title}
-										<span className={styles.popularElements}>{`топ ${item.top.length}`}</span>
-									</div>
-
-									{item.dropdown && <i className="fas fa-sort-up"></i>}
+							<div className={styles.asideTitle} onClick={handlerDropdownList.bind(null, item.type)}>
+								<div>
+									{item.title}
+									<span className={styles.popularElements}>{`топ ${item.top.length}`}</span>
 								</div>
-		
+
+								{item.dropdown && <i className="fas fa-sort-up"></i>}
+							</div>
+			
 							<div className={styles.asideElementsWrapper}>
 								{top.map((item: any) => {
 									return (

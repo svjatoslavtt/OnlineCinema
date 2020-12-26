@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'react-widgets/dist/css/react-widgets.css';
 
 import styles from './style.module.scss';
-import Sort from './components/Sort';
+import TopActions from './components/TopActions';
 import Filter from './components/Filter';
 import { FILTER_DATA } from './components/Filter/filter-data';
 
@@ -23,7 +23,7 @@ const Books: React.FC = () => {
 			<Banner />
 
 			<main className={styles.container}>
-				<Sort setBooksType={setBooksType} />
+				<TopActions setBooksType={setBooksType} />
 
 				<div className={styles.content}>
 					<Filter data={FILTER_DATA}  />

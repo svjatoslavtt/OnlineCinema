@@ -16,12 +16,12 @@ const Sort: React.FC<SortTypes> = ({ setBooksType }) => {
 	};
 	
 	return (
-		<div className={styles.headContent}>
-			<div className={styles.headContentLeft}>
+		<div className={styles.topActions}>
+			<div className={styles.search}>
 				<input type="text" name="serch" placeholder='Поиск книги' />
 			</div>
 
-			<div className={styles.headContentRight}>
+			<div className={styles.contentUpgrade}>
 				<div className={styles.contentType}>
 					<div className={styles.typeItem} onClick={setBooksType.bind(null, ProductDisplayTypeEnum.LIST)}>
 						<input type="radio" id="type-item-2" name="type-products" value="list" defaultChecked />

@@ -1,12 +1,12 @@
 @import '../../../../static/styles/colors.module.scss';
 
-.headContent {
+.topActions {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 30px;
 }
 
-.headContentLeft {
+.search {
 	width: 50%;
 
 	& > input {
@@ -17,7 +17,7 @@
 	}
 }
 
-.headContentRight {
+.contentUpgrade {
 	display: flex;
 	justify-content: flex-end;
 	width: 50%;

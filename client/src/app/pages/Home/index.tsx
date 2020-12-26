@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import queryString from 'query-string';
+import React, { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { GENRES } from "./data/genres";
 import styles from "./style.module.scss";
 import Carousel from './components/Carousel';
 import { BOOKS } from "./data/books-data";
 
-import { Actions } from "../../redux/books/action";
-import { getBooks } from "../../redux/books/selectors";
-import { getFilterBooks } from "../../redux/filter/selectors";
 import NavBar from "../../shared/components/Header";
 import { Categories } from "../../shared/svg/Categories";
 import { AppRoutes } from "../../routes/routes-const";
@@ -22,20 +17,7 @@ import Footer from "../../shared/components/Footer";
 import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
 
 const NewsFeed: React.FC = () => {
-	const history = useHistory();
-	const dispatch = useDispatch();
-	
 	const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
-
-	const parseUrl = queryString.parseUrl(history.location.search);
-
-	// useEffect(() => {
-	// 	if (Object.keys(parseUrl.query).length !== 0 && parseUrl.query.page) {
-	// 		dispatch(Actions.getCurrentPageRequest({ page: Number(parseUrl.query.page) }));
-	// 	} else if (Object.keys(parseUrl.query).length === 0) {
-	// 		dispatch(Actions.getCurrentPageRequest({ page: 1 }));
-	// 	};
-	// }, [dispatch]);
 
 	const dropdownStyles = [
 		styles.dropdownGenresList, 
@@ -101,22 +83,22 @@ const NewsFeed: React.FC = () => {
 					</div>
 				</section>
 
-				<section className={styles.popular}>
-					<div className={styles.popularItem}>
-						<img className={styles.popularImage} src={popularImage2} />
-						<div className={styles.popularInfo}>
-							<span className={styles.popularTitle}>Высший рейтинг</span>
-							<span className={styles.popularSubtitle}>
+				<section className={styles.recommended}>
+					<div className={styles.recommendedItem}>
+						<img className={styles.recommendedImage} src={popularImage2} />
+						<div className={styles.recommendedInfo}>
+							<span className={styles.recommendedTitle}>Высший рейтинг</span>
+							<span className={styles.recommendedSubtitle}>
 								<NavLink to='/'>Смотреть книги</NavLink>
 							</span>
 						</div>
 					</div>
 
-					<div className={styles.popularItem}>
-						<img className={styles.popularImage} src={popularImage} />
-						<div className={styles.popularInfo}>
-							<span className={styles.popularTitle}>Самые продаваемые</span>
-							<span className={styles.popularSubtitle}>
+					<div className={styles.recommendedItem}>
+						<img className={styles.recommendedImage} src={popularImage} />
+						<div className={styles.recommendedInfo}>
+							<span className={styles.recommendedTitle}>Самые продаваемые</span>
+							<span className={styles.recommendedSubtitle}>
 							<NavLink to='/'>Смотреть книги</NavLink>
 							</span>
 						</div>
@@ -158,16 +140,16 @@ const NewsFeed: React.FC = () => {
 				<section className={styles.announcement}>
 					<div className={styles.announcementContainer}>
 						<div className={styles.announcementTitle}>
-							End of Season Clearance Sale upto 30%
+							Распродажа книг до -30%
 						</div>
 
 						<div className={styles.announcementSubtitle}>
-							Stock is limited. Order now to avoid disappointment.
+							Наличие ограничено. Закажите сейчас, чтобы избежать разочарования.
 						</div>
 
 						<NavLink to='/'>
 							<button className={styles.announcementButton}>
-								Shop now
+								Смотреть
 							</button>
 						</NavLink>
 					</div>
