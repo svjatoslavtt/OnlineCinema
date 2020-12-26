@@ -64,7 +64,7 @@ const BookDetailed: React.FC = () => {
 		<>
 			<Header />
 
-			<Banner title='Стив Джобс' />
+			<Banner title='Стив Джобс' subtitle='2011, Деловая литература' />
 
 			<main className={styles.container}>
 				<div className={styles.avatar}>
