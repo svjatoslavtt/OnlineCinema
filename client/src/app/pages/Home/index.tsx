@@ -55,7 +55,7 @@ const NewsFeed: React.FC = () => {
 						</div>
 
 						<ul>
-							<NavLink to={AppRoutes.BOOKS}><li>Фэнтези</li></NavLink>
+							<NavLink to={AppRoutes.Catalog}><li>Фэнтези</li></NavLink>
 							<NavLink to='/'><li>Ужасы</li></NavLink>
 							<NavLink to='/'><li>Комиксы</li></NavLink>
 							<NavLink to='/'><li>Наука</li></NavLink>

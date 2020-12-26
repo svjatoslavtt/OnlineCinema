@@ -1,38 +1,21 @@
 @import '../../static/styles/colors.module.scss';
 @import '../../static/fonts/index.scss';
 
-.bookDetailed {
-	margin-bottom: 50px;
-}
-
-.contentWrapper {
+.container {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
 	width: 100%;
 	max-width: 1600px;
 	padding: 0 3%;
-	margin: 0 auto;
+	margin: 30px auto 50px;
 	margin-top: 30px;
+	margin-bottom: 50px;
 }
 
-.leftSideWrapper {
+.avatar {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
 	width: 25%;
-	position: relative;
-
-	&:hover {
-		.bookBadge {
-			height: 50px;
-		}
-	}
-}
-
-.imageBlock {
-	display: flex;
-	width: 100%;
 	margin-bottom: 20px;
 	border-radius: 5px;
 	overflow: hidden;
@@ -46,27 +29,7 @@
 	}
 }
 
-// .bookBadge {
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: center;
-// 	position: absolute;
-// 	height: 35px;
-// 	padding: 0 8px;
-// 	left: 0px;
-// 	right: 0;
-// 	bottom: 15px;
-// 	background: $red;
-// 	color: $lightGrey;
-// 	border-bottom-right-radius: 5px;
-// 	border-bottom-left-radius: 5px;
-// 	font-size: 16px;
-// 	font-family: $bold;
-// 	transition: all .1s ease-in-out;
-// 	z-index: 1;
-// }
-
-.editBook {
+.editButton {
 	position: absolute;
 	right: 10px;
 	top: 10px;
@@ -89,7 +52,7 @@
 	}
 }
 
-.infoBlock {
+.information {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -108,7 +71,7 @@
 	text-overflow: ellipsis;
 }
 
-.payment {
+.bookInformationBlock {
 	background: #f2f9fa;
 	border-radius: 5px;
 	padding: 20px 25px;
@@ -129,7 +92,7 @@
 	}
 }
 
-.priceInfo {
+.payment {
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
@@ -137,42 +100,41 @@
 	margin-bottom: 20px;
 }
 
-.currentPrice {
+.paymentPrice {
 	display: flex;
 	align-items: flex-end;
 	font-size: 13px;
+}
+
+.currentPrice {
+	margin-left: 10px;
+	font-size: 22px;
+	font-family: $bold;
 
 	& > span {
+		font-size: 18px;
+	}
+}
+
+.oldPrice {
+	display: flex;
+	align-items: flex-end;
+	margin-left: 30px;
+
+	.sale {
+		padding: 2px 6px;
+		background: $red;
+		color: #fff;
 		font-family: $regular;
-		font-size: 22px;
-		margin-left: 5px;
+		font-size: 13px;
+		border-radius: 5px;
 	}
 
-	.currentPrice, .oldPrice {
+	& > span {
 		margin-left: 10px;
-		font-family: $bold;
-	}
-
-	.oldPrice {
-		display: flex;
-		align-items: flex-end;
-		margin-left: 30px;
-
-		.sale {
-			padding: 2px 6px;
-			background: $red;
-			color: #fff;
-			font-family: $regular;
-			font-size: 13px;
-			border-radius: 5px;
-		}
-
-		& > span {
-			margin-left: 10px;
-			font-size: 15px;
-			color: #666;
-			text-decoration: line-through;
-		}
+		font-size: 15px;
+		color: #666;
+		text-decoration: line-through;
 	}
 }
 

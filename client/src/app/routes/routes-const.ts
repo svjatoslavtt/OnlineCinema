@@ -2,10 +2,10 @@ export enum AppRoutes {
 	NEWS_FEED = '/news-feed',
 	MY_OFFICE = '/my-office',
 	UPLOAD_BOOK = '/my-office/upload-book',
-	BOOK_DETAILED = '/detailed',
+	BOOK_DETAILED = '/product',
 	USER_PROFILE = '/user-profile',
 	EDIT_BOOK = '/edit',
-	BOOKS = '/books',
+	Catalog = '/catalog',
 };
 
 export enum AuthRoutes {

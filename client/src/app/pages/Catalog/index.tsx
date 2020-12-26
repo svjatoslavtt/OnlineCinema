@@ -4,11 +4,11 @@ import 'react-widgets/dist/css/react-widgets.css';
 import styles from './style.module.scss';
 import Sort from './components/Sort';
 import Filter from './components/Filter';
-import Banner from '../../shared/components/Banner';
 import { FILTER_DATA } from './components/Filter/filter-data';
 
 import { BOOKS } from '../Home/data/books-data';
 
+import Banner from '../../shared/components/Banner';
 import Header from '../../shared/components/Header';
 import Footer from '../../shared/components/Footer';
 import Products, { ProductDisplayTypeEnum } from '../../shared/components/Products';

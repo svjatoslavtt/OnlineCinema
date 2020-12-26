@@ -34,9 +34,9 @@ const Header: React.FC = () => {
 			<nav className={styles.navbarPages}>
 				<div className={styles.navbarLinksWrapper}>
 					<NavLink to={'/'} exact={true} className={styles.pageLink} activeClassName={styles.linkActive}>Главная</NavLink>
-					<NavLink to={AppRoutes.BOOKS + '/all'} className={styles.pageLink} activeClassName={styles.linkActive}>Книги</NavLink>
-					<NavLink to={AppRoutes.BOOKS + '/authors'} className={styles.pageLink} activeClassName={styles.linkActive}>Авторы</NavLink>
-					<NavLink to={AppRoutes.BOOKS + AppRoutes.BOOK_DETAILED + '/123'} className={styles.pageLink} activeClassName={styles.linkActive}>Детально_Тест</NavLink>
+					<NavLink to={AppRoutes.Catalog + '/all'} className={styles.pageLink} activeClassName={styles.linkActive}>Книги</NavLink>
+					<NavLink to={AppRoutes.Catalog + '/authors'} className={styles.pageLink} activeClassName={styles.linkActive}>Авторы</NavLink>
+					<NavLink to={AppRoutes.BOOK_DETAILED + '/123'} className={styles.pageLink} activeClassName={styles.linkActive}>Детально_Тест</NavLink>
 				</div>
 			
 				<div className={styles.navbarOwnData}>

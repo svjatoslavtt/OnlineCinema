@@ -9,7 +9,7 @@ import PrivateRoute from "./shared/components/AuthPrivateRoute";
 import UploadBook from './pages/UploadBook';
 import BookDetailed from './pages/BookDetailed';
 import EditBook from './pages/EditBook';
-import Books from './pages/Books';
+import Catalog from './pages/Catalog';
 
 const App: React.FC = () => {
   return (
@@ -18,9 +18,9 @@ const App: React.FC = () => {
 			<Route exact={true} path={AuthRoutes.SIGN_UP} component={SignUp} />
 	
 			<Route exact={true} path={'/'} component={Home} />
-			<Route exact={true} path={AppRoutes.BOOKS + '/:category'} component={Books} />
+			<Route exact={true} path={AppRoutes.Catalog + '/:category'} component={Catalog} />
 			<Route exact={true} path={AppRoutes.EDIT_BOOK + '/:bookId'} component={EditBook} />
-			<Route exact={true} path={AppRoutes.BOOKS + AppRoutes.BOOK_DETAILED + '/:bookId'} component={BookDetailed} />
+			<Route exact={true} path={AppRoutes.BOOK_DETAILED + '/:bookId'} component={BookDetailed} />
 			<PrivateRoute exact={true} path={AppRoutes.UPLOAD_BOOK} component={UploadBook} />
 			<Redirect to={'/'} />
 		</Switch>
