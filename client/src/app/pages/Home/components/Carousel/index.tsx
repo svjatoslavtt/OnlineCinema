@@ -19,7 +19,7 @@ const HomeCarousel: React.FC = () => {
 		outline: 'none',
 		alignItems: 'center',
 		lineHeight: 1.1,
-		background: '#333333fa',
+		background: '#6ebc63',
 		height: 10,
 		width: 10,
 		borderRadius: '50%',
@@ -41,7 +41,7 @@ const HomeCarousel: React.FC = () => {
 					if (isSelected) {
 						return (
 							<li
-								style={{ ...indicatorStyles, background: '#009688', }}
+								style={{ ...indicatorStyles, background: '#333333fa', }}
 								aria-label={`Selected: ${label} ${index + 1}`}
 								title={`Selected: ${label} ${index + 1}`}
 							></li>
