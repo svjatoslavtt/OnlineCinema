@@ -6,6 +6,7 @@ export enum AppRoutes {
 	USER_PROFILE = '/user-profile',
 	EDIT_BOOK = '/edit',
 	Catalog = '/catalog',
+	GENRES = '/genres',
 };
 
 export enum AuthRoutes {

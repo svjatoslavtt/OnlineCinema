@@ -19,11 +19,6 @@ import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
 const NewsFeed: React.FC = () => {
 	const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
 
-	const dropdownStyles = [
-		styles.dropdownGenresList, 
-		isOpenDropdown ? styles.active : styles.disactive
-	];
-
   return (
 		<>
 			<NavBar />
@@ -54,9 +49,11 @@ const NewsFeed: React.FC = () => {
 								<div className={styles.searchingInput}>
 									<input type="text" placeholder="Поиск книги" />
 								</div>
-
+							
 								<div className={styles.select} onClick={setIsOpenDropdown.bind(null, !isOpenDropdown)}>
-									Все жанры
+									<NavLink to={AppRoutes.GENRES}>
+										Все жанры
+									</NavLink>
 									<i className="fas fa-bookmark"></i>
 								</div>
 							</div>
@@ -64,19 +61,6 @@ const NewsFeed: React.FC = () => {
 							<button className={styles.searchingButton}>
 								<i className="fas fa-search"></i>
 							</button>
-
-							<div className={dropdownStyles.join(' ')}>
-								<div id="genresWrapper" className={styles.genresWrapper}>
-									{GENRES.map((item, idx) => {
-										return (
-											<div key={idx} className={styles.genreItemContainer}>
-												<img src={popularImage3} alt={item} />
-												<NavLink to='' className={styles.genreItem}>{item}</NavLink>
-											</div>
-										)
-									})}
-								</div>
-							</div>	
 						</div>
 
 						<Carousel />
