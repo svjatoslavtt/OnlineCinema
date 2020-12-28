@@ -14,21 +14,27 @@ const Genres: React.FC = () => {
 			<Banner title='Жанры' />
 
 			<main className={styles.container}>
-				{GENRES.map((item, idx) => {
-					return (
-						<div key={idx} className={styles.genre}>
-							<div className={styles.image}>
-								<img src={item.image} alt={item.name} />
-							</div>
-							
-							<div className={styles.text}>
-								<div className={styles.link}>
-									{item.name}
+				<section className={styles.search}>
+					<input type="text" name="genres-search" placeholder="Поиск жанра" />
+				</section>
+
+				<section className={styles.genres}>
+					{GENRES.map((item, idx) => {
+						return (
+							<div key={idx} className={styles.genre}>
+								<div className={styles.image}>
+									<img src={item.image} alt={item.name} />
+								</div>
+								
+								<div className={styles.text}>
+									<div className={styles.link}>
+										{item.name}
+									</div>
 								</div>
 							</div>
-						</div>
-					)
-				})}
+						)
+					})}
+				</section>
 			</main>
 
 			<Footer />

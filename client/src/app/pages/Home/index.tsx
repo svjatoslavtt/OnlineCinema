@@ -12,7 +12,6 @@ import { Categories } from "../../shared/svg/Categories";
 import { AppRoutes } from "../../routes/routes-const";
 import popularImage from "../../static/images/popular-image2.jpg";
 import popularImage2 from "../../static/images/popular-image.jpg";
-import popularImage3 from "../../static/images/popular-image3.jpg";
 import Footer from "../../shared/components/Footer";
 import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
 

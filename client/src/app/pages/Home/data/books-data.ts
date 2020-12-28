@@ -2,7 +2,7 @@ export const BOOKS = [
 	{
 		id: '1',
 		sale: 5,
-		image: require('../../../static/images/test.jpg'),
+		image: require('../../../static/images/book-image.jpg'),
 		name: 'Age off. Сотри возраст с лица. Ревитоника: научный подход к возвращению молодости',
 		year: 2011,
 		author: 'Айзексон Уолтер',
@@ -15,7 +15,7 @@ export const BOOKS = [
 	{
 		id: '2',
 		sale: 12,
-		image: require('../../../static/images/book-image2.jpg'),
+		image: require('../../../static/images/book-image.jpg'),
 		name: 'Стив Джобс',
 		year: 2011,
 		author: 'Айзексон Уолтер',
@@ -28,7 +28,7 @@ export const BOOKS = [
 	{
 		id: '3',
 		sale: 1,
-		image: require('../../../static/images/film.jpeg'),
+		image: require('../../../static/images/book-image.jpg'),
 		name: 'Стив Джобс',
 		year: 2011,
 		author: 'Айзексон Уолтер',
@@ -67,7 +67,7 @@ export const BOOKS = [
 	{
 		id: '6',
 		sale: 12,
-		image: require('../../../static/images/book-image2.jpg'),
+		image: require('../../../static/images/book-image.jpg'),
 		name: 'Стив Джобс',
 		year: 2011,
 		author: 'Айзексон Уолтер',
@@ -80,7 +80,7 @@ export const BOOKS = [
 	{
 		id: '7',
 		sale: 1,
-		image: require('../../../static/images/film.jpeg'),
+		image: require('../../../static/images/book-image.jpg'),
 		name: 'Стив Джобс',
 		year: 2011,
 		author: 'Айзексон Уолтер',
