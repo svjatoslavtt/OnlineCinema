@@ -41,20 +41,12 @@ const BookCart: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, 
 						<span className={styles.bookYear}>{year}</span>
 						<span className={styles.bookAuthor}>{author}</span>
 					</div>
-
-					<div className={styles.description}>
-						{description.length > 350 ? description.substring(0, 350) + '...' : description}
-					</div>
 				</div>
 
 				<div className={styles.bookActions}>
-					<div className={styles.bookRating}>
-						<Rating
-							name="read-only"
-							value={5.0}
-							precision={0.1}
-							readOnly
-						/>
+					<div className={styles.sale}>
+						<i className="fas fa-info-circle"></i>
+						Акционный товар
 					</div>
 
 					<div className={styles.buttonsWrapper}>

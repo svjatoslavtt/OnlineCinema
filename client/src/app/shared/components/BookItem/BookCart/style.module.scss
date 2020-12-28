@@ -6,21 +6,23 @@
 	justify-content: space-between;
 	position: relative;
 	width: 100%;
-	margin-bottom: 40px;
+	margin-bottom: 25px;
 	padding-right: 30px;
 	overflow: hidden;
+	border-bottom: 1px solid #e8e8e8;
+	padding-bottom: 30px;
 }
 
 .bookImage {
 	display: flex;
 	justify-content: center;
-	width: 30%;
+	width: 15%;
 	background: $lightGrey;
 	border-radius: 5px;
 	cursor: pointer;
 
 	& > img {
-		width: 55%;
+		width: 100%;
 		object-fit: contain;
 	}
 }
@@ -29,7 +31,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 67%;
+	width: 83%;
 }
 
 .bookInfo {
@@ -45,12 +47,15 @@
 
 .bookName {
 	width: 80%;
-	font-size: 16px;
+	font-size: 15px;
 	color: $darkGrey;
-	font-family: $bold;
+	font-family: $regular;
+	color: #3d70b2;
 }
 
 .bookAdditionalInfo {
+	display: flex;
+	flex-direction: column;
 	font-size: 14px;
 	margin-bottom: 10px;
 
@@ -60,7 +65,8 @@
 }
 
 .bookYear {
-	font-family: $bold;
+	margin-bottom: 5px;
+	color: grey;
 }
 
 .bookActions {
@@ -69,14 +75,19 @@
 	align-items: flex-end;
 }
 
-.bookRating {
-	display: flex;
-}
-
-.description {
-	font-size: 14px;
-}
-
 .buttonsWrapper {
 	width: 30%;
+}
+
+.sale {
+	display: flex;
+	align-items: center;
+	color: #7d7d7d;
+	font-family: $regular;
+	font-size: 13px;
+
+	& > i {
+		margin-right: 5px;
+		font-size: 15px;
+	}
 }
