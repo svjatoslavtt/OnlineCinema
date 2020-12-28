@@ -9,6 +9,8 @@ import Footer from '../../shared/components/Footer';
 import Header from '../../shared/components/Header';
 import Products, { ProductDisplayTypeEnum } from '../../shared/components/Products';
 import AdditionalBooks from '../../shared/components/AdditionalBooks';
+import { NavLink } from 'react-router-dom';
+import { AppRoutes } from '../../routes/routes-const';
 
 const MyOffice: React.FC = () => {
 	return (
@@ -26,6 +28,9 @@ const MyOffice: React.FC = () => {
 						<span>Василий Васильевич</span>
 						<span>vasiliiy_vasilevich@gmail.com</span>
 						<div className={styles.changePassword}>Изменить пароль</div>
+						<NavLink to={AppRoutes.UPLOAD_BOOK}>
+							<div className={styles.changePassword}>Загрузить книгу (только админ)</div>
+						</NavLink>
 					</div>
 				</section>
 
