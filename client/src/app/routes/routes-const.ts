@@ -7,6 +7,7 @@ export enum AppRoutes {
 	EDIT_BOOK = '/edit',
 	Catalog = '/catalog',
 	GENRES = '/genres',
+	CART = '/cart',
 };
 
 export enum AuthRoutes {

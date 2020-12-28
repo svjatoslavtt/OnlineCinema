@@ -1,0 +1,49 @@
+@import '../../static/fonts/index.scss';
+@import '../../static/styles/colors.module.scss';
+
+.cart {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	max-width: 1600px;
+	padding: 0 3%;
+	margin: 0 auto 70px;
+}
+
+.products {
+	width: 70%;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 20px;
+	border-bottom: 1px solid $grey;
+}
+
+.title {
+	font-size: 22px;
+	font-family: $bold;
+	border-bottom: 4px solid $green;
+	padding-bottom: 5px;
+}
+
+.deleteProductsButton {
+	display: flex;
+	align-items: center;
+	position: relative;
+	top: 10px;
+	font-size: 13px;
+	color: #808080;
+	font-family: $regular;
+	cursor: pointer;
+
+	& > i {
+		margin-right: 10px;
+	}
+	
+	&:hover {
+		color: darken($color: #808080, $amount: 6);
+	}
+}

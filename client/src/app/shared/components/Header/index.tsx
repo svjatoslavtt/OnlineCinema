@@ -46,7 +46,7 @@ const Header: React.FC = () => {
 
 					<div className={styles.cartWrapper}>
 						<div className={styles.badge}>0</div>
-						<Cart />
+						<NavLink to={AppRoutes.CART}><Cart /></NavLink>
 						<span>0.00$</span>
 					</div>
 				</div>

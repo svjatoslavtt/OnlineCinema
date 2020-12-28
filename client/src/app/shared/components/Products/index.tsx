@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 
 import BookTypeTable from '../BookItem/BookTypeTable';
 import BookTypeList from '../BookItem/BookTypeList';
+import BookCart from '../BookItem/BookCart';
 
 export enum ProductDisplayTypeEnum {
 	LIST = 'list',
@@ -11,17 +12,36 @@ export enum ProductDisplayTypeEnum {
 };
 
 type Products = {
-	productDisplayType: ProductDisplayTypeEnum;
+	productDisplayType?: ProductDisplayTypeEnum;
 	data: any;
 	bigGrid?: boolean;
+	cart?: boolean;
 };
 
-const Products: React.FC<Products> = ({ productDisplayType, data, bigGrid }) => {
+const Products: React.FC<Products> = ({ productDisplayType, data, bigGrid, cart }) => {
 	const table = productDisplayType === ProductDisplayTypeEnum.TABLE;
 
 	return (
 		<>
 			{
+				cart ? (
+					<div className={styles.productsOfListWrapper}>
+						{data && data.length && data.map(({ id, sale, image, name, description, year, author, price, unsalePrice, badge }: any) => (
+							<BookCart 
+								key={id}
+								sale={sale}
+								image={image}
+								name={name}
+								year={year}
+								author={author}
+								description={description}
+								price={price}
+								unsalePrice={unsalePrice}
+								badge={badge}
+							/>
+						))}
+					</div>
+				) :
 				table ? (
 					<div className={styles.productsOfTableWrapper}>
 						{data && data.length && data.map(({ id, sale, image, name, price, unsalePrice, badge }: any) => (

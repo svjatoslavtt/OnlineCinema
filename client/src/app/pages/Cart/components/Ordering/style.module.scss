@@ -1,0 +1,108 @@
+@import '../../../../static/styles/colors.module.scss';
+@import '../../../../static/fonts/index.scss';
+
+.orderingInformation {
+	position: sticky;
+	top: 20px;
+	width: 27%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.freeDelivery {
+	display: flex;
+	align-items: center;
+	padding: 10px 15px;
+	border: 1px solid #ebe8ae;
+	border-radius: 5px;
+	background: #fffbbe;
+	font-size: 15px;
+	font-family: $bold;
+	margin: 8px 8px 25px;
+
+	& > i {
+		font-size: 18px;
+		color: #737373;
+		margin-right: 10px;
+	}
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #ccc;
+	padding: 5px 20px;
+	font-size: 14px;
+}
+
+.itemTitle {
+	font-family: $bold;
+}
+
+.promocode {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	border-bottom: 1px solid #ccc;
+
+	& > input {
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+		border: 1px solid #ccc;
+		width: 65%;
+	}
+}
+
+.promocodeActiveButton {
+	padding: 0 20px;
+	border-radius: 5px;
+	background: $green;
+	border: none;
+	outline: none;
+	color: $lightGrey;
+	cursor: pointer;
+	letter-spacing: 0.6px;
+
+	&:hover {
+		background: $buttonHover;
+	}
+}
+
+.total {
+	padding: 20px 20px;
+}
+
+.totalTitle {
+	display: flex;
+	justify-content: space-between;
+	font-size: 18px;
+	font-family: $bold;
+	margin-bottom: 15px;
+}
+
+button.checkout {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	background: $green;
+	border: none;
+	outline: none;
+	color: $lightGrey;
+	cursor: pointer;
+	letter-spacing: 0.6px;
+
+	&:hover {
+		background: $buttonHover;
+	}
+}
+
+.typesOfPayment {
+	font-size: 14px;
+
+	& > span {
+		margin-left: 5px;
+		color: #3d70b2;
+		border-bottom: 1px dashed #3d70b2;
+		cursor: pointer;
+	}
+}

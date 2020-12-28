@@ -1,0 +1,82 @@
+@import '../../../../static/styles/colors.module.scss';
+@import '../../../../static/fonts/index.scss';
+
+.book {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	width: 100%;
+	margin-bottom: 40px;
+	padding-right: 30px;
+	overflow: hidden;
+}
+
+.bookImage {
+	display: flex;
+	justify-content: center;
+	width: 30%;
+	background: $lightGrey;
+	border-radius: 5px;
+	cursor: pointer;
+
+	& > img {
+		width: 55%;
+		object-fit: contain;
+	}
+}
+
+.bookContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 67%;
+}
+
+.bookInfo {
+	margin-bottom: 10px;
+}
+
+.bookHeadInfo {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-bottom: 5px;
+}
+
+.bookName {
+	width: 80%;
+	font-size: 16px;
+	color: $darkGrey;
+	font-family: $bold;
+}
+
+.bookAdditionalInfo {
+	font-size: 14px;
+	margin-bottom: 10px;
+
+	& > span {
+		margin-right: 15px;
+	}
+}
+
+.bookYear {
+	font-family: $bold;
+}
+
+.bookActions {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.bookRating {
+	display: flex;
+}
+
+.description {
+	font-size: 14px;
+}
+
+.buttonsWrapper {
+	width: 30%;
+}
