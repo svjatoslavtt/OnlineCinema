@@ -40,7 +40,7 @@ const Header: React.FC = () => {
 				</div>
 			
 				<div className={styles.navbarOwnData}>
-					<NavLink to={AppRoutes.UPLOAD_BOOK}>
+					<NavLink to={AppRoutes.MY_OFFICE}>
 						<Profile />
 					</NavLink>
 

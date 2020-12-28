@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import UploadBook from '../UploadBook';
+import UploadBook from '../MyOffice/UploadBook';
 
 const EditBook: React.FC = () => {
 	const { bookId }: { bookId: string } = useParams();

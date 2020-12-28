@@ -5,18 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './style.module.scss';
 
-import Button from '../../shared/components/Button';
-import Error from '../../shared/components/Error';
-import { Actions as BookUploadAction } from '../../redux/book-upload/actions';
-import { Actions as BooksActions } from '../../redux/books/action';
-import { ButtonTypesEnum } from '../../shared/types/button.types';
-import { Actions } from '../../redux/books/action';
-import { getCurrentBook } from '../../redux/books/selectors';
-import { AppRoutes } from '../../routes/routes-const';
-import image404 from '../../static/images/image404.jpg';
-import Header from '../../shared/components/Header';
-import Footer from '../../shared/components/Footer';
-import Banner from '../../shared/components/Banner';
+import Button from '../../../shared/components/Button';
+import Error from '../../../shared/components/Error';
+import { Actions as BookUploadAction } from '../../../redux/book-upload/actions';
+import { Actions as BooksActions } from '../../../redux/books/action';
+import { ButtonTypesEnum } from '../../../shared/types/button.types';
+import { Actions } from '../../../redux/books/action';
+import { getCurrentBook } from '../../../redux/books/selectors';
+import { AppRoutes } from '../../../routes/routes-const';
+import image404 from '../../../static/images/image404.jpg';
+import Header from '../../../shared/components/Header';
+import Footer from '../../../shared/components/Footer';
+import Banner from '../../../shared/components/Banner';
 
 type UploadFields = {
 	title: string;
