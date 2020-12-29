@@ -164,13 +164,63 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 			<div className={styles.uploadBook}>
 				<div style={{position: 'relative'}}>
 					<form className={styles.uploadBookWrapper} onSubmit={handlerSubmit}>
+						<div className={styles.uploadBookFields}>
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-1' 
+									type='text' 
+									name='title' 
+									maxLength={50} 
+									value={fields.title} 
+									onChange={handlerChangeField} 
+									placeholder='Название'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<textarea 
+									id='upload-input-2' 
+									name='description' 
+									maxLength={500} 
+									value={fields.description} 
+									onChange={handlerChangeField} 
+									placeholder='Описание'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-3' 
+									type='text' name='director' 
+									maxLength={50} 
+									value={fields.director} 
+									onChange={handlerChangeField} 
+									placeholder='Автор'
+								/>
+							</div>
+
+							{/* <div className={styles.uploadBookRating}>
+								<Rating
+									name='simple-controlled'
+									value={fields.rating}
+									onChange={(_, newValue) => {
+										setFields(prevState => ({
+											...prevState,
+											rating: newValue,
+										}));
+									}}
+								/>
+							</div> */}
+
+							<Button text='Добавить' type={ButtonTypesEnum.SUBMIT} onClick={handlerSubmit} />
+						</div>
+
 						<div className={styles.uploadBookImageWrapper}>
-							<span className={styles.uploadBookText}>Загрузите картинку для книги</span>	
 							<div className={styles.uploadBookImage}>
 								{showUploadImage || (showUploadImage && currentBook) ? (
 									<img src={showUploadImage as string || image404} alt="avatar" />
 								) : (
-									<span>avatar</span> 
+									<span>view</span> 
 								)}
 							</div>
 							<input 
@@ -184,41 +234,7 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 							/>
 							<Button text='Загрузить' onClick={handlerUseInputFile} />
 						</div>
-
-						<div className={styles.uploadBookFields}>
-							<div className={styles.filed}>
-								<label htmlFor='upload-input-1' className={styles.uploadBookText}>Название</label>
-								<input id='upload-input-1' type='text' name='title' maxLength={50} value={fields.title} onChange={handlerChangeField} />
-							</div>
-
-							<div className={styles.filed}>
-								<label htmlFor='upload-input-2' className={styles.uploadBookText}>Описание</label>
-								<textarea id='upload-input-2' name='description' maxLength={500} value={fields.description} onChange={handlerChangeField} />
-							</div>
-
-							<div className={styles.filed}>
-								<label htmlFor='upload-input-3' className={styles.uploadBookText}>Автор</label>
-								<input id='upload-input-3' type='text' name='director' maxLength={50} value={fields.director} onChange={handlerChangeField} />
-							</div>
-
-							<div className={styles.uploadBookRating}>
-								<span className={styles.uploadBookText}>Выберите рейтинг книги</span>
-								<Rating
-									name='simple-controlled'
-									value={fields.rating}
-									onChange={(_, newValue) => {
-										setFields(prevState => ({
-											...prevState,
-											rating: newValue,
-										}));
-									}}
-								/>
-							</div>
-
-							<Button text='Сохранить' type={ButtonTypesEnum.SUBMIT} onClick={handlerSubmit} />
-						</div>
 					</form>
-					{error && <Error text={error} />}
 				</div>
 			</div>
 

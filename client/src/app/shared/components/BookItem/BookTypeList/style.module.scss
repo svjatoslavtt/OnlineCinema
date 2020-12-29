@@ -14,7 +14,7 @@
 .bookImage {
 	display: flex;
 	justify-content: center;
-	width: 30%;
+	width: 25%;
 	background: $lightGrey;
 	border-radius: 5px;
 	cursor: pointer;
@@ -29,7 +29,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 67%;
+	width: 73%;
 }
 
 .bookInfo {
@@ -44,7 +44,7 @@
 }
 
 .bookName {
-	width: 80%;
+	width: 60%;
 	font-size: 16px;
 	color: $darkGrey;
 	font-family: $bold;
@@ -78,5 +78,7 @@
 }
 
 .buttonsWrapper {
+	display: flex;
+	justify-content: flex-end;
 	width: 30%;
 }

@@ -17,9 +17,10 @@ import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
 import Header from '../../shared/components/Header';
 import Banner from '../../shared/components/Banner';
-import bookImage from '../../static/images/test.jpg';
+import bookImage from '../../static/images/book-image2.webp';
 import Footer from '../../shared/components/Footer';
 import AdditionalBooks from '../../shared/components/AdditionalBooks';
+import Specifications from './components/Specifications';
 
 const BookDetailed: React.FC = () => {
 	const history = useHistory();
@@ -60,6 +61,15 @@ const BookDetailed: React.FC = () => {
 		history.push(AppRoutes.EDIT_BOOK + '/' + bookId);
 	};
 
+	let descriptionTextExample:string = '';
+	descriptionTextExample = `Роман, который сам Кинг, считая "слишком страшным", долго не хотел отдавать в печать, но только за первый год было продано 657 000 экземпляров! Также роман лег в основу одноименного фильма Мэри Ламберт (где Кинг, кстати, сыграл небольшую роль).
+
+	Казалось бы, семейство Крид — это настоящее воплощение "американской мечты": отец — преуспевающий врач, красавица мать, прелестные дети. Для полной идиллии им не хватает лишь большого старинного дома, куда они вскоре и переезжают.
+
+	Но идиллия вдруг стала превращаться в кошмар. Потому что в окружающих их новое жилище вековых лесах скрывается НЕЧТО, более ужасное, чем сама смерть и… более могущественное.
+
+	Читайте легендарный роман Стивена Кинга "КлаТбище домашних жЫвотных" — в новом переводе и впервые без сокращений!`
+
 	return (
 		<>
 			<Header />
@@ -67,7 +77,7 @@ const BookDetailed: React.FC = () => {
 			<Banner title='Стив Джобс' subtitle='2011, Деловая литература' />
 
 			<main className={styles.container}>
-				<div className={styles.avatar}>
+				<section className={styles.avatar}>
 					{!loading && (
 						<img src={bookImage || image404} alt={currentBook?.title} />
 					)}
@@ -76,12 +86,12 @@ const BookDetailed: React.FC = () => {
 							<EditIcon />
 						</div>
 					)}
-				</div>
+				</section>
 
-				<div className={styles.information}>
+				<section className={styles.information}>
 					{!loading && (
 						<>
-							<div className={styles.title}>{currentBook?.title || 'Стив Джобс'}</div>
+							<div className={styles.title}>{currentBook?.title || 'Кладбище домашних животных'}</div>
 
 							<div className={styles.rating}>
 								<span className={styles.ratingCounter}>
@@ -141,34 +151,28 @@ const BookDetailed: React.FC = () => {
 
 								<button className={styles.buyButton}>Добавить в корзину</button>
 							</div>
-
-							<div className={styles.author}>
-								<span className={styles.itemTitle}>Автор:</span>
-								{currentBook?.director || 'Айзек Конор'}
-							</div>
-
-							<div className={styles.genres}>
-								<span className={styles.itemTitle}>Жанры:</span>
-								Деловая литература, Зарубежная публицистика, Истории успеха, Биографии и мемуары, Биографии и Мемуары
-							</div>
-
-							<div className={styles.originalName}>
-								<span className={styles.itemTitle}>Оригинальное название:</span>
-								Steve Jobs: A Biography
-							</div>
-
-							<div className={styles.description}>
-								<span className={styles.itemTitle}>О Книге:</span>
-								{
-									currentBook?.description || `Впервые написанная и единственная «официальная» биография, созданная при стопроцентном участии самого Стива Джобса. Книга стала одним из главных бестселлеров наших лет. История выдающегося человека была написана приблизительно за три года на основании диалогов с родственниками и соседями, бесед с друзьями и врагами, интервью с коллегами и конкурентами.
-									Это рассказ о жизни легендарного человека, который оставил свой след в новой истории, изменив целый мир с помощью своего творческого гения, неустанной работы и переворота в компьютерной индустрии.`
-								}
-							</div>
 							
+							<Specifications />
 						</>
 					)}
-				</div>
+				</section>
 			</main>
+
+			<section className={styles.description}>
+				<div className={styles.descriptionContent}>
+					<span className={styles.title}>О книге</span>
+
+					<span className={styles.text}>
+						Роман, который сам Кинг, считая "слишком страшным", долго не хотел отдавать в печать, но только за первый год было продано 657 000 экземпляров! Также роман лег в основу одноименного фильма Мэри Ламберт (где Кинг, кстати, сыграл небольшую роль).
+
+						Казалось бы, семейство Крид — это настоящее воплощение "американской мечты": отец — преуспевающий врач, красавица мать, прелестные дети. Для полной идиллии им не хватает лишь большого старинного дома, куда они вскоре и переезжают.
+
+						Но идиллия вдруг стала превращаться в кошмар. Потому что в окружающих их новое жилище вековых лесах скрывается НЕЧТО, более ужасное, чем сама смерть и… более могущественное.
+
+						Читайте легендарный роман Стивена Кинга "КлаТбище домашних жЫвотных" — в новом переводе и впервые без сокращений!
+					</span>
+				</div>	
+			</section>
 
 			<AdditionalBooks count={0} data={BOOKS} title='Другие книги автора – Уолтера Айзексона' />
 

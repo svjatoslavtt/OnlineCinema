@@ -110,7 +110,6 @@ const NewsFeed: React.FC = () => {
 							)
 						})}
 					
-						
 						<div className={styles.viewMore}>
 							<NavLink to='/'>
 								<button>

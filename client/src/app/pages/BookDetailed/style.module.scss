@@ -168,27 +168,6 @@
 	}
 }
 
-.author {
-	font-size: 17px;
-	margin-bottom: 10px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.itemTitle {
-	font-size: 14px;
-	margin-right: 10px;
-	color: #616161fa;
-	font-family: $bold;
-}
-
-.description {
-	font-size: 17px;
-	margin-bottom: 15px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
 .rating {
 	display: flex;
 	flex-direction: column;
@@ -214,10 +193,32 @@
 	color: #7d8290;
 }
 
-.genres {
-	margin-bottom: 10px;
+.description {
+	padding: 40px 0 70px;
+	background-color: #f2f9fa;
+	-webkit-box-shadow: inset 0px 5px 22px -19px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px 5px 22px -19px rgba(0,0,0,0.75);
+	box-shadow: inset 0px 5px 22px -19px rgba(0,0,0,0.75);
+
 }
 
-.originalName {
-	margin-bottom: 10px;
+.descriptionContent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 1600px;
+	padding: 0 3%;
+	margin: 0 auto;
+
+	& > .title {
+		margin-bottom: 20px;
+	}
+
+	& > .text {
+		max-width: 800px;
+		margin: 0 auto;
+		font-size: 17px;
+		letter-spacing: 0.7px;
+    line-height: 1.6;
+	}
 }
