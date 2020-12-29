@@ -38,8 +38,12 @@ const BookCart: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, 
 					</div>
 
 					<div className={styles.bookAdditionalInfo}>
-						<span className={styles.bookYear}>{year}</span>
-						<span className={styles.bookAuthor}>{author}</span>
+						<span>{author}</span>
+
+						<div className={styles.weight}>
+							<i className="fas fa-balance-scale"></i>
+							0.49 кг
+						</div>
 					</div>
 				</div>
 
@@ -50,7 +54,15 @@ const BookCart: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, 
 					</div>
 
 					<div className={styles.buttonsWrapper}>
-						<Buttons />
+						<div className={styles.saveBook}>
+							<i className="fas fa-bookmark" title="Сохранить книгу" />
+							Отложить
+						</div>
+
+						<div className={styles.deleteBook}>
+							<i className="far fa-trash-alt"></i>
+							Удалить
+						</div>
 					</div>
 				</div>
 			</div>
