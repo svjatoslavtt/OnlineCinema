@@ -33,7 +33,7 @@ const Specifications: React.FC = () => {
 
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Жанр:</span>
-								<span className={styles.textLink}>Деловая литература</span>
+								<span className={styles.textLink}>Триллеры</span>
 							</div>
 
 							<div className={styles.specificationItem}>
