@@ -75,9 +75,9 @@
 
 .asideDropdownList {
 	padding: 10px;
-	width: 100%;
+	width: 150%;
 	height: 100%;
-	overflow: auto;
+	overflow: hidden;
 	position: absolute;
 	right: 0;
 	top: 0;
@@ -87,9 +87,15 @@
 	border-bottom-right-radius: 5px;
 }
 
+.asideDropdownListWrapper {
+	height: 92.5%;
+}
+
 .dropdownElementsWrapper {
+	height: 100%;
 	margin-top: 10px;
 	padding: 10px 0;
 	background: #fff;
 	border-radius: 5px;
+	overflow-y: auto;
 }
