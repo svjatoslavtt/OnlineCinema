@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { NavLink } from "react-router-dom";
 
-import { GENRES } from "./data/genres";
 import styles from "./style.module.scss";
 import Carousel from './components/Carousel';
 import { BOOKS } from "./data/books-data";
@@ -16,8 +15,6 @@ import Footer from "../../shared/components/Footer";
 import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
 
 const NewsFeed: React.FC = () => {
-	const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
-
   return (
 		<>
 			<NavBar />
@@ -49,12 +46,10 @@ const NewsFeed: React.FC = () => {
 									<input type="text" placeholder="Поиск книги" />
 								</div>
 							
-								<div className={styles.select} onClick={setIsOpenDropdown.bind(null, !isOpenDropdown)}>
-									<NavLink to={AppRoutes.GENRES}>
+								<NavLink to={AppRoutes.GENRES} className={styles.genres}>
 										Все жанры
-									</NavLink>
-									<i className="fas fa-bookmark"></i>
-								</div>
+										<i className="fas fa-bookmark"></i>
+								</NavLink>
 							</div>
 
 							<button className={styles.searchingButton}>
