@@ -11,8 +11,16 @@ import Products, { ProductDisplayTypeEnum } from '../../shared/components/Produc
 import AdditionalBooks from '../../shared/components/AdditionalBooks';
 import { NavLink } from 'react-router-dom';
 import { AppRoutes } from '../../routes/routes-const';
+import { useDispatch } from 'react-redux';
+import { Actions } from '../../redux/auth/actions';
 
 const MyOffice: React.FC = () => {
+	const dispatch = useDispatch();
+
+	const handlerLogout = () => {
+		dispatch(Actions.logout());
+	};
+
 	return (
 		<>
 			<Header />
@@ -27,10 +35,11 @@ const MyOffice: React.FC = () => {
 					<div className={styles.data}>
 						<span>Василий Васильевич</span>
 						<span>vasiliiy_vasilevich@gmail.com</span>
-						<div className={styles.changePassword}>Изменить пароль</div>
+						<div className={styles.actionButton}>Изменить пароль</div>
 						<NavLink to={AppRoutes.UPLOAD_BOOK}>
-							<div className={styles.changePassword}>Загрузить книгу (только админ)</div>
+							<div className={styles.actionButton}>Загрузить книгу (только админ)</div>
 						</NavLink>
+						<div className={styles.logout} onClick={handlerLogout}>Выйти</div>
 					</div>
 				</section>
 

@@ -33,7 +33,7 @@
 	width: 75%;
 }
 
-.changePassword {
+.actionButton, .logout {
 	margin-bottom: 10px;
 	background: #6ebc63;
 	font-size: 13px;
@@ -45,5 +45,13 @@
 
 	&:hover {
 		background: $buttonHover;
+	}
+}
+
+.logout {
+	background: $red;
+
+	&:hover {
+		background: darken($color: $red, $amount: 4);
 	}
 }
