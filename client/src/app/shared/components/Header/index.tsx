@@ -40,9 +40,17 @@ const Header: React.FC = () => {
 				</div>
 			
 				<div className={styles.navbarOwnData}>
-					<NavLink to={AppRoutes.MY_OFFICE}>
-						<Profile />
-					</NavLink>
+					{token ? (
+						<NavLink to={AppRoutes.MY_OFFICE}>
+							<Profile />
+						</NavLink>
+					) : (
+						<div className={styles.authLinks}>
+							<NavLink to={AuthRoutes.SIGN_IN}>Войти</NavLink>
+							<NavLink to={AuthRoutes.SIGN_UP}>Регистрация</NavLink>
+						</div>
+					)}
+				
 
 					<div className={styles.cartWrapper}>
 						<div className={styles.badge}>0</div>
