@@ -12,6 +12,7 @@ import Catalog from './pages/Catalog';
 import Genres from './pages/Genres';
 import MyOffice from './pages/MyOffice';
 import Cart from './pages/Cart';
+import PrivateRoute from './shared/components/AuthPrivateRoute';
 
 const App: React.FC = () => {
   return (
@@ -24,7 +25,7 @@ const App: React.FC = () => {
 			<Route exact={true} path={AppRoutes.EDIT_BOOK + '/:bookId'} component={EditBook} />
 			<Route exact={true} path={AppRoutes.BOOK_DETAILED + '/:bookId'} component={BookDetailed} />
 			<Route exact={true} path={AppRoutes.GENRES} component={Genres} />
-			<Route exact={true} path={AppRoutes.MY_OFFICE} component={MyOffice} />
+			<PrivateRoute exact={true} path={AppRoutes.MY_OFFICE} component={MyOffice} />
 			<Route exact={true} path={AppRoutes.CART} component={Cart} />
 			<Route exact={true} path={AppRoutes.UPLOAD_BOOK} component={UploadBook} />
 			<Redirect to={'/'} />
