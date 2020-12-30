@@ -46,8 +46,10 @@
 
 .navbarOwnData {
 	display: flex;
+	align-items: center;
 
 	svg {
+		position: relative;
 		margin-left: 30px;
 	}
 }
