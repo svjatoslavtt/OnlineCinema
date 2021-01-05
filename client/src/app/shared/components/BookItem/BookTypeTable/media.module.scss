@@ -23,8 +23,8 @@
 	}
 
 	.book {
-		width: 33.3%;
-		flex: 0 0 33.3%;
+		width: 33.5%;
+		flex: 0 0 33.5%;
 
 		&:nth-child(3n+3) {
 			padding-right: 0;
@@ -34,8 +34,8 @@
 
 @media (min-width: 701px) and (max-width: 900px) {
 	.bookBigGrid {
-		width: 33.3%;
-		flex: 0 0 33.3%;
+		width: 33.5%;
+		flex: 0 0 33.5%;
 
 		&:nth-child(3n+3) {
 			padding-right: 0;
