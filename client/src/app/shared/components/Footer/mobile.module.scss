@@ -1,0 +1,30 @@
+@media all and (max-width: 1000px) {
+	.footerContainer {
+		flex-wrap: wrap;
+	}
+
+	.footerList {
+		width: 50%;
+	}
+}
+
+@media all and (max-width: 700px) {
+	.footerContainer {
+		flex-direction: column;
+	}
+
+	.footerList {
+		width: 100%;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.footerSubelement {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.copyright {
+		margin-bottom: 25px;
+	}
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { NavLink } from "react-router-dom";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import styles from "./style.module.scss";
 import Carousel from './components/Carousel';
@@ -15,6 +16,8 @@ import Footer from "../../shared/components/Footer";
 import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
 
 const NewsFeed: React.FC = () => {
+	const isMedia = useMediaQuery('(max-width: 600px)');
+
   return (
 		<>
 			<NavBar />
@@ -46,15 +49,32 @@ const NewsFeed: React.FC = () => {
 									<input type="text" placeholder="Поиск книги" />
 								</div>
 							
-								<NavLink to={AppRoutes.GENRES} className={styles.genres}>
+								{!isMedia && (
+									<NavLink to={AppRoutes.GENRES} className={styles.genres}>
 										Все жанры
 										<i className="fas fa-bookmark"></i>
-								</NavLink>
+									</NavLink>
+								)}
+
+								{isMedia && (
+									<button className={styles.searchingButton}>
+										<i className="fas fa-search"></i>
+									</button>
+								)}
 							</div>
 
-							<button className={styles.searchingButton}>
-								<i className="fas fa-search"></i>
-							</button>
+							{!isMedia && (
+								<button className={styles.searchingButton}>
+									<i className="fas fa-search"></i>
+								</button>
+							)}
+
+							{isMedia && (
+								<NavLink to={AppRoutes.GENRES} className={styles.genres}>
+									Все жанры
+									<i className="fas fa-bookmark"></i>
+								</NavLink>
+							)}
 						</div>
 
 						<Carousel />

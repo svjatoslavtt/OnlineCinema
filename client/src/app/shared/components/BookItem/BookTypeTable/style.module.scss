@@ -19,10 +19,6 @@
 	flex: 0 0 20%;
 	margin-bottom: 60px;
 	padding-right: 30px;
-
-	&:nth-child(5n+5) {
-		padding-right: 0;
-	}
 }
 
 .bookImage {
@@ -56,3 +52,4 @@
 	font-family: $regular;
 }
 
+@import './media.module.scss'
