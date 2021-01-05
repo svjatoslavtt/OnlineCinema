@@ -1,0 +1,17 @@
+@media all and (max-width: 900px) {
+	.container {
+		flex-direction: column;
+	}
+
+	.logo {
+		width: 150px;
+		height: 150px;
+		font-size: 22px;
+		margin: 30px 0 30px;
+
+		&::after {
+			width: 45px;
+			height: 45px;
+		}
+	}
+}
