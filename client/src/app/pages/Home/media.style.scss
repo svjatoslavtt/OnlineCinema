@@ -22,7 +22,7 @@
 
 @media all and (max-width: 600px) {
 	.posters {
-		margin: 0 auto 10px;
+		margin: 0 auto 5%;
 	}
 
 	.search {
@@ -53,5 +53,15 @@
 		width: 100%;
 		height: 40px;
 		border-left: none;
+	}
+
+	.recommendedTitle {
+		font-size: 26px;
+	}
+
+	.recommendedInfo {
+		width: 100%;
+		left: 0;
+		bottom: 0;
 	}
 }

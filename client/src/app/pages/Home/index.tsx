@@ -46,7 +46,7 @@ const NewsFeed: React.FC = () => {
 						<div className={styles.search}>
 							<div className={styles.searchWrapper}>
 								<div className={styles.searchingInput}>
-									<input type="text" placeholder="Поиск книги" />
+									<input type="text" placeholder="Какую книгу вы хотите найти..." />
 								</div>
 							
 								{!isMedia && (

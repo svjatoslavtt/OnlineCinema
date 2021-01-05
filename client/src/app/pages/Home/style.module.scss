@@ -70,7 +70,6 @@
 	position: relative;
 	border: 1px solid $grey;
 	height: 55px;
-	border-radius: 5px;
 	align-items: center;
 }
 
@@ -83,11 +82,11 @@
 .searchingInput {
 	width: 75%;
 	font-family: $regular;
-	font-size: 18px;
 	overflow: hidden;
 
 	& > input {
 		height: 53px;
+		font-size: 16px;
 		border: none;
 		outline: none;
 		box-shadow: none;
