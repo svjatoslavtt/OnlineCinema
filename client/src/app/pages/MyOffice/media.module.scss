@@ -1,0 +1,24 @@
+@media all and (max-width: 1000px) {
+	.section {
+		flex-direction: column;
+		margin-bottom: 50px;
+	}
+
+	.title {
+		width: 100%;
+		margin-bottom: 20px;
+		border-right: none;
+	}
+
+	.data {
+		max-width: 300px;
+
+		& > span {
+			margin-bottom: 5px;
+		}
+	}
+
+	.products {
+		width: 100%;
+	}
+}

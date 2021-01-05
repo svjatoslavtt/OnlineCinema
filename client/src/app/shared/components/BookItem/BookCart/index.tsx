@@ -23,9 +23,8 @@ const BookCart: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, 
 
 	return (
 		<div className={styles.book}>
-			{badge && <Badge badge={badge} />}
-
 			<div className={styles.bookImage}>
+				{badge && <Badge badge={badge} />}
 				<img src={image} alt="book of sale"/>
 			</div>
 

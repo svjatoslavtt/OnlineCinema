@@ -1,0 +1,10 @@
+@media all and (max-width: 1200px) {
+	.cart {
+		flex-direction: column;
+	}
+
+	.products {
+		width: 100%;
+		order: 2;
+	}
+}
