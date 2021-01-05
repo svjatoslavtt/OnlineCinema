@@ -1,0 +1,33 @@
+@media all and (max-width: 600px) {
+	.topActions {
+		flex-direction: column;
+		height: initial;
+	}
+
+	.search {
+		width: 100%;
+		margin-bottom: 10px;
+
+		& > input {
+			width: 100%;
+		}
+	}
+
+	.contentUpgrade {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+
+		& > div {
+			margin-left: 0;
+		}
+	}
+
+	.contentType {
+		display: none;
+	}
+
+	.sort {
+		width: 100%;
+	}
+}

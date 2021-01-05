@@ -21,6 +21,10 @@
 }
 
 @media all and (max-width: 600px) {
+	.posters {
+		margin: 0 auto 10px;
+	}
+
 	.search {
 		height: initial;
 		flex-direction: column;

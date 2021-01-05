@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import _ from 'lodash';
 import EditIcon from '@material-ui/icons/Edit';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import styles from './style.module.scss';
 
@@ -33,6 +34,8 @@ const BookDetailed: React.FC = () => {
 	const isLike = useSelector(getIsLikeBook);
 	const isRate = useSelector(getIsRatedBook);
 	const token = useSelector(getAuthToken);
+
+	const isMedia = useMediaQuery('(max-width: 900px)');
 
 	useEffect(() => {
 		dispatch(Actions.getCurrentBookRequest({ bookId }));

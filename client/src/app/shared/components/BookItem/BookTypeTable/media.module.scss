@@ -4,6 +4,12 @@
 			padding-right: 0;
 		}
 	}
+
+	.book {
+		&:nth-child(4n+4) {
+			padding-right: 0;
+		}
+	}
 }
 
 @media (min-width: 901px) and (max-width: 1100px) {
@@ -12,6 +18,15 @@
 		flex: 0 0 25%;
 
 		&:nth-child(4n+4) {
+			padding-right: 0;
+		}
+	}
+
+	.book {
+		width: 33.3%;
+		flex: 0 0 33.3%;
+
+		&:nth-child(3n+3) {
 			padding-right: 0;
 		}
 	}
@@ -26,6 +41,15 @@
 			padding-right: 0;
 		}
 	}
+
+	.book {
+		width: 50%;
+		flex: 0 0 50%;
+
+		&:nth-child(2n) {
+			padding-right: 0;
+		}
+	}
 }
 
 @media (min-width: 451px) and (max-width: 700px) {
@@ -37,10 +61,26 @@
 			padding-right: 0;
 		}
 	}
+	
+	.products {
+		width: 100%;
+	}
+
+	.book {
+		width: 100%;
+		flex: 0 0 100%;
+		padding-right: 0;
+	}
 }
 
 @media all and (max-width: 450px) {
 	.bookBigGrid {
+		width: 100%;
+		flex: 0 0 100%;
+		padding-right: 0;
+	}
+
+	.book {
 		width: 100%;
 		flex: 0 0 100%;
 		padding-right: 0;

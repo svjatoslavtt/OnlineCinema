@@ -1,0 +1,25 @@
+@media all and (max-width: 600px) {
+	.tabs {
+		width: 100%;
+	}
+
+	.tabContent {
+		flex-direction: column;
+	}
+
+	.tabContentColumn {
+		width: 100%;
+	}
+
+
+}
+
+@media all and (max-width: 450px) {
+	.tabsTitle {
+		max-width: 123px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		padding: 10px;
+		overflow: hidden;
+	}
+}

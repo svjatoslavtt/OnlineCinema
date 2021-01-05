@@ -1,0 +1,61 @@
+@media all and (max-width: 900px) {
+	.avatar {
+		display: none;
+	}
+
+	.information {
+		width: 100%;
+	}
+}
+
+@media all and (max-width: 600px) {
+	.payment {
+		flex-direction: column;
+		align-items: initial;
+	}
+
+	.paymentPrice {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.currentPrice {
+		margin-left: 0;
+		margin-bottom: 10px;
+	}
+
+	.oldPrice {
+		margin-left: 0;
+		margin-bottom: 10px;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.container {
+		flex-direction: column;
+		padding: 0 20px;
+	}
+
+	.avatar {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		box-shadow: none;
+
+		& > img {
+			width: 50%;
+		}
+	}
+
+	.buyButton {
+		width: 100%;
+	}
+
+	.information {
+		padding: 0;
+	}
+
+	.title {
+		font-size: 22px;
+	}
+}
