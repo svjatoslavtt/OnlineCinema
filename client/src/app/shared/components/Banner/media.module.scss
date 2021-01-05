@@ -1,0 +1,20 @@
+@media all and (max-width: 600px) {
+	.banner {
+		height: 250px;
+		margin-bottom: 30px;
+	}
+
+	.title {
+		font-size: 30px;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.banner {
+		height: 220px;
+	}
+
+	.title {
+		font-size: 26px;
+	}
+}
