@@ -91,3 +91,11 @@
 		}
 	}
 }
+
+.menu {
+	position: relative;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+@import './media.style.scss';

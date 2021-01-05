@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import styles from './style.module.scss';
+import NavBarMobile from './mobile';
 
 import { Profile } from '../../svg/Profile';
 
@@ -24,12 +26,25 @@ const Header: React.FC = () => {
   // };
 
 	// const handlerLogout = () => dispatch(Actions.logout());
+	const [isOpenMobile, setIsOpenMobile] = useState<boolean>(false);
+	
+	const isMedia = useMediaQuery('(max-width: 1000px)');
   
   return (
     <header className={styles.container}>
 			<div className={styles.headerLogo}>
 				<NavLink to={AppRoutes.NEWS_FEED}>BooksStock</NavLink>
 			</div>
+
+			{isMedia && (
+				<>
+					<div className={styles.menu} onClick={setIsOpenMobile.bind(null, true)}>
+						<i className="fas fa-bars"></i>
+					</div>
+
+					<NavBarMobile isOpenMobile={isOpenMobile} setIsOpenMobile={setIsOpenMobile} />
+				</>
+			)}
 
 			<nav className={styles.navbarPages}>
 				<div className={styles.navbarLinksWrapper}>
