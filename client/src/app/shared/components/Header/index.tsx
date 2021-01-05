@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -29,6 +29,16 @@ const Header: React.FC = () => {
 	const [isOpenMobile, setIsOpenMobile] = useState<boolean>(false);
 	
 	const isMedia = useMediaQuery('(max-width: 1000px)');
+
+	useEffect(() => {
+		const body: any = document.querySelector("body");
+
+		if (isOpenMobile && body) {
+			body.style.overflowY = "hidden";
+		} else if (body) {
+			body.style.overflowY = "auto";
+		}
+	}, [isOpenMobile]);
   
   return (
     <header className={styles.container}>

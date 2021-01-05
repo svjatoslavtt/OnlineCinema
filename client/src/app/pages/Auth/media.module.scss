@@ -1,8 +1,11 @@
 @media all and (max-width: 900px) {
 	.container {
+		position: fixed;
 		padding-right: initial;
 		justify-content: center;
 		align-items: flex-start;
-		padding: 0 4%;
+		overflow-y: auto;
+		overflow-x: hidden;
+		padding: 0 4% 50px;
 	}
 }
