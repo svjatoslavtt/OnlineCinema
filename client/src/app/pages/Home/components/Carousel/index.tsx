@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import styles from './style.module.scss';
 
@@ -8,6 +9,8 @@ import CarouselItem from '../CarouselItem';
 import { ITEM_DATA } from '../../data/carousel-item-data';
 
 const HomeCarousel: React.FC = () => {
+	const isMedia = useMediaQuery('(max-width: 500px)');
+
 	const indicatorStyles = {
 		display: 'flex',
 		justifyContent: 'center',
@@ -20,8 +23,8 @@ const HomeCarousel: React.FC = () => {
 		alignItems: 'center',
 		lineHeight: 1.1,
 		background: '#6ebc63',
-		height: 10,
-		width: 10,
+		height: isMedia ? 8 : 10,
+		width: isMedia ? 8 : 10,
 		borderRadius: '50%',
 	};
 	

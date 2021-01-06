@@ -7,7 +7,7 @@
 	max-width: 1600px;
 	width: 100%;
 	padding: 0 5%;
-	margin: 0 auto 20px;
+	margin: 0 auto 15px;
 }
 
 .categories {
@@ -71,6 +71,7 @@
 	border: 1px solid $grey;
 	height: 55px;
 	align-items: center;
+	margin-bottom: 15px;
 }
 
 .searchWrapper {
@@ -143,7 +144,7 @@
 .recommendedItem {
 	display: flex;
 	align-items: flex-end;
-	width: 49.2%;
+	width: 49.4%;
 	height: 300px;
 	position: relative;
 	background-color: #454545;

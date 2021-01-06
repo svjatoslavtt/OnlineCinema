@@ -1,5 +1,18 @@
-@media all and (max-width: 900px) {
+@media all and (max-width: 800px) {
 	.carouselOfAnnouncement {
-		display: none;
+		height: 300px;
+
+		& > div > div {
+			height: 300px;
+		}
+	}
+}
+
+@media all and (max-width: 500px) {
+	.carouselOfAnnouncement {
+		& > div > div > ul {
+			margin: 0 0 15px 0 !important;
+			left: 10px;
+		}
 	}
 }

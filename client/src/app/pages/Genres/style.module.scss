@@ -28,9 +28,8 @@
 	flex-direction: column;
 	align-items: center;
 	position: relative;
-	width: 20%;
+	// width: 20%;
 	flex: 0 0 20%;
-	height: 250px;
 	overflow: hidden;
 	cursor: pointer;
 
@@ -91,3 +90,5 @@
 	outline: none;
 	transition: all .1s ease-in-out;
 }
+
+@import './media.module.scss';

@@ -1,0 +1,41 @@
+@media all and (max-width: 1000px) {
+	.genre {
+		width: 25%;
+		flex: 0 0 25%;
+	}
+
+	.link {
+		font-size: 12px;
+	}
+}
+
+@media all and (max-width: 900px) {
+	.link {
+		font-size: 10px;
+	}
+}
+
+@media all and (max-width: 800px) {
+	.genre {
+		width: 33.3%;
+		flex: 0 0 33.3%;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.link {
+		font-size: 9px;
+	}
+}
+
+@media all and (max-width: 425px) {
+	.link {
+		font-size: 8px;
+	}
+}
+
+@media all and (max-width: 350px) {
+	.link {
+		font-size: 7px;
+	}
+}

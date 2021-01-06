@@ -1,0 +1,42 @@
+@media all and (max-width: 900px) {
+	img.carouselImageItem {
+		display: none;
+	}
+
+	.carouselInfoItem {
+		width: 100%;
+	}
+}
+
+@media all and (max-width: 800px) {
+	.carouselInfoItem {
+		height: 300px;
+	}
+
+	.itemTitle {
+		font-size: 30px;
+	}
+
+	.itemSubtitle {
+		font-size: 14px;
+		margin-bottom: 25px;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.itemTitle {
+		font-size: 24px;
+	}
+
+	.itemSubtitle {
+		font-size: 13px;
+		margin-bottom: 25px;
+	}
+}
+
+@media all and (max-width: 375px) {
+	.itemSubtitle {
+		font-size: 11px;
+		margin-bottom: 25px;
+	}
+}
