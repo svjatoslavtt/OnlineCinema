@@ -98,4 +98,15 @@
 	cursor: pointer;
 }
 
+.topHeaderWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.mobileLinks {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
 @import './media.style.scss';

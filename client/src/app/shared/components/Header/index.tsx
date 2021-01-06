@@ -42,19 +42,21 @@ const Header: React.FC = () => {
   
   return (
     <header className={styles.container}>
-			<div className={styles.headerLogo}>
-				<NavLink to={AppRoutes.NEWS_FEED}>BooksStock</NavLink>
+			<div className={styles.topHeaderWrapper}>
+				<div className={styles.headerLogo}>
+					<NavLink to={AppRoutes.NEWS_FEED}>BooksStock</NavLink>
+				</div>
+
+				{isMedia && (
+					<>
+						<div className={styles.menu} onClick={setIsOpenMobile.bind(null, true)}>
+							<i className="fas fa-bars"></i>
+						</div>
+
+						<NavBarMobile isOpenMobile={isOpenMobile} setIsOpenMobile={setIsOpenMobile} />
+					</>
+				)}
 			</div>
-
-			{isMedia && (
-				<>
-					<div className={styles.menu} onClick={setIsOpenMobile.bind(null, true)}>
-						<i className="fas fa-bars"></i>
-					</div>
-
-					<NavBarMobile isOpenMobile={isOpenMobile} setIsOpenMobile={setIsOpenMobile} />
-				</>
-			)}
 
 			<nav className={styles.navbarPages}>
 				<div className={styles.navbarLinksWrapper}>
@@ -84,6 +86,28 @@ const Header: React.FC = () => {
 					</div>
 				</div>
 			</nav>
+
+			{isMedia && (
+				<nav className={styles.navbarOwnData}>
+					{token ? (
+						<NavLink to={AppRoutes.MY_OFFICE} className={styles.pageLink} activeClassName={styles.linkActive}>
+							Мой кабинет
+						</NavLink>
+					) : (
+						<div className={styles.authLinks}>
+							<NavLink to={AuthRoutes.SIGN_IN}>Войти</NavLink>
+							<NavLink to={AuthRoutes.SIGN_UP}>Регистрация</NavLink>
+						</div>
+					)}
+				
+
+					<div className={styles.cartWrapper}>
+						<div className={styles.badge}>0</div>
+						<NavLink to={AppRoutes.CART} className={styles.cart}><Cart /></NavLink>
+						<span>0.00$</span>
+					</div>
+				</nav>
+			)}
     </header>
   )
 }

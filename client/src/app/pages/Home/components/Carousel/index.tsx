@@ -4,7 +4,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import styles from './style.module.scss';
 
-import CarouselItem from '../CarouselItem';
+import CarouselItem from './CarouselItem';
 
 import { ITEM_DATA } from '../../data/carousel-item-data';
 

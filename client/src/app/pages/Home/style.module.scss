@@ -175,13 +175,14 @@
 	left: 25px;
 	bottom: 25px;
 	color: $grey;
-	background: rgba(110, 188, 99, .8);
+	// background: rgba(110, 188, 99, .8);
+	background: $green;
 	padding: 10px;
 }
 
 .recommendedTitle {
 	font-family: $bold;
-	font-size: 36px;
+	font-size: 33px;
 }
 
 .recommendedSubtitle > a {

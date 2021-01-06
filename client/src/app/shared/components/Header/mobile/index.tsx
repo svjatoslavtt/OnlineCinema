@@ -37,24 +37,6 @@ const NavBarMobile: React.FC<NavBarMobileTypes> = ({ isOpenMobile, setIsOpenMobi
 					<NavLink to={AppRoutes.Catalog + '/authors'} className={styles.pageLink} activeClassName={styles.linkActive}>Авторы</NavLink>
 					<NavLink to={AppRoutes.BOOK_DETAILED + '/123'} className={styles.pageLink} activeClassName={styles.linkActive}>Детально_Тест</NavLink>
 				</div>
-			
-				<div className={styles.navbarOwnData}>
-					{token ? (
-						<NavLink to={AppRoutes.MY_OFFICE}>
-							<Profile />
-						</NavLink>
-					) : (
-						<div className={styles.authLinks}>
-							<NavLink to={AuthRoutes.SIGN_IN}>Войти</NavLink>
-							<NavLink to={AuthRoutes.SIGN_UP}>Регистрация</NavLink>
-						</div>
-					)}
-				
-					<div className={styles.cartWrapper}>
-						<NavLink to={AppRoutes.CART}><Cart /></NavLink>
-						<span>0.00$</span>
-					</div>
-				</div>
 			</nav>
 		</header>
 	);
