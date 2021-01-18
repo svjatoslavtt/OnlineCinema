@@ -49,7 +49,7 @@ const schema = new Schema({
 		required: true,
 	},
 	weight: {
-		type: String,
+		type: Number,
 		required: true,
 	},
 	price: {
