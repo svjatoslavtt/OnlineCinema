@@ -13,7 +13,7 @@ export type BookUploadType = {
 	binding: string;
 	pages: number;
 	format: string;
-	weight: string;
+	weight: number;
 	price: number;
 	salePrice?: number;
 	saleProcent?: number;
@@ -34,7 +34,7 @@ export type BookData = {
 	binding: string;
 	pages: number;
 	format: string;
-	weight: string;
+	weight: number;
 	price: number;
 	salePrice?: number;
 	saleProcent?: number;

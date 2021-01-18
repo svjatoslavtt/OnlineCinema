@@ -101,7 +101,11 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 		const formData = new FormData();
 
 		Object.entries(form).forEach((item: any) => {
-			formData.append(item[0], item[1]);
+			if (item[0] !== 'file') {
+				formData.append(item[0], item[1].toString().trim());
+			} else {
+				formData.append(item[0], item[1]);
+			}
 		});
 		
 		dispatch(BookUploadAction.uploadBookRequest({ formData, history }));

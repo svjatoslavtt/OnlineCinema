@@ -79,7 +79,7 @@ const Specifications: React.FC<SpecificationsTypes> = ({ currentBook }) => {
 							</div>
 
 							<div className={styles.specificationItem}>
-								<span className={styles.title}>Формат</span>
+								<span className={styles.title}>Формат:</span>
 								<span className={styles.text}>{currentBook?.format}</span>
 							</div>
 

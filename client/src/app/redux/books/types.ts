@@ -29,7 +29,7 @@ export type CurrentBookTypes = {
 	binding: string;
 	pages: number;
 	format: string;
-	weight: string;
+	weight: number;
 	price: number;
 	discountPrice?: number;
 	discountPercent?: number;
