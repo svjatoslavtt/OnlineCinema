@@ -25,29 +25,27 @@
 	border-radius: 3px;
 }
 
-.price {
-	white-space: nowrap;
-	font-family: $bold;
-	color: $darkGrey;
-}
-
-.unsalePrice {
+.priceWrapper {
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
 	font-family: $regular;
 	color: $darkGrey;
-	white-space: nowrap;
-	color: #b9b9b9;
 
-	& > span {
-		margin-left: 5px;
-		font-size: 16px;
+	.price {
+		color: $darkGrey;
+		font-family: $bold;
+		text-decoration: none;
 	}
 
-	.priceCount {
+	.priceCrossedOut {
+		color: #b9b9b9;
 		text-decoration: line-through;
 	}
+}
+
+.discountPrice {
+	color: $darkGrey;
 }
 
 @import './media.module.scss';

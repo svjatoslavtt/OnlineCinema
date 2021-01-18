@@ -1,7 +1,7 @@
-import Rating from '@material-ui/lab/Rating';
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from "react-hook-form";
 
 import styles from './style.module.scss';
 
@@ -17,13 +17,7 @@ import image404 from '../../../static/images/image404.jpg';
 import Header from '../../../shared/components/Header';
 import Footer from '../../../shared/components/Footer';
 import Banner from '../../../shared/components/Banner';
-
-type UploadFields = {
-	title: string;
-	description: string;
-	director: string;
-	rating: number | null;
-};
+import { BookUploadType, BookData } from '../../../shared/types/book-upload.types';
 
 type UploadBookTypes = {
 	bookId?: string;
@@ -39,14 +33,7 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 	const [bookAvatar, setBookAvatar] = useState('');
 	const [error, setError] = useState('');
 
-	const fieldsInitialValue: UploadFields = {
-		title: '',
-		description: '',
-		director: '',
-		rating: 0,
-	};
-
-	const [fields, setFields] = useState(fieldsInitialValue);
+	const { register, handleSubmit, errors } = useForm<BookData>();
 
 	useEffect(() => {
 		if (bookId) {
@@ -70,14 +57,7 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 
 	useEffect(() => {
 		if (currentBook && bookId) {
-			toDataURL(currentBook.image);
-
-			setFields({
-				title: currentBook.title,
-				description: currentBook.description,
-				director: currentBook.director,
-				rating: currentBook.rating,
-			});
+			toDataURL(currentBook.file);
 		} 
 	}, [currentBook, bookId]);
 
@@ -89,17 +69,9 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 
 	useEffect(() => {
 		if (!currentBook) {
-			setFields(fieldsInitialValue);
 			setShowUploadImage('');
 		}
 	}, [dispatch, currentBook]);
-
-	const handlerChangeField = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-		setFields({
-			...fields,
-			[event.target.name]: event.target.value,
-		});
-	};
 
 	const handlerUseInputFile = () => {
 		if (uploadFileElement.current) {
@@ -119,41 +91,20 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 		setBookAvatar(event.target.files[0]);
 	};
 
-	const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-
-		const isEmpty = Object.values(fields).some((item) => item === '' || item === 0 || !item);
-
-		if (isEmpty || !bookAvatar) {
-			return setError('Все поля должны быть заполнены!')
+	const onSubmit = (data: BookData) => {
+		const form: BookUploadType = {
+			...data,
+			date: Date.now(),
+			file: currentBook?.file ? currentBook?.file : bookAvatar,
 		};
-
-		const id: string = JSON.parse(localStorage.getItem('id') as string);
 
 		const formData = new FormData();
 
-		if (bookAvatar) {
-			formData.append('file', bookAvatar);
-		};
+		Object.entries(form).forEach((item: any) => {
+			formData.append(item[0], item[1]);
+		});
 		
-		formData.append('title', fields.title);
-		formData.append('description', fields.description);
-		formData.append('director', fields.director);
-		formData.append('rating', String(fields.rating));
-		formData.append('userId', id);
-
-		if (bookId) {
-			formData.append('bookId', bookId as string);
-		};
-		
-		if (bookId) {
-			dispatch(BooksActions.editBookRequest({ formData, id: bookId, history }));
-		} else {
-			dispatch(BookUploadAction.uploadBookRequest({ formData, history }));
-		}
-
-		setFields(fieldsInitialValue);
-		setError('');
+		dispatch(BookUploadAction.uploadBookRequest({ formData, history }));
 	};
 
 	return (
@@ -163,16 +114,15 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 
 			<div className={styles.uploadBook}>
 				<div style={{position: 'relative'}}>
-					<form className={styles.uploadBookWrapper} onSubmit={handlerSubmit}>
+					<form className={styles.uploadBookWrapper} onSubmit={handleSubmit(onSubmit)}>
 						<div className={styles.uploadBookFields}>
 							<div className={styles.filed}>
 								<input 
 									id='upload-input-1' 
 									type='text' 
 									name='title' 
-									maxLength={50} 
-									value={fields.title} 
-									onChange={handlerChangeField} 
+									defaultValue={currentBook?.title}
+									ref={register({ required: true, minLength: 3 })}
 									placeholder='Название'
 								/>
 							</div>
@@ -181,9 +131,9 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 								<textarea 
 									id='upload-input-2' 
 									name='description' 
-									maxLength={500} 
-									value={fields.description} 
-									onChange={handlerChangeField} 
+									defaultValue={currentBook?.description}
+									maxLength={500}
+									ref={register({ required: true, minLength: 3, maxLength: 500 })}
 									placeholder='Описание'
 								/>
 							</div>
@@ -191,28 +141,144 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 							<div className={styles.filed}>
 								<input 
 									id='upload-input-3' 
-									type='text' name='director' 
-									maxLength={50} 
-									value={fields.director} 
-									onChange={handlerChangeField} 
+									type='text' name='author' 
+									defaultValue={currentBook?.author}
+									ref={register({ required: true, minLength: 3 })}
 									placeholder='Автор'
 								/>
 							</div>
 
-							{/* <div className={styles.uploadBookRating}>
-								<Rating
-									name='simple-controlled'
-									value={fields.rating}
-									onChange={(_, newValue) => {
-										setFields(prevState => ({
-											...prevState,
-											rating: newValue,
-										}));
-									}}
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-4' 
+									type='text' name='genre' 
+									defaultValue={currentBook?.genre}
+									ref={register({ required: true, minLength: 3, maxLength: 50 })}
+									placeholder='Жанр'
 								/>
-							</div> */}
+							</div>
 
-							<Button text='Добавить' type={ButtonTypesEnum.SUBMIT} onClick={handlerSubmit} />
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-5' 
+									type='text' name='publishingHouse' 
+									defaultValue={currentBook?.publishingHouse}
+									ref={register({ minLength: 3, maxLength: 50 })}
+									placeholder='Издательство'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-6' 
+									type='text' name='isbn' 
+									defaultValue={currentBook?.isbn}
+									ref={register({ required: true, minLength: 3, maxLength: 50 })}
+									placeholder='ISBN'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-7' 
+									type='text' name='article' 
+									defaultValue={currentBook?.article}
+									ref={register({ required: true, minLength: 3, maxLength: 50 })}
+									placeholder='Артикул'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-8' 
+									type='text' name='age' 
+									defaultValue={currentBook?.age}
+									ref={register({ required: true, minLength: 1, maxLength: 50 })}
+									placeholder='Возрастное ограничение'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-8' 
+									type='text' name='yearOfPublish' 
+									defaultValue={currentBook?.yearOfPublish}
+									ref={register({ required: true, minLength: 4, maxLength: 50 })}
+									placeholder='Год издания'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-9' 
+									type='text' name='pages' 
+									defaultValue={currentBook?.pages}
+									ref={register({ required: true, minLength: 1, maxLength: 50 })}
+									placeholder='Количество страниц'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-10' 
+									type='text' name='binding' 
+									defaultValue={currentBook?.binding}
+									ref={register({ required: true, minLength: 3, maxLength: 50 })}
+									placeholder='Переплёт'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-11' 
+									type='text' name='format' 
+									defaultValue={currentBook?.format}
+									ref={register({ required: true, minLength: 3, maxLength: 50 })}
+									placeholder='Формат'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-12' 
+									type='text' name='weight' 
+									defaultValue={currentBook?.weight}
+									ref={register({ required: true, minLength: 2, maxLength: 50 })}
+									placeholder='Вес'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-13' 
+									type='text' name='price' 
+									defaultValue={currentBook?.price}
+									ref={register({ required: true, minLength: 1, maxLength: 50 })}
+									placeholder='Цена'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-14' 
+									type='text' name='discountPrice' 
+									defaultValue={currentBook?.discountPrice}
+									ref={register({ minLength: 1, maxLength: 50 })}
+									placeholder='Цена по скидке'
+								/>
+							</div>
+
+							<div className={styles.filed}>
+								<input 
+									id='upload-input-15' 
+									type='text' name='discountPercent' 
+									defaultValue={currentBook?.discountPercent}
+									ref={register({ minLength: 1, maxLength: 50 })}
+									placeholder='Процент скидки'
+								/>
+							</div>
+
+							<Button text='Добавить' type={ButtonTypesEnum.SUBMIT} />
 						</div>
 
 						<div className={styles.uploadBookImageWrapper}>
@@ -223,12 +289,13 @@ const UploadBook: React.FC<UploadBookTypes> = ({ bookId }) => {
 									<span>view</span> 
 								)}
 							</div>
+
 							<input 
 								ref={uploadFileElement} 
 								type='file' 
 								name='image' 
 								accept="image/*" 
-								onChange={handlerUploadImage} 
+								onChange={handlerUploadImage}
 								className={styles.inputUploadFile}
 								onClick={handlerUseInputFile}
 							/>

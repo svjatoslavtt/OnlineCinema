@@ -5,6 +5,7 @@ import styles from './style.module.scss';
 import BookTypeTable from '../BookItem/BookTypeTable';
 import BookTypeList from '../BookItem/BookTypeList';
 import BookCart from '../BookItem/BookCart';
+import { Book } from '../../../redux/books/types';
 
 export enum ProductDisplayTypeEnum {
 	LIST = 'list',
@@ -13,12 +14,12 @@ export enum ProductDisplayTypeEnum {
 
 type Products = {
 	productDisplayType?: ProductDisplayTypeEnum;
-	data: any;
+	data: Book[] | null;
 	bigGrid?: boolean;
 	cart?: boolean;
 };
 
-const Products: React.FC<Products> = ({ productDisplayType, data, bigGrid, cart }) => {
+const Products: React.FC<Products> = ({ productDisplayType = ProductDisplayTypeEnum.TABLE, data, bigGrid, cart }) => {
 	const table = productDisplayType === ProductDisplayTypeEnum.TABLE;
 
 	return (
@@ -26,53 +27,48 @@ const Products: React.FC<Products> = ({ productDisplayType, data, bigGrid, cart 
 			{
 				cart ? (
 					<div className={styles.productsOfListWrapper}>
-						{data && data.length && data.map(({ id, sale, image, name, description, year, author, price, unsalePrice, badge }: any) => (
+						{data && data.length ? data.map(({ _id, sale, file, title, author, price }: any) => (
 							<BookCart 
-								key={id}
+								key={_id}
 								sale={sale}
-								image={image}
-								name={name}
-								year={year}
+								file={file}
+								title={title}
 								author={author}
-								description={description}
 								price={price}
-								unsalePrice={unsalePrice}
-								badge={badge}
 							/>
-						))}
+						)) : null}
 					</div>
 				) :
 				table ? (
 					<div className={styles.productsOfTableWrapper}>
-						{data && data.length && data.map(({ id, sale, image, name, price, unsalePrice, badge }: any) => (
+						{data && data.length ? data.map(({ _id, file, title, price, discountPrice, discountPercent  }: any) => (
 							<BookTypeTable 
-								key={id}
-								sale={sale}
-								image={image}
-								name={name}
+								key={_id}
+								id={_id}
+								file={file}
+								title={title}
 								price={price}
-								unsalePrice={unsalePrice}
+								discountPrice={discountPrice}
+								discountPercent={discountPercent}
 								bigGrid={bigGrid}
-								badge={badge}
 							/>
-						))}
+						)) : null}
 					</div>
 				) : (
 					<div className={styles.productsOfListWrapper}>
-						{data && data.length && data.map(({ id, sale, image, name, description, year, author, price, unsalePrice, badge }: any) => (
+						{data && data.length ? data.map(({ _id, file, title, description, yearOfPublish, author, price, discountPrice, discountPercent }: any) => (
 							<BookTypeList 
-								key={id}
-								sale={sale}
-								image={image}
-								name={name}
-								year={year}
+								key={_id}
+								file={file}
+								title={title}
+								yearOfPublish={yearOfPublish}
 								author={author}
 								description={description}
 								price={price}
-								unsalePrice={unsalePrice}
-								badge={badge}
+								discountPrice={discountPrice}
+								discountPercent={discountPercent}
 							/>
-						))}
+						)) : null}
 					</div>
 				)
 			}

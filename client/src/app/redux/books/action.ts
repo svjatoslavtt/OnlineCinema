@@ -5,6 +5,10 @@ export enum ActionTypes {
 	GET_BOOKS_SUCCESS = 'GET_BOOKS_SUCCESS',
 	GET_BOOKS_FAILED = 'GET_BOOKS_FAILED',
 
+	GET_DISCOUNT_BOOKS_REQUEST = 'GET_DISCOUNT_BOOKS_REQUEST',
+	GET_DISCOUNT_BOOKS_SUCCESS = 'GET_DISCOUNT_BOOKS_SUCCESS',
+	GET_DISCOUNT_BOOKS_FAILED = 'GET_DISCOUNT_BOOKS_FAILED',
+
 	GET_MY_BOOKS_REQUEST = 'GET_MY_BOOKS_REQUEST',
 	GET_MY_BOOKS_SUCCESS = 'GET_MY_BOOKS_SUCCESS',
 	GET_MY_BOOKS_FAILED = 'GET_MY_BOOKS_FAILED',
@@ -44,6 +48,10 @@ export const Actions = {
 	getBooksRequest: () => action(ActionTypes.GET_BOOKS_REQUEST),
 	getBooksSuccess: (payload: any) => action(ActionTypes.GET_BOOKS_SUCCESS, payload),
 	getBooksFailed: (payload: { message: string }) => action(ActionTypes.GET_BOOKS_FAILED, payload),
+
+	getDiscountBooksRequest: () => action(ActionTypes.GET_DISCOUNT_BOOKS_REQUEST),
+	getDiscountBooksSuccess: (payload: any) => action(ActionTypes.GET_DISCOUNT_BOOKS_SUCCESS, payload),
+	getDiscountBooksFailed: (payload: { message: string }) => action(ActionTypes.GET_DISCOUNT_BOOKS_FAILED, payload),
 
 	getMyBooksRequest: () => action(ActionTypes.GET_MY_BOOKS_REQUEST),
 	getMyBooksSuccess: (payload: any) => action(ActionTypes.GET_MY_BOOKS_SUCCESS, payload),

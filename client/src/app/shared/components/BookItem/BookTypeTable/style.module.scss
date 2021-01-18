@@ -19,6 +19,7 @@
 
 .bookImage {
 	display: flex;
+	align-items: center;
 	justify-content: center;
 	height: 300px;
 	width: 100%;
@@ -32,6 +33,12 @@
 		height: 100%;
 		width: 100%;
 		object-fit: contain;
+	}
+
+	& > p {
+		font-size: 28px;
+		font-family: $bold;
+		color: $grey;
 	}
 }
 

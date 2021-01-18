@@ -1,6 +1,8 @@
 export enum ApiEndPoints {
   LOGIN = '/api/auth/login',
 	REGISTER = '/api/auth/register',
+
+	GET_DISCOUNT_BOOKS = '/api/book/discount-books',
 	
 	GET_FILMS = '/api/book/news-feed',
 	GET_MY_FILMS = '/api/book/my-books',

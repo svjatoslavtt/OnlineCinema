@@ -12,30 +12,42 @@ export type BookOwnerTypes = {
 	name: string;
 };
 
-export type UsersSetRating = {
-	_id: string;
-	rating: number;
-	userId: string;
-}
-
 export type CurrentBookTypes = {
-	title: string;
-	description: string;
-	image: string;
-	director: string;
+	_id: string;
 	averageRating: number;
-	likes: number;
 	peopleRated: number;
 	rating: number;
-	owner: BookOwnerTypes;
-	ratingUsersId: UsersSetRating[];
-	usersId: string[];
-	_id: string;
+	title: string;
+	description: string;
+	author: string;
+	genre: string;
+	publishingHouse?: string;
+	isbn: string;
+	article: string;
+	age: number;
+	yearOfPublish: number;
+	binding: string;
+	pages: number;
+	format: string;
+	weight: string;
+	price: number;
+	discountPrice?: number;
+	discountPercent?: number;
+	date: number;
+	file: string;
+	countOfRated: number;
+	booksByAuthor: Book[];
+	likeABook: Book[];
 };
 
+export type Book = Omit<CurrentBookTypes, 'countOfRated'>;
+
 export type BooksState = {
-	books: BookTypes[] | null;
+	books: Book[] | null;
+	discountBooks: Book[] | null;
 	myBooks: BookTypes[] | null;
+	booksByAuthor: Book[] | null;
+	likeABook: Book[] | null;
 	myLikes: BookTypes[] | null;
 	currentBook: CurrentBookTypes | null;
 	isLike: boolean;

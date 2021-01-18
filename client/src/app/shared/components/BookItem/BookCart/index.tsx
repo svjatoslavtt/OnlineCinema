@@ -9,31 +9,28 @@ import Price from '../components/Price';
 
 type BookTypes = {
 	sale?: number;
-	image: string;
-	name: string;
+	file: string;
+	title: string;
 	price: number;
-	unsalePrice?: number;
-	description: string;
-	year: number;
 	author: string;
 	badge?: string;
 };
 
-const BookCart: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, description, year, author, badge }) => {
+const BookCart: React.FC<BookTypes> = ({ file, title, author, badge }) => {
 
 	return (
 		<div className={styles.book}>
 			<div className={styles.bookImage}>
 				{badge && <Badge badge={badge} />}
-				<img src={image} alt="book of sale"/>
+				<img src={file} alt="book of sale"/>
 			</div>
 
 			<div className={styles.bookContent}>
 				<div className={styles.bookInfo}>
 					<div className={styles.bookHeadInfo}>
-						<div className={styles.bookName}>{name}</div>
+						<div className={styles.bookName}>{title}</div>
 						
-						<Price price={price} unsalePrice={unsalePrice} sale={sale} />
+						{/* <Price price={price} unsalePrice={unsalePrice} sale={sale} /> */}
 					</div>
 
 					<div className={styles.bookAdditionalInfo}>

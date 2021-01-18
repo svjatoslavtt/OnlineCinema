@@ -15,6 +15,15 @@ function* getBooks() {
 	};
 };
 
+function* getDiscountBooks() {
+	try {
+		const data = yield call(request, ApiEndPoints.GET_DISCOUNT_BOOKS);
+		yield put(Actions.getDiscountBooksSuccess(data));
+	} catch (err) {
+		yield put(Actions.getDiscountBooksFailed(err));
+	};
+};
+
 function* getMyBooks() {
 	try {
 		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
@@ -109,6 +118,7 @@ function* editBook(action: any) {
 export function* watchGetBooks() {
 	yield all([
 		takeEvery(ActionTypes.GET_BOOKS_REQUEST, getBooks),
+		takeEvery(ActionTypes.GET_DISCOUNT_BOOKS_REQUEST, getDiscountBooks),
 		takeEvery(ActionTypes.GET_MY_BOOKS_REQUEST, getMyBooks),
 		takeEvery(ActionTypes.GET_MY_LIKES_REQUEST, getMyLikes),
 		takeEvery(ActionTypes.GET_CURRENT_BOOK_REQUEST, getCurrentBook),

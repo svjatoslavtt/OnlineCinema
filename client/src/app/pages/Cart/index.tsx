@@ -3,8 +3,6 @@ import React from 'react';
 import styles from './style.module.scss';
 import Ordering from './components/Ordering';
 
-import { BOOKS } from '../Home/data/books-data';
-
 import Banner from '../../shared/components/Banner';
 import Footer from '../../shared/components/Footer';
 import Header from '../../shared/components/Header';
@@ -28,7 +26,7 @@ const Cart: React.FC = () => {
 
 					<div className={styles.productsWrapper}>
 						<Products 
-							data={BOOKS}
+							data={[]}
 							cart={true}
 						/>
 					</div>

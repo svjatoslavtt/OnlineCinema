@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './style.module.scss';
 
@@ -11,14 +11,21 @@ import Products, { ProductDisplayTypeEnum } from '../../shared/components/Produc
 import AdditionalBooks from '../../shared/components/AdditionalBooks';
 import { NavLink } from 'react-router-dom';
 import { AppRoutes } from '../../routes/routes-const';
-import { useDispatch } from 'react-redux';
-import { Actions } from '../../redux/auth/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Actions as AuthActions } from '../../redux/auth/actions';
+import { Actions as BookActions } from '../../redux/books/action';
+import { getBooks } from '../../redux/books/selectors';
 
 const MyOffice: React.FC = () => {
 	const dispatch = useDispatch();
+	const books = useSelector(getBooks);
+
+	useEffect(() => {
+		dispatch(BookActions.getBooksRequest());
+	}, []);
 
 	const handlerLogout = () => {
-		dispatch(Actions.logout());
+		dispatch(AuthActions.logout());
 	};
 
 	return (
@@ -49,15 +56,12 @@ const MyOffice: React.FC = () => {
 					</div>
 
 					<div className={styles.products}>
-						<Products 
-							data={BOOKS}
-							productDisplayType={ProductDisplayTypeEnum.TABLE}
-						/>
+						<Products data={books} />
 					</div>
 				</section>
 			</main>
 
-			<AdditionalBooks count={0} data={BOOKS} title='Похожие на книги которые Вам понравились' />
+			<AdditionalBooks count={0} data={books} title='Похожие на книги которые Вам понравились' />
 
 			<Footer />
 		</>

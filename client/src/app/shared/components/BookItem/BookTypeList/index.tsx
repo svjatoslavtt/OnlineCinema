@@ -8,37 +8,37 @@ import Buttons from '../components/Buttons';
 import Price from '../components/Price';
 
 type BookTypes = {
-	sale?: number;
-	image: string;
-	name: string;
+	file: string;
+	title: string;
 	price: number;
-	unsalePrice?: number;
 	description: string;
-	year: number;
+	yearOfPublish: number;
 	author: string;
 	badge?: string;
+	discountPrice?: number;
+	discountPercent?: number;
 };
 
-const BookTypeList: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, description, year, author, badge }) => {
+const BookTypeList: React.FC<BookTypes> = ({ file, title, price, description, yearOfPublish, author, badge, discountPercent, discountPrice }) => {
 
 	return (
 		<div className={styles.book}>
 			{badge && <Badge badge={badge} />}
 
 			<div className={styles.bookImage}>
-				<img src={image} alt="book of sale"/>
+				<img src={file} alt="book of sale"/>
 			</div>
 
 			<div className={styles.bookContent}>
 				<div className={styles.bookInfo}>
 					<div className={styles.bookHeadInfo}>
-						<div className={styles.bookName}>{name}</div>
+						<div className={styles.bookName}>{title}</div>
 						
-						<Price price={price} unsalePrice={unsalePrice} sale={sale} />
+						<Price price={price} discountPercent={discountPercent} discountPrice={discountPrice} />
 					</div>
 
 					<div className={styles.bookAdditionalInfo}>
-						<span className={styles.bookYear}>{year}</span>
+						<span className={styles.bookYear}>{yearOfPublish}</span>
 						<span className={styles.bookAuthor}>{author}</span>
 					</div>
 

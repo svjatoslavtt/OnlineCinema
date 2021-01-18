@@ -4,26 +4,31 @@ import styles from './style.module.scss';
 
 type PriceTypes = {
 	price: number;
-	unsalePrice?: number;
-	sale?: number;
+	discountPrice?: number
+	discountPercent?: number;
 };
 
-const Price: React.FC<PriceTypes> = ({ unsalePrice, price, sale }) => {
+const Price: React.FC<PriceTypes> = ({ price, discountPrice, discountPercent }) => {
+
+	const priceStyles = [
+		discountPrice ? styles.priceCrossedOut : styles.price
+	];
+
 	return (
 		<div className={styles.bookPrice}>
-			<div className={styles.price}>
-				{`${price} грн.`}
-			</div>
-
-			{unsalePrice && (
-				<div className={styles.unsalePrice}>
-					<div className={styles.priceCount}>
-						{`${unsalePrice} грн.`}
-					</div>
-
-					{sale && <div className={styles.badgeSale}>{`-${sale}%`}</div>}
+			{discountPrice && (
+				<div className={styles.discountPrice}>
+					{`${discountPrice} грн.`}
 				</div>
 			)}
+
+			<div className={styles.priceWrapper}>
+				<div className={priceStyles.join(' ')}>
+					{`${price} грн.`}
+				</div>
+
+				{discountPercent && <div className={styles.badgeSale}>{`-${discountPercent}%`}</div>}
+			</div>
 		</div>
 	);
 };

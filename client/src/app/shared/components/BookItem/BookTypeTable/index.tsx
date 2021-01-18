@@ -5,35 +5,45 @@ import styles from './style.module.scss';
 import Badge from '../components/Badge';
 import Buttons from '../components/Buttons';
 import Price from '../components/Price';
+import { NavLink } from 'react-router-dom';
+import App from '../../../../App';
+import { AppRoutes } from '../../../../routes/routes-const';
 
 type BookTypes = {
-	sale?: number;
-	image: string;
-	name: string;
+	id: string;
+	file: string;
+	title: string;
 	price: number;
-	unsalePrice?: number;
+	discountPrice: number;
+	discountPercent: number;
 	bigGrid?: boolean;
 	badge?: string;
 };
 
-const BookTypeTable: React.FC<BookTypes> = ({ sale, image, name, price, unsalePrice, bigGrid, badge }) => {
+const BookTypeTable: React.FC<BookTypes> = ({ id, file, title, bigGrid, badge, price, discountPrice, discountPercent }) => {
 
 	const bookStyles = [
 		bigGrid ? styles.bookBigGrid : styles.book
 	];
-
+	
 	return (
 		<div className={bookStyles.join(' ')}>
 			{badge && <Badge badge={badge} />}
 
-			<div className={styles.bookImage}>
-				<img src={image} alt="book of sale"/>
-			</div>
+			<NavLink to={AppRoutes.BOOK_DETAILED + '/' + id}>
+				<div className={styles.bookImage}>
+					{file ? (
+						<img src={file} alt="book of sale"/>
+					) : (
+						<p>image</p>
+					)}
+				</div>
+			</NavLink>
 
 			<div className={styles.bookInfo}>
-				<Price price={price} unsalePrice={unsalePrice} sale={sale} />
+				<Price discountPrice={discountPrice} price={price} discountPercent={discountPercent} />
 
-				<div className={styles.bookName}>{name.length > 50 ? name.substring(0, 50) + '...' : name}</div>
+				<div className={styles.bookName}>{title.length > 50 ? title.substring(0, 50) + '...' : title}</div>
 			</div>
 
 			<Buttons />

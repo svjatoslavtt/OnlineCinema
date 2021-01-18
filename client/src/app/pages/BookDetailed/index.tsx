@@ -7,29 +7,29 @@ import EditIcon from '@material-ui/icons/Edit';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import styles from './style.module.scss';
-
-import { BOOKS } from '../Home/data/books-data';
+import Specifications from './components/Specifications';
 
 import { Actions } from '../../redux/books/action';
-import { getCurrentBook, getIsLikeBook, getIsRatedBook } from '../../redux/books/selectors';
+import { getBookByAuthor, getBooksLikeABook, getCurrentBook, getIsLikeBook, getIsRatedBook } from '../../redux/books/selectors';
 import { getLoading } from '../../redux/loading/selectors';
 import { getAuthToken } from '../../redux/auth/selectors';
 import { AppRoutes } from '../../routes/routes-const';
 import image404 from '../../static/images/image404.jpg';
 import Header from '../../shared/components/Header';
 import Banner from '../../shared/components/Banner';
-import bookImage from '../../static/images/book-image2.webp';
 import Footer from '../../shared/components/Footer';
 import AdditionalBooks from '../../shared/components/AdditionalBooks';
-import Specifications from './components/Specifications';
+import { Book } from '../../redux/books/types';
 
 const BookDetailed: React.FC = () => {
+	const dispatch = useDispatch();
 	const history = useHistory();
 	const [error, setError] = useState('');
 	const [ratingHoverValue, setRatingHoverValue] = useState<number | null>(0);
 	const { bookId }: { bookId: string } = useParams();
-	const dispatch = useDispatch();
 	const currentBook = useSelector(getCurrentBook);
+	const booksByAuthor = useSelector(getBookByAuthor);
+	const likeABook = useSelector(getBooksLikeABook);
 	const loading = useSelector(getLoading);
 	const isLike = useSelector(getIsLikeBook);
 	const isRate = useSelector(getIsRatedBook);
@@ -58,28 +58,32 @@ const BookDetailed: React.FC = () => {
 
 	const handlerSetRating = () => !token && setError('Нужно авторизоваться!');
 
-	const isOwner = currentBook?.owner.id === JSON.parse(localStorage.getItem('id') as string);
+	// const isOwner = currentBook?.owner.id === JSON.parse(localStorage.getItem('id') as string);
 
 	const handlerEditBook = () => {
 		history.push(AppRoutes.EDIT_BOOK + '/' + bookId);
 	};
 
+	const priceStyles = [
+		currentBook?.discountPrice ? styles.priceCrossedOut : styles.price
+	];
+
 	return (
 		<>
 			<Header />
 
-			<Banner title='Кладбище домашних животных' subtitle='2020, Триллеры' />
+			<Banner title={currentBook?.title} subtitle={`${currentBook?.yearOfPublish}, ${currentBook?.genre}`} />
 
 			<main className={styles.container}>
 				<section className={styles.avatar}>
 					{!loading && (
-						<img src={bookImage || image404} alt={currentBook?.title} />
+						<img src={currentBook?.file || image404} alt={currentBook?.title} />
 					)}
-					{isOwner && (
+					{/* {isOwner && (
 						<div className={styles.editButton} onClick={handlerEditBook}>
 							<EditIcon />
 						</div>
-					)}
+					)} */}
 				</section>
 
 				<section className={styles.information}>
@@ -94,14 +98,14 @@ const BookDetailed: React.FC = () => {
 											isRate || !token ? (
 												<Rating
 													name='read-only'
-													value={currentBook?.averageRating ?? 5}
+													value={currentBook?.averageRating ?? 0}
 													precision={0.1}
 													readOnly
 												/>
 											) : (
 												<Rating
 													name='simple-controlled'
-													value={currentBook?.averageRating ?? 5}
+													value={currentBook?.averageRating ?? 0}
 													onChangeActive={(_, value) => {
 														setRatingHoverValue(value);
 													}}
@@ -111,8 +115,8 @@ const BookDetailed: React.FC = () => {
 											)
 										}
 									</span>
-									{currentBook?.averageRating || '5.0'}
-									<span className={styles.peopleRated}>{`${currentBook?.peopleRated || '413'}`}</span>
+									{currentBook?.averageRating || '0'}
+									<span className={styles.peopleRated}>{`${currentBook?.countOfRated ? currentBook.countOfRated : '0'}`}</span>
 								</span>
 							</div>
 
@@ -126,14 +130,16 @@ const BookDetailed: React.FC = () => {
 									<div className={styles.paymentPrice}>
 										<span>Цена:</span>
 
-										<div className={styles.currentPrice}>
-											549
-											<span>грн.</span>
-										</div>		
+										{currentBook?.discountPrice && (
+											<div className={styles.discountPrice}>
+												{currentBook?.discountPrice}
+												<span>грн.</span>
+											</div>	
+										)}	
 
-										<div className={styles.oldPrice}>
-											<div className={styles.sale}>Скидка 23%</div>	
-											<span>749 грн</span>	
+										<div className={styles.priceWrapper}>
+											{currentBook?.discountPercent && <div className={styles.badge}>{'Скидка ' + currentBook?.discountPercent + '%'}</div>	}
+											<span className={priceStyles.join(' ')}>{currentBook?.price + 'грн.'}</span>	
 										</div>
 									</div>
 
@@ -146,7 +152,7 @@ const BookDetailed: React.FC = () => {
 								<button className={styles.buyButton}>Добавить в корзину</button>
 							</div>
 							
-							<Specifications />
+							<Specifications currentBook={currentBook} />
 						</>
 					)}
 				</section>
@@ -156,21 +162,13 @@ const BookDetailed: React.FC = () => {
 				<div className={styles.descriptionContent}>
 					<span className={styles.title}>О книге</span>
 
-					<span className={styles.text}>
-						Роман, который сам Кинг, считая "слишком страшным", долго не хотел отдавать в печать, но только за первый год было продано 657 000 экземпляров! Также роман лег в основу одноименного фильма Мэри Ламберт (где Кинг, кстати, сыграл небольшую роль).
-
-						Казалось бы, семейство Крид — это настоящее воплощение "американской мечты": отец — преуспевающий врач, красавица мать, прелестные дети. Для полной идиллии им не хватает лишь большого старинного дома, куда они вскоре и переезжают.
-
-						Но идиллия вдруг стала превращаться в кошмар. Потому что в окружающих их новое жилище вековых лесах скрывается НЕЧТО, более ужасное, чем сама смерть и… более могущественное.
-
-						Читайте легендарный роман Стивена Кинга "КлаТбище домашних жЫвотных" — в новом переводе и впервые без сокращений!
-					</span>
+					<span className={styles.text}>{currentBook?.description}</span>
 				</div>	
 			</section>
 
-			<AdditionalBooks count={0} data={BOOKS} title='Другие книги автора – Уолтера Айзексона' />
+			{booksByAuthor?.length ? <AdditionalBooks count={0} data={booksByAuthor} title={`Другие книги автора – ${currentBook?.author}`} /> : null}
 
-			<AdditionalBooks count={1} data={BOOKS} title='Похожие на книгу – "Стив Джобс"' />
+			{likeABook?.length ? <AdditionalBooks count={1} data={likeABook} title={`Похожие на книгу – "${currentBook?.title}"`} /> : null}
 
 			<Footer />
 		</>

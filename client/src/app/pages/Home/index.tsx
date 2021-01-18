@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { NavLink } from "react-router-dom";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -14,9 +14,19 @@ import popularImage from "../../static/images/popular-image2.jpg";
 import popularImage2 from "../../static/images/popular-image.jpg";
 import Footer from "../../shared/components/Footer";
 import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
+import Products from "../../shared/components/Products";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../../redux/books/action";
+import { getBooks, getDiscountBooks } from "../../redux/books/selectors";
 
 const NewsFeed: React.FC = () => {
+	const dispatch = useDispatch();
+	const discountBooks = useSelector(getDiscountBooks);
 	const isMedia = useMediaQuery('(max-width: 600px)');
+
+	useEffect(() => {
+		dispatch(Actions.getDiscountBooksRequest());
+	}, []);
 
   return (
 		<>
@@ -109,21 +119,8 @@ const NewsFeed: React.FC = () => {
 					</div>
 
 					<div className={styles.saleContainer}>
-					
-						{BOOKS.map(({ id, sale, image, name, price, unsalePrice, badge }) => {
-							return (
-								<BookTypeTable 
-									key={id}
-									sale={sale}
-									image={image}
-									name={name}
-									price={price}
-									unsalePrice={unsalePrice}
-									bigGrid={true}
-									badge={badge}
-								/>
-							)
-						})}
+
+						<Products data={discountBooks} bigGrid={true} />
 					
 						<div className={styles.viewMore}>
 							<NavLink to='/'>

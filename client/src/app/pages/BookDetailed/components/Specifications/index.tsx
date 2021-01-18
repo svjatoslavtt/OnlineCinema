@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Book } from '../../../../redux/books/types';
 import { Maestro } from './icons/Maestro';
 
 import { MasterCard } from './icons/Mastercard';
@@ -11,7 +12,11 @@ enum TabIndex {
 	THIRD = '3',
 };
 
-const Specifications: React.FC = () => {
+type SpecificationsTypes = {
+	currentBook: Book | null;
+};
+
+const Specifications: React.FC<SpecificationsTypes> = ({ currentBook }) => {
 	const [activeTabIndex, setActiveTabIndex] = useState<TabIndex>(TabIndex.FIRST);
 
 	return (
@@ -28,64 +33,59 @@ const Specifications: React.FC = () => {
 						<div className={styles.tabContentColumn}>
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Автор:</span>
-								<span className={styles.textLink}>Кинг Стивен</span>
+								<span className={styles.textLink}>{currentBook?.author}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
-								<span className={styles.title}>Жанр:</span>
-								<span className={styles.textLink}>Триллеры</span>
+								<span className={styles.title}>Категория:</span>
+								<span className={styles.textLink}>{currentBook?.genre}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
-								<span className={styles.title}>Серия:</span>
-								<span className={styles.textLink}>Тёмная башня</span>
-							</div>
-
-							<div className={styles.specificationItem}>
-								<span className={styles.title}>Издательства:</span>
-								<span className={styles.textLink}>Издательство АСТ</span>
+								<span className={styles.title}>Издательство:</span>
+								<span className={styles.textLink}>{currentBook?.publishingHouse}</span>
 							</div>
 
 							<div className={styles.specificationItemIsbn}>
 								<span className={styles.isbn}>ISBN:</span>
-								<span className={styles.text}>978-5-17-120968-1</span>
+								<span className={styles.text}>{currentBook?.isbn}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Артикул:</span>
-								<span className={styles.text}>p5567526</span>
+								<span className={styles.text}>{currentBook?.article}</span>
 							</div>
 						</div>
 
 						<div className={styles.tabContentColumn}>
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Возрастное ограничение:</span>
-								<span className={styles.text}>16+</span>
+								<span className={styles.text}>{currentBook?.age + '+'}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Год издания:</span>
-								<span className={styles.text}>2020</span>
+								<span className={styles.text}>{currentBook?.yearOfPublish}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Количество страниц:</span>
-								<span className={styles.text}>608</span>
+								<span className={styles.text}>{currentBook?.pages}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Переплет:</span>
-								<span className={styles.text}>Твердый (7БЦ)</span>
+								<span className={styles.text}>{currentBook?.binding}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Формат</span>
-								<span className={styles.text}>130x206 мм</span>
+								<span className={styles.text}>{currentBook?.format}</span>
 							</div>
 
 							<div className={styles.specificationItem}>
 								<span className={styles.title}>Вес:</span>
-								<span className={styles.text}>0.52 кг</span>
+								<span className={styles.text}>{currentBook?.weight}</span>
 							</div>
 						</div>
 					</div>

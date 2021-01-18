@@ -4,9 +4,10 @@ import styles from './style.module.scss';
 
 import Products from '../Products';
 import { ProductDisplayTypeEnum } from '../Products';
+import { Book } from '../../../redux/books/types';
 
 type AdditionalBooksTypes = {
-	data: any;
+	data: Book[] | null;
 	title: string;
 	count: number;
 }

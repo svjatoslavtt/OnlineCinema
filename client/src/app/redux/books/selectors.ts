@@ -11,9 +11,24 @@ export const getBooks = createSelector(
 	(state: BooksState) => state.books
 );
 
+export const getDiscountBooks = createSelector(
+	getBooksState,
+	(state: BooksState) => state.discountBooks
+);
+
 export const getMyBooks = createSelector(
 	getBooksState,
 	(state: BooksState) => state.myBooks
+);
+
+export const getBookByAuthor = createSelector(
+	getBooksState,
+	(state: BooksState) => state.booksByAuthor
+);
+
+export const getBooksLikeABook = createSelector(
+	getBooksState,
+	(state: BooksState) => state.likeABook
 );
 
 export const getMyLikes = createSelector(
