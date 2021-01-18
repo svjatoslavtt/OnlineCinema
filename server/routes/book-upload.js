@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 let upload = multer({
 	storage,
 	fileFilter: (req, file, cb) => {
-		if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
+		if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg" || file.mimetype === "image/webp") {
 			cb(null, true);
 		} else {
 			cb(null, false);
@@ -37,13 +37,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 
 		const book = new Book({
 			...req.body,
-			owner: userId,
-			image: url + '/public/images/' + req.file.filename,
-			ratingUsersId: {
-				userId,
-				rating,
-			},
-			averageRating: rating,
+			file: url + '/public/images/' + req.file.filename,
 		});
 
 		await book.save();

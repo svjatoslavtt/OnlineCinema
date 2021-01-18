@@ -10,26 +10,19 @@ router.get('/news-feed', async (req, res) => {
 	try {
 		const books = await Book.find();
 
-		const firstTenBooks = [];
+		return res.status(200).json({ message: 'Книги получены успешно', books });
+	} catch (err) {
+		return res.status(500).json({ message: err.toString() });
+	}
+});
 
-		for (let i = books.length - 1; i >= books.length - 10; i--) {
-			firstTenBooks.push(books[i]);
-		};
+router.get('/discount-books', async (req, res) => {
+	try {
+		const books = await Book.find();
 
-		const transformBooks = [];
+		const discountBooks = books.filter(item => item.discountPrice);
 
-		firstTenBooks.forEach(item => {
-			transformBooks.push({
-				title: item.title,
-				averageRating: item.averageRating,
-				image: item.image,
-				director: item.director,
-				id: item._id,
-				likes: item.likes,
-			});
-		});
-
-		return res.status(200).json({ message: 'Книги получены успешно', books: transformBooks });
+		return res.status(200).json({ message: 'Книги получены успешно', discountBooks });
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}
@@ -38,22 +31,27 @@ router.get('/news-feed', async (req, res) => {
 router.post('/detailed/:bookId', async (req, res) => {
 	try {
 		const currentBook = await Book.findById(req.params.bookId);
-		const owner = await User.findById(currentBook.owner);
+		const user = await User.findById(req.body.userId);
+		const booksByAuthor = await Book.find({ author: currentBook.author });
+		const likeABook = await Book.find({ genre: currentBook.genre });
 
-		const isLike = req.body.userId ? currentBook.usersId.includes(req.body.userId) : false;
-		const isRate = currentBook.ratingUsersId.length ? currentBook.ratingUsersId.some(item => item.userId.toString() === req.body.userId) : false;
-		const peopleRated = currentBook.ratingUsersId.length;
+		const isBookSave = req.body.userId ? user.saveForLater.includes(req.params.bookId) : false;
+		const isRate = currentBook.reviews.length ? currentBook.reviews.some(item => item.userId.toString() === req.body.userId) : false;
+		const countOfRated = currentBook.reviews.length;
 		
-		const data = {
+		const bookData = {
 			...currentBook._doc,
-			peopleRated,
-			owner: {
-				id: owner._id,
-				name: owner.name,
-			},
+			countOfRated,
 		};
 
-		return res.status(200).json({ message: 'Книга получена успешно', currentBook: data, isLike, isRate });
+		return res.status(200).json({ 
+			message: 'Книга получена успешно', 
+			currentBook: bookData, 
+			isBookSave, 
+			isRate, 
+			booksByAuthor: booksByAuthor.filter(item => item._id.toString() !== currentBook._id.toString()), 
+			likeABook: likeABook.filter(item => item._id.toString() !== currentBook._id.toString()), 
+		});
 	} catch (err) {
 		return res.status(500).json({ message: err.toString() });
 	}

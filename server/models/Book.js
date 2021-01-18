@@ -9,48 +9,82 @@ const schema = new Schema({
     type: String,
     required: true,
 	},
-	director: {
+	author: {
 		type: String,
 		required: true,
 	},
-  image: {
+	genre: {
+		type: String,
+		required: true,
+	},
+	publishingHouse: {
+		type: String,
+	},
+	isbn: {
+		type: String,
+		required: true,
+	},
+	article: {
+		type: String,
+		required: true,
+	},
+	age: {
+		type: Number,
+		required: true,
+	},
+	yearOfPublish: {
+		type: Number,
+		required: true,
+	},
+	binding: {
+		type: String,
+		required: true,
+	},
+	pages: {
+		type: Number,
+		required: true,
+	},
+	format: {
+		type: String,
+		required: true,
+	},
+	weight: {
+		type: String,
+		required: true,
+	},
+	price: {
+		type: Number,
+		required: true,
+	},
+	discountPrice: {
+		type: Number,
+	},
+	discountPercent: {
+		type: Number,
+	},
+  file: {
     type: String,
     required: true,
   },
-  likes: {
-		type: Number,
-		default: 0,
-    required: true,
-	},
-	usersId: [
+	reviews: [
 		{
-			type: Types.ObjectId,
-			ref: 'User',
+			userId: {
+				type: Types.ObjectId,
+				ref: 'User',
+			},
+			number: {
+				type: Number,
+				default: 0,
+			}
 		},
 	],
-	rating: {
-		type: Number,
-		default: 0,
-	},
 	averageRating: {
 		type: Number,
 		default: 0,
 	},
-	ratingUsersId: [
-		{
-			userId: {
-				type: Types.ObjectId,
-				ref: 'User'
-			},
-			rating: {
-				type: Number,
-				required: true,
-			},
-		}
-	],
-  owner: {
-    type: Types.ObjectId,
-    ref: 'User',
+	date: {
+    type: Number,
+    required: true,
   },
 });
 

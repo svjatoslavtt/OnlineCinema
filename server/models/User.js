@@ -14,19 +14,7 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  books: [
-    {
-      type: Types.ObjectId,
-      ref: 'Book',
-    },
-	],
-	likes: [
-		{
-			type: Types.ObjectId,
-			ref: 'Book',
-		},
-	],
-	ratings: [
+	saveForLater: [
 		{
 			type: Types.ObjectId,
 			ref: 'Book',
