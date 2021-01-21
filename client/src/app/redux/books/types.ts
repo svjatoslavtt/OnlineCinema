@@ -50,7 +50,7 @@ export type BooksState = {
 	likeABook: Book[] | null;
 	myLikes: BookTypes[] | null;
 	currentBook: CurrentBookTypes | null;
-	isLike: boolean;
+	isSave: boolean;
 	isRate: boolean;
 	pageCount: number[] | null;
 	pagination: any;

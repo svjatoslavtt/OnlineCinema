@@ -41,7 +41,7 @@ const Products: React.FC<Products> = ({ productDisplayType = ProductDisplayTypeE
 				) :
 				table ? (
 					<div className={styles.productsOfTableWrapper}>
-						{data && data.length ? data.map(({ _id, file, title, price, discountPrice, discountPercent  }: any) => (
+						{data && data.length ? data.map(({ _id, file, title, price, discountPrice, discountPercent, isSaved }: any) => (
 							<BookTypeTable 
 								key={_id}
 								id={_id}
@@ -51,14 +51,16 @@ const Products: React.FC<Products> = ({ productDisplayType = ProductDisplayTypeE
 								discountPrice={discountPrice}
 								discountPercent={discountPercent}
 								bigGrid={bigGrid}
+								isSaved={isSaved}
 							/>
 						)) : null}
 					</div>
 				) : (
 					<div className={styles.productsOfListWrapper}>
-						{data && data.length ? data.map(({ _id, file, title, description, yearOfPublish, author, price, discountPrice, discountPercent }: any) => (
+						{data && data.length ? data.map(({ _id, file, title, description, yearOfPublish, author, price, discountPrice, discountPercent, isSaved }: any) => (
 							<BookTypeList 
 								key={_id}
+								id={_id}
 								file={file}
 								title={title}
 								yearOfPublish={yearOfPublish}
@@ -67,6 +69,7 @@ const Products: React.FC<Products> = ({ productDisplayType = ProductDisplayTypeE
 								price={price}
 								discountPrice={discountPrice}
 								discountPercent={discountPercent}
+								isSaved={isSaved}
 							/>
 						)) : null}
 					</div>

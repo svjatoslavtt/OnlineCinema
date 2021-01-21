@@ -8,6 +8,7 @@ import Buttons from '../components/Buttons';
 import Price from '../components/Price';
 
 type BookTypes = {
+	id: string;
 	file: string;
 	title: string;
 	price: number;
@@ -17,9 +18,10 @@ type BookTypes = {
 	badge?: string;
 	discountPrice?: number;
 	discountPercent?: number;
+	isSaved: boolean;
 };
 
-const BookTypeList: React.FC<BookTypes> = ({ file, title, price, description, yearOfPublish, author, badge, discountPercent, discountPrice }) => {
+const BookTypeList: React.FC<BookTypes> = ({ id, file, title, price, description, yearOfPublish, author, badge, discountPercent, discountPrice, isSaved }) => {
 
 	return (
 		<div className={styles.book}>
@@ -58,7 +60,7 @@ const BookTypeList: React.FC<BookTypes> = ({ file, title, price, description, ye
 					</div>
 
 					<div className={styles.buttonsWrapper}>
-						<Buttons />
+						<Buttons bookId={id} isSaved={isSaved} />
 					</div>
 				</div>
 			</div>

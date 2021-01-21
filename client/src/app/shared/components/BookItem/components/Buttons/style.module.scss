@@ -18,9 +18,16 @@
 
 	& > i {
 		font-size: 33px;
-		color: #ccc;
 		transition: transform .175s ease-out;
 		transform: scale(1);
+	}
+
+	&.unsave > i {
+		color: #ccc;
+	}
+
+	&.save > i {
+		color: $red;
 	}
 
 	&:hover {

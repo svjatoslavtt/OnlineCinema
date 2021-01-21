@@ -21,13 +21,13 @@ export enum ActionTypes {
 	GET_CURRENT_BOOK_SUCCESS = 'GET_CURRENT_BOOK_SUCCESS',
 	GET_CURRENT_BOOK_FAILED = 'GET_CURRENT_BOOK_FAILED',
 
-	LIKE_BOOK_REQUEST = 'LIKE_BOOK_REQUEST',
-	LIKE_BOOK_SUCCESS = 'LIKE_BOOK_SUCCESS',
-	LIKE_BOOK_FAILED = 'LIKE_BOOK_FAILED',
+	SAVE_BOOK_REQUEST = 'SAVE_BOOK_REQUEST',
+	SAVE_BOOK_SUCCESS = 'SAVE_BOOK_SUCCESS',
+	SAVE_BOOK_FAILED = 'SAVE_BOOK_FAILED',
 
-	DISLIKE_BOOK_REQUEST = 'DISLIKE_BOOK_REQUEST',
-	DISLIKE_BOOK_SUCCESS = 'DISLIKE_BOOK_SUCCESS',
-	DISLIKE_BOOK_FAILED = 'DISLIKE_BOOK_FAILED',
+	REMOVE_SAVED_BOOK_REQUEST = 'REMOVE_SAVED_BOOK_REQUEST',
+	REMOVE_SAVED_BOOK_SUCCESS = 'REMOVE_SAVED_BOOK_SUCCESS',
+	REMOVE_SAVED_BOOK_FAILED = 'REMOVE_SAVED_BOOK_FAILED',
 
 	RATE_BOOK_REQUEST = 'RATE_BOOK_REQUEST',
 	RATE_BOOK_SUCCESS = 'RATE_BOOK_SUCCESS',
@@ -65,13 +65,13 @@ export const Actions = {
 	getCurrentBookSuccess: (payload: any) => action(ActionTypes.GET_CURRENT_BOOK_SUCCESS, payload),
 	getCurrentBookFailed: (payload: { message: string }) => action(ActionTypes.GET_CURRENT_BOOK_FAILED, payload),
 
-	likeBookRequest: (payload: { bookId: string, token: string }) => action(ActionTypes.LIKE_BOOK_REQUEST, payload), 
-	likeBookSuccess: (payload: any) => action(ActionTypes.LIKE_BOOK_SUCCESS, payload), 
-	likeBookFailed: (payload: { message: string }) => action(ActionTypes.LIKE_BOOK_FAILED, payload), 
+	saveBookRequest: (payload: { bookId: string }) => action(ActionTypes.SAVE_BOOK_REQUEST, payload), 
+	saveBookSuccess: (payload: any) => action(ActionTypes.SAVE_BOOK_SUCCESS, payload), 
+	saveBookFailed: (payload: { message: string }) => action(ActionTypes.SAVE_BOOK_FAILED, payload), 
 
-	dislikeBookRequest: (payload: { bookId: string, token: string }) => action(ActionTypes.DISLIKE_BOOK_REQUEST, payload), 
-	dislikeBookSuccess: (payload: any) => action(ActionTypes.DISLIKE_BOOK_SUCCESS, payload), 
-	dislikeBookFailed: (payload: { message: string }) => action(ActionTypes.DISLIKE_BOOK_FAILED, payload), 
+	removeSavedBookRequest: (payload: { bookId: string }) => action(ActionTypes.REMOVE_SAVED_BOOK_REQUEST, payload), 
+	removeSavedBookSuccess: (payload: any) => action(ActionTypes.REMOVE_SAVED_BOOK_SUCCESS, payload), 
+	removeSavedBookFailed: (payload: { message: string }) => action(ActionTypes.REMOVE_SAVED_BOOK_FAILED, payload), 
 
 	rateBookRequest: (payload: { bookId: string, rating: number | null, token: string }) => action(ActionTypes.RATE_BOOK_REQUEST, payload), 
 	rateBookSuccess: (payload: any) => action(ActionTypes.RATE_BOOK_SUCCESS, payload), 

@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { all, call, put, takeEvery } from "redux-saga/effects";
+
+import { Actions, ActionTypes } from "./action";
+import { Book } from './types';
+
 import { ApiEndPoints } from "../../routes/api-routes-const";
 import { AppRoutes } from "../../routes/routes-const";
-
 import { request } from "../../shared/utils/request";
-import { Actions, ActionTypes } from "./action";
 
 function* getBooks() {
 	try {
-		const data = yield call(request, ApiEndPoints.GET_FILMS);
+		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
+		const data = yield call(request, ApiEndPoints.GET_FILMS + `${userId ? '?userId=' + userId : '' }`);
 		yield put(Actions.getBooksSuccess(data));
 	} catch (err) {
 		yield put(Actions.getBooksFailed(err));
@@ -55,27 +58,35 @@ function* getCurrentBook(action: any) {
 	};
 };
 
-function* likeBook(action: any) {
+function* saveBook(action: any) {
 	try {
-		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
-		const data = yield call(request, ApiEndPoints.LIKE_FILM + '/' + action.payload.bookId, 'POST', {userId}, {
-			Authorization: `Bearer ${action.payload.token}`,
-	});
-		yield put(Actions.likeBookSuccess(data)); 
+		const userId: string = JSON.parse(localStorage.getItem('id') as string);
+		const token: string = JSON.parse(localStorage.getItem('token') as string);
+		const { bookId } = action.payload;
+
+		yield call(request, ApiEndPoints.SAVE_BOOK + '/' + bookId, 'POST', {userId, bookId}, {
+			Authorization: `Bearer ${token}`,
+		});
+
+		// yield put(Actions.saveBookSuccess(data)); 
 	} catch (err) {
-		yield put(Actions.likeBookFailed(err));
+		yield put(Actions.saveBookFailed(err));
 	};
 };
 
-function* dislikeBook(action: any) {
+function* removeSavedBook(action: any) {
 	try {
-		const userId: string = yield JSON.parse(localStorage.getItem("id") as string);
-		const data = yield call(request, ApiEndPoints.DISLIKE_FILM + '/' + action.payload.bookId, 'POST', {userId}, {
-			Authorization: `Bearer ${action.payload.token}`,
-	});
-		yield put(Actions.dislikeBookSuccess(data)); 
+		const userId: string = JSON.parse(localStorage.getItem('id') as string);
+		const token: string = JSON.parse(localStorage.getItem('token') as string);
+		const { bookId } = action.payload;
+
+		yield call(request, ApiEndPoints.REMOVE_SAVED_BOOK + '/' + bookId, 'POST', {userId, bookId}, {
+			Authorization: `Bearer ${token}`,
+		});
+		
+		// yield put(Actions.removeSavedBookSuccess(data)); 
 	} catch (err) {
-		yield put(Actions.dislikeBookFailed(err.message));
+		yield put(Actions.removeSavedBookFailed(err.message));
 	};
 };
 
@@ -122,8 +133,8 @@ export function* watchGetBooks() {
 		takeEvery(ActionTypes.GET_MY_BOOKS_REQUEST, getMyBooks),
 		takeEvery(ActionTypes.GET_MY_LIKES_REQUEST, getMyLikes),
 		takeEvery(ActionTypes.GET_CURRENT_BOOK_REQUEST, getCurrentBook),
-		takeEvery(ActionTypes.LIKE_BOOK_REQUEST, likeBook),
-		takeEvery(ActionTypes.DISLIKE_BOOK_REQUEST, dislikeBook),
+		takeEvery(ActionTypes.SAVE_BOOK_REQUEST, saveBook),
+		takeEvery(ActionTypes.REMOVE_SAVED_BOOK_REQUEST, removeSavedBook),
 		takeEvery(ActionTypes.RATE_BOOK_REQUEST, rateBook),
 		takeEvery(ActionTypes.GET_CURRENT_PAGE_REQUEST, getCurrentPage),
 		takeEvery(ActionTypes.EDIT_BOOK_REQUEST, editBook),

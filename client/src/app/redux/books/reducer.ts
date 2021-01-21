@@ -6,7 +6,7 @@ export const booksInitialState: BooksState = {
 	discountBooks: null,
 	myLikes: null,
 	currentBook: null,
-	isLike: false,
+	isSave: false,
 	isRate: false,
 	pageCount: null,
 	pagination: null,
@@ -43,29 +43,11 @@ export const reducer = (state = booksInitialState, action: ActionTypesUnion) => 
 			return {
 				...state,
 				currentBook: action.payload.currentBook,
-				isLike: action.payload.isLike,
+				isSave: action.payload.isLike,
 				isRate: action.payload.isRate,
 				booksByAuthor: action.payload.booksByAuthor,
 				likeABook: action.payload.likeABook,
-			}		
-		case ActionTypes.LIKE_BOOK_SUCCESS:
-			return {
-				...state,
-				currentBook: {
-					...state.currentBook,
-					likes: action.payload.likes,
-				},
-				isLike: action.payload.isLike,
-			}	
-		case ActionTypes.DISLIKE_BOOK_SUCCESS:
-			return {
-				...state,
-				currentBook: {
-					...state.currentBook,
-					likes: action.payload.likes,
-				},
-				isLike: action.payload.isLike,
-			}		
+			}
 		case ActionTypes.RATE_BOOK_SUCCESS:
 			return {
 				...state,

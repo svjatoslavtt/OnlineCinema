@@ -43,7 +43,7 @@ export const getCurrentBook = createSelector(
 
 export const getIsLikeBook = createSelector(
 	getBooksState,
-	(state: BooksState) => state.isLike
+	(state: BooksState) => state.isSave
 );
 
 export const getIsRatedBook = createSelector(

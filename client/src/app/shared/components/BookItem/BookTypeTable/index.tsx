@@ -18,9 +18,10 @@ type BookTypes = {
 	discountPercent: number;
 	bigGrid?: boolean;
 	badge?: string;
+	isSaved: boolean;
 };
 
-const BookTypeTable: React.FC<BookTypes> = ({ id, file, title, bigGrid, badge, price, discountPrice, discountPercent }) => {
+const BookTypeTable: React.FC<BookTypes> = ({ id, file, title, bigGrid, badge, price, discountPrice, discountPercent, isSaved }) => {
 
 	const bookStyles = [
 		bigGrid ? styles.bookBigGrid : styles.book
@@ -46,7 +47,7 @@ const BookTypeTable: React.FC<BookTypes> = ({ id, file, title, bigGrid, badge, p
 				<div className={styles.bookName}>{title.length > 50 ? title.substring(0, 50) + '...' : title}</div>
 			</div>
 
-			<Buttons />
+			<Buttons bookId={id} isSaved={isSaved} />
 		</div>
 	);
 };

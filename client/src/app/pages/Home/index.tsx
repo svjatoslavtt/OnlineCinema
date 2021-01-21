@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import styles from "./style.module.scss";
@@ -15,7 +16,6 @@ import popularImage2 from "../../static/images/popular-image.jpg";
 import Footer from "../../shared/components/Footer";
 import BookTypeTable from "../../shared/components/BookItem/BookTypeTable";
 import Products from "../../shared/components/Products";
-import { useDispatch, useSelector } from "react-redux";
 import { Actions } from "../../redux/books/action";
 import { getBooks, getDiscountBooks } from "../../redux/books/selectors";
 
