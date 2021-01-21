@@ -3,12 +3,35 @@ const Book = require("../models/Book");
 const User = require("../models/User");
 const multer = require("multer");
 const {v4} = require("uuid");
+const url = require('url');
 
 const router = Router();
 
-router.get('/news-feed', async (req, res) => {
+router.get('/books', async (req, res) => {
 	try {
+		const queryParams = url.parse(req.url, true).query;
+
 		const books = await Book.find();
+
+		if (queryParams.userId) {
+			const user = await User.findById(queryParams.userId);
+
+			const checkBooks = books.map(item => {
+				if (user.saveForLater.includes(item._id)) {
+					return ({
+						...item._doc,
+						isSaved: true,
+					});
+				};
+
+				return ({
+					...item._doc,
+					isSaved: false,
+				});
+			});
+
+			return res.status(200).json({ message: 'Книги получены успешно', books: checkBooks, user });
+		};
 
 		return res.status(200).json({ message: 'Книги получены успешно', books });
 	} catch (err) {

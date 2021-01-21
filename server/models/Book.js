@@ -65,7 +65,7 @@ const schema = new Schema({
   file: {
     type: String,
     required: true,
-  },
+	},
 	reviews: [
 		{
 			userId: {
@@ -85,7 +85,11 @@ const schema = new Schema({
 	date: {
     type: Number,
     required: true,
-  },
+	},
+	isSaved: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 module.exports = model('Book', schema);

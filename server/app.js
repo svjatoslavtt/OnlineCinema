@@ -14,7 +14,7 @@ app.use('/public', express.static('public'));
 app.use('/api/auth/', require('./routes/auth'));
 app.use('/api/book-upload/', require('./routes/book-upload'));
 app.use('/api/book/', require('./routes/book'));
-app.use('/api/likes/', require('./routes/likes'));
+app.use('/api/action/', require('./routes/action'));
 app.use('/api/rate/', require('./routes/rating'));
 app.use('/api/user-profile/', require('./routes/user-profile'));
 app.use('/api/filter/', require('./routes/filter'));
